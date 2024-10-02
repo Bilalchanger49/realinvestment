@@ -4,9 +4,11 @@ namespace App\Livewire\admin\Property;
 
 use App\Http\Requests\PropertyRequest;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateComponent extends Component
 {
+    use WithFileUploads;
     public $property_name;
     public $property_description;
     public $property_reg_no;
@@ -16,15 +18,6 @@ class CreateComponent extends Component
     public $property_image;
     public $rules;
     public $messages;
-//    protected $rules = [
-//        'property_name' => 'required',
-//        'property_description'=> 'required',
-//        'property_reg_no' => 'required',
-//        'property_address' => 'required',
-//        'property_price' => 'required',
-//        'property_total_shares' => 'required',
-//        'property_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-//    ];
 
     public function mount()
     {
@@ -38,6 +31,8 @@ class CreateComponent extends Component
     }
     public function createproperty(){
         $validate = $this->validate($this->rules, $this->messages);
-        dd($validate);
+        $roi  = $this->property_rent * 12;
+        $no_of_shares = $this->property_price / $roi;
+
     }
 }

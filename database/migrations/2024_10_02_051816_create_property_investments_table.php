@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('shares', function (Blueprint $table) {
+        Schema::create('property_investments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // The investor
             $table->foreignId('property_id')->constrained()->onDelete('cascade');
-            $table->integer('share_prize');
-            $table->integer('expected_profit')->nullable();
+            $table->integer('shares_owned');
+            $table->decimal('total_investment', 15, 2);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('shares');
+        Schema::dropIfExists('property_investments');
     }
 };

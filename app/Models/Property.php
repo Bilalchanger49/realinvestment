@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Property extends Model
 {
-    protected $fillable = [ 'user_id', 'property_name', 'property_description', 'property_reg_no', 'property_address', 'property_price', 'property_total_shares', 'property_remaining_shares', 'property_image'];
     use HasFactory;
+    protected $fillable = ['user_id', 'property_name', 'property_description', 'property_reg_no',
+        'property_address', 'property_price', 'property_rent', 'property_share_price',
+        'property_remaining_shares', 'property_image'];
 
     public function user()
     {

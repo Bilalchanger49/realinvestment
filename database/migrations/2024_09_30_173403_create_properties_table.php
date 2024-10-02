@@ -19,7 +19,8 @@ return new class extends Migration
             $table->integer('property_reg_no');
             $table->text('property_address');
             $table->integer('property_price')->nullable();
-            $table->integer('property_total_shares');
+            $table->integer('property_rent');
+            $table->integer('property_share_price')->nullable();
             $table->text('property_remaining_shares')->default('0')->nullable();
             $table->text('property_image');
             $table->timestamps();
