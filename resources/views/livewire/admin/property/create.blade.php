@@ -46,9 +46,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="total_shares">Total Shares</label>
-                            <input type="number" class="form-control" id="total_shares" name="total_shares" wire:model="property_total_shares">
-                            @error('property_total_shares') <span class="error text-danger">{{ $message }}</span> @enderror
+                            <label for="property_rent">Property Rent</label>
+                            <input type="number" class="form-control" id="property_rent" name="property_rent" wire:model="property_rent">
+                            @error('property_rent') <span class="error text-danger">{{ $message }}</span> @enderror
                         </div>
 
 

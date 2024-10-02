@@ -23,7 +23,7 @@ class PropertyRequest extends FormRequest
             'property_address' => 'required',
             'property_price' => 'required',
             'property_total_shares' => 'required',
-            'property_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'property_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
@@ -49,13 +49,13 @@ class PropertyRequest extends FormRequest
     public function messagesLivewire()
     {
         return [
-            'property_name' => 'name is required',
-            'property_description'=> 'required',
-            'property_reg_no' => 'required',
-            'property_address' => 'required',
-            'property_price' => 'required',
-            'property_total_shares' => 'required',
-            'property_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'property_name' => 'Name is required',
+            'property_description'=> 'Description is required',
+            'property_reg_no' => 'Registration No is required',
+            'property_address' => 'Address is required',
+            'property_price' => 'Price is required',
+            'property_total_shares' => 'Total Shares is required',
+            'property_image' => 'Image is required',
         ];
     }
 
