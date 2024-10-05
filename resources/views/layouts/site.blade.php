@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mindgrand - Real Estate HTML Template</title>
 
@@ -42,34 +42,37 @@
 <!-- navbar start -->
 <div class="navbar-area navbar-area-2">
     <!-- navbar top start -->
-    <div class="navbar-top bg-main">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 text-lg-left text-center">
-                    <ul>
-                        <li><p><img src="assets/img/icon/location.png" alt="img"> 420 Love Sreet 133/2 flx City</p></li>
-                        <li><p><img src="assets/img/icon/phone.png" alt="img"> +(06) 017 800 628</p></li>
-                        <li><p><img src="assets/img/icon/envelope.png" alt="img">  <a href="https://solverwp.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="10797e767f3e737f7e6471736450777d71797c3e737f7d">[email&#160;protected]</a></p></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <ul class="topbar-right text-lg-right text-center">
-                        <li>
-                            <a class="ml-0" href="{{route('register')}}">Register</a>
-                            <a href="{{route('login')}}">Login</a>
-                        </li>
-                        <li class="social-area">
-                            <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fab fa-skype" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div class="navbar-top bg-main">--}}
+{{--        <div class="container">--}}
+{{--            <div class="row">--}}
+{{--                <div class="col-lg-8 text-lg-left text-center">--}}
+{{--                    <ul>--}}
+{{--                        <li><p><img src="assets/img/icon/location.png" alt="img"> 420 Love Sreet 133/2 flx City</p></li>--}}
+{{--                        <li><p><img src="assets/img/icon/phone.png" alt="img"> +(06) 017 800 628</p></li>--}}
+{{--                        <li><p><img src="assets/img/icon/envelope.png" alt="img"> <a--}}
+{{--                                    href="https://solverwp.com/cdn-cgi/l/email-protection" class="__cf_email__"--}}
+{{--                                    data-cfemail="10797e767f3e737f7e6471736450777d71797c3e737f7d">[email&#160;protected]</a>--}}
+{{--                            </p></li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--                <div class="col-lg-4">--}}
+{{--                    <ul class="topbar-right text-lg-right text-center">--}}
+{{--                        <li>--}}
+{{--                            <a class="ml-0" href="{{route('register')}}">Register</a>--}}
+{{--                            <a href="{{route('login')}}">Login</a>--}}
+{{--                        </li>--}}
+{{--                        <li class="social-area">--}}
+{{--                            <a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>--}}
+{{--                            <a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a>--}}
+{{--                            <a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a>--}}
+{{--                            <a href="#"><i class="fab fa-skype" aria-hidden="true"></i></a>--}}
+{{--                            <a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
     <!-- navbar top end -->
     <nav class="navbar navbar-expand-lg">
         <div class="container nav-container">
@@ -130,10 +133,48 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
-            <div class="nav-right-part nav-right-part-desktop">
-                <ul>
+            <div class="nav-right-part nav-right-part-desktop collapse navbar-collapse" id="dkt_main_menu">
+                <ul class="navbar-nav menu-open text-center">
                     <li><a class="search" href="#"><i class="fa fa-search"></i></a></li>
-                    <li><a class="btn btn-base" href="add-property.html">Submit <i class="fa fa-plus"></i></a></li>
+                    <li class="menu-item-has-children current-menu-item">
+                        @if(Auth::User())
+                            <img src="{{ asset('assets/auth/images/user/user-xs-01.jpg') }}"
+                                 class="user-image rounded-circle" alt="User Image"/>
+                            <a href="#">{{ Auth::User()->name }}</a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <i class="mdi mdi-account-outline"></i>
+                                    <a href=" {{ Auth::user()->name }}">My Profile</a>
+                                </li>
+                                <li class="dropdown-footer">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        @else
+                            <img src="{{ asset('assets/auth/images/user/user-xs-01.jpg') }}"
+                                 class="user-image rounded-circle" alt="User Image"/>
+                            <a href="#">Join Us</a>
+                            <ul class="sub-menu">
+                                <li>
+                                    <i class="mdi mdi-account-outline"></i>
+                                    <a href="{{route('login')}}">Login</a>
+                                </li>
+                                <li>
+                                    <i class="mdi mdi-account-outline"></i>
+                                    <a href="{{route('register')}}">Register</a>
+                                </li>
+
+                            </ul>
+                        @endif
+                    </li>
                 </ul>
             </div>
         </div>
@@ -153,10 +194,14 @@
                     <div class="widget widget_about">
                         <h4 class="widget-title">Company</h4>
                         <div class="details">
-                            <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetur et adipisicing  eiusmod tempor incididunt labore</p>
+                            <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetur et adipisicing
+                                eiusmod tempor incididunt labore</p>
                             <p><i class="fas fa-map-marker-alt"></i> 420 Love Sreet 133/2 Mirpur City, Dhaka</p>
                             <p><i class="fas fa-phone-volume"></i> +(066) 19 5017 800 628</p>
-                            <p><i class="fas fa-envelope"></i> <a href="https://solverwp.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b4dddad2db9ad7dbdac0d5d7c0f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</a></p>
+                            <p><i class="fas fa-envelope"></i> <a href="https://solverwp.com/cdn-cgi/l/email-protection"
+                                                                  class="__cf_email__"
+                                                                  data-cfemail="b4dddad2db9ad7dbdac0d5d7c0f4d3d9d5ddd89ad7dbd9">[email&#160;protected]</a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -164,11 +209,16 @@
                     <div class="widget widget_newsfeed">
                         <h4 class="widget-title">News Feed</h4>
                         <ul>
-                            <li><a href="#"><i class="far fa-user"></i>By Admin</a><span><i class="far fa-calendar-alt"></i>Marce 9 , 2020</span></li>
-                            <li><a href="#"><i class="far fa-user"></i>By Admin</a><span><i class="far fa-calendar-alt"></i>Marce 9 , 2020</span></li>
-                            <li><a href="#"><i class="far fa-user"></i>By Admin</a><span><i class="far fa-calendar-alt"></i>Marce 9 , 2020</span></li>
-                            <li><a href="#"><i class="far fa-user"></i>By Admin</a><span><i class="far fa-calendar-alt"></i>Marce 9 , 2020</span></li>
-                            <li><a href="#"><i class="far fa-user"></i>By Admin</a><span><i class="far fa-calendar-alt"></i>Marce 9 , 2020</span></li>
+                            <li><a href="#"><i class="far fa-user"></i>By Admin</a><span><i
+                                        class="far fa-calendar-alt"></i>Marce 9 , 2020</span></li>
+                            <li><a href="#"><i class="far fa-user"></i>By Admin</a><span><i
+                                        class="far fa-calendar-alt"></i>Marce 9 , 2020</span></li>
+                            <li><a href="#"><i class="far fa-user"></i>By Admin</a><span><i
+                                        class="far fa-calendar-alt"></i>Marce 9 , 2020</span></li>
+                            <li><a href="#"><i class="far fa-user"></i>By Admin</a><span><i
+                                        class="far fa-calendar-alt"></i>Marce 9 , 2020</span></li>
+                            <li><a href="#"><i class="far fa-user"></i>By Admin</a><span><i
+                                        class="far fa-calendar-alt"></i>Marce 9 , 2020</span></li>
                         </ul>
                     </div>
                 </div>
@@ -234,7 +284,8 @@
 <!-- back to top area end -->
 
 <!-- all plugins here -->
-<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/vendor.js"></script>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="assets/js/vendor.js"></script>
 <!-- main js  -->
 <script src="assets/js/main.js"></script>
 @livewireScripts

@@ -16,7 +16,7 @@
 {{--                    @endif--}}
 
                     <form wire:submit.prevent="createproperty" enctype="multipart/form-data">
-                        @csrf
+{{--                        @csrf--}}
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name" name="name" wire:model="property_name" >
@@ -56,7 +56,9 @@
                             <label for="property_image">Property Image</label>
                             <input type="file" class="form-control" id="property_image" name="property_image" wire:model="property_image">
                             @error('property_image') <span class="error text-danger">{{ $message }}</span> @enderror
+                            <div wire:loading wire:target="property_image">Uploading...</div>
                         </div>
+
 
                         <button type="submit" class="btn btn-primary">Create Property</button>
                     </form>
