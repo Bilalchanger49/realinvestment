@@ -22,7 +22,7 @@ class PropertyRequest extends FormRequest
             'property_reg_no' => 'required',
             'property_address' => 'required',
             'property_price' => 'required',
-            'property_total_shares' => 'required',
+            'property_rent' => 'required',
             'property_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
@@ -54,7 +54,7 @@ class PropertyRequest extends FormRequest
             'property_reg_no' => 'Registration No is required',
             'property_address' => 'Address is required',
             'property_price' => 'Price is required',
-            'property_total_shares' => 'Total Shares is required',
+            'property_rent' => 'rent price is required',
             'property_image' => 'Image is required',
         ];
     }
