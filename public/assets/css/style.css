@@ -71,7 +71,7 @@ html {
   /* WebKit  */
 }
 
-body {
+body{
   margin: 0;
   color: var(--paragraph-color);
   font-family: var(--body-font);
@@ -79,7 +79,7 @@ body {
   font-size: var(--body-font-size);
 }
 
-h1 {
+h1{
   font-size: 70px;
   line-height: 1.2333333333;
 }
@@ -622,6 +622,7 @@ ul {
 .btn-base:hover,
 .btn-base:focus {
   color: #fff;
+  background: var(--main-color);
 }
 
 .btn-base:hover:before,
@@ -2198,243 +2199,95 @@ ul {
 /*----------------------------------------------
     ## Banner
 ----------------------------------------------*/
-.banner-area {
-  display: flex;
-  align-items: center;
-  position: relative;
+.carousel-fade .carousel-item {
+    transition: opacity 1s ease-in-out; /* Adjust the duration of the fade here */
+    opacity: 0; /* Start with all items hidden */
 }
 
-.banner-area-bg {
-  background-size: cover !important;
-  background-position: center !important;
+.carousel-fade .carousel-item.active {
+    opacity: 1; /* Show the active item */
 }
+
+.carousel-inner .carousel-item img {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    position: relative;
+    z-index: 1; /* Images stay behind the overlay */
+}
+
+.banner-area {
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+.banner-area-bg {
+    background-size: cover !important;
+    background-position: center !important;
+}
+
 
 .banner-area-bg:after {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-  background: rgba(0, 24, 77, 0.8);
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(37, 32, 32, 0.8);
+    z-index: 2; /* Ensure overlay stays above images */
+    pointer-events: none; /* Prevent overlay from blocking interactions */
 }
 
-.banner-area-inner {
-  padding-top: 60px;
-  position: relative;
-  z-index: 2;
+.carousel-caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 3; /* Ensure text is above both the overlay and images */
+    color: white;
+    width: 80%; /* Optional: Control text width */
+    pointer-events: auto; /* Allow interaction with the text */
 }
 
-.banner-inner h6 {
-  position: relative;
-  margin-bottom: 15px;
-  display: inline-block;
+
+.carousel-caption p {
+    color: #fff;
+    margin-bottom: 20px;
 }
 
-.banner-inner h6:after {
-  content: "";
-  position: absolute;
-  height: 2px;
-  width: 60px;
-  left: 0;
-  bottom: -5px;
-  background: var(--main-color);
+.carousel-caption .line {
+    background: #fff;
+    height: 8px;
+    width: 8px;
+    margin: 0 auto;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 10px;
 }
 
-.banner-inner p {
-  color: #fff;
-  margin-bottom: 20px;
+.carousel-caption .line:before,
+.carousel-caption .line:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 50px;
+    top: 3px;
+    background: #fff;
 }
 
-.banner-inner .line {
-  background: #fff;
-  height: 8px;
-  width: 8px;
-  margin: 0 auto;
-  border-radius: 50%;
-  position: relative;
-  margin-bottom: 10px;
+.carousel-caption .line:before {
+    left: -55px;
+}
+.carousel-caption .line:after {
+    right: -55px;
 }
 
-.banner-inner .line:before {
-  content: "";
-  position: absolute;
-  height: 2px;
-  width: 50px;
-  left: -55px;
-  top: 3px;
-  background: #fff;
-}
-
-.banner-inner .line:after {
-  content: "";
-  position: absolute;
-  height: 2px;
-  width: 50px;
-  right: -55px;
-  top: 3px;
-  background: #fff;
-}
-
-.banner-inner h2 {
-  font-size: 60px;
-  color: #fff;
-  font-weight: 700;
-}
-
-.banner-inner.style-dark p {
-  color: var(--paragraph-color);
-}
-
-.banner-inner.style-dark .line {
-  background: var(--main-color);
-}
-
-.banner-inner.style-dark .line:before {
-  background: var(--main-color);
-}
-
-.banner-inner.style-dark .line:after {
-  background: var(--main-color);
-}
-
-.banner-inner.style-dark h2 {
-  color: var(--heading-color);
-}
-
-.banner-area-1 {
-  padding: 285px 0;
-}
-
-.banner-area-2 {
-  height: 100vh;
-}
-
-.banner-area-2 .banner-area-inner {
-  padding-top: 0;
-}
-
-.banner-area-2 .main-search-area {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: #f3f3f3;
-}
-
-.banner-area-2 .main-search-inner {
-  padding: 30px;
-}
-
-.banner-area-2 .main-search-inner .single-select-inner .nice-select,
-.banner-area-2 .main-search-inner .single-input-inner input,
-.banner-area-2 .main-search-inner .btn {
-  border-radius: 0 !important;
-}
-
-.banner-area-2 .main-search-inner .single-select-inner:after {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 1px;
-  left: 0;
-  top: 0;
-  background: #f0f0f0;
-}
-
-.banner-area-3 {
-  position: relative;
-}
-
-.banner-area-3 .main-search-area {
-  position: absolute;
-  top: 90px;
-  width: 100%;
-}
-
-.banner-area-3 .main-search-inner {
-  background: var(--main-color);
-  padding: 30px;
-}
-
-.banner-area-3 .banner-meta-inner {
-  background: var(--main-color);
-  display: inline-block;
-  position: absolute;
-  left: 20px;
-  z-index: 4;
-  bottom: 0;
-  padding: 18px 70px 17px 20px;
-}
-
-.banner-area-3 .banner-meta-inner h4 {
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-.banner-area-3 .banner-meta-inner span {
-  color: #fff;
-  font-size: 14px;
-}
-
-.banner-area-3 .banner-meta-inner img,
-.banner-area-3 .banner-meta-inner i {
-  width: auto;
-  display: inline-block;
-  margin-right: 6px;
-}
-
-.banner-area-3 .banner-meta-inner .btn {
-  position: absolute;
-  top: 50%;
-  right: -110px;
-  margin-top: -23px;
-}
-
-.banner-slider .item {
-  align-items: center;
-  align-self: center;
-  display: flex;
-  padding: 360px 0 320px;
-}
-
-.banner-slider .owl-nav {
-  display: none;
-}
-
-.banner-slider .owl-dots {
-  position: absolute;
-  right: 0;
-  bottom: 50px;
-}
-
-.banner-slider .owl-dots {
-  margin-top: 40px;
-}
-
-.banner-slider .owl-dots .owl-dot {
-  border: 0;
-  background: #fff;
-  border-radius: 8px;
-  margin: 0 5px;
-  height: 8px;
-  width: 25px;
-}
-
-.banner-slider .owl-dots .owl-dot span {
-  display: none;
-}
-
-.banner-slider .owl-dots .owl-dot.active {
-  background: var(--main-color);
-}
-
-.banner-area-5 .banner-area-inner {
-  padding: 342px 0 180px;
-}
-
-.banner-map-area .single-product-wrap.style-bottom {
-  max-width: 380px !important;
-  margin-bottom: 0 !important;
+.carousel-caption h2 {
+    font-size: 60px;
+    color: #fff;
+    font-weight: 700;
 }
 
 /*--------------------------------------------------
