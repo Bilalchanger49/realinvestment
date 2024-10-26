@@ -1,8 +1,4 @@
-@extends('layouts.site')
-
-@section('content')
-
-    <div>
+<div>
         <!-- banner start -->
         <div class="breadcrumb-area bg-overlay-2" style="background-image:url('assets/img/other/6.png')">
             <div class="container">
@@ -385,5 +381,4 @@
             </div>
         </div>
         <!-- product area end -->
-    </div>
-@endsection
+</div>

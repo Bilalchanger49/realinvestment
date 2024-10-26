@@ -527,7 +527,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-6 text-center">
-                            <a class="btn btn-base w-md-auto w-25" href="{{route('allProperties')}}">View All Properties</a>
+                            <a class="btn btn-base w-md-auto w-25" href="{{route('site.property.all')}}">View All Properties</a>
                         </div>
                     </div>
                 </div>
