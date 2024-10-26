@@ -2,14 +2,19 @@
 
 use App\Livewire\admin\Property\PropertyComponent;
 use App\Livewire\admin\Property\CreateComponent as createProperty;
+use App\Livewire\Site\AboutComponent;
+use App\Livewire\Site\HomeComponent;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/about', function () {
-    return view('livewire.site.about');
-});
+Route::get('/', HomeComponent::class)->name('site.home');
+Route::get('/about', AboutComponent::class)->name('site.about');
+//Route::get('/', function (){
+//    return view('welcome');
+//})->name('home');
+
+//Route::get('/about', function () {
+//    return view('livewire.site.about');
+//});
 Route::get('/property-details', function () {
     return view('livewire.site.property-details');
 });
