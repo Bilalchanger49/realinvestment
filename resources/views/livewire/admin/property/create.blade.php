@@ -1,22 +1,24 @@
 
     <div class="content-wrapper">
+
         <div class="content">
+            <h1 class="mb-3">Add New property</h1>
             <div class="card card-default">
                 <div class="container mt-4">
-                    <h1>Add New property</h1>
 
-{{--                    @if ($errors->any())--}}
-{{--                        <div class="alert alert-danger">--}}
-{{--                            <ul>--}}
-{{--                                @foreach ($errors->all() as $error)--}}
-{{--                                    <li>{{ $error }}</li>--}}
-{{--                                @endforeach--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                    @endif--}}
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                     <form wire:submit.prevent="createproperty" enctype="multipart/form-data">
-{{--                        @csrf--}}
+                        @csrf
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name" name="name" wire:model="property_name" >

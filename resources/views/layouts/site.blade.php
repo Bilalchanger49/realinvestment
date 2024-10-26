@@ -199,6 +199,7 @@
 <!-- back to top area end -->
 
 <!-- all plugins here -->
+
 <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="assets/js/vendor.js"></script>
 <!-- main js  -->
@@ -214,7 +215,5 @@
         crossorigin="anonymous"></script>
 @livewireScripts
 </body>
-
-<!-- Mirrored from solverwp.com/demo/html/mingrand/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Sep 2024 06:55:24 GMT -->
 </html>
 
