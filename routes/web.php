@@ -1,33 +1,26 @@
 <?php
 
-use App\Livewire\admin\Property\PropertyComponent;
 use App\Livewire\admin\Property\CreateComponent as createProperty;
+use App\Livewire\admin\Property\PropertyComponent;
+use \App\Livewire\admin\DashboardComponent;
 use App\Livewire\Site\AboutComponent;
+use App\Livewire\Site\AllPropertiesComponent;
 use App\Livewire\Site\HomeComponent;
+use App\Livewire\Site\PropertyDetailsComponent;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeComponent::class)->name('site.home');
 Route::get('/about', AboutComponent::class)->name('site.about');
-//Route::get('/', function (){
-//    return view('welcome');
-//})->name('home');
+Route::get('/property-details', PropertyDetailsComponent::class)->name('site.property.details');
+Route::get('/all-properties', AllPropertiesComponent::class)->name('site.property.all');
 
-//Route::get('/about', function () {
-//    return view('livewire.site.about');
-//});
-Route::get('/property-details', function () {
-    return view('livewire.site.property-details');
-});
-
-Route::get('/all', function () {
-    return view('livewire.site.allProperties');
-})->name('allProperties');
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    Route::get('/dashboard', DashboardComponent::class)->name('dashboard');
     Route::get('/dashboard', function () {
         return view('livewire.admin.dashboard');
     })->name('dashboard');

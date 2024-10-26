@@ -1,8 +1,4 @@
-@extends('layouts.site')
-
-@section('content')
-
-    <div>
+ <div>
         <!-- breadcrumb start -->
         <div class="breadcrumb-area bg-overlay-2" style="background-image:url('assets/img/other/7.png')">
             <div class="container">
@@ -263,5 +259,4 @@
             </div>
         </div>
         <!-- property-page- end -->
-    </div>
-@endsection
+ </div>
