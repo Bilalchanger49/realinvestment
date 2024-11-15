@@ -158,6 +158,13 @@ img {
   max-width: 100%;
 }
 
+
+.about_image img{
+    max-width: 800px;
+    height: 400px;
+}
+
+
 ol {
   counter-reset: counter;
   padding-left: 0;
@@ -1331,6 +1338,7 @@ ul {
   z-index: 2;
 }
 
+
 .bg-overlay-2 {
   position: relative;
   background-size: cover !important;
@@ -2195,6 +2203,150 @@ ul {
     padding: 17px !important;
   }
 }
+/*login----------
+    ## login page
+-------------------*/
+section.bg-light {
+    padding: 1rem !important; /* Reduce section padding */
+}
+.card-body {
+    padding: 1rem !important; /* Reduce card padding */
+}
+.form-control {
+    height: 52px;
+    background: #fff;
+    font-size: 14px;
+    border-radius: 2px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #5ba600;
+}
+.form-control[type="email"]:focus,
+.form-control[type="password"]:focus {
+    border: 2px solid black;
+}
+.custom-link {
+    color: black; /* Change link color to black */
+    display: block; /* Make the link a block element */
+    text-align: center; /* Center the text */
+    transition: color 0.3s;
+}
+.custom-link:hover {
+    color: #5ba600; /* Color on hover */
+}
+
+/*login----------
+    ## login end
+-------------------*/
+/*contact----------
+    ## contact us page
+-------------------*/
+
+
+.first_col {
+    background-color: white;
+    height: 580px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: relative;
+    width: 550px;
+    left: 155px;
+    top: 171px;
+    border-radius: 20px;
+
+    overflow: hidden;
+    min-height: 100%; /* Adjust percentage as needed */
+    overflow: auto;
+}
+#exampleFormControlTextarea1 {
+    resize: vertical; /* Only allows vertical resizing, or use 'none' to disable resizing completely */
+}
+
+.img-fluid {
+    border-radius: 20px;
+}
+
+.row-last {
+    width: 60% !important;
+    position: relative !important;
+    left: 500px;
+    top: 50px;
+    height: 250px;
+    padding-bottom: 100px !important;
+    background-color: #0d1741;
+    border-radius: 20px;
+
+}
+.row-last h4{
+    color: #fff;
+}
+
+.row-last p{
+    color: #fff;
+}
+
+
+.btn-primary {
+    background-color: var(--main-color);
+    color: white; /* Initial text color */
+    border: 2px solid var(--main-color);
+
+}
+
+.btn-primary:hover {
+    background-color: white !important; /* Change background to white */
+    color: black; /* Change text color to black */
+    border-color: var(--main-color);
+}
+
+.form-control {
+    height: 52px;
+    background: #fff;
+    font-size: 14px;
+    border-radius: 2px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid var(--main-color);
+}
+.form-control[type=text]:focus {
+    border: 2px solid black;
+}
+
+.contact-page-map {
+    margin-top: 30px; /* Adjust this value to set the top margin */
+}
+
+.contact-page-map iframe {
+    width: 100%; /* Makes the iframe full width */
+    height: 450px; /* Adjust the height as needed */
+    border: 0; /* Removes the default border */
+}
+
+@media only screen and (max-width: 600px) {
+    .first_col {
+        position: initial;
+        left: 0 !important;
+    }
+
+    .sec_col {
+        order: 1 !important;
+    }
+
+    .row-last {
+        left: 0 !important;
+        width: 100% !important;
+        height: 500px !important;
+        top: 0 !important;
+    }
+}
+
+
+/*contact----------
+    ## contact us page end
+-------------------*/
+
+
+
+
 
 /*----------------------------------------------
     ## Banner
@@ -2664,6 +2816,7 @@ ul {
 .single-product-wrap .thumb img {
   transition: all 0.4s ease-in;
   transform: scale3d(1, 1, 1);
+    width: 100%
 }
 
 .single-product-wrap .thumb .cat {

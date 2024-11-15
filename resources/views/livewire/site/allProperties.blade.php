@@ -47,270 +47,191 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="single-product-wrap style-2">
+                            <div class="col-lg-6">
+                                <div class="single-product-wrap style-bottom">
                                     <div class="thumb">
-                                        <img src="assets/img/project/15.png" alt="img">
+                                        <img src="assets/img/project/1.png" alt="img">
                                         <div class="product-wrap-details">
-                                            <div class="media">
-                                                <div class="author">
-                                                    <img src="assets/img/author/1.png" alt="img">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="#">Owner Name</a></h6>
-                                                    <p><img src="assets/img/icon/location-alt.png" alt="img">New York real estate </p>
-                                                </div>
-                                                <a class="fav-btn float-right" href="#"><i class="far fa-heart"></i></a>
+                                            <div class="media justify-content-end">
+                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="property-details.html">Daily Apartment</a></h4>
+                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                            <li><a href="#">For Sell</a></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor  constetur </p>
-                                        <span class="price">$ 80,650.00</span>
+                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                                     </div>
-                                    <div class="product-meta-bottom style-2">
-                                        <span>3 <span>Bedroom</span></span>
-                                        <span class="border-none">2 <span>Bathroom</span></span>
-                                        <span>1026 <span>sqft</span></span>
+                                    <div class="product-meta-bottom">
+                                        <span class="price">$ 80,650.00</span>
+                                        <span>1 year ago</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="single-product-wrap style-2">
+                            <div class="col-lg-6">
+                                <div class="single-product-wrap style-bottom">
                                     <div class="thumb">
-                                        <img src="assets/img/project/16.png" alt="img">
+                                        <img src="assets/img/project/1.png" alt="img">
                                         <div class="product-wrap-details">
-                                            <div class="media">
-                                                <div class="author">
-                                                    <img src="assets/img/author/1.png" alt="img">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="#">Owner Name</a></h6>
-                                                    <p><img src="assets/img/icon/location-alt.png" alt="img">New York real estate </p>
-                                                </div>
-                                                <a class="fav-btn float-right" href="#"><i class="far fa-heart"></i></a>
+                                            <div class="media justify-content-end">
+                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="property-details.html">Family House</a></h4>
+                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                            <li><a href="#">For Sell</a></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor  conseetur </p>
-                                        <span class="price">$ 80,650.00</span>
+                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                                     </div>
-                                    <div class="product-meta-bottom style-2">
-                                        <span>3 <span>Bedroom</span></span>
-                                        <span class="border-none">2 <span>Bathroom</span></span>
-                                        <span>1026 <span>sqft</span></span>
+                                    <div class="product-meta-bottom">
+                                        <span class="price">$ 80,650.00</span>
+                                        <span>1 year ago</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="single-product-wrap style-2">
+                            <div class="col-lg-6">
+                                <div class="single-product-wrap style-bottom">
                                     <div class="thumb">
-                                        <img src="assets/img/project/9.png" alt="img">
+                                        <img src="assets/img/project/1.png" alt="img">
                                         <div class="product-wrap-details">
-                                            <div class="media">
-                                                <div class="author">
-                                                    <img src="assets/img/author/1.png" alt="img">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="#">Owner Name</a></h6>
-                                                    <p><img src="assets/img/icon/location-alt.png" alt="img">New York real estate </p>
-                                                </div>
-                                                <a class="fav-btn float-right" href="#"><i class="far fa-heart"></i></a>
+                                            <div class="media justify-content-end">
+                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="property-details.html">Beach House</a></h4>
+                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                            <li><a href="#">For Sell</a></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor  consectur </p>
-                                        <span class="price">$ 80,650.00</span>
+                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                                     </div>
-                                    <div class="product-meta-bottom style-2">
-                                        <span>3 <span>Bedroom</span></span>
-                                        <span class="border-none">2 <span>Bathroom</span></span>
-                                        <span>1026 <span>sqft</span></span>
+                                    <div class="product-meta-bottom">
+                                        <span class="price">$ 80,650.00</span>
+                                        <span>1 year ago</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="single-product-wrap style-2">
+                            <div class="col-lg-6">
+                                <div class="single-product-wrap style-bottom">
                                     <div class="thumb">
-                                        <img src="assets/img/project/17.png" alt="img">
+                                        <img src="assets/img/project/1.png" alt="img">
                                         <div class="product-wrap-details">
-                                            <div class="media">
-                                                <div class="author">
-                                                    <img src="assets/img/author/1.png" alt="img">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="#">Owner Name</a></h6>
-                                                    <p><img src="assets/img/icon/location-alt.png" alt="img">New York real estate </p>
-                                                </div>
-                                                <a class="fav-btn float-right" href="#"><i class="far fa-heart"></i></a>
+                                            <div class="media justify-content-end">
+                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="property-details.html">Hotel Apartment</a></h4>
+                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                            <li><a href="#">For Sell</a></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor  conctetur </p>
-                                        <span class="price">$ 80,650.00</span>
+                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                                     </div>
-                                    <div class="product-meta-bottom style-2">
-                                        <span>3 <span>Bedroom</span></span>
-                                        <span class="border-none">2 <span>Bathroom</span></span>
-                                        <span>1026 <span>sqft</span></span>
+                                    <div class="product-meta-bottom">
+                                        <span class="price">$ 80,650.00</span>
+                                        <span>1 year ago</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="single-product-wrap style-2">
+                            <div class="col-lg-6">
+                                <div class="single-product-wrap style-bottom">
                                     <div class="thumb">
-                                        <img src="assets/img/project/3.png" alt="img">
+                                        <img src="assets/img/project/1.png" alt="img">
                                         <div class="product-wrap-details">
-                                            <div class="media">
-                                                <div class="author">
-                                                    <img src="assets/img/author/1.png" alt="img">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="#">Owner Name</a></h6>
-                                                    <p><img src="assets/img/icon/location-alt.png" alt="img">New York real estate </p>
-                                                </div>
-                                                <a class="fav-btn float-right" href="#"><i class="far fa-heart"></i></a>
+                                            <div class="media justify-content-end">
+                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="property-details.html">Daily Apartment</a></h4>
+                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                            <li><a href="#">For Sell</a></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor  conctetur </p>
-                                        <span class="price">$ 80,650.00</span>
+                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                                     </div>
-                                    <div class="product-meta-bottom style-2">
-                                        <span>3 <span>Bedroom</span></span>
-                                        <span class="border-none">2 <span>Bathroom</span></span>
-                                        <span>1026 <span>sqft</span></span>
+                                    <div class="product-meta-bottom">
+                                        <span class="price">$ 80,650.00</span>
+                                        <span>1 year ago</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="single-product-wrap style-2">
+                            <div class="col-lg-6">
+                                <div class="single-product-wrap style-bottom">
                                     <div class="thumb">
-                                        <img src="assets/img/project/4.png" alt="img">
+                                        <img src="assets/img/project/1.png" alt="img">
                                         <div class="product-wrap-details">
-                                            <div class="media">
-                                                <div class="author">
-                                                    <img src="assets/img/author/1.png" alt="img">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="#">Owner Name</a></h6>
-                                                    <p><img src="assets/img/icon/location-alt.png" alt="img">New York real estate </p>
-                                                </div>
-                                                <a class="fav-btn float-right" href="#"><i class="far fa-heart"></i></a>
+                                            <div class="media justify-content-end">
+                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="property-details.html">Villa House</a></h4>
+                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                            <li><a href="#">For Sell</a></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor  constetur </p>
-                                        <span class="price">$ 80,650.00</span>
+                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                                     </div>
-                                    <div class="product-meta-bottom style-2">
-                                        <span>3 <span>Bedroom</span></span>
-                                        <span class="border-none">2 <span>Bathroom</span></span>
-                                        <span>1026 <span>sqft</span></span>
+                                    <div class="product-meta-bottom">
+                                        <span class="price">$ 80,650.00</span>
+                                        <span>1 year ago</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="single-product-wrap style-2">
+                            <div class="col-lg-6">
+                                <div class="single-product-wrap style-bottom">
                                     <div class="thumb">
-                                        <img src="assets/img/project/6.png" alt="img">
+                                        <img src="assets/img/project/1.png" alt="img">
                                         <div class="product-wrap-details">
-                                            <div class="media">
-                                                <div class="author">
-                                                    <img src="assets/img/author/1.png" alt="img">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="#">Owner Name</a></h6>
-                                                    <p><img src="assets/img/icon/location-alt.png" alt="img">New York real estate </p>
-                                                </div>
-                                                <a class="fav-btn float-right" href="#"><i class="far fa-heart"></i></a>
+                                            <div class="media justify-content-end">
+                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="property-details.html">Sunshine Place</a></h4>
+                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                            <li><a href="#">For Sell</a></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor  consetur </p>
-                                        <span class="price">$ 80,650.00</span>
+                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                                     </div>
-                                    <div class="product-meta-bottom style-2">
-                                        <span>3 <span>Bedroom</span></span>
-                                        <span class="border-none">2 <span>Bathroom</span></span>
-                                        <span>1026 <span>sqft</span></span>
+                                    <div class="product-meta-bottom">
+                                        <span class="price">$ 80,650.00</span>
+                                        <span>1 year ago</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="single-product-wrap style-2">
+                            <div class="col-lg-6">
+                                <div class="single-product-wrap style-bottom">
                                     <div class="thumb">
-                                        <img src="assets/img/project/5.png" alt="img">
+                                        <img src="assets/img/project/1.png" alt="img">
                                         <div class="product-wrap-details">
-                                            <div class="media">
-                                                <div class="author">
-                                                    <img src="assets/img/author/1.png" alt="img">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6><a href="#">Owner Name</a></h6>
-                                                    <p><img src="assets/img/icon/location-alt.png" alt="img">New York real estate </p>
-                                                </div>
-                                                <a class="fav-btn float-right" href="#"><i class="far fa-heart"></i></a>
+                                            <div class="media justify-content-end">
+                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="property-details.html">Sunny Place</a></h4>
+                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                            <li><a href="#">For Sell</a></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor  consetur </p>
-                                        <span class="price">$ 80,650.00</span>
+                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                                     </div>
-                                    <div class="product-meta-bottom style-2">
-                                        <span>3 <span>Bedroom</span></span>
-                                        <span class="border-none">2 <span>Bathroom</span></span>
-                                        <span>1026 <span>sqft</span></span>
+                                    <div class="product-meta-bottom">
+                                        <span class="price">$ 80,650.00</span>
+                                        <span>1 year ago</span>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <div class="pagination-area text-center mt-4 mb-5">
                             <ul class="pagination">
