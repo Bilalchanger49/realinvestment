@@ -77,21 +77,24 @@
                     <ul class="navbar-nav menu-open text-center">
                         <li class="menu-item-has-children current-menu-item">
                             @if(Auth::User())
-                                <img src="{{ asset('assets/auth/images/user/user-xs-01.jpg') }}"
-                                     class="user-image rounded-circle" alt="User Image"/>
+                                <img src="{{ asset('assets/auth/images/user/default user.jpeg') }}"
+                                     class="user-image rounded-circle" style="height: 40px;" alt="User Image"/>
                                 <a href="#">{{ Auth::User()->name }}</a>
                                 <ul class="sub-menu">
                                     <li>
                                         <i class="mdi mdi-account-outline"></i>
                                         <a href=" {{ Auth::user()->name }}">My Profile</a>
                                     </li>
-                                    <li class="dropdown-footer">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <li>
+                                        <i class="mdi mdi-account-outline"></i>
+                                        <a href=" {{ route('site.investor.page') }}">Investor Details</a>
+                                    </li>
+                                    <li>
+                                        <a  href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                                      document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                               class="d-none">
                                             @csrf
@@ -99,8 +102,8 @@
                                     </li>
                                 </ul>
                             @else
-                                <img src="{{ asset('assets/auth/images/user/user-xs-01.jpg') }}"
-                                     class="user-image rounded-circle" alt="User Image"/>
+                                <img src="{{ asset('assets/auth/images/user/default user.jpeg') }}"
+                                     class="user-image rounded-circle" style="height: 40px;" alt="User Image"/>
                                 <a href="#">Login</a>
                                 <ul class="sub-menu">
                                     <li>

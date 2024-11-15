@@ -4854,3 +4854,105 @@ section.bg-light {
   padding-right: 0;
   border-right: 0;
 }
+
+
+/* cards ########## */
+.investor-card {
+    width: 100%; /* Full width for larger display */
+    /*max-width: 70em; */
+    min-height: 10em;
+    flex-direction: row;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    border-radius: 0.7em; /* Rounded corners for the card */
+    background-color: white;
+    overflow: hidden;
+    padding: 1em;
+    border: 2px solid #5ba600;
+
+}
+.investor-card .card-img{
+    width: 150px;
+    height: 100px;
+
+}
+
+.investor-card .card-img img{
+    width: 100%;
+    object-fit: cover; /* Ensures the image maintains its aspect ratio */
+    border-radius: 8px; /* Rounded corners for the image */
+    /* margin-right: 1em; */
+
+}
+
+.investor-card-body {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em;
+}
+.card-title:hover {
+    color:#5ba600;
+    cursor: pointer;
+}
+
+.text-section {
+    max-width: 60%;
+    color: #333;
+}
+.card-text p{
+    color: #333;
+}
+
+.cta-section {
+    max-width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.cta-section .btn {
+    padding: 0.3em 0.5em;
+    background-color: #5ba600;
+    border-color: #5ba600;
+    color: white;
+    text-transform: uppercase;
+}
+
+
+/* table ################### */
+.status-unpaid {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.status-cancelled {
+    background-color: #e2e3e5;
+    color: #6c757d;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.status-completed {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+.details-btn {
+    background-color: #5ba600;
+    color: #fff;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+
