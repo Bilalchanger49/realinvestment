@@ -56,31 +56,25 @@
                 <div class="logo">
                     <a href="index.html"><img src="assets/img/logo.png" alt="img"></a>
                 </div>
-                <div class="nav-right-part nav-right-part-mobile">
-                    <a class="btn btn-base" href="add-property.html">Submit</a>
-                </div>
-                <div class="collapse navbar-collapse" id="dkt_main_menu">
+
+                <div class="nav-right-part nav-right-part-desktop collapse navbar-collapse" id="dkt_main_menu">
                     <ul class="navbar-nav menu-open text-center">
                         <li class="menu-item">
-                            <a href="index.html">Home</a>
+                            <a href="{{route('site.home')}}">Home</a>
                         </li>
                         <li class="menu-item">
-                            <a href="properety.html">Property</a>
+                            <a href="{{route('site.property.all')}}">Property</a>
                         </li>
                         <li class="menu-item">
-                            <a href="about.html">Pages</a>
+                            <a href="{{route('site.about')}}">About</a>
                         </li>
                         <li class="menu-item">
-                            <a href="blog.html">Blog</a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="contact.html">Contact</a>
+                            <a href="{{route('site.contact')}}">Contact</a>
                         </li>
                     </ul>
                 </div>
                 <div class="nav-right-part nav-right-part-desktop collapse navbar-collapse" id="dkt_main_menu">
                     <ul class="navbar-nav menu-open text-center">
-                        <li><a class="search" href="#"><i class="fa fa-search"></i></a></li>
                         <li class="menu-item-has-children current-menu-item">
                             @if(Auth::User())
                                 <img src="{{ asset('assets/auth/images/user/user-xs-01.jpg') }}"
@@ -107,7 +101,7 @@
                             @else
                                 <img src="{{ asset('assets/auth/images/user/user-xs-01.jpg') }}"
                                      class="user-image rounded-circle" alt="User Image"/>
-                                <a href="#">Join Us</a>
+                                <a href="#">Login</a>
                                 <ul class="sub-menu">
                                     <li>
                                         <i class="mdi mdi-account-outline"></i>

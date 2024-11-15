@@ -5,6 +5,7 @@ use App\Livewire\admin\Property\PropertyComponent;
 use \App\Livewire\admin\DashboardComponent;
 use App\Livewire\Site\AboutComponent;
 use App\Livewire\Site\AllPropertiesComponent;
+use App\Livewire\Site\ContactComponent;
 use App\Livewire\Site\HomeComponent;
 use App\Livewire\Site\PropertyDetailsComponent;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,7 @@ Route::get('/', HomeComponent::class)->name('site.home');
 Route::get('/about', AboutComponent::class)->name('site.about');
 Route::get('/property-details', PropertyDetailsComponent::class)->name('site.property.details');
 Route::get('/all-properties', AllPropertiesComponent::class)->name('site.property.all');
+Route::get('/contact-us', ContactComponent::class)->name('site.contact');
 
 
 Route::middleware([
@@ -29,5 +31,5 @@ Route::middleware([
 Route::prefix('admin')->group(function () {
     Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
     Route::get('/property/create', createProperty::class)->name('admin.property.create');
-});
+})->middleware('auth');
 
