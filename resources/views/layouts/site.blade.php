@@ -54,7 +54,7 @@
                     </button>
                 </div>
                 <div class="logo">
-                    <a href="index.html"><img src="assets/img/logo.png" alt="img"></a>
+                    <a href="index.html"><img src="assets/img/logo-black.png" style="height: 50px;" alt="img"></a>
                 </div>
 
                 <div class="nav-right-part nav-right-part-desktop collapse navbar-collapse" id="dkt_main_menu">
@@ -70,6 +70,9 @@
                         </li>
                         <li class="menu-item">
                             <a href="{{route('site.contact')}}">Contact</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="{{route('site.faq')}}">FAQ</a>
                         </li>
                     </ul>
                 </div>

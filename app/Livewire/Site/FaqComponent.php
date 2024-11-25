@@ -2,13 +2,12 @@
 
 namespace App\Livewire\Site;
 
-
 use Livewire\Component;
 
-class HomeComponent extends Component
+class FaqComponent extends Component
 {
     public function render()
     {
-        return view('livewire.site.home')->extends('layouts.site');
+        return view('livewire.site.faq' )->extends('layouts.site');
     }
 }

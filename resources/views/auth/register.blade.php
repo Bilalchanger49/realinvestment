@@ -89,7 +89,7 @@
                                             <div class="mb-3">
                                                 <div class="text-center mb-4">
                                                     <a href="#!">
-                                                        <img src="assets/img/logo.png" alt="BootstrapBrain Logo" width="175" height="57">
+                                                        <img src="assets/img/logo-white.png" alt="BootstrapBrain Logo" width="175" height="57">
                                                     </a>
                                                 </div>
                                                 <h4 class="text-center">Join us and start your journey!</h4>

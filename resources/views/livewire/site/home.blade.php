@@ -496,7 +496,7 @@
                     <div class="item">
                         <div class="single-testimonial-inner style-three text-center">
                             <div class="thumb main-thumb">
-                                <img src="assets/img/testimonial/1.png" alt="img">
+                                <img src="assets/img/testimonial/Bilal Ahmed.png" alt="img" style="height: 120px">
                             </div>
                             <div class="details">
                                 <h6 class="name">Sarif Jaya Miprut</h6>
@@ -515,7 +515,7 @@
                     <div class="item">
                         <div class="single-testimonial-inner style-three text-center">
                             <div class="thumb main-thumb">
-                                <img src="assets/img/testimonial/3.png" alt="img">
+                                <img src="assets/img/testimonial/Bilal Ahmed.png" alt="img" style="height: 120px">
                             </div>
                             <div class="details">
                                 <h6 class="name">Sarif Jaya Miprut</h6>
@@ -534,7 +534,7 @@
                     <div class="item">
                         <div class="single-testimonial-inner style-three text-center">
                             <div class="thumb main-thumb">
-                                <img src="assets/img/testimonial/4.png" alt="img">
+                                <img src="assets/img/testimonial/Bilal Ahmed.png" alt="img" style="height: 120px">
                             </div>
                             <div class="details">
                                 <h6 class="name">Sarif Jaya Miprut</h6>

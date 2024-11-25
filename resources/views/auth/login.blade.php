@@ -35,7 +35,7 @@
                                             <div class="mb-3">
                                                 <div class="text-center mb-4">
                                                     <a href="#">
-                                                        <img src="assets/img/logo.png" alt="BootstrapBrain Logo" width="175" height="57">
+                                                        <img src="assets/img/logo-white.png" alt="BootstrapBrain Logo" width="175" height="57">
                                                     </a>
                                                 </div>
                                                 <h4 class="text-center">Welcome back you've been missed!</h4>
@@ -47,7 +47,7 @@
                                             <div class="d-flex gap-3 flex-column">
                                                 <a href="#!" class="btn">
                                                     <!-- <span class="ms-2 fs-6">Log in with Google</span> -->
-                                                    <button class="ms-2 fs-6 btn btn-primary">Log in with Google</button>
+                                                    <button class="ms-2 fs-6 btn btn-base">Log in with Google</button>
                                                 </a>
                                             </div>
                                             <a href="{{ route('register') }}" class="text-center mt-4 mb-3 custom-link">Or sign in with</a>

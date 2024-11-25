@@ -17,29 +17,73 @@
     <!--Search-->
     <div class="blog-page-area pd-top-90">
         <div class="container">
+            <div>
+                <h2  class="ms-2">
+                    Profile
+                </h2>
+            </div>
             <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="product-search-inner bg-main">
-                        <div class="row custom-gutters-20">
-                            <div class="col-md-3 align-self-center">
-                                <h5>21 Properties</h5>
-                            </div>
-                            <div class="col-md-6 mt-2 mt-md-0">
-                                <div class="widget-search">
-                                    <div class="single-search-inner">
-                                        <input type="text" placeholder="Search your keyword">
-                                        <button><i class="la la-search"></i></button>
+{{--                <div class="col-lg-12">--}}
+{{--                    <div class="product-search-inner bg-main">--}}
+{{--                        <div class="row custom-gutters-20">--}}
+{{--                            <div class="col-md-3 align-self-center">--}}
+{{--                                <h5>21 Properties</h5>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-6 mt-2 mt-md-0">--}}
+{{--                                <div class="widget-search">--}}
+{{--                                    <div class="single-search-inner">--}}
+{{--                                        <input type="text" placeholder="Search your keyword">--}}
+{{--                                        <button><i class="la la-search"></i></button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="col-md-3 mt-2 mt-md-0 align-self-center">--}}
+{{--                                <div class="single-select-inner">--}}
+{{--                                    <select>--}}
+{{--                                        <option value="1">Sort By</option>--}}
+{{--                                        <option value="2">Sort By</option>--}}
+{{--                                        <option value="3">Sort By</option>--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
+                <div class="col-lg-12 col-md-6 col-sm-12 mb-4">
+                    <div class="card investor-card">
+                        <div class="card-img">
+                           <img src="assets/img/agent/default user.jpeg" style="border-radius: 100%" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body investor-card-body">
+                            <div class="text-section">
+                                <h5 class="card-title"><strong>Furqan</strong></h5>
+                                <div>
+                                    <div class="card-text">
+                                        <div class="card-text d-flex">
+                                            <p class="me-3">
+                                                <i class="fa fa-solid fa-coins" style="color: #5ba600;"></i>
+                                                <strong>5</strong> properties
+                                            </p>
+                                            <p class="me-3">
+                                                <i class="fa fa-solid fa-money" style="color: #5ba600;"></i>
+                                                <strong>15</strong> shares
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p><strong>Verified</strong></p>
+                                        </div>
                                     </div>
+                                    <!-- <div class="card-text">
+                                        <p>Some quick example text to build on the card title and make up
+                                            the bulk of the card's content.</p>
+                                    </div> -->
                                 </div>
+
                             </div>
-                            <div class="col-md-3 mt-2 mt-md-0 align-self-center">
-                                <div class="single-select-inner">
-                                    <select>
-                                        <option value="1">Sort By</option>
-                                        <option value="2">Sort By</option>
-                                        <option value="3">Sort By</option>
-                                    </select>
-                                </div>
+                            <div class="cta-section">
+                                <div>Income <strong> $100</strong></div>
+                                <button id="openPopup" class="btn btn-primary">Sell</button>
                             </div>
                         </div>
                     </div>
@@ -48,6 +92,11 @@
         </div>
     </div>
     <div class="container">
+        <div>
+            <h2 class="ms-2">
+                Investments
+            </h2>
+        </div>
         <div class="row">
             <!-- First Card -->
             <div class="col-lg-12 col-md-6 col-sm-12 mb-4">
@@ -83,8 +132,7 @@
                         </div>
                         <div class="cta-section">
                             <div>$100</div>
-                            <button class="btn btn-primary">Go somewhere</button>
-{{--                            <a href="#" class="btn btn-primary">Go somewhere</a>--}}
+                            <button id="openPopup" class="btn btn-primary">Sell</button>
                         </div>
                     </div>
                 </div>
@@ -124,7 +172,7 @@
                         </div>
                         <div class="cta-section">
                             <div>$100</div>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <button id="openPopup" class="btn btn-primary">Sell</button>
                         </div>
                     </div>
                 </div>
@@ -163,7 +211,7 @@
                         </div>
                         <div class="cta-section">
                             <div>$100</div>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <button id="openPopup" class="btn btn-primary">Sell</button>
                         </div>
                     </div>
                 </div>
@@ -234,5 +282,90 @@
                 </ul>
             </div>
         </div>
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span id="closePopup" class="close-btn">&times;</span>
+                <h2>Furqan</h2>
+
+                <!-- Popup Form Start -->
+                <form id="popupForm">
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="shares">Price Per Share</label>
+                            <input type="text" id="shares" placeholder="Enter shares">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dropdown1">Number of Shares</label>
+                        <select id="dropdown1" name="category">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+
+{{--                    <div class="form-row">--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="dropdown2">Choose a Sub-Category</label>--}}
+{{--                            <select id="dropdown2" name="subcategory">--}}
+{{--                                <option value="webdev">Web Development</option>--}}
+{{--                                <option value="ai">Artificial Intelligence</option>--}}
+{{--                                <option value="networking">Networking</option>--}}
+{{--                                <option value="cloud">Cloud Computing</option>--}}
+{{--                            </select>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-group">--}}
+{{--                            <label for="shares">Number of Shares</label>--}}
+{{--                            <input type="text" id="shares" placeholder="Enter shares">--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
+                    <button type="submit" class="submit-btn btn">Sell</button>
+                </form>
+                <!-- Popup Form End -->
+            </div>
+        </div>
     </div>
+
+
+
+    <script>
+        // Get elements
+        // Get elements
+        const openPopup = document.getElementById('openPopup');
+        const closePopup = document.getElementById('closePopup');
+        const popup = document.getElementById('popup');
+
+        // Open popup
+        openPopup.addEventListener('click', () => {
+            popup.style.display = 'flex';
+        });
+
+        // Close popup
+        closePopup.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        // Close popup when clicking outside of it
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+
+        // Handle form submission
+        const popupForm = document.getElementById('popupForm');
+        popupForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent actual form submission
+            const category = document.getElementById('dropdown1').value;
+            const subcategory = document.getElementById('dropdown2').value;
+            alert(`Selected Category: ${category}\nSelected Sub-Category: ${subcategory}`);
+            popup.style.display = 'none'; // Close popup after submission
+        });
+
+
+    </script>
 </div>

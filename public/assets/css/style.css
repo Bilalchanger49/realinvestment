@@ -4913,7 +4913,7 @@ section.bg-light {
 }
 
 .cta-section .btn {
-    padding: 0.3em 0.5em;
+    /*padding: 0.3em 0.5em;*/
     background-color: #5ba600;
     border-color: #5ba600;
     color: white;
@@ -4954,5 +4954,203 @@ section.bg-light {
     justify-content: center;
     text-decoration: none;
 }
+
+/*-----------------------------------------
+    ## FAQ SECTION
+------------------------------------------*/
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.faq-card {
+    width: 100%; /* Ensure it adapts to the parent container's width */
+    max-width: 50%; /* Set to 50% for testing */
+    margin: 10px 0 10px 0;
+}
+.faq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+.faq-header:hover {
+    background-color: #e9e9e9;
+    border: 1px solid #5ba600;
+}
+.faq-question {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+.faq-header i {
+    font-size: 18px;
+    color: #333;
+    transition: transform 0.3s ease;
+}
+.collapse:not(.show) + .faq-header i {
+    transform: rotate(0deg);
+}
+.collapse.show + .faq-header i {
+    transform: rotate(180deg);
+}
+.faq-answer {
+    display: none;
+    padding: 15px;
+    font-size: 14px;
+    color: #555;
+    border-bottom: 1px solid #5ba600;
+}
+.faq-header i {
+    color: green; /* Set the arrow color to green */
+
+}
+
+
+/*-----------------------------------------
+    ## Support SECTION
+------------------------------------------*/
+
+.support-section {
+    background-color: #f5f5f5 ;
+    padding: 20px;
+    /* border-radius: 10px; */
+    border-top: #5ba600 solid 1px;
+}
+
+.support-section h4 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.support-section p {
+    margin-bottom: 20px;
+}
+
+/*.btn {*/
+/*    padding: 10px 20px;*/
+/*    font-size: 16px;*/
+/*    background-color: #5ba600;*/
+/*    color: #fff;*/
+/*    border: 1px solid black;*/
+/*    font-weight: bold;*/
+/*    border-radius: 0px;*/
+
+/*}*/
+
+/*.btn:hover {*/
+/*    background-color: white;*/
+/*    color: #5ba600;*/
+/*    border:1px solid #5ba600;*/
+/*}*/
+
+
+/* pop up */
+
+
+/* Popup Container */
+.popup {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Popup Content */
+.popup-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 80%;
+    height: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.692);
+    text-align: left;
+    position: relative;
+    animation: fadeIn 0.3s;
+    border: 2px solid #5ba600;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #5ba600;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+input, select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.submit-btn {
+    background-color: #5ba600;
+    color: #fff;
+}
+.submit-btn:hover {
+    background-color: #fff;
+    color: black;
+    border: #5ba600 1px solid;
+    border-radius: 5px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+
+
 
 
