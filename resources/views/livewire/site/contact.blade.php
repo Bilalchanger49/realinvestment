@@ -21,7 +21,7 @@
 
             <div class="col-md-6 first_col ">
                 <h1 class="text-center mt-3">Contact Us</h1>
-                <form class="p-4 mt-5">
+                <form class="p-3 mt-3">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Enter your Name</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1">
