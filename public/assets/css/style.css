@@ -4857,6 +4857,40 @@ section.bg-light {
 
 
 /* cards ########## */
+.investor-profile-card {
+    width: 100%; /* Full width for larger display */
+    /*max-width: 70em; */
+    min-height: 12em;
+    flex-direction: row;
+    display: flex;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+    border-radius: 0.7em; /* Rounded corners for the card */
+    background-color: white;
+    overflow: hidden;
+    padding: 1em;
+    border: 2px solid #5ba600;
+
+}
+.investor-profile-card .card-img{
+    width: 150px;
+    height: 100px;
+
+}
+
+.investor-profile-card .card-img img{
+    width: 100%;
+    object-fit: cover; /* Ensures the image maintains its aspect ratio */
+    border-radius: 8px; /* Rounded corners for the image */
+    /* margin-right: 1em; */
+
+}
+.investor-profile-card-body {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1em;
+}
+
 .investor-card {
     width: 100%; /* Full width for larger display */
     /*max-width: 70em; */
@@ -4891,6 +4925,7 @@ section.bg-light {
     width: 100%;
     padding: 1em;
 }
+
 .card-title:hover {
     color:#5ba600;
     cursor: pointer;
@@ -5137,6 +5172,26 @@ input:focus, select:focus {
     border-radius: 5px;
 }
 
+/* Checkbox Styles */
+.form-group input[type="checkbox"] {
+    accent-color: #5ba600; /* Modern browsers support this for custom checkbox color */
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.form-group label {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer; /* Makes the label clickable */
+    margin: 0;
+    vertical-align: middle;
+}
+
+
 /* Animation */
 @keyframes fadeIn {
     from {
@@ -5147,6 +5202,119 @@ input:focus, select:focus {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+/* Card Animations */
+.card__article {
+    overflow: visible; /* Ensure content can pop out */
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    font-family: var(--body-font);
+    color: var(--paragraph-color);
+
+}
+
+.card__img {
+    width: 100%;
+    border-radius: 1.5rem;
+    transition: transform 0.5s ease-in-out;
+}
+
+.card__article:hover .card__img {
+    transform: scale(1.1);
+}
+
+.card__data {
+    display: none;
+    width: 85%;
+    background-color: var(--main-color);
+    padding: 1.5rem;
+    box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.15);
+    border-radius: 1rem;
+    position: absolute;
+    bottom: -9rem; /* Start below the card */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: none; /* Overridden for animations */
+    font-family: var(--body-font);
+    color: white; /* Matches your old CSS */
+}
+
+.card__data h2 {
+    font-size: 1.5rem;
+    font-family: var(--heading-font);
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+}
+
+.card__data span {
+    font-size: 0.875rem;
+    font-family: var(--body-font);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card__data a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: #5ba600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.card__data a:hover {
+    background-color: white;
+    color: #5ba600;
+    border: 1px solid #5ba600;
+}
+
+.card__article:hover .card__data {
+    display: flex;
+    flex-direction: column;
+    animation: slideInBounce 0.5s forwards;
+    border: 2px solid #5ba600; /* Green border */
+    border-radius: 1.5rem;
+}
+
+.card__article:not(:hover) .card__data {
+    display: none;
+    animation: slideOut 0.5s forwards;
+}
+
+/* Keyframes for smooth slide-in with a bounce */
+@keyframes slideInBounce {
+    0% {
+        transform: translate(-50%, 0);
+        opacity: 0;
+    }
+    70% {
+        transform: translate(-50%, -8rem);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translate(-50%, -7rem);
+        opacity: 1;
+    }
+}
+
+/* Keyframes for smooth slide-out */
+@keyframes slideOut {
+    0% {
+        transform: translate(-50%, -7rem);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, 0);
+        opacity: 0;
+    }
+}
+
+.card__article:hover {
+    transform: translateY(-10px); /* Slightly lift the entire card */
+    transition: transform 0.3s ease-in-out;
 }
 
 
