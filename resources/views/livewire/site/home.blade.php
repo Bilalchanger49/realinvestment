@@ -31,7 +31,7 @@
                     </button>
                     <div class="carousel-caption d-flex flex-column justify-content-center align-items-center top-50 start-50 translate-middle text-center"
                          style="height: 100%;">
-                        <p class="fs-5 mb-2">Welcome to your ultimate resource for investing,</p>
+                        <p class="fs-5 mb-2">Welcome to your ultimate source for investing,</p>
                         <div class="line"></div>
                         <h2 class="display-6 fw-semibold">The Best Way To Invest In Real Estate</h2>
                     </div>
@@ -47,7 +47,7 @@
             <div class="container">
                 <div class="section-title text-center">
                     <h6>We are offring the best real estate Investments </h6>
-                    <h2>New Property</h2>
+                    <h2>New Arival</h2>
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6">
@@ -61,42 +61,22 @@
                                 </div>
                             </div>
                             <div class="product-details-inner">
-                                <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
-                                <ul class="meta-inner">
-                                    <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                </ul>
-                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
-                            </div>
-                            <div class="product-meta-bottom">
-                                <span class="price">$ 80,650.00</span>
-                                <span>1 year ago</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product-wrap style-bottom">
-                            <div class="thumb">
-                                <img src="assets/img/project/1.png" alt="img">
-                                <div class="product-wrap-details">
-                                    <div class="media justify-content-end">
-                                        <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
-                                    </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                    <span class="price text-end"> <strong>PK 50000</strong> </span>
                                 </div>
-                            </div>
-                            <div class="product-details-inner">
-                                <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
-                                <ul class="meta-inner">
-                                    <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                </ul>
-                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
-                            </div>
-                            <div class="product-meta-bottom">
-                                <span class="price">$ 80,650.00</span>
-                                <span>1 year ago</span>
-                            </div>
-                        </div>
-                    </div>
 
+                                <ul class="meta-inner">
+                                    <li><img src="assets/img/icon/location2.png" alt="img">Karach</li>
+                                </ul>
+                                <p>Experience urban living with our Luxury City Apartment in the heart of Karachi. Ideal for modern investors seeking high rental returns and long-term growth potential</p>
+                            </div>
+                            <div class="product-meta-bottom">
+                                <span class="price">PKR 12,000,000</span>
+                                <span>2 months ago</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="single-product-wrap style-bottom">
                             <div class="thumb">
@@ -108,15 +88,44 @@
                                 </div>
                             </div>
                             <div class="product-details-inner">
-                                <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4><a href="{{route('site.property.details')}}">Seaside Villa</a></h4>
+                                    <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                </div>
                                 <ul class="meta-inner">
-                                    <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
+                                    <li><img src="assets/img/icon/location2.png" alt="img">Gwadar</li>
                                 </ul>
-                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
+                                <p>Own a slice of paradise with this Seaside Villa in Gwadar. Perfect for vacation rentals or personal use, offering breathtaking sea views..</p>
                             </div>
                             <div class="product-meta-bottom">
-                                <span class="price">$ 80,650.00</span>
-                                <span>1 year ago</span>
+                                <span class="price">PKR 25,000,000</span>
+                                <span>3 weeks ago</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-product-wrap style-bottom">
+                            <div class="thumb">
+                                <img src="assets/img/project/1.png" alt="img">
+                                <div class="product-wrap-details">
+                                    <div class="media justify-content-end">
+                                        <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-details-inner">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                    <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                </div>
+                                <ul class="meta-inner">
+                                    <li><img src="assets/img/icon/location2.png" alt="img">Karach</li>
+                                </ul>
+                                <p>Experience urban living with our Luxury City Apartment in the heart of Karachi. Ideal for modern investors seeking high rental returns and long-term growth potential</p>
+                            </div>
+                            <div class="product-meta-bottom">
+                                <span class="price">PKR 12,000,000</span>
+                                <span>2 months ago</span>
                             </div>
                         </div>
                     </div>
@@ -131,7 +140,7 @@
             <div class="container">
                 <div class="section-title text-center">
 
-                    <h2>Our Properties </h2>
+                    <h2>Properties</h2>
                 </div>
 
                 <div class="tab-content" id="myTabContent">
@@ -148,7 +157,36 @@
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                        </div>
+                                        <ul class="meta-inner">
+                                            <li><img src="assets/img/icon/location2.png" alt="img">Lahore</li>
+                                        </ul>
+                                        <p>A prime commercial property located in the bustling business district of Lahore. Generate steady rental income while benefiting from high-value appreciation.</p>
+                                    </div>
+                                    <div class="product-meta-bottom">
+                                        <span class="price">PKR 50,000,000</span>
+                                        <span>6 months ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single-product-wrap style-bottom">
+                                    <div class="thumb">
+                                        <img src="assets/img/project/1.png" alt="img">
+                                        <div class="product-wrap-details">
+                                            <div class="media justify-content-end">
+                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-details-inner">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                        </div>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
                                         </ul>
@@ -171,99 +209,10 @@
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
-                                        <ul class="meta-inner">
-                                            <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
-                                    </div>
-                                    <div class="product-meta-bottom">
-                                        <span class="price">$ 80,650.00</span>
-                                        <span>1 year ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-product-wrap style-bottom">
-                                    <div class="thumb">
-                                        <img src="assets/img/project/1.png" alt="img">
-                                        <div class="product-wrap-details">
-                                            <div class="media justify-content-end">
-                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
-                                            </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
                                         </div>
-                                    </div>
-                                    <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
-                                        <ul class="meta-inner">
-                                            <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
-                                    </div>
-                                    <div class="product-meta-bottom">
-                                        <span class="price">$ 80,650.00</span>
-                                        <span>1 year ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-product-wrap style-bottom">
-                                    <div class="thumb">
-                                        <img src="assets/img/project/1.png" alt="img">
-                                        <div class="product-wrap-details">
-                                            <div class="media justify-content-end">
-                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
-                                        <ul class="meta-inner">
-                                            <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
-                                    </div>
-                                    <div class="product-meta-bottom">
-                                        <span class="price">$ 80,650.00</span>
-                                        <span>1 year ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-product-wrap style-bottom">
-                                    <div class="thumb">
-                                        <img src="assets/img/project/1.png" alt="img">
-                                        <div class="product-wrap-details">
-                                            <div class="media justify-content-end">
-                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
-                                        <ul class="meta-inner">
-                                            <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
-                                    </div>
-                                    <div class="product-meta-bottom">
-                                        <span class="price">$ 80,650.00</span>
-                                        <span>1 year ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-product-wrap style-bottom">
-                                    <div class="thumb">
-                                        <img src="assets/img/project/1.png" alt="img">
-                                        <div class="product-wrap-details">
-                                            <div class="media justify-content-end">
-                                                <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
                                         </ul>
@@ -496,12 +445,12 @@
                     <div class="item">
                         <div class="single-testimonial-inner style-three text-center">
                             <div class="thumb main-thumb">
-                                <img src="assets/img/testimonial/Bilal Ahmed.png" alt="img" style="height: 120px">
+                                <img src="assets/img/testimonial/1.png" alt="img" style="height: 120px">
                             </div>
                             <div class="details">
-                                <h6 class="name">Sarif Jaya Miprut</h6>
-                                <span class="designation">Guest</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt</p>
+                                <h6 class="name">Ayesha Malik</h6>
+                                <span class="designation">Investor</span>
+                                <p>Real Investment made it possible for me to own a share in a commercial property without breaking my savings. A seamless and rewarding experience!</p>
                                 <div class="rating-inner">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -515,12 +464,12 @@
                     <div class="item">
                         <div class="single-testimonial-inner style-three text-center">
                             <div class="thumb main-thumb">
-                                <img src="assets/img/testimonial/Bilal Ahmed.png" alt="img" style="height: 120px">
+                                <img src="assets/img/testimonial/3.png" alt="img" style="height: 120px">
                             </div>
                             <div class="details">
-                                <h6 class="name">Sarif Jaya Miprut</h6>
-                                <span class="designation">Guest</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
+                                <h6 class="name"> Zahid Khan</h6>
+                                <span class="designation">First-Time Investor</span>
+                                <p>I never thought owning a share in real estate could be so easy. Thanks to Real Investment, I'm earning steady rental income every year.</p>
                                 <div class="rating-inner">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -534,7 +483,7 @@
                     <div class="item">
                         <div class="single-testimonial-inner style-three text-center">
                             <div class="thumb main-thumb">
-                                <img src="assets/img/testimonial/Bilal Ahmed.png" alt="img" style="height: 120px">
+                                <img src="assets/img/testimonial/4.png" alt="img" style="height: 120px">
                             </div>
                             <div class="details">
                                 <h6 class="name">Sarif Jaya Miprut</h6>
@@ -567,11 +516,11 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="single-agent-wrap style-3">
                             <div class="thumb">
-                                <img src="assets/img/agent/4.png" alt="img">
+                                <img src="assets/img/agent/Bilal Ahmed.png" alt="img">
                             </div>
                             <div class="details">
                                 <a class="phone-inner" href="#"><i class="fa fa-phone"></i></a>
-                                <h4>Sandara Mrikon</h4>
+                                <h4>Bilal Ahmed</h4>
                                 <h6>Estate Agent</h6>
                                 <ul class="social-area style-2">
                                     <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
@@ -585,11 +534,11 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="single-agent-wrap style-3">
                             <div class="thumb">
-                                <img src="assets/img/agent/5.png" alt="img">
+                                <img src="assets/img/agent/Bilal Ahmed.png" alt="img">
                             </div>
                             <div class="details">
                                 <a class="phone-inner" href="#"><i class="fa fa-phone"></i></a>
-                                <h4>Sandara Mrikon</h4>
+                                <h4>Bilal Ahmed</h4>
                                 <h6>Estate Agent</h6>
                                 <ul class="social-area style-2">
                                     <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
@@ -603,11 +552,11 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="single-agent-wrap style-3">
                             <div class="thumb">
-                                <img src="assets/img/agent/6.png" alt="img">
+                                <img src="assets/img/agent/Bilal Ahmed.png" alt="img">
                             </div>
                             <div class="details">
                                 <a class="phone-inner" href="#"><i class="fa fa-phone"></i></a>
-                                <h4>Sandara Mrikon</h4>
+                                <h4>Bilal Ahmed</h4>
                                 <h6>Estate Agent</h6>
                                 <ul class="social-area style-2">
                                     <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
@@ -627,8 +576,8 @@
         <div class="blog-area pd-top-118 pd-bottom-90">
             <div class="container">
                 <div class="section-title text-center">
-                    <h6>Blog & News</h6>
-                    <h2>News Feads</h2>
+                    <h6>Secondary Market</h6>
+                    <h2>Properties</h2>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
@@ -637,11 +586,15 @@
                                 <img src="assets/img/project/7.png" alt="img">
                             </div>
                             <div class="product-details-inner">
-                                <ul class="meta-inner">
+                                <ul class="meta-inner d-flex">
                                     <li><i class="fa fa-user"></i>By Admin</li>
-                                    <li><i class="fa fa-calendar-alt"></i>Marce 9 , 2020</li>
+                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>
+                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>
                                 </ul>
+                                <div class="d-flex">
                                 <h4><a href="blog-details.html">Family House</a></h4>
+                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>
+                                </div>
                                 <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                             </div>
                         </div>
@@ -649,14 +602,18 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="single-product-wrap style-2">
                             <div class="thumb">
-                                <img src="assets/img/project/4.png" alt="img">
+                                <img src="assets/img/project/7.png" alt="img">
                             </div>
                             <div class="product-details-inner">
-                                <ul class="meta-inner">
+                                <ul class="meta-inner d-flex">
                                     <li><i class="fa fa-user"></i>By Admin</li>
-                                    <li><i class="fa fa-calendar-alt"></i>Marce 9 , 2020</li>
+                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>
+                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>
                                 </ul>
-                                <h4><a href="blog-details.html">Villa House</a></h4>
+                                <div class="d-flex">
+                                    <h4><a href="blog-details.html">Family House</a></h4>
+                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>
+                                </div>
                                 <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                             </div>
                         </div>
@@ -664,59 +621,18 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="single-product-wrap style-2">
                             <div class="thumb">
-                                <img src="assets/img/project/5.png" alt="img">
+                                <img src="assets/img/project/7.png" alt="img">
                             </div>
                             <div class="product-details-inner">
-                                <ul class="meta-inner">
+                                <ul class="meta-inner d-flex">
                                     <li><i class="fa fa-user"></i>By Admin</li>
-                                    <li><i class="fa fa-calendar-alt"></i>Marce 9 , 2020</li>
+                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>
+                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>
                                 </ul>
-                                <h4><a href="blog-details.html">Beach Side House</a></h4>
-                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product-wrap style-2">
-                            <div class="thumb">
-                                <img src="assets/img/project/8.png" alt="img">
-                            </div>
-                            <div class="product-details-inner">
-                                <ul class="meta-inner">
-                                    <li><i class="fa fa-user"></i>By Admin</li>
-                                    <li><i class="fa fa-calendar-alt"></i>Marce 9 , 2020</li>
-                                </ul>
-                                <h4><a href="blog-details.html">Hotel Apartment</a></h4>
-                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product-wrap style-2">
-                            <div class="thumb">
-                                <img src="assets/img/project/6.png" alt="img">
-                            </div>
-                            <div class="product-details-inner">
-                                <ul class="meta-inner">
-                                    <li><i class="fa fa-user"></i>By Admin</li>
-                                    <li><i class="fa fa-calendar-alt"></i>Marce 9 , 2020</li>
-                                </ul>
-                                <h4><a href="">Daily Apartment</a></h4>
-                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product-wrap style-2">
-                            <div class="thumb">
-                                <img src="assets/img/project/9.png" alt="img">
-                            </div>
-                            <div class="product-details-inner">
-                                <ul class="meta-inner">
-                                    <li><i class="fa fa-user"></i>By Admin</li>
-                                    <li><i class="fa fa-calendar-alt"></i>Marce 9 , 2020</li>
-                                </ul>
-                                <h4><a href="blog-details.html">Farm House</a></h4>
+                                <div class="d-flex">
+                                    <h4><a href="blog-details.html">Family House</a></h4>
+                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>
+                                </div>
                                 <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                             </div>
                         </div>
