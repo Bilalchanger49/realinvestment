@@ -21,14 +21,14 @@
                     <div class="col-10 col-lg-8 blurb">
                         <h2>About us</h2>
 
-                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, iste molestiae
-                            beatae, maiores deserunt
-                            in voluptatibus
-                            aspernatur architecto excepturi delectus soluta? Ipsa, deleniti dolorem hic consequatur
-                            repellat eveniet quidem
-                            voluptate necessitatibus dolorum delectus minus vitae, ut, veritatis sint ipsum magnam
-                            autem nam ex deserunt debitis
-                            eaque ratione! Nobis, quidem assumenda.</p>
+                        <p class="lead">
+                            Real Investment is a revolutionary platform designed to transform real estate ownership.
+                            We empower small investors by offering fractional ownership of premium real estate properties, enabling
+                            them to earn rental income and capital appreciation without the burden of full ownership. Our mission is
+                            to bridge the gap between accessibility and profitability in Pakistan's real estate sector,
+                            fostering an inclusive investment culture.
+                        </p>
+
                     </div>
                 </div>
             </div>
@@ -54,8 +54,9 @@
                             <img src="assets/img/agent/7.png" alt="img">
                         </div>
                         <div class="details">
-                            <h4>Sandara Mrikon</h4>
-                            <h6>Estate Agent</h6>
+                            <h4>Bilal Ahmed</h4>
+                            <h6>Founder & CEO</h6>
+                            <p>Bilal brings a vision to democratize real estate investments through innovative tokenization solutions.</p>
                             <ul class="social-area style-2">
                                 <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
@@ -71,8 +72,9 @@
                             <img src="assets/img/agent/8.png" alt="img">
                         </div>
                         <div class="details">
-                            <h4>Sarif Miprut</h4>
-                            <h6>Estate Agent</h6>
+                            <h4>Ayesha Khan</h4>
+                            <h6>CTO</h6>
+                            <p>Ayesha is an expert in blockchain technology, ensuring seamless and secure transactions for investors.</p>
                             <ul class="social-area style-2">
                                 <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
@@ -88,8 +90,9 @@
                             <img src="assets/img/agent/9.png" alt="img">
                         </div>
                         <div class="details">
-                            <h4>Jordan Smith</h4>
-                            <h6>Estate Agent</h6>
+                            <h4>Ali Raza</h4>
+                            <h6>Investment Manager</h6>
+                            <p>Ali oversees property acquisitions and ensures the best returns for our investors.</p>
                             <ul class="social-area style-2">
                                 <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
@@ -122,8 +125,8 @@
                         </div>
                         <div class="single-service-details">
                             <h4><a href="property-details.html">Sell Poparty</a></h4>
-                            <p>Lorem ipsum dolor sit consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                labore.</p>
+                            <p>Transforming real estate assets into digital tokens, enabling fractional ownership and
+                                easy investment for everyone.</p>
                         </div>
                     </div>
                 </div>
@@ -135,8 +138,7 @@
                         </div>
                         <div class="single-service-details">
                             <h4><a href="property-details.html">Daily Apartment</a></h4>
-                            <p>Lorem ipsum dolor sit consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                labore.</p>
+                            <p>Providing small investors the ability to own a share of premium real estate and earn rental income.</p>
                         </div>
                     </div>
                 </div>
@@ -148,8 +150,7 @@
                         </div>
                         <div class="single-service-details">
                             <h4><a href="property-details.html">Family House</a></h4>
-                            <p>Lorem ipsum dolor sit consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                labore.</p>
+                            <p>Providing small investors the ability to own a share of premium real estate and earn rental income.</p>
                         </div>
                     </div>
                 </div>
@@ -172,9 +173,8 @@
                             <img src="assets/img/project/1.png" alt="img">
                         </div>
                         <div class="product-details-inner">
-                            <h4>New York Office</h4>
-                            <p>New York ipsum dolor consectetur adipisicing elit, sed do eius Lorem ipsum dolo amet,
-                                consectetur eiusmod.</p>
+                            <h4>Head Office – Islamabad</h4>
+                            <p>Our central hub for connecting investors with real estate opportunities across Pakistan.</p>
                         </div>
                     </div>
                 </div>
@@ -184,9 +184,8 @@
                             <img src="assets/img/project/5.png" alt="img">
                         </div>
                         <div class="product-details-inner">
-                            <h4>Booston Office</h4>
-                            <p>Booston sum dolor consectetur adipisicing elit, sed do eius Lorem ipsum dolo amet,
-                                consectetur adipisicing eiusmod.</p>
+                            <h4>Regional Office – Lahore</h4>
+                            <p>Focused on providing real estate solutions in Punjab's thriving property market.</p>
                         </div>
                     </div>
                 </div>
@@ -196,9 +195,8 @@
                             <img src="assets/img/project/3.png" alt="img">
                         </div>
                         <div class="product-details-inner">
-                            <h4>Canada Office</h4>
-                            <p>Canada orem ipsum dolor consectetur adipisicing elit, sed do eius Lorem ipsum dolo amet,
-                                adipisicing eiusmod.</p>
+                            <h4>Regional Office – Karachi</h4>
+                            <p>Serving investors with access to the bustling property market of Karachi.</p>
                         </div>
                     </div>
                 </div>

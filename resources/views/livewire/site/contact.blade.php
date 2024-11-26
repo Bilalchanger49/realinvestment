@@ -49,13 +49,13 @@
             <div class="row row-cols-1 row-cols-md-3  p-3 text-white">
                 <div class="col">
                     <h4>CALL US</h4>
-                    <p>Phone: <strong>(123) 456-7890</strong></p>
+                    <p>Phone: <strong>0349 5101379</strong></p>
                     <p>Hours: Monday to Friday,<br>9 AM - 5 PM</p>
                 </div>
                 <div class="col">
                     <h4>LOCATION</h4>
-                    <p>Address: <strong>123 Main Street, Suite 400</strong></p>
-                    <p>City: <strong>Springfield</strong>, State: <strong>IL</strong>, ZIP: <strong>62701</strong></p>
+                    <p>Address: <strong>420 Real Estate Street, I-14/4</strong></p>
+                    <p>City: <strong>Islamabad</strong>, State: <strong>Pakistan</strong>, ZIP: <strong>41041</strong></p>
                 </div>
                 <div class="col">
                     <h4>Email</h4>

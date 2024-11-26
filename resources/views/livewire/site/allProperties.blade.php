@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="breadcrumb-inner">
                     <div class="section-title text-center">
-                        <h2 class="page-title">Property</h2>
+                        <h2 class="page-title">Investment Opportunities</h2>
                         <ul class="page-list">
                             <li><a href="index.html">Home</a></li>
                             <li>Property</li>
@@ -36,9 +36,9 @@
                             <div class="col-md-3 mt-2 mt-md-0 align-self-center">
                                 <div class="single-select-inner">
                                     <select>
-                                        <option value="1">Sort By</option>
-                                        <option value="2">Sort By</option>
-                                        <option value="3">Sort By</option>
+                                        <option value="1">Low to High</option>
+                                        <option value="2">High to Low</option>
+                                        <option value="3">Newest Listings</option>
                                     </select>
                                 </div>
                             </div>
@@ -58,7 +58,10 @@
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                        </div>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
                                         </ul>
@@ -81,7 +84,10 @@
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                        </div>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
                                         </ul>
@@ -104,7 +110,10 @@
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                        </div>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
                                         </ul>
@@ -127,7 +136,10 @@
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                        </div>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
                                         </ul>
@@ -150,7 +162,10 @@
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                        </div>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
                                         </ul>
@@ -173,7 +188,10 @@
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                        </div>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
                                         </ul>
@@ -196,7 +214,10 @@
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                        </div>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
                                         </ul>
@@ -219,7 +240,10 @@
                                         </div>
                                     </div>
                                     <div class="product-details-inner">
-                                        <h4><a href="{{route('site.property.details')}}">Daily Apartment</a></h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                        </div>
                                         <ul class="meta-inner">
                                             <li><img src="assets/img/icon/location2.png" alt="img">New York</li>
                                         </ul>
@@ -249,21 +273,18 @@
                             <div class="widget widget-category">
                                 <h5 class="widget-title">Category</h5>
                                 <ul>
-                                    <li><a href="#">Design <span>26</span></a></li>
-                                    <li><a href="#">Villa House <span>20</span></a></li>
-                                    <li><a href="#">Business <span>21</span></a></li>
-                                    <li><a href="#">Global World <span>31</span></a></li>
-                                    <li><a href="#">Technology <span>12</span></a></li>
-                                    <li><a href="#">Ui Design <span>12</span></a></li>
+                                    <li><a href="#">Residential Properties <span>26</span></a></li>
+                                    <li><a href="#">Commercial Properties <span>20</span></a></li>
+                                    <li><a href="#">Vacation Homes <span>31</span></a></li>
                                 </ul>
                             </div>
                             <div class="widget widget-place">
                                 <h5 class="widget-title">Place</h5>
                                 <ul>
-                                    <li>New York <span>26</span></li>
-                                    <li>Love Road <span>20</span></li>
-                                    <li>Beach Side <span>21</span></li>
-                                    <li>Golden city <span>31</span></li>
+                                    <li>Karachi <span>26</span></li>
+                                    <li>Lahore <span>20</span></li>
+                                    <li>Islamabad <span>21</span></li>
+                                    <li>Gwadar <span>31</span></li>
                                 </ul>
                             </div>
                             <div class="widget widget-news">
@@ -273,8 +294,8 @@
                                         <img src="assets/img/blog/5.png" alt="img">
                                     </div>
                                     <div class="media-body align-self-center">
-                                        <h6><a href="blog-details.html">Dolor eorem ipsum sit amet Lorem ipsum</a></h6>
-                                        <p class="date"><i class="far fa-calendar-alt"></i>25 Aug 2020</p>
+                                        <h6><a href="blog-details.html">Latest Trends in Real Estate Investment</a></h6>
+                                        <p class="date"><i class="far fa-calendar-alt"></i>25 JAN 2024</p>
                                     </div>
                                 </div>
                                 <div class="single-news-wrap media">
@@ -282,8 +303,8 @@
                                         <img src="assets/img/blog/6.png" alt="img">
                                     </div>
                                     <div class="media-body align-self-center">
-                                        <h6><a href="blog-details.html">Responsive Web And Desktop Develope</a></h6>
-                                        <p class="date"><i class="far fa-calendar-alt"></i>25 Aug 2020</p>
+                                        <h6><a href="blog-details.html">Understanding the Benefits of Fractional Ownership</a></h6>
+                                        <p class="date"><i class="far fa-calendar-alt"></i>25 Nov 2025</p>
                                     </div>
                                 </div>
                                 <div class="single-news-wrap media">
@@ -291,8 +312,8 @@
                                         <img src="assets/img/blog/7.png" alt="img">
                                     </div>
                                     <div class="media-body align-self-center">
-                                        <h6><a href="blog-details.html">Admin Web is Django Highlig Models</a></h6>
-                                        <p class="date"><i class="far fa-calendar-alt"></i>25 Aug 2020</p>
+                                        <h6><a href="blog-details.html">Top 5 Real Estate Hotspots for 2025</a></h6>
+                                        <p class="date"><i class="far fa-calendar-alt"></i>25 Aug 2024</p>
                                     </div>
                                 </div>
                             </div>
