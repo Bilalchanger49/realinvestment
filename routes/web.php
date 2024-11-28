@@ -2,6 +2,7 @@
 
 use App\Livewire\admin\Property\CreateComponent as createProperty;
 use App\Livewire\admin\Property\PropertyComponent;
+use App\Livewire\admin\Property\UpdatePropertyComponent;
 use \App\Livewire\admin\DashboardComponent;
 use App\Livewire\Site\AboutComponent;
 use App\Livewire\Site\AllPropertiesComponent;
@@ -37,5 +38,6 @@ Route::middleware([
 Route::prefix('admin')->group(function () {
     Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
     Route::get('/property/create', createProperty::class)->name('admin.property.create');
+    Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
 })->middleware('auth');
 

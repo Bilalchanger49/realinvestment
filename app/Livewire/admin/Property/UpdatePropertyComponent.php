@@ -2,15 +2,16 @@
 
 namespace App\Livewire\admin\Property;
 
-use App\Http\Requests\PropertyRequest;
 use App\Models\Property;
 use Livewire\Component;
+use App\Http\Requests\PropertyRequest;
 use Livewire\WithFileUploads;
 
-
-class CreateComponent extends Component
+class UpdatePropertyComponent extends Component
 {
     use WithFileUploads;
+
+    public $property;
     public $property_name;
     public $property_description;
     public $property_reg_no;
@@ -21,18 +22,29 @@ class CreateComponent extends Component
     public $rules;
     public $messages;
 
-    public function mount()
+    public function mount($id)
     {
         $rules = new PropertyRequest();
         $this->rules = $rules->rulesLivewire();
         $this->messages = $rules->messagesLivewire();
+        $this->property = Property::findOrFail($id); // This will throw an error if no property is found
+
+        $this->property_name = $this->property->property_name;
+        $this->property_description = $this->property->property_description;
+        $this->property_reg_no = $this->property->property_reg_no;
+        $this->property_address = $this->property->property_address;
+        $this->property_price = $this->property->property_price;
+        $this->property_rent = $this->property->property_rent;
     }
+
+
     public function render()
     {
-        return view('livewire.admin.property.create')->extends('layouts.auth');
+        return view('livewire.admin.property.edit' )->extends('layouts.auth');
     }
-    public function createproperty(){
 
+    public function updateProperty()
+    {
         $validate = $this->validate($this->rules, $this->messages);
         $rentPerMonth  = $this->property_rent * 12;
         $returnPercent = $rentPerMonth * 0.09;
@@ -43,12 +55,16 @@ class CreateComponent extends Component
 // Calculate the price of each share
         $pricePerShare = $this->property_price / $noOfShares;
 
+        // Update property details
+
+
+        // Handle image upload if a new one is provided
         if ($this->property_image) {
             $file = $this->property_image;
             $path = $file->store('create-property', 'public');
         }
 
-        Property::create([
+        $this->property->update([
             'user_id' => auth()->user()->id,
             'property_name' => $this->property_name,
             'property_description'=> $this->property_description,
@@ -62,6 +78,8 @@ class CreateComponent extends Component
             'property_image' => $path,
         ]);
 
-        return redirect()->route('admin.property.index')->with('success', 'Property created successfully.');
+        session()->flash('message', 'Property updated successfully.');
+        return redirect()->route('admin.property.index');
     }
+
 }
