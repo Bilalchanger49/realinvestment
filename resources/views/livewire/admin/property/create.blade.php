@@ -4,8 +4,14 @@
         <div class="content">
             <h1 class="mb-3">Add New property</h1>
             <div class="card card-default">
-                <div class="container mt-4">
+                <div class="container mb-4 mt-4">
 
+
+                    @if (session()->has('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -16,6 +22,8 @@
                             </ul>
                         </div>
                     @endif
+
+
 
                     <form wire:submit.prevent="createproperty" enctype="multipart/form-data">
                         @csrf
@@ -60,6 +68,29 @@
                             @error('property_image') <span class="error text-danger">{{ $message }}</span> @enderror
                             <div wire:loading wire:target="property_image">Uploading...</div>
                         </div>
+
+{{--                        <div class="form-group">--}}
+{{--                            <label for="property_images">Property Images (Max: 10)</label>--}}
+
+{{--                            @foreach ($property_images as $index => $image)--}}
+{{--                                <div class="mb-2">--}}
+{{--                                    <input type="file" class="form-control" wire:model="property_images.{{ $index }}" />--}}
+{{--                                    <div wire:loading wire:target="property_images.{{ $index }}">--}}
+{{--                                        <span>Uploading...</span>--}}
+{{--                                    </div>--}}
+{{--                                    <button type="button" class="btn btn-danger btn-sm mt-2" wire:click="removeImage({{ $index }})">--}}
+{{--                                        Remove--}}
+{{--                                    </button>--}}
+{{--                                    @error("property_images.{$index}")--}}
+{{--                                    <span class="error text-danger">{{ $message }}</span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
+
+{{--                            @if (count($property_images) < $imageLimit)--}}
+{{--                                <button type="button" class="btn btn-secondary mt-3" wire:click="addImage">Add Another Image</button>--}}
+{{--                            @endif--}}
+{{--                        </div>--}}
 
 
                         <button type="submit" class="btn btn-primary">Create Property</button>

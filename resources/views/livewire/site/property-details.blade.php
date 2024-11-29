@@ -1,6 +1,6 @@
  <div>
         <!-- breadcrumb start -->
-        <div class="breadcrumb-area bg-overlay-2" style="background-image:url('assets/img/other/7.png')">
+        <div class="breadcrumb-area bg-overlay-2" style="background-image:url('{{asset('assets/img/other/7.png')}}')">
             <div class="container">
                 <div class="breadcrumb-inner">
                     <div class="section-title text-center">
@@ -24,8 +24,8 @@
                             <div class="property-details-top-inner">
                                 <div class="row">
                                     <div class="col-lg-7">
-                                        <h3>Lorem ipsum dolor eiusmod.</h3>
-                                        <p><img src="assets/img/icon/location2.png" alt="img"> New York 261, Sam Road,
+                                        <h3>{{$property->property_name}}</h3>
+                                        <p><img src="{{asset('assets/img/icon/location2.png')}}" alt="img"> {{$property->property_address}},
                                             Right
                                             Side real estate </p>
                                         <ul>
@@ -35,11 +35,11 @@
                                         </ul>
                                     </div>
                                     <div class="col-lg-5 text-lg-right">
-                                        <h4>$ 80,650.00</h4>
+                                        <h4>PK {{$property->property_price}}</h4>
                                         <ul>
-                                            <li><img src="assets/img/icon/1.png" alt="img">Marce 9 , 2020</li>
-                                            <li><img src="assets/img/icon/2.png" alt="img">4263</li>
-                                            <li><img src="assets/img/icon/3.png" alt="img">68</li>
+                                            <li><img src="{{asset('assets/img/icon/1.png')}}" alt="img">Marce 9 , 2020</li>
+                                            <li><img src="{{asset('assets/img/icon/2.png')}}" alt="img">4263</li>
+                                            <li><img src="{{asset('assets/img/icon/3.png')}}" alt="img">68</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -47,42 +47,42 @@
                             <div class="product-thumbnail-wrapper" wire:ignore>
                                 <div class="single-thumbnail-slider">
                                     <div class="slider-item">
-                                        <img src="assets/img/project-single/1.png" alt="img">
+                                        <img src="{{asset('storage/' . $property->property_image)}}" alt="img" >
                                     </div>
                                     <div class="slider-item">
-                                        <img src="assets/img/project-single/2.png" alt="img">
+                                        <img src="{{asset('assets/img/project-single/2.png')}}" alt="img">
                                     </div>
                                     <div class="slider-item">
-                                        <img src="assets/img/project-single/3.png" alt="img">
+                                        <img src="{{asset('assets/img/project-single/3.png')}}" alt="img">
                                     </div>
                                     <div class="slider-item">
-                                        <img src="assets/img/project-single/4.png" alt="img">
+                                        <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
                                     </div>
                                     <div class="slider-item">
-                                        <img src="assets/img/project-single/5.png" alt="img">
+                                        <img src="{{asset('assets/img/project-single/5.png')}}" alt="img">
                                     </div>
                                 </div>
                                 <div class="product-thumbnail-carousel">
                                     <div class="single-thumbnail-item">
-                                        <img src="assets/img/project-single/1.png" alt="img">
+                                        <img src="{{asset('storage/' . $property->property_image)}}" alt="img">
                                     </div>
                                     <div class="single-thumbnail-item">
-                                        <img src="assets/img/project-single/2.png" alt="img">
+                                        <img src="{{asset('assets/img/project-single/2.png')}}" alt="img">
                                     </div>
                                     <div class="single-thumbnail-item">
-                                        <img src="assets/img/project-single/3.png" alt="img">
+                                        <img src="{{asset('assets/img/project-single/3.png')}}" alt="img">
                                     </div>
                                     <div class="single-thumbnail-item">
-                                        <img src="assets/img/project-single/4.png" alt="img">
+                                        <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
                                     </div>
                                     <div class="single-thumbnail-item">
-                                        <img src="assets/img/project-single/5.png" alt="img">
+                                        <img src="{{asset('assets/img/project-single/5.png')}}" alt="img">
                                     </div>
                                     <div class="single-thumbnail-item">
-                                        <img src="assets/img/project-single/2.png" alt="img">
+                                        <img src="{{asset('assets/img/project-single/2.png')}}" alt="img">
                                     </div>
                                     <div class="single-thumbnail-item">
-                                        <img src="assets/img/project-single/3.png" alt="img">
+                                        <img src="{{asset('assets/img/project-single/3.png')}}" alt="img">
                                     </div>
                                 </div>
                             </div>
@@ -110,6 +110,7 @@
                                     <!-- Input to select the number of shares -->
                                     <div class="mt-3">
                                         <label for="numShares">Number of Shares to Buy:</label>
+
                                         <input type="number" id="numShares" name="numShares" class="form-control" min="1"
                                                max="{{ $availableShares }}"
                                                wire:model="numShares"
@@ -141,14 +142,7 @@
                     <div class="col-lg-12">
                         <div class="single-property-details-inner">
                             <h4>Brief Description</h4>
-                            <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetuLorem ipsum dolor sit
-                                amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                velit esse cillum dolore.</p>
-                            <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetuLorem ipsum dolor sit
-                                amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                magna aliqua. </p>
+                            <p>{{$property->property_description}}</p>
                             <div class="single-property-grid">
                                 <h4>Poperty Details</h4>
                                 <div class="row">
@@ -183,12 +177,12 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <a href="PDFLINK.html" download>
-                                            <img src="assets/img/icon/9.png" alt="img">
+                                            <img src="{{asset('assets/img/icon/9.png')}}" alt="img">
                                         </a>
                                     </div>
                                     <div class="col-sm-6 mt-2 mt-sm-0">
                                         <a href="PDFLINK.html" download>
-                                            <img src="assets/img/icon/9.png" alt="img">
+                                            <img src="{{asset('assets/img/icon/9.png')}}" alt="img">
                                         </a>
                                     </div>
                                 </div>

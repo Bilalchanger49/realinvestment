@@ -7,24 +7,35 @@ use Livewire\Component;
 
 class PropertyDetailsComponent extends Component
 {
-    public $totalShares = 255;
-    public $availableShares = 200;
-    public $sharePrice = 255;
+    public $totalShares;
+    public $availableShares;
+    public $sharePrice;
     public $numShares = 1;
     public $totalPrice;
 
-    public function mount()
+    public $property;
+
+    public function mount($id)
     {
-        $this->calculateTotal(); // Initialize the total price
+        $this->property = Property::where('id', $id)->first();
+        $this->calculateTotal();
+        $this->totalPrice = $this->property->property_price;
+        $this->sharePrice = $this->property->property_share_price;
+        $this->totalShares = $this->property->property_total_shares;
+        $this->availableShares = $this->property->property_remaining_shares;
     }
 
     public function calculateTotal()
     {
-        $this->totalPrice = $this->numShares * $this->sharePrice;
+        if($this->numShares < 1){
+            $this->totalPrice = 0;
+        }else{
+            $this->totalPrice = $this->numShares * $this->sharePrice;
+        }
     }
     public function render()
     {
-        $properties = Property::all();
-        return view('livewire.site.property-details')->extends('layouts.site');
+        $property = $this->property;
+        return view('livewire.site.property-details', compact('property'))->extends('layouts.site');
     }
 }

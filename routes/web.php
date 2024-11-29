@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeComponent::class)->name('site.home');
 Route::get('/about', AboutComponent::class)->name('site.about');
-Route::get('/property-details', PropertyDetailsComponent::class)->name('site.property.details');
+Route::get('/property-details/{id}', PropertyDetailsComponent::class)->name('site.property.details');
 Route::get('/all-properties', AllPropertiesComponent::class)->name('site.property.all');
 Route::get('/contact-us', ContactComponent::class)->name('site.contact');
 Route::get('/investor-page', InvestorPageComponent::class)->name('site.investor.page');
