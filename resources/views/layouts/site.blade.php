@@ -14,9 +14,9 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/vendor.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="{{asset('assets/css/vendor.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
     @livewireStyles
 </head>
 <body class="body-bg">
@@ -56,7 +56,7 @@
                 </button>
             </div>
             <div class="logo">
-                <a href="index.html"><img src="assets/img/logo-black.png" style="height: 50px;" alt="img"></a>
+                <a href="index.html"><img src="{{asset('assets/img/logo-black.png')}}" style="height: 50px;" alt="img"></a>
             </div>
 
             <div class="nav-right-part nav-right-part-desktop collapse navbar-collapse" id="dkt_main_menu">
@@ -220,9 +220,10 @@
 <!-- all plugins here -->
 
 <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-<script src="assets/js/vendor.js"></script>
+<script src="{{asset('assets/js/vendor.js')}}"></script>
+
 <!-- main js  -->
-<script src="assets/js/main.js"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

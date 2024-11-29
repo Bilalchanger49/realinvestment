@@ -50,85 +50,68 @@
                     <h2>New Arival</h2>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product-wrap style-bottom">
-                            <div class="thumb">
-                                <img src="assets/img/project/1.png" alt="img">
-                                <div class="product-wrap-details">
-                                    <div class="media justify-content-end">
-                                        <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
+                    @foreach($properties as $property)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-product-wrap style-bottom">
+                                <div class="thumb">
+                                    <img src="assets/img/project/1.png" alt="img">
+                                    <div class="product-wrap-details">
+                                        <div class="media justify-content-end">
+                                            <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="product-details-inner">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
-                                    <span class="price text-end"> <strong>PK 50000</strong> </span>
-                                </div>
+                                <div class="product-details-inner">
 
-                                <ul class="meta-inner">
-                                    <li><img src="assets/img/icon/location2.png" alt="img">Karach</li>
-                                </ul>
-                                <p>Experience urban living with our Luxury City Apartment in the heart of Karachi. Ideal for modern investors seeking high rental returns and long-term growth potential</p>
-                            </div>
-                            <div class="product-meta-bottom">
-                                <span class="price">PKR 12,000,000</span>
-                                <span>2 months ago</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product-wrap style-bottom">
-                            <div class="thumb">
-                                <img src="assets/img/project/1.png" alt="img">
-                                <div class="product-wrap-details">
-                                    <div class="media justify-content-end">
-                                        <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        @if( $property->id)
+                                            <h4><a href="{{ route('site.property.details', $property->id) }}">{{ $property->property_name }}</a></h4>
+                                        @else
+                                            <h4><a href="">{{ $property->property_name }}</a></h4>
+                                        @endif
+
+
+                                        <span class="price text-end"> <strong>PK {{$property->property_share_price}}</strong> </span>
                                     </div>
+
+                                    <ul class="meta-inner">
+                                        <li><img src="assets/img/icon/location2.png" alt="img">{{$property->property_address}}</li>
+                                    </ul>
+                                    <p>{{$property->property_description}}</p>
                                 </div>
-                            </div>
-                            <div class="product-details-inner">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h4><a href="{{route('site.property.details')}}">Seaside Villa</a></h4>
-                                    <span class="price text-end"> <strong>PK 50000</strong> </span>
+                                <div class="product-meta-bottom">
+                                    <span class="price">PKR {{$property->property_price}}</span>
+                                    <span>2 months ago</span>
                                 </div>
-                                <ul class="meta-inner">
-                                    <li><img src="assets/img/icon/location2.png" alt="img">Gwadar</li>
-                                </ul>
-                                <p>Own a slice of paradise with this Seaside Villa in Gwadar. Perfect for vacation rentals or personal use, offering breathtaking sea views..</p>
-                            </div>
-                            <div class="product-meta-bottom">
-                                <span class="price">PKR 25,000,000</span>
-                                <span>3 weeks ago</span>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product-wrap style-bottom">
-                            <div class="thumb">
-                                <img src="assets/img/project/1.png" alt="img">
-                                <div class="product-wrap-details">
-                                    <div class="media justify-content-end">
-                                        <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-details-inner">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
-                                    <span class="price text-end"> <strong>PK 50000</strong> </span>
-                                </div>
-                                <ul class="meta-inner">
-                                    <li><img src="assets/img/icon/location2.png" alt="img">Karach</li>
-                                </ul>
-                                <p>Experience urban living with our Luxury City Apartment in the heart of Karachi. Ideal for modern investors seeking high rental returns and long-term growth potential</p>
-                            </div>
-                            <div class="product-meta-bottom">
-                                <span class="price">PKR 12,000,000</span>
-                                <span>2 months ago</span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+{{--                    <div class="col-lg-4 col-md-6">--}}
+{{--                        <div class="single-product-wrap style-bottom">--}}
+{{--                            <div class="thumb">--}}
+{{--                                <img src="assets/img/project/1.png" alt="img">--}}
+{{--                                <div class="product-wrap-details">--}}
+{{--                                    <div class="media justify-content-end">--}}
+{{--                                        <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                            <div class="product-details-inner">--}}
+{{--                                <div class="d-flex justify-content-between align-items-center">--}}
+{{--                                    <h4><a href="{{route('site.property.details')}}">Seaside Villa</a></h4>--}}
+{{--                                    <span class="price text-end"> <strong>PK 50000</strong> </span>--}}
+{{--                                </div>--}}
+{{--                                <ul class="meta-inner">--}}
+{{--                                    <li><img src="assets/img/icon/location2.png" alt="img">Gwadar</li>--}}
+{{--                                </ul>--}}
+{{--                                <p>Own a slice of paradise with this Seaside Villa in Gwadar. Perfect for vacation rentals or personal use, offering breathtaking sea views..</p>--}}
+{{--                            </div>--}}
+{{--                            <div class="product-meta-bottom">--}}
+{{--                                <span class="price">PKR 25,000,000</span>--}}
+{{--                                <span>3 weeks ago</span>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                 </div>
             </div>
@@ -158,7 +141,7 @@
                                     </div>
                                     <div class="product-details-inner">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <h4><a href="">Luxury City Apartment</a></h4>
                                             <span class="price text-end"> <strong>PK 50000</strong> </span>
                                         </div>
                                         <ul class="meta-inner">
@@ -184,7 +167,7 @@
                                     </div>
                                     <div class="product-details-inner">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <h4><a href="">Luxury City Apartment</a></h4>
                                             <span class="price text-end"> <strong>PK 50000</strong> </span>
                                         </div>
                                         <ul class="meta-inner">
@@ -210,7 +193,7 @@
                                     </div>
                                     <div class="product-details-inner">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h4><a href="{{route('site.property.details')}}">Luxury City Apartment</a></h4>
+                                            <h4><a href="">Luxury City Apartment</a></h4>
                                             <span class="price text-end"> <strong>PK 50000</strong> </span>
                                         </div>
                                         <ul class="meta-inner">

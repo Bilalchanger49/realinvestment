@@ -52,8 +52,8 @@
             <!-- Aplication Brand -->
             <div class="app-brand">
                 <a href="/index.html">
-                    <img src="{{ asset('assets/auth/images/logo.png') }}" alt="Mono">
-                    <span class="brand-name">MONO</span>
+                    <img src="{{ asset('assets/img/logo-black.png') }}" alt="Mono">
+{{--                    <span class="brand-name">MONO</span>--}}
                 </a>
             </div>
             <!-- begin sidebar scrollbar -->
