@@ -16,6 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // The investor
             $table->foreignId('property_id')->constrained()->onDelete('cascade');
             $table->integer('shares_owned');
+            $table->integer('remaining_shares');
+            $table->integer('share_price');
+            $table->integer('payment_id');
+            $table->string('status');
             $table->decimal('total_investment', 15, 2);
             $table->timestamps();
         });
