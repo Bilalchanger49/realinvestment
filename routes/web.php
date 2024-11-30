@@ -12,6 +12,7 @@ use App\Livewire\Site\PropertyDetailsComponent;
 use App\Livewire\Site\InvestorPageComponent;
 use App\Livewire\Site\SecondaryMarketComponent;
 use App\Livewire\Site\FaqComponent;
+use App\Livewire\Site\BuyPropertyComponent;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeComponent::class)->name('site.home');
@@ -22,6 +23,7 @@ Route::get('/contact-us', ContactComponent::class)->name('site.contact');
 Route::get('/investor-page', InvestorPageComponent::class)->name('site.investor.page');
 Route::get('/faq', FaqComponent::class)->name('site.faq');
 Route::get('/secondary-market', SecondaryMarketComponent::class)->name('site.secondary.market');
+Route::get('/buy-property/{id}', BuyPropertyComponent::class)->name('site.property.buy');
 
 
 Route::middleware([

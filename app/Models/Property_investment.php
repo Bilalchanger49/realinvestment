@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Property_investment extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'property_id', 'shares_owned', 'total_investment'];
+    protected $fillable = ['user_id', 'property_id', 'shares_owned', 'total_investment','remaining_shares',
+        'share_price', 'payment_id', 'status'];
 
     public function property()
     {

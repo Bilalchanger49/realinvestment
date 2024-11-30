@@ -17,8 +17,4 @@ class Property extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function shares()
-    {
-        return $this->hasMany(Shares::class);
-    }
 }

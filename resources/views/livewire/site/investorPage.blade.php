@@ -221,8 +221,9 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Total Shares</th>
                         <th scope="col">Shares</th>
-                        <th scope="col">Properties</th>
+                        <th scope="col">Remaining Shares</th>
                         <th scope="col">Holding date</th>
                         <th scope="col">Current price</th>
                         <th scope="col">Total investments</th>
@@ -237,8 +238,9 @@
                             Explore ancient castles
                             <br><small class="text-muted">code:#B0143</small>
                         </td>
-                        <td>20</td>
+                        <td>120</td>
                         <td>5</td>
+                        <td>115</td>
                         <td>Feb 21 2023</td>
                         <td><strong>$50</strong></td>
                         <td><strong>$389.50</strong></td>
@@ -252,8 +254,9 @@
                             Visit the Laken Valley
                             <br><small class="text-muted">code:#B0154</small>
                         </td>
-                        <td>20</td>
+                        <td>120</td>
                         <td>5</td>
+                        <td>115</td>
                         <td>Feb 21 2023</td>
                         <td><strong>$50</strong></td>
                         <td><strong>$389.50</strong></td>
@@ -269,8 +272,9 @@
                             Bathing at Noriva Beach
                             <br><small class="text-muted">code:#B0167</small>
                         </td>
-                        <td>20</td>
+                        <td>120</td>
                         <td>5</td>
+                        <td>115</td>
                         <td>Feb 21 2023</td>
                         <td><strong>$50</strong></td>
                         <td><strong>$389.50</strong></td>
