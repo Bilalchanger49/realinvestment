@@ -3951,6 +3951,137 @@ section.bg-light {
   color: #fff;
 }
 
+/* agent area in about page  */
+.agent-card {
+  border: 1px solid #ececec;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.4s ease-in;
+  position: relative;
+  margin-bottom: 30px;
+  display: flex; /* Enables flexbox */
+  flex-direction: column; /* Stacks elements vertically */
+  justify-content: space-between; /* Ensures even spacing */
+  height: 100%; /* Makes all cards equal height */
+}
+
+.agent-card .agent-details {
+  padding: 28px 15px 35px;
+  flex-grow: 1; /* Makes the details section flexible */
+  display: flex; /* Enables flexbox */
+  flex-direction: column; /* Stacks content inside details vertically */
+  justify-content: space-between; /* Distributes space evenly */
+}
+
+.agent-card .agent-details h4 {
+  font-size: 26px;
+  font-weight: 500;
+  margin-bottom: 10px; /* Ensures spacing between elements */
+}
+
+.agent-card .agent-details h4:hover a {
+  color: var(--heading-color);
+}
+
+.agent-card .agent-details h6 {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--main-color);
+  margin-bottom: 15px;
+  transition: all 0.4s ease-in;
+}
+
+.agent-card .agent-details .social-area {
+  margin-top: auto; /* Pushes the social links to the bottom */
+}
+
+.agent-card .agent-details .phone-inner {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  line-height: 51px;
+  background: #fff;
+  color: #a1a1a1;
+  display: inline-block;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.agent-card .agent-details .phone-inner:hover {
+  background: var(--main-color);
+  color: #fff;
+}
+
+.agent-card.style-2 {
+  padding: 50px 0 15px 0;
+  background: #fff;
+  border: 0;
+  box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+.agent-card.style-2 .agent-thumb {
+  display: block;
+  margin-bottom: 20px; /* Adds spacing between the image and the details */
+}
+
+.agent-card.style-2 .agent-thumb img {
+  border-radius: 50%;
+  height: 130px;
+  width: 130px;
+}
+
+.agent-card.style-3:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(to top, rgba(6, 21, 57, 0.8) 40%, rgba(6, 21, 57, 0));
+  height: 80%;
+  bottom: 0;
+  left: 0;
+  border-radius: 5px;
+  z-index: 0;
+}
+
+.agent-card.style-3 .agent-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 7px 0 7px 0px;
+  z-index: 2;
+}
+
+.agent-card.style-3 .agent-details h4 {
+  color: #fff;
+}
+
+.agent-card.style-3 .agent-details h6 {
+  color: #fff;
+}
+
+.agent-card.style-3 .agent-details .social-area li a {
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.agent-card:hover {
+  background: var(--main-color);
+}
+
+.agent-card:hover .agent-details h4 {
+  color: #fff;
+}
+
+.agent-card:hover .agent-details h6 {
+  color: #fff;
+}
+
+.agent-card:hover .social-area.style-2 li a {
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  color: #fff;
+}
+
+
 /******* contact-details-inner ********/
 .contact-details-inner {
   padding: 30px 40px;
