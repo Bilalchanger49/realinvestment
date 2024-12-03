@@ -68,7 +68,7 @@
                                     <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur adipisicing eiusmod.</p>
                                 </div>
                                 <div class="product-meta-bottom">
-                                    <span class="price">$ 80,650.00</span>
+                                    <span class="price">$ 80,650</span>
                                     <span>1 year ago</span>
                                 </div>
                             </div>
