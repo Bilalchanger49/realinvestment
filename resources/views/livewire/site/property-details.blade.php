@@ -137,8 +137,6 @@
                     @livewire('site.buy-property-component', ['id' => $property->id])
                 </div>
             </div>
-
-
             <div>
                 <div class="container">
                     <div class="col-lg-12">
@@ -179,12 +177,12 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <a href="PDFLINK.html" download>
-                                            <img src="{{asset('assets/img/icon/9.png')}}" alt="img">
+                                            <img src="assets/img/icon/9.png" alt="img">
                                         </a>
                                     </div>
                                     <div class="col-sm-6 mt-2 mt-sm-0">
                                         <a href="PDFLINK.html" download>
-                                            <img src="{{asset('assets/img/icon/9.png')}}" alt="img">
+                                            <img src="assets/img/icon/9.png" alt="img">
                                         </a>
                                     </div>
                                 </div>

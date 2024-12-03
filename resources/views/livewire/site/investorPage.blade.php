@@ -32,8 +32,8 @@
                         </div>
                         <div class="card-body investor-profile-card-body">
                             <div class="text-section">
-                                <h5 class="card-title"><strong>{{$user->name}}</strong></h5>
-                                <h6 class="card-title"><strong>{{$user->email}}</strong></h6>
+                                <h5 class="card-title"><strong>Furqan</strong></h5>
+                                <h6 class="card-title"><strong>furqan@gmail.com</strong></h6>
                                 <div>
                                     <div class="card-text">
                                         <div class="card-text d-flex">
@@ -77,146 +77,159 @@
     <div class="container">
         <div class="row">
 
-
             <!-- Pagination Area -->
 
             <div class="container mt-5">
                 <div class="card-header">
                     Active Investments
                 </div>
-                <div class="card p-3 ">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Total Shares</th>
-                            <th scope="col">Shares</th>
-                            <th scope="col">Remaining Shares</th>
-                            <th scope="col">Holding date</th>
-                            <th scope="col">Current price</th>
-                            <th scope="col">Total investments</th>
-                            <th scope="col">status</th>
-                            <th scope="col">Details</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($propertyInvestments as $propertyInvestment)
+                <div class="card p-3">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td>1</td>
-                                <td>
-                                    {{$propertyInvestment->property->property_name}}
-                                    <br><small
-                                        class="text-muted">code:#{{$propertyInvestment->property->property_reg_no}}</small>
-                                </td>
-                                <td>{{$propertyInvestment->property->property_total_shares}}</td>
-                                <td>{{$propertyInvestment->shares_owned}}</td>
-                                <td>{{$propertyInvestment->property->property_remaining_shares}}</td>
-                                <td>{{$propertyInvestment->created_at}}</td>
-                                <td><strong>{{$propertyInvestment->share_price}}</strong></td>
-                                <td><strong>PK {{$propertyInvestment->total_investment}}</strong></td>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Total Shares</th>
+                                <th scope="col">Shares</th>
+                                <th scope="col">Remaining Shares</th>
+                                <th scope="col">Holding date</th>
+                                <th scope="col">Current price</th>
+                                <th scope="col">Total investments</th>
+                                <th scope="col">status</th>
+                                <th scope="col">Details</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($propertyInvestments as $propertyInvestment)
+                                @if($propertyInvestment->status == 'holding')
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            {{$propertyInvestment->property->property_name}}
+                                            <br><small
+                                                class="text-muted">code:#{{$propertyInvestment->property->property_reg_no}}</small>
+                                        </td>
+                                        <td>{{$propertyInvestment->property->property_total_shares}}</td>
+                                        <td>{{$propertyInvestment->shares_owned}}</td>
+                                        <td>{{$propertyInvestment->property->property_remaining_shares}}</td>
+                                        <td>{{$propertyInvestment->created_at}}</td>
+                                        <td><strong>{{$propertyInvestment->share_price}}</strong></td>
+                                        <td><strong>PK {{$propertyInvestment->total_investment}}</strong></td>
 
-                                <td><span class="status-completed">COMPLETED</span></td>
+                                        <td><span class="status-completed">{{$propertyInvestment->status}}</span></td>
+                                        <td>
+                                            <button id="openPopup" class="details-btn">&rarr;</button>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    Visit the Laken Valley
+                                    <br><small class="text-muted">code:#B0154</small>
+                                </td>
+                                <td>120</td>
+                                <td>5</td>
+                                <td>115</td>
+                                <td>Feb 21 2023</td>
+                                <td><strong>$50</strong></td>
+                                <td><strong>$389.50</strong></td>
+
+                                <td><span class="status-unpaid">UNPAID</span></td>
+                                <td>
+                                    <button id="openPopup" class="details-btn">&rarr;</button>
+                                {{--                                <a id="openPopup" class="details-btn">&rarr;</a></td>--}}
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    Bathing at Noriva Beach
+                                    <br><small class="text-muted">code:#B0167</small>
+                                </td>
+                                <td>120</td>
+                                <td>5</td>
+                                <td>115</td>
+                                <td>Feb 21 2023</td>
+                                <td><strong>$50</strong></td>
+                                <td><strong>$389.50</strong></td>
+
+                                <td><span class="status-cancelled">CANCELLED</span></td>
                                 <td>
                                     <button id="openPopup" class="details-btn">&rarr;</button>
                                 </td>
                             </tr>
-                        @endforeach
-                        <tr>
-                            <td>2</td>
-                            <td>
-                                Visit the Laken Valley
-                                <br><small class="text-muted">code:#B0154</small>
-                            </td>
-                            <td>120</td>
-                            <td>5</td>
-                            <td>115</td>
-                            <td>Feb 21 2023</td>
-                            <td><strong>$50</strong></td>
-                            <td><strong>$389.50</strong></td>
-
-                            <td><span class="status-unpaid">UNPAID</span></td>
-                            <td>
-                                <button id="openPopup" class="details-btn">&rarr;</button>
-                            {{--                                <a id="openPopup" class="details-btn">&rarr;</a></td>--}}
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>
-                                Bathing at Noriva Beach
-                                <br><small class="text-muted">code:#B0167</small>
-                            </td>
-                            <td>120</td>
-                            <td>5</td>
-                            <td>115</td>
-                            <td>Feb 21 2023</td>
-                            <td><strong>$50</strong></td>
-                            <td><strong>$389.50</strong></td>
-
-                            <td><span class="status-cancelled">CANCELLED</span></td>
-                            <td>
-                                <button id="openPopup" class="details-btn">&rarr;</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 
             <div class="container mt-5">
                 <div class="card-header">
-                    Transctions
+                    Transactions
                 </div>
-                <div class="card p-3 ">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tour</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Details</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                Explore ancient castles
-                                <br><small class="text-muted">code:#B0143</small>
-                            </td>
-                            <td><strong>$389.50</strong></td>
-                            <td>10:30 Feb 21 2023</td>
-                            <td><span class="status-unpaid">UNPAID</span></td>
-                            <td><a href="#" class="details-btn">&rarr;</a></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>
-                                Visit the Laken Valley
-                                <br><small class="text-muted">code:#B0154</small>
-                            </td>
-                            <td><strong>$412.50</strong></td>
-                            <td>10:30 Feb 21 2023</td>
-                            <td><span class="status-cancelled">CANCELLED</span></td>
-                            <td><a href="#" class="details-btn">&rarr;</a></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>
-                                Bathing at Noriva Beach
-                                <br><small class="text-muted">code:#B0167</small>
-                            </td>
-                            <td><strong>$390.50</strong></td>
-                            <td>10:30 Feb 21 2023</td>
-                            <td><span class="status-completed">COMPLETED</span></td>
-                            <td><a href="#" class="details-btn">&rarr;</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="card p-3">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Activity</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Details</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($transctions as $transction)
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        {{$transction->property->property_name}}
+                                        <br><small
+                                            class="text-muted">code:#{{$transction->property->property_reg_no}}</small>
+                                    </td>
+                                    <td><strong>PK {{$transction->total_investment}}</strong></td>
+                                    <td>{{$transction->created_at}}</td>
+                                    <td><span class="status-completed">{{$transction->activity}}</span></td>
+                                    <td><span class="status-completed">{{$transction->status}}</span></td>
+                                    <td><a href="#" class="details-btn">&rarr;</a></td>
+                                </tr>
+                            @endforeach
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    Visit the Laken Valley
+                                    <br><small class="text-muted">code:#B0154</small>
+                                </td>
+                                <td><strong>$412.50</strong></td>
+                                <td>10:30 Feb 21 2023</td>
+                                <td><span class="status-unpaid">sold</span></td>
+                                <td><span class="status-cancelled">not holding</span></td>
+                                <td><a href="#" class="details-btn">&rarr;</a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    Bathing at Noriva Beach
+                                    <br><small class="text-muted">code:#B0167</small>
+                                </td>
+                                <td><strong>$390.50</strong></td>
+                                <td>10:30 Feb 21 2023</td>
+                                <td><span class="status-completed">Buy</span></td>
+                                <td><span class="status-completed">holding</span></td>
+                                <td><a href="#" class="details-btn">&rarr;</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
 
             <div class="pagination-area text-center mt-4 mb-5">
                 <ul class="pagination">
@@ -254,10 +267,7 @@
                             <option value="4">4</option>
                         </select>
                     </div>
-                    {{--                    <div class="form-group">--}}
-                    {{--                        <label for="reason">Reason for Selling</label>--}}
-                    {{--                        <textarea id="reason" placeholder="Optional reason for selling"></textarea>--}}
-                    {{--                    </div>--}}
+
 
                     <div class="form-row">
                         <div class="form-group">
@@ -273,19 +283,7 @@
                             <label for="totalPrice">Total Price</label>
                             <input type="text" id="totalPrice" placeholder="Total price" readonly>
                         </div>
-                        {{--                        <div class="form-group">--}}
-                        {{--                            <label for="dropdown2">Choose a Sub-Category</label>--}}
-                        {{--                            <select id="dropdown2" name="subcategory">--}}
-                        {{--                                <option value="webdev">Web Development</option>--}}
-                        {{--                                <option value="ai">Artificial Intelligence</option>--}}
-                        {{--                                <option value="networking">Networking</option>--}}
-                        {{--                                <option value="cloud">Cloud Computing</option>--}}
-                        {{--                            </select>--}}
-                        {{--                        </div>--}}
-                        {{--                        <div class="form-group">--}}
-                        {{--                            <label for="shares">Number of Shares</label>--}}
-                        {{--                            <input type="text" id="shares" placeholder="Enter shares">--}}
-                        {{--                        </div>--}}
+
 
 
                     </div>
@@ -341,3 +339,6 @@
 
 
 </div>
+
+
+
