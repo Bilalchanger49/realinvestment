@@ -42,71 +42,70 @@
 
     <!-- agent area start -->
     <div class="agent-area text-center pd-top-118 pd-bottom-90">
-        <div class="container">
-            <div class="section-title text-center">
+            <div class="container">
+              <div class="section-title text-center">
                 <h6>Meet Our Team</h6>
                 <h2>Our Team</h2>
+              </div>
+              <div class="row">
+                <div class="col-lg-4 col-sm-6">
+                  <div class="agent-card style-2 text-center">
+                    <div class="agent-thumb">
+                      <img src="assets/img/agent/7.png" alt="Bilal Ahmed">
+                    </div>
+                    <div class="agent-details">
+                      <h4>Bilal Ahmed</h4>
+                      <h6>Founder & CEO</h6>
+                      <p>Bilal brings a vision to democratize real estate investments through innovative tokenization solutions.</p>
+                      <ul class="social-area style-2">
+                        <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                  <div class="agent-card style-2 text-center">
+                    <div class="agent-thumb">
+                      <img src="assets/img/agent/8.png" alt="Ayesha Khan">
+                    </div>
+                    <div class="agent-details">
+                      <h4>Ayesha Khan</h4>
+                      <h6>CTO</h6>
+                      <p>Ayesha is an expert in blockchain technology, ensuring seamless and secure transactions for investors.</p>
+                      <ul class="social-area style-2">
+                        <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                  <div class="agent-card style-2 text-center">
+                    <div class="agent-thumb">
+                      <img src="assets/img/agent/9.png" alt="Ali Raza">
+                    </div>
+                    <div class="agent-details">
+                      <h4>Ali Raza</h4>
+                      <h6>Investment Manager</h6>
+                      <p>Ali oversees property acquisitions and ensures the best returns for our investors.</p>
+                      <ul class="social-area style-2">
+                        <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single-agent-wrap style-2 text-center">
-                        <div class="thumb">
-                            <img src="assets/img/agent/7.png" alt="img">
-                        </div>
-                        <div class="details">
-                            <h4>Bilal Ahmed</h4>
-                            <h6>Founder & CEO</h6>
-                            <p>Bilal brings a vision to democratize real estate investments through innovative tokenization solutions.</p>
-                            <ul class="social-area style-2">
-                                <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single-agent-wrap style-2 text-center">
-                        <div class="thumb">
-                            <img src="assets/img/agent/8.png" alt="img">
-                        </div>
-                        <div class="details">
-                            <h4>Ayesha Khan</h4>
-                            <h6>CTO</h6>
-                            <p>Ayesha is an expert in blockchain technology, ensuring seamless and secure transactions for investors.</p>
-                            <ul class="social-area style-2">
-                                <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="single-agent-wrap style-2 text-center">
-                        <div class="thumb">
-                            <img src="assets/img/agent/9.png" alt="img">
-                        </div>
-                        <div class="details">
-                            <h4>Ali Raza</h4>
-                            <h6>Investment Manager</h6>
-                            <p>Ali oversees property acquisitions and ensures the best returns for our investors.</p>
-                            <ul class="social-area style-2">
-                                <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
+          </div>
+          
     <!-- agent area end -->
 
     <!-- service start -->
