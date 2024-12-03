@@ -31,17 +31,17 @@
     </div>
 </div>
 <!-- preloader area end -->
-<!-- search popup start-->
-<div class="body-overlay" id="body-overlay"></div>
-<div class="td-search-popup" id="td-search-popup">
-    <form action="https://solverwp.com/demo/html/mingrand/index.html" class="search-form">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search.....">
-        </div>
-        <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>
-    </form>
-</div>
-<!-- search popup end-->
+{{--<!-- search popup start-->--}}
+{{--<div class="body-overlay" id="body-overlay"></div>--}}
+{{--<div class="td-search-popup" id="td-search-popup">--}}
+{{--    <form action="https://solverwp.com/demo/html/mingrand/index.html" class="search-form">--}}
+{{--        <div class="form-group">--}}
+{{--            <input type="text" class="form-control" placeholder="Search.....">--}}
+{{--        </div>--}}
+{{--        <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>--}}
+{{--    </form>--}}
+{{--</div>--}}
+{{--<!-- search popup end-->--}}
 
 <!-- navbar start -->
 <div class="navbar-area navbar-area-2">
@@ -78,12 +78,15 @@
                     </li>
                 </ul>
             </div>
+
             <div class="nav-right-part nav-right-part-desktop collapse navbar-collapse" id="dkt_main_menu">
                 <ul class="navbar-nav menu-open text-center">
-                    <li class="menu-item-has-children current-menu-item">
-                        @if(Auth::User())
-                            <img src="{{ asset('assets/auth/images/user/default user.jpeg') }}"
-                                 class="user-image rounded-circle" style="height: 40px;" alt="User Image"/>
+                    <!-- Dropdown for Larger Screens -->
+                    @if(Auth::User())
+                        <li class="menu-item-has-children current-menu-item d-none d-lg-block">
+
+                            <img src="assets/img/agent/3.png" class="user-image rounded-circle" style="height: 40px;"
+                                 alt=""/>
                             <a href="#">{{ Auth::User()->name }}</a>
                             <ul class="sub-menu">
                                 <li>
@@ -95,9 +98,10 @@
                                     <a href=" {{ route('site.investor.page') }}">Investor Details</a>
                                 </li>
                                 <li>
+                                    <i class="mdi mdi-account-outline"></i>
                                     <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                                     document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST"
@@ -106,23 +110,45 @@
                                     </form>
                                 </li>
                             </ul>
-                        @else
-                            <img src="{{ asset('assets/auth/images/user/default user.jpeg') }}"
-                                 class="user-image rounded-circle" style="height: 40px;" alt="User Image"/>
+                        </li>
+                        <!-- Simple Buttons for Smaller Screens -->
+                        <li class="menu-item d-lg-none text-center">
+                            <a href="{{ Auth::user()->name }}" class="btn btn-login">Profile</a>
+                            <a href=" {{ route('site.investor.page') }}" class="btn btn-login">Details</a>
+                            <a href="{{ route('logout') }}" class="btn btn-register"
+                               onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit(); ">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+                    @else
+                        <li class="menu-item-has-children current-menu-item d-none d-lg-block">
+
+                            <img src="assets/img/agent/3.png" class="user-image rounded-circle" style="height: 40px;"
+                                 alt=""/>
                             <a href="#">Login</a>
                             <ul class="sub-menu">
-                                <li>
-                                    <i class="mdi mdi-account-outline"></i>
-                                    <a href="{{route('login')}}">Login</a>
-                                </li>
-                                <li>
-                                    <i class="mdi mdi-account-outline"></i>
-                                    <a href="{{route('register')}}">Register</a>
-                                </li>
-
+                                <li><a href="{{route('login')}}">Login</a></li>
+                                <li><a href="{{route('register')}}">Register</a></li>
                             </ul>
-                        @endif
-                    </li>
+                        </li>
+                        <!-- Simple Buttons for Smaller Screens -->
+                        <li class="menu-item d-lg-none text-center">
+                            <a href="{{route('login')}}" class="btn btn-login">Login</a>
+                            <a href="{{route('register')}}" class="btn btn-register">Register</a>
+                        </li>
+                    @endif
+
+                    <!-- Simple Buttons for Smaller Screens -->
+{{--                    <li class="menu-item d-lg-none text-center">--}}
+{{--                        <a href="{{route('login')}}" class="btn btn-login">Login</a>--}}
+{{--                        <a href="{{route('register')}}" class="btn btn-register">Register</a>--}}
+{{--                    </li>--}}
+
                 </ul>
             </div>
         </div>
@@ -130,6 +156,7 @@
 </div>
 
 <!-- navbar end -->
+
 
 <div>
     @yield('content')
