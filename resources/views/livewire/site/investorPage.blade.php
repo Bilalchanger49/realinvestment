@@ -77,7 +77,7 @@
     <div class="container">
         <div class="row">
 
-            <!-- Pagination Area -->
+           
 
             <div class="container mt-5">
                 <div class="card-header">
@@ -119,7 +119,7 @@
 
                                         <td><span class="status-completed">{{$propertyInvestment->status}}</span></td>
                                         <td>
-                                            <button id="openPopup" class="details-btn">&rarr;</button>
+                                        <button class="details-btn-investment openPopup">&rarr;</button>
                                         </td>
                                     </tr>
                                 @endif
@@ -139,8 +139,8 @@
 
                                 <td><span class="status-unpaid">UNPAID</span></td>
                                 <td>
-                                    <button id="openPopup" class="details-btn">&rarr;</button>
-                                {{--                                <a id="openPopup" class="details-btn">&rarr;</a></td>--}}
+                                <button class="details-btn-investment openPopup">&rarr;</button>
+                                {{--<a id="openPopup" class="details-btn">&rarr;</a></td>--}}
                             </tr>
                             <tr>
                                 <td>3</td>
@@ -157,8 +157,8 @@
 
                                 <td><span class="status-cancelled">CANCELLED</span></td>
                                 <td>
-                                    <button id="openPopup" class="details-btn">&rarr;</button>
-                                </td>
+                                <button class="details-btn-investment openPopup">&rarr;</button>
+                                {{--<a id="openPopup" class="details-btn">&rarr;</a></td>--}}
                             </tr>
                             </tbody>
                         </table>
@@ -197,7 +197,9 @@
                                     <td>{{$transction->created_at}}</td>
                                     <td><span class="status-completed">{{$transction->activity}}</span></td>
                                     <td><span class="status-completed">{{$transction->status}}</span></td>
-                                    <td><a href="#" class="details-btn">&rarr;</a></td>
+                                    <td>
+    <a href="#" class="details-btn-transaction">&rarr;</a>
+</td>
                                 </tr>
                             @endforeach
                             <tr>
@@ -210,7 +212,9 @@
                                 <td>10:30 Feb 21 2023</td>
                                 <td><span class="status-unpaid">sold</span></td>
                                 <td><span class="status-cancelled">not holding</span></td>
-                                <td><a href="#" class="details-btn">&rarr;</a></td>
+                                <td>
+    <a href="#" class="details-btn-transaction">&rarr;</a>
+</td>
                             </tr>
                             <tr>
                                 <td>3</td>
@@ -222,7 +226,9 @@
                                 <td>10:30 Feb 21 2023</td>
                                 <td><span class="status-completed">Buy</span></td>
                                 <td><span class="status-completed">holding</span></td>
-                                <td><a href="#" class="details-btn">&rarr;</a></td>
+                                <td>
+    <a href="#" class="details-btn-transaction">&rarr;</a>
+</td>
                             </tr>
                             </tbody>
                         </table>
@@ -230,6 +236,7 @@
                 </div>
             </div>
 
+<!-- pagination -->
 
             <div class="pagination-area text-center mt-4 mb-5">
                 <ul class="pagination">
@@ -244,6 +251,8 @@
             </div>
         </div>
 
+<!-- popup area  -->
+ 
         <div id="popup" class="popup">
             <div class="popup-content">
                 <span id="closePopup" class="close-btn">&times;</span>
@@ -297,45 +306,112 @@
                 <!-- Popup Form End -->
             </div>
         </div>
+
+        <div id="transaction-popup">
+  <div class="popup-content">
+    <span class="close-btn" id="closeTransactionPopup">&times;</span>
+    <div id="bill-details" class="bill-details">
+      <h2>Transaction Bill</h2>
+      <p><strong>Name:</strong> <span id="transactionName"></span></p>
+      <p><strong>Amount:</strong> <span id="transactionAmount"></span></p>
+      <p><strong>Date:</strong> <span id="transactionDate"></span></p>
+      <p><strong>Activity:</strong> <span id="transactionActivity"></span></p>
+      <p><strong>Status:</strong> <span id="transactionStatus"></span></p>
+    </div>
+    <button id="printBill" class="print-btn">Print</button>
+  </div>
+</div>
     </div>
 
 
     <script>
-        // Get elements
-        // Get elements
-        const openPopup = document.getElementById('openPopup');
-        const closePopup = document.getElementById('closePopup');
-        const popup = document.getElementById('popup');
+ // Transaction Details Popup Script
+document.querySelectorAll('.details-btn-transaction').forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default link behavior
 
-        // Open popup
-        openPopup.addEventListener('click', () => {
-            popup.style.display = 'flex';
-        });
+        // Open the transaction details popup
+        const transactionPopup = document.getElementById('transaction-popup');
+        transactionPopup.style.display = 'flex';
 
-        // Close popup
-        closePopup.addEventListener('click', () => {
-            popup.style.display = 'none';
-        });
+        // Extract data from the corresponding row
+        const row = button.closest('tr'); // Get the table row
+        const name = row.querySelector('td:nth-child(2)').textContent.trim(); // Transaction Name
+        const amount = row.querySelector('td:nth-child(3)').textContent.trim(); // Transaction Amount
+        const date = row.querySelector('td:nth-child(4)').textContent.trim(); // Transaction Date
+        const activity = row.querySelector('td:nth-child(5)').textContent.trim(); // Transaction Activity
+        const status = row.querySelector('td:nth-child(6)').textContent.trim(); // Transaction Status
 
-        // Close popup when clicking outside of it
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup) {
-                popup.style.display = 'none';
-            }
-        });
+        // Populate the bill details in the popup
+        document.getElementById('transactionName').textContent = name;
+        document.getElementById('transactionAmount').textContent = amount;
+        document.getElementById('transactionDate').textContent = date;
+        document.getElementById('transactionActivity').textContent = activity;
+        document.getElementById('transactionStatus').textContent = status;
+    });
+});
 
-        // Handle form submission
-        const popupForm = document.getElementById('popupForm');
-        popupForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Prevent actual form submission
-            const category = document.getElementById('dropdown1').value;
-            const subcategory = document.getElementById('dropdown2').value;
-            alert(`Selected Category: ${category}\nSelected Sub-Category: ${subcategory}`);
-            popup.style.display = 'none'; // Close popup after submission
-        });
+// Close the transaction details popup
+document.getElementById('closeTransactionPopup').addEventListener('click', () => {
+    const transactionPopup = document.getElementById('transaction-popup');
+    transactionPopup.style.display = 'none';
+});
+
+// Close the transaction popup when clicking outside of it
+document.getElementById('transaction-popup').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('transaction-popup')) {
+        document.getElementById('transaction-popup').style.display = 'none';
+    }
+});
+
+// Print the bill
+document.getElementById('printBill').addEventListener('click', () => {
+    const billContent = document.getElementById('bill-details').innerHTML;
+    const printWindow = window.open('', '_blank', 'width=600,height=400');
+    printWindow.document.write(`
+        <html>
+            <head>
+                <title>Print Bill</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+                    h2 { text-align: center; }
+                    p { margin: 10px 0; }
+                </style>
+            </head>
+            <body>
+                
+                ${billContent}
+            </body>
+        </html>
+    `);
+    printWindow.document.close();
+    printWindow.print();
+});
+
+// Active Investment Popup Script
+document.querySelectorAll('.openPopup').forEach(button => {
+    button.addEventListener('click', () => {
+        const activeInvestmentPopup = document.getElementById('popup');
+        activeInvestmentPopup.style.display = 'flex'; // Show the active investment popup
+    });
+});
+
+// Close the active investment popup
+document.getElementById('closePopup').addEventListener('click', () => {
+    const activeInvestmentPopup = document.getElementById('popup');
+    activeInvestmentPopup.style.display = 'none'; // Hide the active investment popup
+});
+
+// Close the active investment popup when clicking outside of it
+document.getElementById('popup').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('popup')) {
+        document.getElementById('popup').style.display = 'none';
+    }
+});
 
 
-    </script>
+</script>   
+
 
 
 </div>
