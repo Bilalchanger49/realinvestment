@@ -64,8 +64,12 @@
                     <li class="menu-item">
                         <a href="{{route('site.home')}}">Home</a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item menu-item-has-children">
                         <a href="{{route('site.property.all')}}">Property</a>
+                        <ul class="sub-menu">
+                            <li><a href="{{route('site.property.all')}}">Main Properties</a></li>
+                            <li><a href="{{route('site.secondary.market')}}">Secondary Properties</a></li>
+                        </ul>
                     </li>
                     <li class="menu-item">
                         <a href="{{route('site.about')}}">About</a>
@@ -144,10 +148,10 @@
                     @endif
 
                     <!-- Simple Buttons for Smaller Screens -->
-{{--                    <li class="menu-item d-lg-none text-center">--}}
-{{--                        <a href="{{route('login')}}" class="btn btn-login">Login</a>--}}
-{{--                        <a href="{{route('register')}}" class="btn btn-register">Register</a>--}}
-{{--                    </li>--}}
+                    {{--                    <li class="menu-item d-lg-none text-center">--}}
+                    {{--                        <a href="{{route('login')}}" class="btn btn-login">Login</a>--}}
+                    {{--                        <a href="{{route('register')}}" class="btn btn-register">Register</a>--}}
+                    {{--                    </li>--}}
 
                 </ul>
             </div>
