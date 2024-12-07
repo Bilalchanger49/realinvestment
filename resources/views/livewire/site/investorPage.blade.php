@@ -66,7 +66,7 @@
                                     <p>Total Income<strong> $1500</strong></p>
                                     <p>Pending <strong> $1200</strong></p>
                                 </div>
-                                <button class="btn btn-primary">View Profile</button>
+                                <button class="btn btn-base ">View Profile</button>
                             </div>
                         </div>
                     </div>
