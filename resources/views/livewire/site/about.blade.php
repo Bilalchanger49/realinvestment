@@ -160,48 +160,48 @@
 
     <!-- blog area start -->
     <div class="blog-area pd-top-118 pd-bottom-90">
-        <div class="container">
-            <div class="section-title text-center">
-                <h6>More About Us</h6>
-                <h2>More Info</h2>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-product-wrap style-2">
-                        <div class="thumb">
-                            <img src="assets/img/project/1.png" alt="img">
-                        </div>
-                        <div class="product-details-inner">
-                            <h4>Head Office – Islamabad</h4>
-                            <p>Our central hub for connecting investors with real estate opportunities across Pakistan.</p>
+            <div class="container">
+                <div class="section-title text-center">
+                    <h6>More About Us</h6>
+                    <h2>More Info</h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="custom-product-wrap style-2">
+                            <div class="thumb">
+                                <img src="assets/img/project/1.png" alt="img">
+                            </div>
+                            <div class="product-details-inner">
+                                <h4>Head Office – Islamabad</h4>
+                                <p>Our central hub for connecting investors with real estate opportunities across Pakistan.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-product-wrap style-2">
-                        <div class="thumb">
-                            <img src="assets/img/project/5.png" alt="img">
-                        </div>
-                        <div class="product-details-inner">
-                            <h4>Regional Office – Lahore</h4>
-                            <p>Focused on providing real estate solutions in Punjab's thriving property market.</p>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="custom-product-wrap style-2">
+                            <div class="thumb">
+                                <img src="assets/img/project/5.png" alt="img">
+                            </div>
+                            <div class="product-details-inner">
+                                <h4>Regional Office – Lahore</h4>
+                                <p>Focused on providing real estate solutions in Punjab's thriving property market.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-product-wrap style-2">
-                        <div class="thumb">
-                            <img src="assets/img/project/3.png" alt="img">
-                        </div>
-                        <div class="product-details-inner">
-                            <h4>Regional Office – Karachi</h4>
-                            <p>Serving investors with access to the bustling property market of Karachi.</p>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="custom-product-wrap style-2">
+                            <div class="thumb">
+                                <img src="assets/img/project/3.png" alt="img">
+                            </div>
+                            <div class="product-details-inner">
+                                <h4>Regional Office – Karachi</h4>
+                                <p>Serving investors with access to the bustling property market of Karachi.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     <!-- Blog area end -->
 
 
