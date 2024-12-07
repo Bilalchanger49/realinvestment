@@ -3453,6 +3453,112 @@ section.bg-light {
   border: 1px solid var(--main-color);
 }
 
+/* change  for other cards in about page  */
+/* Custom Product Wrap */
+.custom-product-wrap {
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 350px; /* Fixed height for each card */
+}
+
+.custom-product-wrap:hover:before {
+  opacity: 1;
+}
+
+.custom-product-wrap:hover .thumb img {
+  transform: scale3d(1.1, 1.1, 1.1);
+}
+
+.custom-product-wrap .thumb {
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  height: 200px; /* Fixed height for images */
+}
+
+.custom-product-wrap .thumb img {
+  transition: all 0.4s ease-in;
+  transform: scale3d(1, 1, 1);
+  width: 100%; /* Ensure image covers full width */
+  height: 100%; /* Ensure image covers full height */
+  object-fit: cover; /* Ensures the image maintains aspect ratio and fills the container */
+}
+
+.custom-product-wrap .thumb:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.2) 52%, rgba(0, 0, 0, 0));
+  height: 70%;
+  bottom: 0;
+  left: 0;
+  border-radius: 5px;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.4s ease-in;
+}
+
+.custom-product-wrap .thumb:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 52%, rgba(0, 0, 0, 0));
+  height: 60%;
+  bottom: 0;
+  left: 0;
+  border-radius: 5px;
+  z-index: 0;
+}
+
+.custom-product-wrap .product-details-inner {
+  background: #f7f7f7;
+  padding: 20px 35px;
+  flex-grow: 1; /* Ensures that the content expands but does not affect the fixed card height */
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-product-wrap .product-details-inner h4 {
+  margin-bottom: 5px;
+  flex-grow: 0;
+}
+
+.custom-product-wrap .product-details-inner p {
+  margin-bottom: 0;
+  flex-grow: 1; /* Allow paragraph content to expand to fill remaining space */
+}
+
+.custom-product-wrap .product-meta-bottom {
+  background: #ececec;
+  color: #656c7d;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 35px;
+}
+
+.custom-product-wrap.style-2 {
+  box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.05);
+}
+
+.custom-product-wrap.style-2 .product-details-inner {
+  background: transparent;
+}
+
+.custom-product-wrap.style-2 .product-details-inner p {
+  margin-bottom: 4px;
+}
+
+.custom-product-wrap.style-2 .product-details-inner .price {
+  color: var(--main-color);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
 /************ single-testimonial-inner *************/
 .testimonial-slider-1 .owl-nav .owl-prev {
   position: absolute;
