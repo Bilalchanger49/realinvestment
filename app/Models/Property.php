@@ -16,5 +16,21 @@ class Property extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function auctions()
+    {
+        return $this->hasMany(Auctions::class);
+    }
+
+
+    public function investment()
+    {
+        return $this->hasMany(Property_investment::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transactions::class);
+    }
+
 
 }

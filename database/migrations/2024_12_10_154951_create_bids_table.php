@@ -14,14 +14,9 @@ return new class extends Migration
         Schema::create('bids', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // The investor
-            $table->foreignId('property_id')->constrained()->onDelete('cascade');
-            $table->integer('no_of_shares');
+            $table->foreignId('auctions_id')->constrained()->onDelete('cascade');
             $table->float('share_amount_placed');
-            $table->float('total_amount_placed');
-            $table->float('share_amount_accepted')->nullable();
-            $table->float('total_amount_accepted')->nullable();
             $table->time('end_date');
-            $table->integer('remaining_shares');
             $table->text('status');
             $table->timestamps();
         });

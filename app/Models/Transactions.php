@@ -15,6 +15,11 @@ class Transactions extends Model
     {
         return $this->belongsTo(Property::class);
     }
+    public function investment()
+    {
+        return $this->belongsTo(PropertyInvestment::class);
+    }
+
 
     public function user()
     {

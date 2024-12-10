@@ -16,6 +16,16 @@ class Property_investment extends Model
         return $this->belongsTo(Property::class);
     }
 
+    public function transactions()
+    {
+        return $this->hasMany(Transactions::class);
+    }
+
+    public function auctions()
+    {
+        return $this->hasMany(Auctions::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

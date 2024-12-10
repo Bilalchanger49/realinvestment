@@ -77,7 +77,6 @@
     <div class="container">
         <div class="row">
 
-           
 
             <div class="container mt-5">
                 <div class="card-header">
@@ -119,47 +118,69 @@
 
                                         <td><span class="status-completed">{{$propertyInvestment->status}}</span></td>
                                         <td>
-                                        <button class="details-btn-investment openPopup">&rarr;</button>
+                                            <button
+                                                wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"
+                                                type="button" class="details-btn-investment openPopup"
+                                                data-toggle="modal" data-target="#active_investment_popup">
+                                                &rarr;
+                                            </button>
                                         </td>
                                     </tr>
                                 @endif
                             @endforeach
-                            <tr>
-                                <td>2</td>
-                                <td>
-                                    Visit the Laken Valley
-                                    <br><small class="text-muted">code:#B0154</small>
-                                </td>
-                                <td>120</td>
-                                <td>5</td>
-                                <td>115</td>
-                                <td>Feb 21 2023</td>
-                                <td><strong>$50</strong></td>
-                                <td><strong>$389.50</strong></td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-                                <td><span class="status-unpaid">UNPAID</span></td>
-                                <td>
-                                <button class="details-btn-investment openPopup">&rarr;</button>
-                                {{--<a id="openPopup" class="details-btn">&rarr;</a></td>--}}
-                            </tr>
+            <div class="container mt-5">
+                <div class="card-header">
+                    Active Auctions
+                </div>
+                <div class="card p-3">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td>3</td>
-                                <td>
-                                    Bathing at Noriva Beach
-                                    <br><small class="text-muted">code:#B0167</small>
-                                </td>
-                                <td>120</td>
-                                <td>5</td>
-                                <td>115</td>
-                                <td>Feb 21 2023</td>
-                                <td><strong>$50</strong></td>
-                                <td><strong>$389.50</strong></td>
-
-                                <td><span class="status-cancelled">CANCELLED</span></td>
-                                <td>
-                                <button class="details-btn-investment openPopup">&rarr;</button>
-                                {{--<a id="openPopup" class="details-btn">&rarr;</a></td>--}}
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Total Shares</th>
+                                <th scope="col">Share price</th>
+                                <th scope="col">Holding date</th>
+                                <th scope="col">Total bids</th>
+                                <th scope="col">UnResponded bids</th>
+                                <th scope="col">status</th>
+                                <th scope="col">Details</th>
                             </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($auctions as $auction)
+                                @if($auction->status == 'active')
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            {{$auction->property->property_name}}
+                                            <br><small
+                                                class="text-muted">code:#{{$auction->no_of_shares}}</small>
+                                        </td>
+                                        <td>{{$auction->share_amount_placed}}</td>
+                                        <td>{{$auction->created_at}}</td>
+                                        <td><strong>{{$auction->total_amount_placed}}</strong></td>
+                                        <td><strong>0</strong></td>
+                                        <td><strong>0</strong></td>
+
+                                        <td><span class="status-completed">{{$auction->status}}</span></td>
+                                        <td>
+                                            <button wire:click.prevent="open_active_investment_popup({{$auction->id}})"
+                                                    type="button" class="details-btn-investment openPopup"
+                                                    data-toggle="modal" data-target="#active_investment_popup">
+                                                &rarr;
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -198,8 +219,8 @@
                                     <td><span class="status-completed">{{$transction->activity}}</span></td>
                                     <td><span class="status-completed">{{$transction->status}}</span></td>
                                     <td>
-    <a href="#" class="details-btn-transaction">&rarr;</a>
-</td>
+                                        <a href="#" class="details-btn-transaction">&rarr;</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             <tr>
@@ -213,8 +234,8 @@
                                 <td><span class="status-unpaid">sold</span></td>
                                 <td><span class="status-cancelled">not holding</span></td>
                                 <td>
-    <a href="#" class="details-btn-transaction">&rarr;</a>
-</td>
+                                    <a href="#" class="details-btn-transaction">&rarr;</a>
+                                </td>
                             </tr>
                             <tr>
                                 <td>3</td>
@@ -227,8 +248,8 @@
                                 <td><span class="status-completed">Buy</span></td>
                                 <td><span class="status-completed">holding</span></td>
                                 <td>
-    <a href="#" class="details-btn-transaction">&rarr;</a>
-</td>
+                                    <a href="#" class="details-btn-transaction">&rarr;</a>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -236,7 +257,7 @@
                 </div>
             </div>
 
-<!-- pagination -->
+            <!-- pagination -->
 
             <div class="pagination-area text-center mt-4 mb-5">
                 <ul class="pagination">
@@ -251,124 +272,141 @@
             </div>
         </div>
 
-<!-- popup area  -->
- 
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <span id="closePopup" class="close-btn">&times;</span>
-                <h2>Furqan</h2>
 
-                <!-- Popup Form Start -->
-                <form id="popupForm">
-                    <div class="form-row">
-
-                        <div class="form-group">
-                            <label for="shares">Price Per Share</label>
-                            <input type="text" id="shares" placeholder="Enter shares">
-                        </div>
+        <div wire:ignore.self class="modal fade" id="active_investment_popup" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>{{$property_name}}</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="dropdown1">Number of Shares</label>
-                        <select id="dropdown1" name="category">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
+                    <div class="modal-body">
+                        <!-- Popup Form Start -->
+                        <form wire:submit.prevent="createAuction" id="popupForm">
+                            <div class="form-row">
+
+                                <div class="form-group">
+                                    <label for="shares">Price Per Share</label>
+                                    <input type="number" id="shares" placeholder="Enter shares"
+                                           wire:model="price_per_share"
+                                           wire:input="calculateTotal">
+                                    <div>
+                                        @error('price_per_share')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="shares">Total share to sell</label>
+                                    <label for="shares">{{$no_of_shares}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dropdown1">Number of Shares</label>
+                                <select id="dropdown1" name="category" wire:model.live="shares_to_sell"
+                                        wire:click="calculateTotal">
+                                    @for ($share = 0; $share <= $no_of_shares; $share++)
+                                        <option value="{{ $share }}">{{ $share }}</option>
+                                    @endfor
+                                </select>
+
+                                <div>@error('shares_to_sell')  <span class="text-danger">{{ $message }}</span>  @enderror</div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="totalPrice">Total Price</label>
+                                <input type="number" id="totalPrice" placeholder="Total price" wire:model="total_price"
+                                       value="{{ $total_price }}">
+                                <div>@error('total_price')  <span class="text-danger">{{ $message }}</span>  @enderror</div>
+                            </div>
+
+                            <div class="form-group" >
+                                <div class="d-flex flex-row">
+                                    <input type="checkbox" id="confirmAction" wire:model="confirmAction">
+                                    <label for="confirmAction">I confirm that I want to sell these shares</label>
+                                </div>
+                                <div>@error('confirmAction') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="submit-btn btn">Sell</button>
+                        </form>
+                        <!-- Popup Form End -->
                     </div>
-
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="dropdown1">Number of Shares</label>
-                            <select id="dropdown1" name="category">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="totalPrice">Total Price</label>
-                            <input type="text" id="totalPrice" placeholder="Total price" readonly>
-                        </div>
-
-
-
-                    </div>
-                    <div class="form-group" style="display: flex;     flex-direction: row;">
-                        <input type="checkbox" id="confirmAction">
-                        <label for="confirmAction">I confirm that I want to sell these shares</label>
-                    </div>
-
-                    <button type="submit" class="submit-btn btn">Sell</button>
-                </form>
-                <!-- Popup Form End -->
+                </div>
             </div>
         </div>
 
         <div id="transaction-popup">
-  <div class="popup-content">
-    <span class="close-btn" id="closeTransactionPopup">&times;</span>
-    <div id="bill-details" class="bill-details">
-      <h2>Transaction Bill</h2>
-      <p><strong>Name:</strong> <span id="transactionName"></span></p>
-      <p><strong>Amount:</strong> <span id="transactionAmount"></span></p>
-      <p><strong>Date:</strong> <span id="transactionDate"></span></p>
-      <p><strong>Activity:</strong> <span id="transactionActivity"></span></p>
-      <p><strong>Status:</strong> <span id="transactionStatus"></span></p>
-    </div>
-    <button id="printBill" class="print-btn">Print</button>
-  </div>
-</div>
+            <div class="popup-content">
+                <span class="close-btn" id="closeTransactionPopup">&times;</span>
+                <div id="bill-details" class="bill-details">
+                    <h2>Transaction Bill</h2>
+                    <p><strong>Name:</strong> <span id="transactionName"></span></p>
+                    <p><strong>Amount:</strong> <span id="transactionAmount"></span></p>
+                    <p><strong>Date:</strong> <span id="transactionDate"></span></p>
+                    <p><strong>Activity:</strong> <span id="transactionActivity"></span></p>
+                    <p><strong>Status:</strong> <span id="transactionStatus"></span></p>
+                </div>
+                <button id="printBill" class="print-btn">Print</button>
+            </div>
+        </div>
     </div>
 
 
     <script>
- // Transaction Details Popup Script
-document.querySelectorAll('.details-btn-transaction').forEach(button => {
-    button.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent default link behavior
+        // Transaction Details Popup Script
+        document.querySelectorAll('.details-btn-transaction').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
 
-        // Open the transaction details popup
-        const transactionPopup = document.getElementById('transaction-popup');
-        transactionPopup.style.display = 'flex';
+                // Open the transaction details popup
+                const transactionPopup = document.getElementById('transaction-popup');
+                transactionPopup.style.display = 'flex';
 
-        // Extract data from the corresponding row
-        const row = button.closest('tr'); // Get the table row
-        const name = row.querySelector('td:nth-child(2)').textContent.trim(); // Transaction Name
-        const amount = row.querySelector('td:nth-child(3)').textContent.trim(); // Transaction Amount
-        const date = row.querySelector('td:nth-child(4)').textContent.trim(); // Transaction Date
-        const activity = row.querySelector('td:nth-child(5)').textContent.trim(); // Transaction Activity
-        const status = row.querySelector('td:nth-child(6)').textContent.trim(); // Transaction Status
+                // Extract data from the corresponding row
+                const row = button.closest('tr'); // Get the table row
+                const name = row.querySelector('td:nth-child(2)').textContent.trim(); // Transaction Name
+                const amount = row.querySelector('td:nth-child(3)').textContent.trim(); // Transaction Amount
+                const date = row.querySelector('td:nth-child(4)').textContent.trim(); // Transaction Date
+                const activity = row.querySelector('td:nth-child(5)').textContent.trim(); // Transaction Activity
+                const status = row.querySelector('td:nth-child(6)').textContent.trim(); // Transaction Status
 
-        // Populate the bill details in the popup
-        document.getElementById('transactionName').textContent = name;
-        document.getElementById('transactionAmount').textContent = amount;
-        document.getElementById('transactionDate').textContent = date;
-        document.getElementById('transactionActivity').textContent = activity;
-        document.getElementById('transactionStatus').textContent = status;
-    });
-});
+                // Populate the bill details in the popup
+                document.getElementById('transactionName').textContent = name;
+                document.getElementById('transactionAmount').textContent = amount;
+                document.getElementById('transactionDate').textContent = date;
+                document.getElementById('transactionActivity').textContent = activity;
+                document.getElementById('transactionStatus').textContent = status;
+            });
+        });
 
-// Close the transaction details popup
-document.getElementById('closeTransactionPopup').addEventListener('click', () => {
-    const transactionPopup = document.getElementById('transaction-popup');
-    transactionPopup.style.display = 'none';
-});
+        // Close the transaction details popup
+        document.getElementById('closeTransactionPopup').addEventListener('click', () => {
+            const transactionPopup = document.getElementById('transaction-popup');
+            transactionPopup.style.display = 'none';
+        });
 
-// Close the transaction popup when clicking outside of it
-document.getElementById('transaction-popup').addEventListener('click', (e) => {
-    if (e.target === document.getElementById('transaction-popup')) {
-        document.getElementById('transaction-popup').style.display = 'none';
-    }
-});
+        // Close the transaction popup when clicking outside of it
+        document.getElementById('transaction-popup').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('transaction-popup')) {
+                document.getElementById('transaction-popup').style.display = 'none';
+            }
+        });
 
-// Print the bill
-document.getElementById('printBill').addEventListener('click', () => {
-    const billContent = document.getElementById('bill-details').innerHTML;
-    const printWindow = window.open('', '_blank', 'width=600,height=400');
-    printWindow.document.write(`
+        // Print the bill
+        document.getElementById('printBill').addEventListener('click', () => {
+            const billContent = document.getElementById('bill-details').innerHTML;
+            const printWindow = window.open('', '_blank', 'width=600,height=400');
+            printWindow.document.write(`
         <html>
             <head>
                 <title>Print Bill</title>
@@ -379,39 +417,16 @@ document.getElementById('printBill').addEventListener('click', () => {
                 </style>
             </head>
             <body>
-                
+
                 ${billContent}
             </body>
         </html>
     `);
-    printWindow.document.close();
-    printWindow.print();
-});
+            printWindow.document.close();
+            printWindow.print();
+        });
 
-// Active Investment Popup Script
-document.querySelectorAll('.openPopup').forEach(button => {
-    button.addEventListener('click', () => {
-        const activeInvestmentPopup = document.getElementById('popup');
-        activeInvestmentPopup.style.display = 'flex'; // Show the active investment popup
-    });
-});
-
-// Close the active investment popup
-document.getElementById('closePopup').addEventListener('click', () => {
-    const activeInvestmentPopup = document.getElementById('popup');
-    activeInvestmentPopup.style.display = 'none'; // Hide the active investment popup
-});
-
-// Close the active investment popup when clicking outside of it
-document.getElementById('popup').addEventListener('click', (e) => {
-    if (e.target === document.getElementById('popup')) {
-        document.getElementById('popup').style.display = 'none';
-    }
-});
-
-
-</script>   
-
+    </script>
 
 
 </div>

@@ -11,12 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bid_amount_placeds', function (Blueprint $table) {
+        Schema::create('auctions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // The investor
-            $table->foreignId('bid_id')->constrained()->onDelete('cascade');
+            $table->foreignId('property_investment_id')->constrained()->onDelete('cascade');
+            $table->foreignId('property_id')->constrained()->onDelete('cascade');
+            $table->integer('no_of_shares');
             $table->float('share_amount_placed');
-            $table->time('end_date');
+            $table->float('total_amount_placed');
+            $table->float('share_amount_accepted')->nullable();
+            $table->float('total_amount_accepted')->nullable();
+            $table->integer('remaining_shares');
             $table->text('status');
             $table->timestamps();
         });
