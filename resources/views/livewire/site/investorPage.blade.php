@@ -182,17 +182,16 @@
                                             </button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-primary">
-                                                Edit
-                                            </button>
-                                            <button
-                                                type="button"
-                                                data-toggle="modal" data-target="#delete_auction_popup"
-                                                class="btn btn-danger"
-                                                wire:click.prevent="confirmDelete({{ $auction->id }}, '{{ $auction->property->property_name }}')">
-                                                Delete
-                                            </button>
-                                        </td>
+    <button type="button" class="btn btn-base custom-small-btn"><i class="fas fa-edit"></i></button>
+    <button 
+        type="button" 
+        class="btn btn-danger custom-small-btn" 
+        data-toggle="modal" 
+        data-target="#delete_auction_popup" 
+        wire:click.prevent="confirmDelete({{ $auction->id }}, '{{ $auction->property->property_name }}')">
+        <i class="far fa-trash-alt"></i>
+    </button>
+</td>
                                     </tr>
                                 @endif
                             @endforeach
