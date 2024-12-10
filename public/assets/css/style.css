@@ -5802,3 +5802,12 @@ input:focus, select:focus {
 #transaction-popup .print-btn:hover {
   background-color: #555; /* Slightly lighter on hover */
 }
+
+
+/* Edit delete button  */
+.custom-small-btn {
+  padding: 0px 14px; 
+  font-size: 14px;   
+  height: 40px;
+  border-radius: 5px;
+}
