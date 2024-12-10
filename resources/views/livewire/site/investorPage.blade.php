@@ -75,9 +75,9 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
+        <div class="row mb-5">
 
-
+            {{--        Active Investment table--}}
             <div class="container mt-5">
                 <div class="card-header">
                     Active Investments
@@ -134,6 +134,7 @@
                 </div>
             </div>
 
+            {{--        Active Auctions table--}}
             <div class="container mt-5">
                 <div class="card-header">
                     Active Auctions
@@ -147,11 +148,13 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Total Shares</th>
                                 <th scope="col">Share price</th>
+                                <th scope="col">Total price</th>
                                 <th scope="col">Holding date</th>
                                 <th scope="col">Total bids</th>
                                 <th scope="col">UnResponded bids</th>
                                 <th scope="col">status</th>
-                                <th scope="col">Details</th>
+                                <th scope="col">Bids</th>
+                                <th scope="col">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -162,20 +165,32 @@
                                         <td>
                                             {{$auction->property->property_name}}
                                             <br><small
-                                                class="text-muted">code:#{{$auction->no_of_shares}}</small>
+                                                class="text-muted">code:#{{$auction->property->property_reg_no}}</small>
                                         </td>
+                                        <td>{{$auction->no_of_shares}}</td>
                                         <td>{{$auction->share_amount_placed}}</td>
-                                        <td>{{$auction->created_at}}</td>
                                         <td><strong>{{$auction->total_amount_placed}}</strong></td>
+                                        <td>{{$auction->created_at}}</td>
                                         <td><strong>0</strong></td>
                                         <td><strong>0</strong></td>
 
                                         <td><span class="status-completed">{{$auction->status}}</span></td>
                                         <td>
-                                            <button wire:click.prevent="open_active_investment_popup({{$auction->id}})"
-                                                    type="button" class="details-btn-investment openPopup"
-                                                    data-toggle="modal" data-target="#active_investment_popup">
+                                            <button
+                                                type="button" class="details-btn-investment openPopup">
                                                 &rarr;
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary">
+                                                Edit
+                                            </button>
+                                            <button
+                                                type="button"
+                                                data-toggle="modal" data-target="#delete_auction_popup"
+                                                class="btn btn-danger"
+                                                wire:click.prevent="confirmDelete({{ $auction->id }}, '{{ $auction->property->property_name }}')">
+                                                Delete
                                             </button>
                                         </td>
                                     </tr>
@@ -187,6 +202,7 @@
                 </div>
             </div>
 
+            {{--        transaction table--}}
             <div class="container mt-5">
                 <div class="card-header">
                     Transactions
@@ -202,7 +218,7 @@
                                 <th scope="col">Date</th>
                                 <th scope="col">Activity</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Details</th>
+                                <th scope="col">Print</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -257,22 +273,9 @@
                 </div>
             </div>
 
-            <!-- pagination -->
-
-            <div class="pagination-area text-center mt-4 mb-5">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#"><i class="la la-angle-double-left"></i></a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#"><i class="la la-angle-double-right"></i></a>
-                    </li>
-                </ul>
-            </div>
         </div>
 
-
+        {{--    create auction popup--}}
         <div wire:ignore.self class="modal fade" id="active_investment_popup" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -316,7 +319,8 @@
                                     @endfor
                                 </select>
 
-                                <div>@error('shares_to_sell')  <span class="text-danger">{{ $message }}</span>  @enderror</div>
+                                <div>@error('shares_to_sell') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
                             </div>
 
 
@@ -324,10 +328,11 @@
                                 <label for="totalPrice">Total Price</label>
                                 <input type="number" id="totalPrice" placeholder="Total price" wire:model="total_price"
                                        value="{{ $total_price }}">
-                                <div>@error('total_price')  <span class="text-danger">{{ $message }}</span>  @enderror</div>
+                                <div>@error('total_price') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
                             </div>
 
-                            <div class="form-group" >
+                            <div class="form-group">
                                 <div class="d-flex flex-row">
                                     <input type="checkbox" id="confirmAction" wire:model="confirmAction">
                                     <label for="confirmAction">I confirm that I want to sell these shares</label>
@@ -345,6 +350,30 @@
             </div>
         </div>
 
+        {{--    delete auction popup--}}
+        <div wire:ignore.self class="modal fade" id="delete_auction_popup" tabindex="-1" role="dialog"
+             aria-labelledby="delete_auction_popup" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete Auction</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this auction for <strong>{{ $property_name }}</strong>?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" wire:click="deleteAuction">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{--    print transactions popup--}}
         <div id="transaction-popup">
             <div class="popup-content">
                 <span class="close-btn" id="closeTransactionPopup">&times;</span>

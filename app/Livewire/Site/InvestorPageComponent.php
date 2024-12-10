@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Site;
 
-use App\Models\aaa;
 use App\Models\Auctions;
 use App\Models\Property_investment;
 use App\Models\Transactions;
@@ -19,6 +18,8 @@ class InvestorPageComponent extends Component
     public $shares_to_sell = 0;
     public $property_name;
     public $investmentId;
+
+    public $auction_id;
 
 
     public $share_amount_placed;
@@ -81,6 +82,38 @@ class InvestorPageComponent extends Component
         ]);
 
         return redirect()->route('site.investor.page');
+    }
+
+    public function deleteAuction()
+    {
+//        if (!$this->auction_id) {
+//            session()->flash('error', 'No auction selected for deletion.');
+//            return;
+//        }
+
+
+
+        // Find and delete the auction
+        $auction = Auctions::where('id', $this->auction_id)->first();
+        if ($auction) {
+            $auction->delete();
+            // Flash success message
+            session()->flash('success', 'Auction deleted successfully.');
+        } else {
+            session()->flash('error', 'Auction not found.');
+        }
+
+
+        return redirect()->route('site.investor.page');
+    }
+
+    /**
+     * Method to load auction data for deletion.
+     */
+    public function confirmDelete($id, $propertyName)
+    {
+        $this->auction_id = $id;
+        $this->property_name = $propertyName;
     }
 
     public function render()
