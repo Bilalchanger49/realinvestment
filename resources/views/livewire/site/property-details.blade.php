@@ -44,11 +44,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="product-thumbnail-wrapper" wire:ignore>
+                            <div class="product-thumbnail-wrapper pt-3" wire:ignore>
+                             
                                 <div class="single-thumbnail-slider">
-                                    <div class="slider-item">
+                                    <!-- <div class="slider-item">
                                         <img src="{{asset('storage/' . $property->property_image)}}" alt="img" >
-                                    </div>
+                                    </div> -->
                                     <div class="slider-item">
                                         <img src="{{asset('assets/img/project-single/2.png')}}" alt="img">
                                     </div>
@@ -57,15 +58,15 @@
                                     </div>
                                     <div class="slider-item">
                                         <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
-                                    </div>
+                                    </div> 
                                     <div class="slider-item">
-                                        <img src="{{asset('assets/img/project-single/5.png')}}" alt="img">
-                                    </div>
+                                        <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
+                                    </div>   
                                 </div>
                                 <div class="product-thumbnail-carousel">
-                                    <div class="single-thumbnail-item">
+                                    <!-- <div class="single-thumbnail-item">
                                         <img src="{{asset('storage/' . $property->property_image)}}" alt="img">
-                                    </div>
+                                    </div> -->
                                     <div class="single-thumbnail-item">
                                         <img src="{{asset('assets/img/project-single/2.png')}}" alt="img">
                                     </div>
@@ -76,14 +77,8 @@
                                         <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
                                     </div>
                                     <div class="single-thumbnail-item">
-                                        <img src="{{asset('assets/img/project-single/5.png')}}" alt="img">
-                                    </div>
-                                    <div class="single-thumbnail-item">
-                                        <img src="{{asset('assets/img/project-single/2.png')}}" alt="img">
-                                    </div>
-                                    <div class="single-thumbnail-item">
-                                        <img src="{{asset('assets/img/project-single/3.png')}}" alt="img">
-                                    </div>
+                                        <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
+                                    </div>                                  
                                 </div>
                             </div>
                         </div>
