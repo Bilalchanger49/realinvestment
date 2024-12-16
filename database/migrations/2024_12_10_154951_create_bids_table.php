@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // The investor
             $table->foreignId('auctions_id')->constrained()->onDelete('cascade');
-            $table->float('share_amount_placed');
-            $table->time('end_date');
+            $table->float('share_amount');
+            $table->float('total_shares');
+            $table->float('total_price');
+            $table->timestamp('end_date');
             $table->text('status');
             $table->timestamps();
         });

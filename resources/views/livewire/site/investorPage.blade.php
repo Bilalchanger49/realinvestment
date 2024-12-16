@@ -118,11 +118,16 @@
 
                                         <td><span class="status-completed">{{$propertyInvestment->status}}</span></td>
                                         <td>
+{{--                                            <button--}}
+{{--                                                wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"--}}
+{{--                                                type="button" class="details-btn-investment openPopup"--}}
+{{--                                                data-toggle="modal" data-target="#active_investment_popup">--}}
+{{--                                                &rarr;--}}
+{{--                                            </button>--}}
                                             <button
                                                 wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"
-                                                type="button" class="details-btn-investment openPopup"
-                                                data-toggle="modal" data-target="#active_investment_popup">
-                                                &rarr;
+                                                id="openPopup" class="details-btn-investment openPopup"
+                                                data-toggle="modal" data-target="#active_investment_popup">&rarr;
                                             </button>
                                         </td>
                                     </tr>
@@ -182,16 +187,19 @@
                                             </button>
                                         </td>
                                         <td>
-    <button type="button" class="btn btn-base custom-small-btn"><i class="fas fa-edit"></i></button>
-    <button 
-        type="button" 
-        class="btn btn-danger custom-small-btn" 
-        data-toggle="modal" 
-        data-target="#delete_auction_popup" 
-        wire:click.prevent="confirmDelete({{ $auction->id }}, '{{ $auction->property->property_name }}')">
-        <i class="far fa-trash-alt"></i>
-    </button>
-</td>
+                                            <button type="button" class="btn btn-base custom-small-btn"
+                                                    style="line-height: 0px;"><i
+                                                    class="fas fa-edit"></i></button>
+                                            <button
+                                                type="button"
+                                                class="btn btn-danger custom-small-btn"
+                                                style="line-height: 0px;"
+                                                data-toggle="modal"
+                                                data-target="#delete_auction_popup"
+                                                wire:click.prevent="confirmDelete({{ $auction->id }}, '{{ $auction->property->property_name }}')">
+                                                <i class="far fa-trash-alt"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endif
                             @endforeach
@@ -275,76 +283,75 @@
         </div>
 
         {{--    create auction popup--}}
-        <div wire:ignore.self class="modal fade" id="active_investment_popup" tabindex="-1" role="dialog"
+        <div wire:ignore.self class="popup" id="active_investment_popup" tabindex="-1" role="dialog"
              aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2>{{$property_name}}</h2>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Popup Form Start -->
-                        <form wire:submit.prevent="createAuction" id="popupForm">
-                            <div class="form-row">
-
-                                <div class="form-group">
-                                    <label for="shares">Price Per Share</label>
-                                    <input type="number" id="shares" placeholder="Enter shares"
-                                           wire:model="price_per_share"
-                                           wire:input="calculateTotal">
-                                    <div>
-                                        @error('price_per_share')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="shares">Total share to sell</label>
-                                    <label for="shares">{{$no_of_shares}}</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="dropdown1">Number of Shares</label>
-                                <select id="dropdown1" name="category" wire:model.live="shares_to_sell"
-                                        wire:click="calculateTotal">
-                                    @for ($share = 0; $share <= $no_of_shares; $share++)
-                                        <option value="{{ $share }}">{{ $share }}</option>
-                                    @endfor
-                                </select>
-
-                                <div>@error('shares_to_sell') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
-                            </div>
-
+            <div class="popup-content">
+                <div class="modal-header">
+                    <h2>{{$property_name}}</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Popup Form Start -->
+                    <form wire:submit.prevent="createAuction" id="popupForm">
+                        <div class="form-row">
 
                             <div class="form-group">
-                                <label for="totalPrice">Total Price</label>
-                                <input type="number" id="totalPrice" placeholder="Total price" wire:model="total_price"
-                                       value="{{ $total_price }}">
-                                <div>@error('total_price') <span class="text-danger">{{ $message }}</span> @enderror
+                                <label for="shares">Price Per Share</label>
+                                <input type="number" id="shares" placeholder="Enter shares"
+                                       wire:model="price_per_share"
+                                       wire:input="calculateTotal">
+                                <div>
+                                    @error('price_per_share')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
+                        </div>
+                        <div class="form-row">
                             <div class="form-group">
-                                <div class="d-flex flex-row">
-                                    <input type="checkbox" id="confirmAction" wire:model="confirmAction">
-                                    <label for="confirmAction">I confirm that I want to sell these shares</label>
-                                </div>
-                                <div>@error('confirmAction') <span class="text-danger">{{ $message }}</span> @enderror
-                                </div>
+                                <label for="shares">Total share to sell</label>
+                                <label for="shares">{{$no_of_shares}}</label>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dropdown1">Number of Shares</label>
+                            <select id="dropdown1" name="category" wire:model.live="shares_to_sell"
+                                    wire:click="calculateTotal">
+                                @for ($share = 0; $share <= $no_of_shares; $share++)
+                                    <option value="{{ $share }}">{{ $share }}</option>
+                                @endfor
+                            </select>
+
+                            <div>@error('shares_to_sell') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
 
 
-                            <button type="submit" class="submit-btn btn">Sell</button>
-                        </form>
-                        <!-- Popup Form End -->
-                    </div>
+                        <div class="form-group">
+                            <label for="totalPrice">Total Price</label>
+                            <input type="number" id="totalPrice" placeholder="Total price" wire:model="total_price"
+                                   value="{{ $total_price }}">
+                            <div>@error('total_price') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="d-flex flex-row">
+                                <input type="checkbox" id="confirmAction" wire:model="confirmAction">
+                                <label for="confirmAction">I confirm that I want to sell these shares</label>
+                            </div>
+                            <div>@error('confirmAction') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="submit-btn btn">Sell</button>
+                    </form>
+                    <!-- Popup Form End -->
+
                 </div>
             </div>
         </div>
@@ -371,7 +378,6 @@
             </div>
         </div>
 
-
         {{--    print transactions popup--}}
         <div id="transaction-popup">
             <div class="popup-content">
@@ -387,54 +393,147 @@
                 <button id="printBill" class="print-btn">Print</button>
             </div>
         </div>
+
+        {{--    testing popup--}}
+        {{--        <div id="popup" class="popup">--}}
+        {{--            <div class="popup-content">--}}
+        {{--                <span id="closePopup" class="close-btn">&times;</span>--}}
+        {{--                <h2>Furqan</h2>--}}
+
+        {{--                <!-- Popup Form Start -->--}}
+        {{--                <form id="popupForm">--}}
+        {{--                    <div class="form-row">--}}
+
+        {{--                        <div class="form-group">--}}
+        {{--                            <label for="shares">Price Per Share</label>--}}
+        {{--                            <input type="text" id="shares" placeholder="Enter shares">--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
+        {{--                    <div class="form-group">--}}
+        {{--                        <label for="dropdown1">Number of Shares</label>--}}
+        {{--                        <select id="dropdown1" name="category">--}}
+        {{--                            <option value="1">1</option>--}}
+        {{--                            <option value="2">2</option>--}}
+        {{--                            <option value="3">3</option>--}}
+        {{--                            <option value="4">4</option>--}}
+        {{--                        </select>--}}
+        {{--                    </div>--}}
+
+
+        {{--                    <div class="form-row">--}}
+        {{--                        <div class="form-group">--}}
+        {{--                            <label for="dropdown1">Number of Shares</label>--}}
+        {{--                            <select id="dropdown1" name="category">--}}
+        {{--                                <option value="1">1</option>--}}
+        {{--                                <option value="2">2</option>--}}
+        {{--                                <option value="3">3</option>--}}
+        {{--                                <option value="4">4</option>--}}
+        {{--                            </select>--}}
+        {{--                        </div>--}}
+        {{--                        <div class="form-group">--}}
+        {{--                            <label for="totalPrice">Total Price</label>--}}
+        {{--                            <input type="text" id="totalPrice" placeholder="Total price" readonly>--}}
+        {{--                        </div>--}}
+
+
+        {{--                    </div>--}}
+        {{--                    <div class="form-group" style="display: flex;     flex-direction: row;">--}}
+        {{--                        <input type="checkbox" id="confirmAction">--}}
+        {{--                        <label for="confirmAction">I confirm that I want to sell these shares</label>--}}
+        {{--                    </div>--}}
+
+        {{--                    <button type="submit" class="submit-btn btn">Sell</button>--}}
+        {{--                </form>--}}
+        {{--                <!-- Popup Form End -->--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
     </div>
 
+</div>
+<script>
+    // Get elements
+    const open_investment_popup = document.getElementById('openPopup');
+    const close_investment_popup = document.getElementById('closePopup');
+    const active_investment_popup = document.getElementById('active_investment_popup');
 
-    <script>
-        // Transaction Details Popup Script
-        document.querySelectorAll('.details-btn-transaction').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default link behavior
+    // Open popup
+    open_investment_popup.addEventListener('click', () => {
+        active_investment_popup.style.display = 'flex';
+    });
 
-                // Open the transaction details popup
-                const transactionPopup = document.getElementById('transaction-popup');
-                transactionPopup.style.display = 'flex';
+    // Close popup
+    close_investment_popup.addEventListener('click', () => {
+        active_investment_popup.style.display = 'none';
+    });
 
-                // Extract data from the corresponding row
-                const row = button.closest('tr'); // Get the table row
-                const name = row.querySelector('td:nth-child(2)').textContent.trim(); // Transaction Name
-                const amount = row.querySelector('td:nth-child(3)').textContent.trim(); // Transaction Amount
-                const date = row.querySelector('td:nth-child(4)').textContent.trim(); // Transaction Date
-                const activity = row.querySelector('td:nth-child(5)').textContent.trim(); // Transaction Activity
-                const status = row.querySelector('td:nth-child(6)').textContent.trim(); // Transaction Status
+    // Close popup when clicking outside of it
+    active_investment_popup.addEventListener('click', (e) => {
+        if (e.target === active_investment_popup) {
+            active_investment_popup.style.display = 'none';
+        }
+    });
 
-                // Populate the bill details in the popup
-                document.getElementById('transactionName').textContent = name;
-                document.getElementById('transactionAmount').textContent = amount;
-                document.getElementById('transactionDate').textContent = date;
-                document.getElementById('transactionActivity').textContent = activity;
-                document.getElementById('transactionStatus').textContent = status;
-            });
-        });
+    // Handle form submission
+    const popupForm = document.getElementById('popupForm');
+    popupForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent actual form submission
+        const category = document.getElementById('dropdown1').value;
+        const subcategory = document.getElementById('dropdown2').value;
+        alert(`Selected Category: ${category}\nSelected Sub-Category: ${subcategory}`);
+        active_investment_popup.style.display = 'none'; // Close popup after submission
+    });
 
-        // Close the transaction details popup
-        document.getElementById('closeTransactionPopup').addEventListener('click', () => {
+
+</script>
+
+
+<script>
+
+
+    // Transaction Details Popup Script
+    document.querySelectorAll('.details-btn-transaction').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default link behavior
+
+            // Open the transaction details popup
             const transactionPopup = document.getElementById('transaction-popup');
-            transactionPopup.style.display = 'none';
-        });
+            transactionPopup.style.display = 'flex';
 
-        // Close the transaction popup when clicking outside of it
-        document.getElementById('transaction-popup').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('transaction-popup')) {
-                document.getElementById('transaction-popup').style.display = 'none';
-            }
-        });
+            // Extract data from the corresponding row
+            const row = button.closest('tr'); // Get the table row
+            const name = row.querySelector('td:nth-child(2)').textContent.trim(); // Transaction Name
+            const amount = row.querySelector('td:nth-child(3)').textContent.trim(); // Transaction Amount
+            const date = row.querySelector('td:nth-child(4)').textContent.trim(); // Transaction Date
+            const activity = row.querySelector('td:nth-child(5)').textContent.trim(); // Transaction Activity
+            const status = row.querySelector('td:nth-child(6)').textContent.trim(); // Transaction Status
 
-        // Print the bill
-        document.getElementById('printBill').addEventListener('click', () => {
-            const billContent = document.getElementById('bill-details').innerHTML;
-            const printWindow = window.open('', '_blank', 'width=600,height=400');
-            printWindow.document.write(`
+            // Populate the bill details in the popup
+            document.getElementById('transactionName').textContent = name;
+            document.getElementById('transactionAmount').textContent = amount;
+            document.getElementById('transactionDate').textContent = date;
+            document.getElementById('transactionActivity').textContent = activity;
+            document.getElementById('transactionStatus').textContent = status;
+        });
+    });
+
+    // Close the transaction details popup
+    document.getElementById('closeTransactionPopup').addEventListener('click', () => {
+        const transactionPopup = document.getElementById('transaction-popup');
+        transactionPopup.style.display = 'none';
+    });
+
+    // Close the transaction popup when clicking outside of it
+    document.getElementById('transaction-popup').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('transaction-popup')) {
+            document.getElementById('transaction-popup').style.display = 'none';
+        }
+    });
+
+    // Print the bill
+    document.getElementById('printBill').addEventListener('click', () => {
+        const billContent = document.getElementById('bill-details').innerHTML;
+        const printWindow = window.open('', '_blank', 'width=600,height=400');
+        printWindow.document.write(`
         <html>
             <head>
                 <title>Print Bill</title>
@@ -450,11 +549,11 @@
             </body>
         </html>
     `);
-            printWindow.document.close();
-            printWindow.print();
-        });
+        printWindow.document.close();
+        printWindow.print();
+    });
 
-    </script>
+</script>
 
 
 </div>
