@@ -12,6 +12,10 @@ class Auctions extends Model
         'total_amount_placed', 'share_amount_accepted', 'total_amount_accepted', 'end_date',
         'remaining_shares', 'status'];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function property()
     {
         return $this->belongsTo(Property::class);
