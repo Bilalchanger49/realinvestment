@@ -3,6 +3,7 @@
 namespace App\Livewire\Site;
 
 use App\Models\Auctions;
+use App\Models\Bid;
 use App\Models\Property_investment;
 use App\Models\Transactions;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Livewire\Component;
 
 class InvestorPageComponent extends Component
 {
+    public $bids = [];
     public $confirmAction;
     public $price_per_share = 0;
     public $no_of_shares = 0;
@@ -32,7 +34,7 @@ class InvestorPageComponent extends Component
     {
         $propertyInvestment = Property_investment::where('id', $id)
             ->with('property')->first();
-        $this->no_of_shares = (int) $propertyInvestment->shares_owned;
+        $this->no_of_shares = (int)$propertyInvestment->shares_owned;
         $this->property_name = $propertyInvestment->property->property_name;
 
         $this->investment = $propertyInvestment;
@@ -43,7 +45,7 @@ class InvestorPageComponent extends Component
     {
         if ($this->shares_to_sell < 1 || $this->price_per_share < 1) {
             $this->total_price = 0;
-        }elseif ($this->shares_to_sell > $this->no_of_shares) {
+        } elseif ($this->shares_to_sell > $this->no_of_shares) {
             $this->total_price = 0;
         } else {
 
@@ -62,7 +64,8 @@ class InvestorPageComponent extends Component
 
         //checking if user has made an auction before for this investment
         $existingAuction = Auctions::where('property_investment_id', $this->investment->id)
-            ->where('user_id', auth()->id())->first();
+            ->where('user_id', auth()->id())
+            ->where('status', 'active')->first();
 
         //auction exist then user will be sent back and asked to edit the previous auction
         if ($existingAuction) {
@@ -92,7 +95,6 @@ class InvestorPageComponent extends Component
 //        }
 
 
-
         // Find and delete the auction
         $auction = Auctions::where('id', $this->auction_id)->first();
         if ($auction) {
@@ -116,11 +118,129 @@ class InvestorPageComponent extends Component
         $this->property_name = $propertyName;
     }
 
+    public function openBidPopup($auctionId)
+    {
+        $this->auction_id = $auctionId;
+        $this->bids = Bid::where('auctions_id', $auctionId)
+            ->with('user') // To load user details
+            ->get();
+    }
+
+    public function acceptBid($bidId)
+    {
+        $bid = Bid::where('id', $bidId)->first();
+        $auction = Auctions::where('id', $bid->auctions_id)->first();
+
+
+        if ($bid) {
+            $bid->status = 'accepted';
+            $bid->save();
+//            $auction->status = 'inactive';
+//            $auction->save();
+            session()->flash('success', 'Bid accepted successfully.');
+        }
+    }
+
+    public function rejectBid($bidId)
+    {
+        $bid = Bid::find($bidId);
+
+        if ($bid) {
+            $bid->status = 'rejected';
+            $bid->save();
+
+            session()->flash('error', 'Bid rejected successfully.');
+        }
+    }
+
+    public function buyAuction($auctionId)
+    {
+        // Fetch the auction details
+        $auction = Auctions::where('id', $auctionId)->first();
+
+        if (!$auction || $auction->status != 'active') {
+            session()->flash('error', 'This auction is not active or does not exist.');
+            return;
+        }
+
+        // Fetch the accepted bid for this auction
+        $bid = Bid::where('auctions_id', $auctionId)
+            ->where('status', 'accepted')
+            ->first();
+
+        if (!$bid) {
+            session()->flash('error', 'No accepted bid found for this auction.');
+            return;
+        }
+
+        // Fetch the buyer (current user)
+        $buyer = auth()->user();
+        if (!$buyer) {
+            return redirect('/login');
+        }
+
+        // Transfer shares: update the seller's and buyer's property investments
+        $sellerInvestment = Property_investment::where('id', $auction->property_investment_id)->first();
+        $buyerInvestment = Property_investment::where('user_id', $buyer->id)
+            ->where('property_id', $auction->property_id)
+            ->first();
+
+        // Deduct shares from seller
+        $sellerInvestment->shares_owned -= $bid->total_shares;
+        $sellerInvestment->save();
+
+        // Add shares to buyer
+        if ($buyerInvestment) {
+            $buyerInvestment->shares_owned += $bid->total_shares;
+            $buyerInvestment->share_price += $bid->share_amount;
+            $buyerInvestment->total_investment += $buyerInvestment->total_investemnt + $bid->total_price;
+            $buyerInvestment->save();
+        } else {
+            // If the buyer doesn't already have an investment for this property, create a new one
+            Property_investment::create([
+                'user_id' => $buyer->id,
+                'property_id' => $auction->property_id,
+                'shares_owned' => $bid->total_shares,
+                'remaining_shares' => $auction->no_of_shares - $bid->total_shares,
+                'share_price' => $bid->share_amount,
+                'payment_id' => 0, // Update if integrated with a payment system
+                'activity' => 'buy',
+                'status' => 'holding',
+                'total_investment' => $bid->total_price,
+            ]);
+        }
+
+        // Mark auction and bid as completed
+        $auction->status = 'completed';
+        $auction->save();
+
+        $bid->status = 'completed';
+        $bid->save();
+
+        // Log the transaction (optional but recommended)
+        Transactions::create([
+            'user_id' => $buyer->id,
+            'property_id' => $auction->property_id,
+            'shares_owned' => $bid->total_shares,
+            'total_investment' => $bid->total_price,
+            'remaining_shares' =>  $sellerInvestment->shares_owned,
+            'share_price' => $bid->share_amount,
+            'payment_id' => 0,
+            'activity' => 'buy',
+            'status' => 'active',
+        ]);
+
+        // Flash success message
+        session()->flash('success', 'Shares successfully transferred.');
+        return redirect()->route('site.investor.page');
+    }
+
+
     public function render()
     {
         if (!empty(auth()->user())) {
             $user = auth()->user();
-        }else{
+        } else {
             return redirect('/login');
         }
 
@@ -155,9 +275,12 @@ class InvestorPageComponent extends Component
             ->with('property')
             ->get();
 
-//        dd($auctions);
+        $userbids = Bid::where('user_id', $user->id)
+            ->with('auctions')
+            ->with('user')
+            ->get();
 
-        return view('livewire.site.investorPage', compact('auctions', 'transctions', 'propertyInvestments', 'user', 'overallShares', 'overallInvestment', 'totalProperties'))->extends('layouts.site');
+        return view('livewire.site.investorPage', compact('userbids', 'auctions', 'transctions', 'propertyInvestments', 'user', 'overallShares', 'overallInvestment', 'totalProperties'))->extends('layouts.site');
     }
 
 

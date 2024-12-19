@@ -57,34 +57,36 @@
             <!-- 0 layer starts -->
             <div class="row g-4">
                 @foreach($auctions as $auction)
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card__article position-relative">
-                            <!-- Keeping the same image -->
-                            <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"
-                                 class="card__img rounded-3 w-100">
-                            <div class="card__data position-absolute bg-white shadow rounded-3">
+                    @if($auction->status == 'active')
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card__article position-relative">
+                                <!-- Keeping the same image -->
+                                <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"
+                                     class="card__img rounded-3 w-100">
+                                <div class="card__data position-absolute bg-white shadow rounded-3">
                                 <span
                                     class="card__description d-block text-muted small mb-1">{{$auction->property->property_address}}</span>
-                                <h2 class="card__title">{{$auction->property->property_name}}</h2>
-                                <span
-                                    class="card__token-price d-block text-muted small mb-1">Token Price: {{$auction->share_amount_placed}}</span>
-                                <span
-                                    class="card__tokens-available d-block text-muted small mb-1">Tokens Available: {{$auction->no_of_shares}}</span>
-                                <span class="card__expected-return d-block text-muted small mb-1">Expected Annual Return: 8%</span>
-                                <span
-                                    class="card__owner d-block text-muted small mb-1">Owner: {{$auction->user->name}}</span>
-                                <div>
-                                    <button
-                                        wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
-                                        id="openBidPopup" class="btn btn-primary "
-                                        data-toggle="modal" data-target="#add_bid_popup">
-                                        Place Bid
-                                    </button>
-{{--                                    <a href="#" class="card__button text-decoration-none">Place Bid</a>--}}
+                                    <h2 class="card__title">{{$auction->property->property_name}}</h2>
+                                    <span
+                                        class="card__token-price d-block text-muted small mb-1">Token Price: {{$auction->share_amount_placed}}</span>
+                                    <span
+                                        class="card__tokens-available d-block text-muted small mb-1">Tokens Available: {{$auction->no_of_shares}}</span>
+                                    <span class="card__expected-return d-block text-muted small mb-1">Expected Annual Return: 8%</span>
+                                    <span
+                                        class="card__owner d-block text-muted small mb-1">Owner: {{$auction->user->name}}</span>
+                                    <div>
+                                        <button
+                                            wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
+                                            id="openBidPopup" class="btn btn-primary "
+                                            data-toggle="modal" data-target="#add_bid_popup">
+                                            Place Bid
+                                        </button>
+                                        {{--                                    <a href="#" class="card__button text-decoration-none">Place Bid</a>--}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
 
             </div>
@@ -196,7 +198,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="totalshares">Total share to sell</label>
-                            <label >{{$totalshares}}</label>
+                            <label>{{$totalshares}}</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -261,7 +263,6 @@
                 active_investment_popup.style.display = 'none';
             }
         });
-
 
 
     </script>
