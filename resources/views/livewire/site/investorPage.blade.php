@@ -101,7 +101,7 @@
                             </thead>
                             <tbody>
                             @foreach($propertyInvestments as $propertyInvestment)
-                                @if($propertyInvestment->status == 'holding')
+                                @if($propertyInvestment->status == 'holding' && $propertyInvestment->shares_owned > 0 )
                                     <tr>
                                         <td>1</td>
                                         <td>
@@ -118,12 +118,12 @@
 
                                         <td><span class="status-completed">{{$propertyInvestment->status}}</span></td>
                                         <td>
-{{--                                            <button--}}
-{{--                                                wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"--}}
-{{--                                                type="button" class="details-btn-investment openPopup"--}}
-{{--                                                data-toggle="modal" data-target="#active_investment_popup">--}}
-{{--                                                &rarr;--}}
-{{--                                            </button>--}}
+                                            {{--                                            <button--}}
+                                            {{--                                                wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"--}}
+                                            {{--                                                type="button" class="details-btn-investment openPopup"--}}
+                                            {{--                                                data-toggle="modal" data-target="#active_investment_popup">--}}
+                                            {{--                                                &rarr;--}}
+                                            {{--                                            </button>--}}
                                             <button
                                                 wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"
                                                 id="openPopup" class="details-btn-investment openPopup"
@@ -165,6 +165,14 @@
                             <tbody>
                             @foreach($auctions as $auction)
                                 @if($auction->status == 'active')
+
+                                    @php
+                                        $totalBids = \App\Models\Bid::where('auctions_id', $auction->id)->count();
+
+                                        $unrespondedBids = \App\Models\Bid::where('auctions_id', $auction->id)
+                                            ->where('status', 'active')
+                                            ->count();
+                                    @endphp
                                     <tr>
                                         <td>1</td>
                                         <td>
@@ -176,13 +184,16 @@
                                         <td>{{$auction->share_amount_placed}}</td>
                                         <td><strong>{{$auction->total_amount_placed}}</strong></td>
                                         <td>{{$auction->created_at}}</td>
-                                        <td><strong>0</strong></td>
-                                        <td><strong>0</strong></td>
+                                        <td><strong>{{$totalBids}}</strong></td>
+                                        <td><strong>{{$unrespondedBids}}</strong></td>
 
                                         <td><span class="status-completed">{{$auction->status}}</span></td>
                                         <td>
-                                            <button
-                                                type="button" class="details-btn-investment openPopup">
+                                            <!-- Button to open the modal -->
+                                            <button wire:click="openBidPopup({{$auction->id}})"
+                                                    class="btn btn-primary"
+                                                    data-toggle="modal"
+                                                    data-target="#bidsModal">
                                                 &rarr;
                                             </button>
                                         </td>
@@ -201,6 +212,81 @@
                                             </button>
                                         </td>
                                     </tr>
+                                @endif
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            {{--        Bids table--}}
+            <div class="container mt-5">
+                <div class="card-header">
+                    Bids
+                </div>
+                <div class="card p-3">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Investor name</th>
+                                <th scope="col">Share price</th>
+                                <th scope="col">Total Share</th>
+                                <th scope="col">Total price</th>
+                                <th scope="col">status</th>
+                                <th scope="col">Buy</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($userbids as $bid)
+                                @if($bid->status != 'completed')
+                                    @php
+                                        $property = \App\Models\Property::where('id', $bid->auctions->property_id)->first();
+                                    @endphp
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            {{$property->property_name}}
+                                            <br><small
+                                                class="text-muted">code:#{{$property->property_reg_no}}</small>
+                                        </td>
+                                        <td>{{$bid->user->name}}</td>
+                                        <td>{{$bid->share_amount}}</td>
+                                        <td>{{$bid->total_shares}}</td>
+                                        <td>{{$bid->total_price}}</td>
+                                        @if($bid->status == 'accepted')
+                                            <td><span class="status-completed">{{$bid->status}}</span></td>
+                                        @elseif($bid->status == 'rejected')
+                                            <td><span class="status-unpaid">{{$bid->status}}</span></td>
+                                        @elseif($bid->status == 'active')
+                                            <td><span class="status-cancelled">{{$bid->status}}</span></td>
+                                        @endif
+
+                                        <td>
+                                            @if($bid->status == 'accepted')
+                                                <button
+                                                    wire:click.prevent="buyAuction({{$bid->auctions_id}})"
+                                                    class="btn btn-base custom-small-btn"
+                                                    style="line-height: 0px;">
+                                                    Buy
+                                                </button>
+                                            @elseif($bid->status == 'rejected')
+                                                <span class="status-unpaid">rejected</span>
+                                            @else
+                                                Not Responded
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-base custom-small-btn"
+                                                    style="line-height: 0px;"><i
+                                                    class="fas fa-edit"></i></button>
+                                        </td>
+                                    </tr>
+
                                 @endif
                             @endforeach
                             </tbody>
@@ -394,59 +480,63 @@
             </div>
         </div>
 
-        {{--    testing popup--}}
-        {{--        <div id="popup" class="popup">--}}
-        {{--            <div class="popup-content">--}}
-        {{--                <span id="closePopup" class="close-btn">&times;</span>--}}
-        {{--                <h2>Furqan</h2>--}}
 
-        {{--                <!-- Popup Form Start -->--}}
-        {{--                <form id="popupForm">--}}
-        {{--                    <div class="form-row">--}}
+        <div wire:ignore.self class="modal fade" id="bidsModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Bids for Auction #{{$auction_id}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @if (!$bids)
+                            <p>No bids available for this auction.</p>
+                        @else
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Shares</th>
+                                    <th>Total Price</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach ($bids as $bid)
+                                    <tr>
+                                        <td>{{ $bid->user->name }}</td>
+                                        <td>{{ $bid->share_amount }}</td>
+                                        <td>{{ $bid->total_price }}</td>
+                                        <td>{{ ucfirst($bid->status) }}</td>
+                                        <td>
+                                            @if ($bid->status === 'active')
+                                                <button wire:click="acceptBid({{ $bid->id }})"
+                                                        class="btn btn-success btn-sm">Accept
+                                                </button>
+                                                <button wire:click="rejectBid({{ $bid->id }})"
+                                                        class="btn btn-danger btn-sm">Reject
+                                                </button>
+                                            @else
+                                                <span class="text-muted">Action Taken</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        {{--                        <div class="form-group">--}}
-        {{--                            <label for="shares">Price Per Share</label>--}}
-        {{--                            <input type="text" id="shares" placeholder="Enter shares">--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                    <div class="form-group">--}}
-        {{--                        <label for="dropdown1">Number of Shares</label>--}}
-        {{--                        <select id="dropdown1" name="category">--}}
-        {{--                            <option value="1">1</option>--}}
-        {{--                            <option value="2">2</option>--}}
-        {{--                            <option value="3">3</option>--}}
-        {{--                            <option value="4">4</option>--}}
-        {{--                        </select>--}}
-        {{--                    </div>--}}
 
-
-        {{--                    <div class="form-row">--}}
-        {{--                        <div class="form-group">--}}
-        {{--                            <label for="dropdown1">Number of Shares</label>--}}
-        {{--                            <select id="dropdown1" name="category">--}}
-        {{--                                <option value="1">1</option>--}}
-        {{--                                <option value="2">2</option>--}}
-        {{--                                <option value="3">3</option>--}}
-        {{--                                <option value="4">4</option>--}}
-        {{--                            </select>--}}
-        {{--                        </div>--}}
-        {{--                        <div class="form-group">--}}
-        {{--                            <label for="totalPrice">Total Price</label>--}}
-        {{--                            <input type="text" id="totalPrice" placeholder="Total price" readonly>--}}
-        {{--                        </div>--}}
-
-
-        {{--                    </div>--}}
-        {{--                    <div class="form-group" style="display: flex;     flex-direction: row;">--}}
-        {{--                        <input type="checkbox" id="confirmAction">--}}
-        {{--                        <label for="confirmAction">I confirm that I want to sell these shares</label>--}}
-        {{--                    </div>--}}
-
-        {{--                    <button type="submit" class="submit-btn btn">Sell</button>--}}
-        {{--                </form>--}}
-        {{--                <!-- Popup Form End -->--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
     </div>
 
 </div>
@@ -471,16 +561,6 @@
         if (e.target === active_investment_popup) {
             active_investment_popup.style.display = 'none';
         }
-    });
-
-    // Handle form submission
-    const popupForm = document.getElementById('popupForm');
-    popupForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Prevent actual form submission
-        const category = document.getElementById('dropdown1').value;
-        const subcategory = document.getElementById('dropdown2').value;
-        alert(`Selected Category: ${category}\nSelected Sub-Category: ${subcategory}`);
-        active_investment_popup.style.display = 'none'; // Close popup after submission
     });
 
 
