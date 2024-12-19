@@ -18,6 +18,18 @@
     <link rel="stylesheet" href="{{asset('assets/css/vendor.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+    <style>
+        .floating-alert {
+            position: fixed;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1050;
+            width: 100%;
+            max-width: 80%;
+            display: none;
+        }
+    </style>
     @livewireStyles
 </head>
 <body class="body-bg">
@@ -31,18 +43,25 @@
         </div>
     </div>
 </div>
-<!-- preloader area end -->
-{{--<!-- search popup start-->--}}
-{{--<div class="body-overlay" id="body-overlay"></div>--}}
-{{--<div class="td-search-popup" id="td-search-popup">--}}
-{{--    <form action="https://solverwp.com/demo/html/mingrand/index.html" class="search-form">--}}
-{{--        <div class="form-group">--}}
-{{--            <input type="text" class="form-control" placeholder="Search.....">--}}
-{{--        </div>--}}
-{{--        <button type="submit" class="submit-btn"><i class="fa fa-search"></i></button>--}}
-{{--    </form>--}}
-{{--</div>--}}
-{{--<!-- search popup end-->--}}
+
+<!-- Flash Messages -->
+@if (session('success'))
+    <div class="floating-alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="floating-alert">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+@endif
 
 <!-- navbar start -->
 <div class="navbar-area navbar-area-2">
@@ -266,6 +285,20 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const flashMessage = document.querySelector('.floating-alert');
+        if (flashMessage) {
+            flashMessage.style.display = 'block';
+            setTimeout(() => {
+                flashMessage.classList.add('fade');
+                flashMessage.style.opacity = 0;
+                setTimeout(() => flashMessage.remove(), 500); // Remove from DOM after fade-out
+            }, 5000); // 5 seconds
+        }
+    });
+</script>
 @livewireScripts
 </body>
 </html>
