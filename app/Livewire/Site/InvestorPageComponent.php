@@ -105,7 +105,6 @@ class InvestorPageComponent extends Component
             session()->flash('error', 'Auction not found.');
         }
 
-
         return redirect()->route('site.investor.page');
     }
 
