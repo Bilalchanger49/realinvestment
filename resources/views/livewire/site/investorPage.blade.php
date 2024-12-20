@@ -191,7 +191,7 @@
                                         <td>
                                             <!-- Button to open the modal -->
                                             <button wire:click="openBidPopup({{$auction->id}})"
-                                                    class="btn btn-primary"
+                                                    class="details-btn-auction"
                                                     data-toggle="modal"
                                                     data-target="#bidsModal">
                                                 &rarr;
@@ -512,17 +512,17 @@
                                         <td>{{ $bid->total_price }}</td>
                                         <td>{{ ucfirst($bid->status) }}</td>
                                         <td>
-                                            @if ($bid->status === 'active')
-                                                <button wire:click="acceptBid({{ $bid->id }})"
-                                                        class="btn btn-success btn-sm">Accept
-                                                </button>
-                                                <button wire:click="rejectBid({{ $bid->id }})"
-                                                        class="btn btn-danger btn-sm">Reject
-                                                </button>
-                                            @else
-                                                <span class="text-muted">Action Taken</span>
-                                            @endif
-                                        </td>
+    @if ($bid->status === 'active')
+        <button wire:click="acceptBid({{ $bid->id }})" class="btn btn-success btn-sm">
+            <i class="fas fa-check"></i>
+        </button>
+        <button wire:click="rejectBid({{ $bid->id }})" class="btn btn-danger btn-sm">
+            <i class="fas fa-times"></i>
+        </button>
+    @else
+        <span class="text-muted">Action Taken</span>
+    @endif
+</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
