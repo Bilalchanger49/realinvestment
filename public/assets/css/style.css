@@ -592,13 +592,13 @@ ul {
   font-size: 14px;
   margin-top: -2px;
   float: inherit;
-}
-
+} 
+/* auction accept reject button   */
 .btn.btn-sm {
-  height: 18px;
+  height: 28px;
   line-height: 20px;
   font-size: 11px;
-  width: 52px;
+  width: 29px;
   padding: 0;
 }
 
@@ -5313,6 +5313,19 @@ section.bg-light {
   justify-content: center;
   text-decoration: none;
 }
+.details-btn-auction{
+  background-color: #5ba600;
+  color: #fff;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+
 
 /*-----------------------------------------
     ## FAQ SECTION
