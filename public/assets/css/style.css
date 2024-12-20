@@ -5861,3 +5861,9 @@ input:focus, select:focus {
     flex: 0 0 auto;
 }
 
+/* tabels scroll  */
+.table-responsive {
+  max-height: 300px; /* Adjust height as per your requirement */
+  overflow-y: auto; /* Enables vertical scroll */
+}
+
