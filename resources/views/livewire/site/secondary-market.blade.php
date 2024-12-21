@@ -168,103 +168,106 @@
     </div>
 
     {{--    create auction popup--}}
-    <div wire:ignore.self class="popup" id="add_bid_popup" tabindex="-1" role="dialog"
-         aria-labelledby="add_bid_popup_label" aria-hidden="true">
-        <div class="popup-content">
-            <div class="modal-header">
-                <h2> new property</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Popup Form Start -->
-                <form wire:submit.prevent="createBid" id="popupForm">
-                    <div class="form-row">
 
+
+    <div wire:ignore.self class="modal fade" id="add_bid_popup" tabindex="-1" role="dialog"
+         aria-labelledby="add_bid_popup_label" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center position-relative">
+                    <h2> new property</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Popup Form Start -->
+                    <form wire:submit.prevent="createBid" id="popupForm">
+                        <div class="form-row">
+
+                            <div class="form-group">
+                                <label for="bidPrize">Bid for single Share</label>
+                                <input type="number" id="bidPrize" placeholder="Enter shares Prize"
+                                       wire:model="bidPrize"
+                                       wire:input="calculateTotal">
+                                <div>
+                                    @error('bidPrize')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="totalshares">Total share to sell</label>
+                                <label>{{$totalshares}}</label>
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label for="bidPrize">Bid for single Share</label>
-                            <input type="number" id="bidPrize" placeholder="Enter shares Prize"
-                                   wire:model="bidPrize"
-                                   wire:input="calculateTotal">
-                            <div>
-                                @error('bidPrize')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                            <label for="sharesToBuy">Number of Shares</label>
+                            <select id="sharesToBuy" name="sharesToBuy" wire:model.live="sharesToBuy"
+                                    wire:click="calculateTotal">
+                                @for ($share = 0; $share <= $totalshares; $share++)
+                                    <option value="{{ $share }}">{{ $share }}</option>
+                                @endfor
+                            </select>
+
+                            <div>@error('sharesToBuy') <span class="text-danger">{{ $message }}</span> @enderror
                             </div>
                         </div>
 
-                    </div>
-                    <div class="form-row">
+
                         <div class="form-group">
-                            <label for="totalshares">Total share to sell</label>
-                            <label>{{$totalshares}}</label>
+                            <label for="totalPrice">Total Price</label>
+                            <input type="number" id="totalPrice" placeholder="Total price" wire:model="totalPrice"
+                                   value="{{ $totalPrice }}">
+                            <div>@error('totalPrice') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="sharesToBuy">Number of Shares</label>
-                        <select id="sharesToBuy" name="sharesToBuy" wire:model.live="sharesToBuy"
-                                wire:click="calculateTotal">
-                            @for ($share = 0; $share <= $totalshares; $share++)
-                                <option value="{{ $share }}">{{ $share }}</option>
-                            @endfor
-                        </select>
 
-                        <div>@error('sharesToBuy') <span class="text-danger">{{ $message }}</span> @enderror
+                        <div class="form-group">
+                            <div class="d-flex flex-row">
+                                <input type="checkbox" id="confirmAction" wire:model="confirmAction">
+                                <label for="confirmAction">I confirm that I want to sell these shares</label>
+                            </div>
+                            <div>@error('confirmAction') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        <label for="totalPrice">Total Price</label>
-                        <input type="number" id="totalPrice" placeholder="Total price" wire:model="totalPrice"
-                               value="{{ $totalPrice }}">
-                        <div>@error('totalPrice') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="d-flex flex-row">
-                            <input type="checkbox" id="confirmAction" wire:model="confirmAction">
-                            <label for="confirmAction">I confirm that I want to sell these shares</label>
-                        </div>
-                        <div>@error('confirmAction') <span class="text-danger">{{ $message }}</span> @enderror
-                        </div>
-                    </div>
-
-
-                    <button type="submit" class="submit-btn btn">Place Bid</button>
-                </form>
-                <!-- Popup Form End -->
-
-            </div>
+                        <button type="submit" class="submit-btn btn">Place Bid</button>
+                    </form>
+                    <!-- Popup Form End -->
+                </div>
         </div>
     </div>
+</div>
 
-    <script>
-        // Get elements
-        const open_investment_popup = document.getElementById('openBidPopup');
-        const close_investment_popup = document.getElementById('closePopup');
-        const active_investment_popup = document.getElementById('add_bid_popup');
+<script>
+    // Get elements
+    const open_investment_popup = document.getElementById('openBidPopup');
+    const close_investment_popup = document.getElementById('closePopup');
+    const active_investment_popup = document.getElementById('add_bid_popup');
 
-        // Open popup
-        open_investment_popup.addEventListener('click', () => {
-            active_investment_popup.style.display = 'flex';
-        });
+    // Open popup
+    open_investment_popup.addEventListener('click', () => {
+        active_investment_popup.style.display = 'flex';
+    });
 
-        // Close popup
-        close_investment_popup.addEventListener('click', () => {
+    // Close popup
+    close_investment_popup.addEventListener('click', () => {
+        active_investment_popup.style.display = 'none';
+    });
+
+    // Close popup when clicking outside of it
+    active_investment_popup.addEventListener('click', (e) => {
+        if (e.target === active_investment_popup) {
             active_investment_popup.style.display = 'none';
-        });
-
-        // Close popup when clicking outside of it
-        active_investment_popup.addEventListener('click', (e) => {
-            if (e.target === active_investment_popup) {
-                active_investment_popup.style.display = 'none';
-            }
-        });
+        }
+    });
 
 
-    </script>
+</script>
 
 </div>
