@@ -1568,7 +1568,7 @@ ul {
 
 .navbar-area .nav-container .navbar-collapse .navbar-nav {
   display: block;
-  width: 80%;
+  width: 85%;
 }
 
 .navbar-area .nav-container .navbar-collapse .navbar-nav li {
@@ -1598,6 +1598,8 @@ ul {
   width: 95px;
 
 }
+
+
 
 /* .navbar-area .nav-container .navbar-collapse .navbar-nav li.menu-item-has-children:before {
   content: "";
@@ -5963,3 +5965,5 @@ input:focus, select:focus {
 .notification-dropdown ul li:hover a {
   color: #333;
 }
+
+
