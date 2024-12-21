@@ -174,8 +174,30 @@
                     {{--                    </li>--}}
 
                 </ul>
-            </div>
-        </div>
+
+                <!-- notifications  -->
+                <div class="notification-container">
+  <div class="notification-icon">
+    <i class="fa fa-bell"></i> <!-- Font Awesome Bell Icon -->
+    <div class="notification-indicator">
+      <div class="notification-count" role="status">1</div>
+    </div>
+  </div>
+  
+  <!-- Dropdown Menu -->
+  <div class="notification-dropdown">
+    <ul>
+      <li><a href="#">Message 1</a></li>
+      <li><a href="#">Message 2</a></li>
+      <li><a href="#">Message 3</a></li>
+    </ul>
+  </div>
+</div>
+
+
+      
+      
+        
     </nav>
 </div>
 
@@ -267,6 +289,27 @@
     <span class="back-top"><i class="fa fa-angle-up"></i></span>
 </div>
 <!-- back to top area end -->
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+  const bellIcon = document.querySelector('.notification-icon');
+  const dropdownMenu = document.querySelector('.notification-dropdown');
+
+  // Toggle the visibility of the dropdown when clicking the bell icon
+  bellIcon.addEventListener('click', function() {
+    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+  });
+
+  // Close the dropdown if clicked outside
+  document.addEventListener('click', function(event) {
+    if (!event.target.closest('.notification-container')) {
+      dropdownMenu.style.display = 'none'; // Hide the dropdown if clicked outside
+    }
+  });
+});
+
+</script>
 
 <!-- all plugins here -->
 
