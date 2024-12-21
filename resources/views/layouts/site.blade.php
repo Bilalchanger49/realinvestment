@@ -107,7 +107,7 @@
                 <ul class="navbar-nav menu-open text-center">
                     <!-- Dropdown for Larger Screens -->
                     @if(Auth::User())
-                        <li class="menu-item-has-children current-menu-item d-none d-lg-block">
+                        <li class="menu-item-has-children current-menu-item d-none d-lg-block" style=" width: 125px;">
 
                             <img src="assets/img/agent/3.png" class="user-image rounded-circle" style="height: 40px;"
                                  alt=""/>
