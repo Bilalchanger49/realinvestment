@@ -37,15 +37,20 @@ class SecondaryMarketComponent extends Component
 
     public function createBid()
     {
+
         // Validate data
         $validatedData = $this->validate([
-//            'auctions_id' => 'required|exists:investments,id', // Assuming you're passing investment ID
             'bidPrize' => 'required|numeric|min:1',
             'sharesToBuy' => 'required|numeric|min:1',
             'totalPrice' => 'required|numeric|min:1',
             'confirmAction' => 'accepted',
         ]);
-//        dd($this->selectedAuction->id);
+
+        // Check if the current user is the creator of the auction
+        if ($this->selectedAuction->user_id === auth()->id()) {
+            session()->flash('error', 'You cannot place a bid on your own auction.');
+            return redirect()->route('site.secondary.market'); // Redirect back to the form
+        }
 
         // Check if the user has already placed an active bid on the same investment
         $existingBid = Bid::where('user_id', auth()->id())
@@ -53,12 +58,10 @@ class SecondaryMarketComponent extends Component
             ->where('status', 'active') // Assuming 'status' column tracks bid status
             ->first();
 
-//        dd($existingBid);
 
         if ($existingBid) {
-            dd('existed');
             session()->flash('error', 'You already have an active bid on this investment.');
-            return redirect()->back(); // Redirect back to the form
+            return redirect()->route('site.secondary.market'); // Redirect back to the form
         }
 
         try {
