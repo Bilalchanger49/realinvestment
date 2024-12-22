@@ -97,7 +97,7 @@
                                 <th scope="col">Current price</th>
                                 <th scope="col">Total investments</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Details</th>
+                                <th scope="col">Auctions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -541,9 +541,9 @@
 
 <script>
 
-    document.addEventListener('active_investment_popup_modal', event => {
-        $('#active_investment_popup').modal('show');
-    });
+    // document.addEventListener('active_investment_popup_modal', event => {
+    //     $('#active_investment_popup').modal('show');
+    // });
 
     document.addEventListener('close_modal', event => {
         $('#active_investment_popup').modal('hide');

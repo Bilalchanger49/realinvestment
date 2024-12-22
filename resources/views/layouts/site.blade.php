@@ -152,7 +152,7 @@
                     @else
                         <li class="menu-item-has-children current-menu-item d-none d-lg-block">
 
-                            <img src="assets/img/agent/3.png" class="user-image rounded-circle" style="height: 40px;"
+                            <img src="assets/img/agent/default user.jpeg" class="user-image rounded-circle" style="height: 40px;"
                                  alt=""/>
                             <a href="#">Login</a>
                             <ul class="sub-menu">
@@ -183,7 +183,7 @@
       <div class="notification-count" role="status">1</div>
     </div>
   </div>
-  
+
   <!-- Dropdown Menu -->
   <div class="notification-dropdown">
     <ul>
@@ -195,9 +195,9 @@
 </div>
 
 
-      
-      
-        
+
+
+
     </nav>
 </div>
 
