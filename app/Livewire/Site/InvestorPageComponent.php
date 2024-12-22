@@ -39,9 +39,7 @@ class InvestorPageComponent extends Component
             ->with('property')->first();
         $this->no_of_shares = (int)$propertyInvestment->shares_owned;
         $this->property_name = $propertyInvestment->property->property_name;
-
         $this->investment = $propertyInvestment;
-
     }
 
     public function calculateTotal()
@@ -90,7 +88,10 @@ class InvestorPageComponent extends Component
 
 //    public function closeModal()
 //    {
-//        $this->dispatch('close_modal');
+//        $this->reset(['property_id', 'property_name', 'price_per_share', 'total_shares', 'total_price']);
+//        $this->dispatch('hideModal');
+//
+////        $this->dispatch('close_modal');
 //    }
 
     public function deleteAuction()

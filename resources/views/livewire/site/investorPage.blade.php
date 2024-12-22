@@ -32,18 +32,18 @@
                         </div>
                         <div class="card-body investor-profile-card-body">
                             <div class="text-section">
-                                <h5 class="card-title"><strong>Furqan</strong></h5>
-                                <h6 class="card-title"><strong>furqan@gmail.com</strong></h6>
+                                <h5 class="card-title"><strong>{{$user->name}}</strong></h5>
+                                <h6 class="card-title"><strong>{{$user->email}}</strong></h6>
                                 <div>
                                     <div class="card-text">
                                         <div class="card-text d-flex">
                                             <p class="me-3">
                                                 <i class="fa fa-solid fa-coins" style="color: #5ba600;"></i>
-                                                <strong>5</strong> properties
+                                                <strong>{{$totalProperties}}</strong> properties
                                             </p>
                                             <p class="me-3">
                                                 <i class="fa fa-solid fa-money" style="color: #5ba600;"></i>
-                                                <strong>15</strong> shares
+                                                <strong>{{$overallShares}}</strong> shares
                                             </p>
                                         </div>
                                         <div>
@@ -63,8 +63,8 @@
                             </div>
                             <div class="cta-section">
                                 <div>
-                                    <p>Total Income<strong> $1500</strong></p>
-                                    <p>Pending <strong> $1200</strong></p>
+                                    <p>Investment<strong> ${{$overallInvestment}}</strong></p>
+                                    <p>Profit <strong> $1200</strong></p>
                                 </div>
                                 <button class="btn btn-base ">View Profile</button>
                             </div>
@@ -368,9 +368,9 @@
                 <div class="modal-content">
                         <div class="modal-header justify-content-center position-relative">
                             <h5 class="modal-title">{{$property_name}}</h5>
-{{--                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-{{--                                <span aria-hidden="true">&times;</span>--}}
-{{--                            </button>--}}
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <div class="modal-body">
                             <!-- Popup Form Start -->
@@ -545,35 +545,11 @@
     //     $('#active_investment_popup').modal('show');
     // });
 
-    document.addEventListener('close_modal', event => {
-        $('#active_investment_popup').modal('hide');
-    });
+    // document.addEventListener('close_modal', event => {
+    //     $('#active_investment_popup').modal('hide');
+    // });
 </script>
 
-{{--<script>--}}
-{{--    // Get elements--}}
-{{--    const open_investment_popup = document.getElementById('openPopup');--}}
-{{--    const close_investment_popup = document.getElementById('closePopup');--}}
-{{--    const active_investment_popup = document.getElementById('active_investment_popup');--}}
-
-{{--    // Open popup--}}
-{{--    open_investment_popup.addEventListener('click', () => {--}}
-{{--        active_investment_popup.style.display = 'flex';--}}
-{{--    });--}}
-
-{{--    // Close popup--}}
-{{--    close_investment_popup.addEventListener('click', () => {--}}
-{{--        active_investment_popup.style.display = 'none';--}}
-{{--    });--}}
-
-{{--    // Close popup when clicking outside of it--}}
-{{--    active_investment_popup.addEventListener('click', (e) => {--}}
-{{--        if (e.target === active_investment_popup) {--}}
-{{--            active_investment_popup.style.display = 'none';--}}
-{{--        }--}}
-{{--    });--}}
-
-{{--</script>--}}
 
 
 <script>
