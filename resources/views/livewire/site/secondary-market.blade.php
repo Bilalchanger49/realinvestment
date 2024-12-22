@@ -54,6 +54,11 @@
                 </div>
             </div>
 
+            <div class="section-title text-center">
+    <h6>Join the excitement of property auctions and secure your next investment</h6>
+    <h2>Start Bidding Today</h2>
+</div>
+
             <!-- 0 layer starts -->
             <div class="d-flex flex-wrap gap-4">
     @foreach($auctions as $auction)
@@ -158,7 +163,7 @@
     </div>
 
 
-    <div class="pagination-area text-center mt-10 mb-5" style="margin-top: 50px">
+    <!-- <div class="pagination-area text-center mt-10 mb-5" style="margin-top: 50px">
         <ul class="pagination">
             <li class="page-item"><a class="page-link" href="#"><i class="la la-angle-double-left"></i></a></li>
             <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -167,7 +172,84 @@
             <li class="page-item"><a class="page-link" href="#">...</a></li>
             <li class="page-item"><a class="page-link" href="#"><i class="la la-angle-double-right"></i></a></li>
         </ul>
-    </div>
+    </div> -->
+
+    <!-- for selling directally ###############  -->
+
+    <div class="blog-page-area pd-top-90 mb-5">
+    
+     <div class="container">
+
+     <div class="section-title text-center">
+    <h6>Explore the finest properties to invest and grow your wealth</h6>
+    <h2>Discover Your Next Investment</h2>
+</div>
+
+                <!-- 0 layer ends -->
+            <!-- First Row of Cards -->
+            <div class="row g-4 mt-5">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card__article position-relative">
+                        <!-- Keeping the same image -->
+                        <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"
+                             class="card__img rounded-3 w-100">
+                        <div class="card__data position-absolute bg-white shadow rounded-3">
+                            <span class="card__description d-block text-muted small mb-1">Downtown, City</span>
+                            <h2 class="card__title">High-Yield Residential Property</h2>
+                            <span class="card__token-price d-block text-muted small mb-1">Token Price: $50</span>
+                            <span
+                                class="card__tokens-available d-block text-muted small mb-1">Tokens Available: 200</span>
+                            <span
+                                class="card__expected-return d-block text-muted small mb-1">Expected Annual Return: 8%</span>
+                            <span class="card__owner d-block text-muted small mb-1">Owner: John Doe</span>
+                            <div>
+                                <a href="#" class="card__button text-decoration-none">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card__article position-relative">
+                        <img src="assets/img/banner/2.png" alt="Poon Hill, Nepal" class="card__img rounded-3 w-100">
+                        <div class="card__data position-absolute bg-white shadow rounded-3">
+                            <span class="card__description d-block text-muted small mb-1">Poon Hill, Nepal</span>
+                            <h2 class="card__title">Starry Night</h2>
+                            <span class="card__token-price d-block text-muted small mb-1">Token Price: $50</span>
+                            <span
+                                class="card__tokens-available d-block text-muted small mb-1">Tokens Available: 200</span>
+                            <span
+                                class="card__expected-return d-block text-muted small mb-1">Expected Annual Return: 8%</span>
+                            <span class="card__owner d-block text-muted small mb-1">Owner: John Doe</span>
+                            <div>
+                                <a href="#" class="card__button text-decoration-none">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card__article position-relative">
+                        <img src="assets/img/banner/2.png" alt="Bojcin Forest, Serbia"
+                             class="card__img rounded-3 w-100">
+                        <div class="card__data position-absolute bg-white shadow rounded-3">
+                            <span class="card__description d-block text-muted small mb-1">Bojcin Forest, Serbia</span>
+                            <h2 class="card__title">Path Of Peace</h2>
+                            <span class="card__token-price d-block text-muted small mb-1">Token Price: $50</span>
+                            <span
+                                class="card__tokens-available d-block text-muted small mb-1">Tokens Available: 200</span>
+                            <span
+                                class="card__expected-return d-block text-muted small mb-1">Expected Annual Return: 8%</span>
+                            <span class="card__owner d-block text-muted small mb-1">Owner: John Doe</span>
+                            <div>
+                                <a href="#" class="card__button text-decoration-none">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
 
     {{--    create auction popup--}}
 
