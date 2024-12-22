@@ -79,71 +79,71 @@
 
             {{--        Active Investment table--}}
             <div class="container mt-5">
-    <div class="card-header">
-        Active Investments
-    </div>
-    <div class="card p-3">
-        <!-- Add a fixed height to this div -->
-        <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Total Shares</th>
-                    <th scope="col">Shares</th>
-                    <th scope="col">Remaining Shares</th>
-                    <th scope="col">Holding date</th>
-                    <th scope="col">Current price</th>
-                    <th scope="col">Total investments</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Selling</th> <!-- Added Selling Column -->
-                    <th scope="col">Auctions</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($propertyInvestments as $propertyInvestment)
-                    @if($propertyInvestment->status == 'holding' && $propertyInvestment->shares_owned > 0 )
-                        <tr>
-                            <td>1</td>
-                            <td>
-                                {{$propertyInvestment->property->property_name}}
-                                <br><small class="text-muted">code:#{{$propertyInvestment->property->property_reg_no}}</small>
-                            </td>
-                            <td>{{$propertyInvestment->property->property_total_shares}}</td>
-                            <td>{{$propertyInvestment->shares_owned}}</td>
-                            <td>{{$propertyInvestment->property->property_remaining_shares}}</td>
-                            <td>{{$propertyInvestment->created_at}}</td>
-                            <td><strong>{{$propertyInvestment->share_price}}</strong></td>
-                            <td><strong>PK {{$propertyInvestment->total_investment}}</strong></td>
-                            <td><span class="status-completed">{{$propertyInvestment->status}}</span></td>
-                            <!-- New Selling Column -->
-                            <td>
-                                <button
-                                    wire:click.prevent="open_selling_popup({{$propertyInvestment->id}})"
-                                    id="openSellingPopup" class="details-btn-investment openPopup"
-                                    data-toggle="modal" data-target="#selling_popup">
-                                    Sell
-                                </button>
-                            </td>
-                            <!-- Existing Auctions Column -->
-                            <td>
-                                <button
-                                    wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"
-                                    id="openPopup" class="details-btn-investment openPopup"
-                                    data-toggle="modal" data-target="#active_investment_popup">
-                                    &rarr;
-                                </button>
-                            </td>
-                        </tr>
-                    @endif
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
+                <div class="card-header">
+                    Active Investments
+                </div>
+                <div class="card p-3">
+                    <!-- Add a fixed height to this div -->
+                    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Total Shares</th>
+                                <th scope="col">Shares</th>
+                                <th scope="col">Remaining Shares</th>
+                                <th scope="col">Holding date</th>
+                                <th scope="col">Current price</th>
+                                <th scope="col">Total investments</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Selling</th> <!-- Added Selling Column -->
+                                <th scope="col">Auctions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($propertyInvestments as $propertyInvestment)
+                                @if($propertyInvestment->status == 'holding' && $propertyInvestment->shares_owned > 0 )
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            {{$propertyInvestment->property->property_name}}
+                                            <br><small
+                                                class="text-muted">code:#{{$propertyInvestment->property->property_reg_no}}</small>
+                                        </td>
+                                        <td>{{$propertyInvestment->property->property_total_shares}}</td>
+                                        <td>{{$propertyInvestment->shares_owned}}</td>
+                                        <td>{{$propertyInvestment->property->property_remaining_shares}}</td>
+                                        <td>{{$propertyInvestment->created_at}}</td>
+                                        <td><strong>{{$propertyInvestment->share_price}}</strong></td>
+                                        <td><strong>PK {{$propertyInvestment->total_investment}}</strong></td>
+                                        <td><span class="status-completed">{{$propertyInvestment->status}}</span></td>
+                                        <!-- New Selling Column -->
+                                        <td>
+                                            <button
+                                                wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"
+                                                id="openPopup" class="details-btn-investment openPopup"
+                                                data-toggle="modal" data-target="#property_add_popup">
+                                                Sell
+                                            </button>
+                                        </td>
+                                        <!-- Existing Auctions Column -->
+                                        <td>
+                                            <button
+                                                wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"
+                                                id="openPopup" class="details-btn-investment openPopup"
+                                                data-toggle="modal" data-target="#active_investment_popup">
+                                                &rarr;
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
 
             {{--        Active Auctions table--}}
@@ -184,7 +184,7 @@
                                         <td>
                                             {{$auction->property->property_name}}
                                             <br><small
-                                                    class="text-muted">code:#{{$auction->property->property_reg_no}}</small>
+                                                class="text-muted">code:#{{$auction->property->property_reg_no}}</small>
                                         </td>
                                         <td>{{$auction->no_of_shares}}</td>
                                         <td>{{$auction->share_amount_placed}}</td>
@@ -205,14 +205,14 @@
                                         <td>
                                             <button type="button" class="btn btn-base custom-small-btn"
                                                     style="line-height: 0px;"><i
-                                                        class="fas fa-edit"></i></button>
+                                                    class="fas fa-edit"></i></button>
                                             <button
-                                                    type="button"
-                                                    class="btn btn-danger custom-small-btn"
-                                                    style="line-height: 0px;"
-                                                    data-toggle="modal"
-                                                    data-target="#delete_auction_popup"
-                                                    wire:click.prevent="confirmDelete({{ $auction->id }}, '{{ $auction->property->property_name }}')">
+                                                type="button"
+                                                class="btn btn-danger custom-small-btn"
+                                                style="line-height: 0px;"
+                                                data-toggle="modal"
+                                                data-target="#delete_auction_popup"
+                                                wire:click.prevent="confirmDelete({{ $auction->id }}, '{{ $auction->property->property_name }}')">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
                                         </td>
@@ -225,6 +225,7 @@
                 </div>
             </div>
 
+            @livewire('site.view-selling-component')
 
             {{--        Bids table--}}
             <div class="container mt-5">
@@ -274,9 +275,9 @@
                                         <td>
                                             @if($bid->status == 'accepted')
                                                 <button
-                                                        wire:click.prevent="buyAuction({{$bid->auctions_id}})"
-                                                        class="btn btn-base custom-small-btn"
-                                                        style="line-height: 0px;">
+                                                    wire:click.prevent="buyAuction({{$bid->auctions_id}})"
+                                                    class="btn btn-base custom-small-btn"
+                                                    style="line-height: 0px;">
                                                     Buy
                                                 </button>
                                             @elseif($bid->status == 'rejected')
@@ -325,7 +326,7 @@
                                     <td>
                                         {{$transction->property->property_name}}
                                         <br><small
-                                                class="text-muted">code:#{{$transction->property->property_reg_no}}</small>
+                                            class="text-muted">code:#{{$transction->property->property_reg_no}}</small>
                                     </td>
                                     <td><strong>PK {{$transction->total_investment}}</strong></td>
                                     <td>{{$transction->created_at}}</td>
@@ -378,73 +379,150 @@
              aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
-                        <div class="modal-header justify-content-center position-relative">
-                            <h5 class="modal-title">{{$property_name}}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Popup Form Start -->
-                            <form wire:submit.prevent="createAuction" id="popupForm">
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="shares">Price Per Share</label>
-                                        <input type="number" id="shares" placeholder="Enter shares"
-                                               wire:model="price_per_share"
-                                               wire:input="calculateTotal">
-                                        <div>
-                                            @error('price_per_share')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="shares">Total share to sell</label>
-                                        <label for="shares">{{$no_of_shares}}</label>
-                                    </div>
-                                </div>
+                    <div class="modal-header justify-content-center position-relative">
+                        <h5 class="modal-title">{{$property_name}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Popup Form Start -->
+                        <form wire:submit.prevent="createAuction" id="popupForm">
+                            <div class="form-row">
                                 <div class="form-group">
-                                    <label for="dropdown1">Number of Shares</label>
-                                    <select id="dropdown1" name="category" wire:model.live="shares_to_sell"
-                                            wire:click="calculateTotal">
-                                        @for ($share = 0; $share <= $no_of_shares; $share++)
-                                            <option value="{{ $share }}">{{ $share }}</option>
-                                        @endfor
-                                    </select>
+                                    <label for="shares">Price Per Share</label>
+                                    <input type="number" id="shares" placeholder="Enter shares"
+                                           wire:model="price_per_share"
+                                           wire:input="calculateTotal">
                                     <div>
-                                        @error('shares_to_sell')
+                                        @error('price_per_share')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group">
-                                    <label for="totalPrice">Total Price</label>
-                                    <input type="number" id="totalPrice" placeholder="Total price" wire:model="total_price"
-                                           value="{{ $total_price }}">
+                                    <label for="shares">Total share to sell</label>
+                                    <label for="shares">{{$no_of_shares}}</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dropdown1">Number of Shares</label>
+                                <select id="dropdown1" name="category" wire:model.live="shares_to_sell"
+                                        wire:click="calculateTotal">
+                                    @for ($share = 0; $share <= $no_of_shares; $share++)
+                                        <option value="{{ $share }}">{{ $share }}</option>
+                                    @endfor
+                                </select>
+                                <div>
+                                    @error('shares_to_sell')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="totalPrice">Total Price</label>
+                                <input type="number" id="totalPrice" placeholder="Total price" wire:model="total_price"
+                                       value="{{ $total_price }}">
+                                <div>
+                                    @error('total_price')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex flex-row">
+                                    <input type="checkbox" id="confirmAction" wire:model="confirmAction">
+                                    <label for="confirmAction">I confirm that I want to sell these shares</label>
+                                </div>
+                                <div>
+                                    @error('confirmAction')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <button type="submit" class="submit-btn btn">Sell</button>
+                        </form>
+                        <!-- Popup Form End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{--    create property add popup--}}
+        <div wire:ignore.self class="modal fade" id="property_add_popup" tabindex="-1" role="dialog"
+             aria-labelledby="property_add_label" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center position-relative">
+                        <h5 class="modal-title">{{$property_name}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Popup Form Start -->
+                        <form wire:submit.prevent="createSellingAdd" id="popupForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="shares">Price Per Share</label>
+                                    <input type="number" id="shares" placeholder="Enter shares"
+                                           wire:model="price_per_share"
+                                           wire:input="calculateTotal">
                                     <div>
-                                        @error('total_price')
+                                        @error('price_per_share')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group">
-                                    <div class="d-flex flex-row">
-                                        <input type="checkbox" id="confirmAction" wire:model="confirmAction">
-                                        <label for="confirmAction">I confirm that I want to sell these shares</label>
-                                    </div>
-                                    <div>
-                                        @error('confirmAction')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                    <label for="shares">Total share to sell</label>
+                                    <label for="shares">{{$no_of_shares}}</label>
                                 </div>
-                                <button type="submit" class="submit-btn btn">Sell</button>
-                            </form>
-                            <!-- Popup Form End -->
-                        </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dropdown1">Number of Shares</label>
+                                <select id="dropdown1" name="category" wire:model.live="shares_to_sell"
+                                        wire:click="calculateTotal">
+                                    @for ($share = 0; $share <= $no_of_shares; $share++)
+                                        <option value="{{ $share }}">{{ $share }}</option>
+                                    @endfor
+                                </select>
+                                <div>
+                                    @error('shares_to_sell')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="totalPrice">Total Price</label>
+                                <input type="number" id="totalPrice" placeholder="Total price" wire:model="total_price"
+                                       value="{{ $total_price }}">
+                                <div>
+                                    @error('total_price')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="d-flex flex-row">
+                                    <input type="checkbox" id="confirmAction" wire:model="confirmAction">
+                                    <label for="confirmAction">I confirm that I want to sell these shares</label>
+                                </div>
+                                <div>
+                                    @error('confirmAction')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <button type="submit" class="submit-btn btn">Sell</button>
+                        </form>
+                        <!-- Popup Form End -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -561,7 +639,6 @@
     //     $('#active_investment_popup').modal('hide');
     // });
 </script>
-
 
 
 <script>

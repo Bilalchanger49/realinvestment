@@ -5,6 +5,7 @@ namespace App\Livewire\Site;
 use App\Models\Auctions;
 use App\Models\Bid;
 use App\Models\Property_investment;
+use App\Models\Selling;
 use App\Models\Transactions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -34,6 +35,15 @@ class InvestorPageComponent extends Component
     public $investment;
 
     public function open_active_investment_popup(int $id)
+    {
+        $propertyInvestment = Property_investment::where('id', $id)
+            ->with('property')->first();
+        $this->no_of_shares = (int)$propertyInvestment->shares_owned;
+        $this->property_name = $propertyInvestment->property->property_name;
+        $this->investment = $propertyInvestment;
+    }
+
+    public function open_property_add_popup(int $id)
     {
         $propertyInvestment = Property_investment::where('id', $id)
             ->with('property')->first();
@@ -86,13 +96,6 @@ class InvestorPageComponent extends Component
         return redirect()->route('site.investor.page');
     }
 
-//    public function closeModal()
-//    {
-//        $this->reset(['property_id', 'property_name', 'price_per_share', 'total_shares', 'total_price']);
-//        $this->dispatch('hideModal');
-//
-////        $this->dispatch('close_modal');
-//    }
 
     public function deleteAuction()
     {
@@ -185,24 +188,28 @@ class InvestorPageComponent extends Component
             return redirect('/login');
         }
 
-        // Transfer shares: update the seller's and buyer's property investments
+        // Fetch the seller's property investment
         $sellerInvestment = Property_investment::where('id', $auction->property_investment_id)->first();
+        if (!$sellerInvestment || $sellerInvestment->shares_owned < $bid->total_shares) {
+            session()->flash('error', 'Seller does not have enough shares to complete this transaction.');
+            return;
+        }
+
+        // Deduct shares from the seller
+        $sellerInvestment->shares_owned -= $bid->total_shares;
+        $sellerInvestment->save();
+
+        // Update the buyer's property investment or create a new one
         $buyerInvestment = Property_investment::where('user_id', $buyer->id)
             ->where('property_id', $auction->property_id)
             ->first();
 
-        // Deduct shares from seller
-        $sellerInvestment->shares_owned -= $bid->total_shares;
-        $sellerInvestment->save();
-
-        // Add shares to buyer
         if ($buyerInvestment) {
             $buyerInvestment->shares_owned += $bid->total_shares;
             $buyerInvestment->share_price += $bid->share_amount;
-            $buyerInvestment->total_investment += $buyerInvestment->total_investemnt + $bid->total_price;
+            $buyerInvestment->total_investment += $bid->total_price;
             $buyerInvestment->save();
         } else {
-            // If the buyer doesn't already have an investment for this property, create a new one
             Property_investment::create([
                 'user_id' => $buyer->id,
                 'property_id' => $auction->property_id,
@@ -216,23 +223,42 @@ class InvestorPageComponent extends Component
             ]);
         }
 
-        // Mark auction and bid as completed
-        $auction->status = 'completed';
+        // Update the number of shares in the auction
+        $auction->no_of_shares -= $bid->total_shares;
+
+        // Mark the auction as completed if all shares are sold
+        if ($auction->no_of_shares <= 0) {
+            $auction->status = 'completed';
+        }
+
         $auction->save();
 
+        // Mark the bid as completed
         $bid->status = 'completed';
         $bid->save();
 
-        // Log the transaction (optional but recommended)
+        // Log the transaction
         Transactions::create([
             'user_id' => $buyer->id,
             'property_id' => $auction->property_id,
             'shares_owned' => $bid->total_shares,
             'total_investment' => $bid->total_price,
-            'remaining_shares' =>  $sellerInvestment->shares_owned,
+            'remaining_shares' => $sellerInvestment->shares_owned,
             'share_price' => $bid->share_amount,
             'payment_id' => 0,
             'activity' => 'buy',
+            'status' => 'active',
+        ]);
+
+        Transactions::create([
+            'user_id' => $auction->user_id,
+            'property_id' => $auction->property_id,
+            'shares_owned' => $bid->total_shares,
+            'total_investment' => $bid->total_price,
+            'remaining_shares' => $sellerInvestment->shares_owned,
+            'share_price' => $bid->share_amount,
+            'payment_id' => 0,
+            'activity' => 'sold',
             'status' => 'active',
         ]);
 
@@ -241,7 +267,36 @@ class InvestorPageComponent extends Component
         return redirect()->route('site.investor.page');
     }
 
+    public function createSellingAdd(){
 
+        $this->validate([
+            'price_per_share' => 'required|numeric|min:1',
+            'shares_to_sell' => 'required|numeric|min:1',
+            'confirmAction' => 'accepted',
+        ]);
+
+        $existingAdd = Selling::where('property_investment_id', $this->investment->id)
+            ->where('user_id', auth()->id())
+            ->where('status', 'active')->first();
+
+        if ($existingAdd) {
+            session()->flash('error', 'you have aldary created an add for this investment.');
+            return redirect()->route('site.investor.page');
+        }
+
+        $propertyAdd = Selling::create([
+            'user_id' => auth()->id(),
+            'property_investment_id' => $this->investment->id,
+            'property_id' => $this->investment->property->id,
+            'no_of_shares' => $this->shares_to_sell,
+            'share_amount' => $this->price_per_share,
+            'total_amount' => $this->total_price,
+            'remaining_shares' => $this->no_of_shares - $this->shares_to_sell,
+            'status' => 'active',
+        ]);
+
+        return redirect()->route('site.investor.page');
+    }
     public function render()
     {
         if (!empty(auth()->user())) {
@@ -288,7 +343,6 @@ class InvestorPageComponent extends Component
 
         return view('livewire.site.investorPage', compact('userbids', 'auctions', 'transctions', 'propertyInvestments', 'user', 'overallShares', 'overallInvestment', 'totalProperties'))->extends('layouts.site');
     }
-
 
 }
 

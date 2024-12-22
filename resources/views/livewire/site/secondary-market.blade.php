@@ -55,47 +55,48 @@
             </div>
 
             <div class="section-title text-center">
-    <h6>Join the excitement of property auctions and secure your next investment</h6>
-    <h2>Start Bidding Today</h2>
-</div>
+                <h6>Join the excitement of property auctions and secure your next investment</h6>
+                <h2>Start Bidding Today</h2>
+            </div>
 
             <!-- 0 layer starts -->
             <div class="d-flex flex-wrap gap-4">
-    @foreach($auctions as $auction)
-        @if($auction->status == 'active')
-            <div class="card__article" style="flex: 1 1 calc(33.333% - 1rem); max-width: calc(33.333% - 1rem);">
-                <!-- Card Content -->
-                <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"
-                     class="card__img rounded-3 w-100">
-                <div class="card__data position-absolute bg-white shadow rounded-3">
+                @foreach($auctions as $auction)
+                    @if($auction->status == 'active')
+                        <div class="card__article"
+                             style="flex: 1 1 calc(33.333% - 1rem); max-width: calc(33.333% - 1rem);">
+                            <!-- Card Content -->
+                            <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"
+                                 class="card__img rounded-3 w-100">
+                            <div class="card__data position-absolute bg-white shadow rounded-3">
                     <span class="card__description d-block text-muted small mb-1">
                         {{$auction->property->property_address}}
                     </span>
-                    <h2 class="card__title">{{$auction->property->property_name}}</h2>
-                    <span class="card__token-price d-block text-muted small mb-1">
+                                <h2 class="card__title">{{$auction->property->property_name}}</h2>
+                                <span class="card__token-price d-block text-muted small mb-1">
                         Token Price: {{$auction->share_amount_placed}}
                     </span>
-                    <span class="card__tokens-available d-block text-muted small mb-1">
+                                <span class="card__tokens-available d-block text-muted small mb-1">
                         Tokens Available: {{$auction->no_of_shares}}
                     </span>
-                    <span class="card__expected-return d-block text-muted small mb-1">
+                                <span class="card__expected-return d-block text-muted small mb-1">
                         Expected Annual Return: 8%
                     </span>
-                    <span class="card__owner d-block text-muted small mb-1">
+                                <span class="card__owner d-block text-muted small mb-1">
                         Owner: {{$auction->user->name}}
                     </span>
-                    <div>
-                        <button wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
-                            id="openBidPopup" class="btn btn-primary"
-                            data-toggle="modal" data-target="#add_bid_popup">
-                            Place Bid
-                        </button>
-                    </div>
-                </div>
+                                <div>
+                                    <button wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
+                                            id="openBidPopup" class="btn btn-primary"
+                                            data-toggle="modal" data-target="#add_bid_popup">
+                                        Place Bid
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
             </div>
-        @endif
-    @endforeach
-</div>
 
             <!-- 0 layer ends -->
             <!-- First Row of Cards -->
@@ -177,181 +178,120 @@
     <!-- for selling directally ###############  -->
 
     <div class="blog-page-area pd-top-90 mb-5">
-    
-     <div class="container">
 
-     <div class="section-title text-center">
-    <h6>Explore the finest properties to invest and grow your wealth</h6>
-    <h2>Discover Your Next Investment</h2>
-</div>
+        <div class="container">
 
-                <!-- 0 layer ends -->
-            <!-- First Row of Cards -->
-            <div class="row g-4 mt-5">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card__article position-relative">
-                        <!-- Keeping the same image -->
-                        <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"
-                             class="card__img rounded-3 w-100">
-                        <div class="card__data position-absolute bg-white shadow rounded-3">
-                            <span class="card__description d-block text-muted small mb-1">Downtown, City</span>
-                            <h2 class="card__title">High-Yield Residential Property</h2>
-                            <span class="card__token-price d-block text-muted small mb-1">Token Price: $50</span>
-                            <span
-                                class="card__tokens-available d-block text-muted small mb-1">Tokens Available: 200</span>
-                            <span
-                                class="card__expected-return d-block text-muted small mb-1">Expected Annual Return: 8%</span>
-                            <span class="card__owner d-block text-muted small mb-1">Owner: John Doe</span>
-                            <div>
-                                <a href="#" class="card__button text-decoration-none">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card__article position-relative">
-                        <img src="assets/img/banner/2.png" alt="Poon Hill, Nepal" class="card__img rounded-3 w-100">
-                        <div class="card__data position-absolute bg-white shadow rounded-3">
-                            <span class="card__description d-block text-muted small mb-1">Poon Hill, Nepal</span>
-                            <h2 class="card__title">Starry Night</h2>
-                            <span class="card__token-price d-block text-muted small mb-1">Token Price: $50</span>
-                            <span
-                                class="card__tokens-available d-block text-muted small mb-1">Tokens Available: 200</span>
-                            <span
-                                class="card__expected-return d-block text-muted small mb-1">Expected Annual Return: 8%</span>
-                            <span class="card__owner d-block text-muted small mb-1">Owner: John Doe</span>
-                            <div>
-                                <a href="#" class="card__button text-decoration-none">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card__article position-relative">
-                        <img src="assets/img/banner/2.png" alt="Bojcin Forest, Serbia"
-                             class="card__img rounded-3 w-100">
-                        <div class="card__data position-absolute bg-white shadow rounded-3">
-                            <span class="card__description d-block text-muted small mb-1">Bojcin Forest, Serbia</span>
-                            <h2 class="card__title">Path Of Peace</h2>
-                            <span class="card__token-price d-block text-muted small mb-1">Token Price: $50</span>
-                            <span
-                                class="card__tokens-available d-block text-muted small mb-1">Tokens Available: 200</span>
-                            <span
-                                class="card__expected-return d-block text-muted small mb-1">Expected Annual Return: 8%</span>
-                            <span class="card__owner d-block text-muted small mb-1">Owner: John Doe</span>
-                            <div>
-                                <a href="#" class="card__button text-decoration-none">Read More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="section-title text-center">
+                <h6>Explore the finest properties to invest and grow your wealth</h6>
+                <h2>Discover Your Next Investment</h2>
             </div>
+
+            @livewire('site.view-property_add-component')
 
         </div>
 
 
+        {{--    create auction popup--}}
 
-    {{--    create auction popup--}}
 
+        <div wire:ignore.self class="modal fade" id="add_bid_popup" tabindex="-1" role="dialog"
+             aria-labelledby="add_bid_popup_label" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center position-relative">
+                        <h2> new property</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Popup Form Start -->
+                        <form wire:submit.prevent="createBid" id="popupForm">
+                            <div class="form-row">
 
-    <div wire:ignore.self class="modal fade" id="add_bid_popup" tabindex="-1" role="dialog"
-         aria-labelledby="add_bid_popup_label" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header justify-content-center position-relative">
-                    <h2> new property</h2>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <!-- Popup Form Start -->
-                    <form wire:submit.prevent="createBid" id="popupForm">
-                        <div class="form-row">
+                                <div class="form-group">
+                                    <label for="bidPrize">Bid for single Share</label>
+                                    <input type="number" id="bidPrize" placeholder="Enter shares Prize"
+                                           wire:model="bidPrize"
+                                           wire:input="calculateTotal">
+                                    <div>
+                                        @error('bidPrize')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
 
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="totalshares">Total share to sell</label>
+                                    <label>{{$totalshares}}</label>
+                                </div>
+                            </div>
                             <div class="form-group">
-                                <label for="bidPrize">Bid for single Share</label>
-                                <input type="number" id="bidPrize" placeholder="Enter shares Prize"
-                                       wire:model="bidPrize"
-                                       wire:input="calculateTotal">
-                                <div>
-                                    @error('bidPrize')
-                                    <span class="text-danger">{{ $message }}</span>
-                                    @enderror
+                                <label for="sharesToBuy">Number of Shares</label>
+                                <select id="sharesToBuy" name="sharesToBuy" wire:model.live="sharesToBuy"
+                                        wire:click="calculateTotal">
+                                    @for ($share = 0; $share <= $totalshares; $share++)
+                                        <option value="{{ $share }}">{{ $share }}</option>
+                                    @endfor
+                                </select>
+
+                                <div>@error('sharesToBuy') <span class="text-danger">{{ $message }}</span> @enderror
                                 </div>
                             </div>
 
-                        </div>
-                        <div class="form-row">
+
                             <div class="form-group">
-                                <label for="totalshares">Total share to sell</label>
-                                <label>{{$totalshares}}</label>
+                                <label for="totalPrice">Total Price</label>
+                                <input type="number" id="totalPrice" placeholder="Total price" wire:model="totalPrice"
+                                       value="{{ $totalPrice }}">
+                                <div>@error('totalPrice') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="sharesToBuy">Number of Shares</label>
-                            <select id="sharesToBuy" name="sharesToBuy" wire:model.live="sharesToBuy"
-                                    wire:click="calculateTotal">
-                                @for ($share = 0; $share <= $totalshares; $share++)
-                                    <option value="{{ $share }}">{{ $share }}</option>
-                                @endfor
-                            </select>
 
-                            <div>@error('sharesToBuy') <span class="text-danger">{{ $message }}</span> @enderror
+                            <div class="form-group">
+                                <div class="d-flex flex-row">
+                                    <input type="checkbox" id="confirmAction" wire:model="confirmAction">
+                                    <label for="confirmAction">I confirm that I want to sell these shares</label>
+                                </div>
+                                <div>@error('confirmAction') <span class="text-danger">{{ $message }}</span> @enderror
+                                </div>
                             </div>
-                        </div>
 
 
-                        <div class="form-group">
-                            <label for="totalPrice">Total Price</label>
-                            <input type="number" id="totalPrice" placeholder="Total price" wire:model="totalPrice"
-                                   value="{{ $totalPrice }}">
-                            <div>@error('totalPrice') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="d-flex flex-row">
-                                <input type="checkbox" id="confirmAction" wire:model="confirmAction">
-                                <label for="confirmAction">I confirm that I want to sell these shares</label>
-                            </div>
-                            <div>@error('confirmAction') <span class="text-danger">{{ $message }}</span> @enderror
-                            </div>
-                        </div>
-
-
-                        <button type="submit" class="submit-btn btn">Place Bid</button>
-                    </form>
-                    <!-- Popup Form End -->
+                            <button type="submit" class="submit-btn btn">Place Bid</button>
+                        </form>
+                        <!-- Popup Form End -->
+                    </div>
                 </div>
+            </div>
         </div>
+
+        <script>
+            // Get elements
+            const open_investment_popup = document.getElementById('openBidPopup');
+            const close_investment_popup = document.getElementById('closePopup');
+            const active_investment_popup = document.getElementById('add_bid_popup');
+
+            // Open popup
+            open_investment_popup.addEventListener('click', () => {
+                active_investment_popup.style.display = 'flex';
+            });
+
+            // Close popup
+            close_investment_popup.addEventListener('click', () => {
+                active_investment_popup.style.display = 'none';
+            });
+
+            // Close popup when clicking outside of it
+            active_investment_popup.addEventListener('click', (e) => {
+                if (e.target === active_investment_popup) {
+                    active_investment_popup.style.display = 'none';
+                }
+            });
+
+
+        </script>
+
     </div>
-</div>
-
-<script>
-    // Get elements
-    const open_investment_popup = document.getElementById('openBidPopup');
-    const close_investment_popup = document.getElementById('closePopup');
-    const active_investment_popup = document.getElementById('add_bid_popup');
-
-    // Open popup
-    open_investment_popup.addEventListener('click', () => {
-        active_investment_popup.style.display = 'flex';
-    });
-
-    // Close popup
-    close_investment_popup.addEventListener('click', () => {
-        active_investment_popup.style.display = 'none';
-    });
-
-    // Close popup when clicking outside of it
-    active_investment_popup.addEventListener('click', (e) => {
-        if (e.target === active_investment_popup) {
-            active_investment_popup.style.display = 'none';
-        }
-    });
-
-
-</script>
-
-</div>
