@@ -42,7 +42,6 @@ class InvestorPageComponent extends Component
 
         $this->investment = $propertyInvestment;
 
-        $this->dispatch('active_investment_popup_modal');
     }
 
     public function calculateTotal()
@@ -73,8 +72,6 @@ class InvestorPageComponent extends Component
 
         //auction exist then user will be sent back and asked to edit the previous auction
         if ($existingAuction) {
-//            dd('auction already exist');
-            $this->dispatch('close_modal');
             return back()->withErrors(['auction' => 'You have already created an auction for these shares.']);
         }
 
@@ -88,15 +85,13 @@ class InvestorPageComponent extends Component
             'remaining_shares' => $this->no_of_shares - $this->shares_to_sell,
             'status' => 'active',
         ]);
-
-        $this->dispatch('close_modal');
         return redirect()->route('site.investor.page');
     }
 
-    public function closeModal()
-    {
-        $this->dispatch('close_modal');
-    }
+//    public function closeModal()
+//    {
+//        $this->dispatch('close_modal');
+//    }
 
     public function deleteAuction()
     {
