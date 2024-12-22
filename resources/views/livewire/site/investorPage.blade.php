@@ -79,59 +79,71 @@
 
             {{--        Active Investment table--}}
             <div class="container mt-5">
-                <div class="card-header">
-                    Active Investments
-                </div>
-                <div class="card p-3">
-                    <!-- Add a fixed height to this div -->
-                    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Total Shares</th>
-                                <th scope="col">Shares</th>
-                                <th scope="col">Remaining Shares</th>
-                                <th scope="col">Holding date</th>
-                                <th scope="col">Current price</th>
-                                <th scope="col">Total investments</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Auctions</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($propertyInvestments as $propertyInvestment)
-                                @if($propertyInvestment->status == 'holding' && $propertyInvestment->shares_owned > 0 )
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            {{$propertyInvestment->property->property_name}}
-                                            <br><small
-                                                    class="text-muted">code:#{{$propertyInvestment->property->property_reg_no}}</small>
-                                        </td>
-                                        <td>{{$propertyInvestment->property->property_total_shares}}</td>
-                                        <td>{{$propertyInvestment->shares_owned}}</td>
-                                        <td>{{$propertyInvestment->property->property_remaining_shares}}</td>
-                                        <td>{{$propertyInvestment->created_at}}</td>
-                                        <td><strong>{{$propertyInvestment->share_price}}</strong></td>
-                                        <td><strong>PK {{$propertyInvestment->total_investment}}</strong></td>
-                                        <td><span class="status-completed">{{$propertyInvestment->status}}</span></td>
-                                        <td>
-                                            <button
-                                                    wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"
-                                                    id="openPopup" class="details-btn-investment openPopup"
-                                                    data-toggle="modal" data-target="#active_investment_popup">&rarr;
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+    <div class="card-header">
+        Active Investments
+    </div>
+    <div class="card p-3">
+        <!-- Add a fixed height to this div -->
+        <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Total Shares</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Remaining Shares</th>
+                    <th scope="col">Holding date</th>
+                    <th scope="col">Current price</th>
+                    <th scope="col">Total investments</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Selling</th> <!-- Added Selling Column -->
+                    <th scope="col">Auctions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($propertyInvestments as $propertyInvestment)
+                    @if($propertyInvestment->status == 'holding' && $propertyInvestment->shares_owned > 0 )
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                {{$propertyInvestment->property->property_name}}
+                                <br><small class="text-muted">code:#{{$propertyInvestment->property->property_reg_no}}</small>
+                            </td>
+                            <td>{{$propertyInvestment->property->property_total_shares}}</td>
+                            <td>{{$propertyInvestment->shares_owned}}</td>
+                            <td>{{$propertyInvestment->property->property_remaining_shares}}</td>
+                            <td>{{$propertyInvestment->created_at}}</td>
+                            <td><strong>{{$propertyInvestment->share_price}}</strong></td>
+                            <td><strong>PK {{$propertyInvestment->total_investment}}</strong></td>
+                            <td><span class="status-completed">{{$propertyInvestment->status}}</span></td>
+                            <!-- New Selling Column -->
+                            <td>
+                                <button
+                                    wire:click.prevent="open_selling_popup({{$propertyInvestment->id}})"
+                                    id="openSellingPopup" class="details-btn-investment openPopup"
+                                    data-toggle="modal" data-target="#selling_popup">
+                                    Sell
+                                </button>
+                            </td>
+                            <!-- Existing Auctions Column -->
+                            <td>
+                                <button
+                                    wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"
+                                    id="openPopup" class="details-btn-investment openPopup"
+                                    data-toggle="modal" data-target="#active_investment_popup">
+                                    &rarr;
+                                </button>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 
 
             {{--        Active Auctions table--}}
