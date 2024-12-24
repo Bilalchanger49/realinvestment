@@ -9,13 +9,13 @@ class ViewSellingComponent extends Component
 {
     public function render()
     {
-        if (!empty(auth()->user())) {
-            $user = auth()->user();
-        } else {
-            return redirect('/login');
-        }
-
-        $propertyAdds = Selling::where('user_id',$user->id)->with('property')->get();
+//        if (!empty(auth()->user())) {
+//            $user = auth()->user();
+//        } else {
+//            return redirect('/login');
+//        }
+//        dd();
+        $propertyAdds = Selling::where('status','active')->with('property')->get();
 
         return view('livewire.site.viewSelling', compact('propertyAdds') )->extends('layouts.site');
     }

@@ -1,4 +1,5 @@
 <div>
+
     <!-- breadcrumb start -->
     <div class="breadcrumb-area bg-overlay-2" style="background-image:url('assets/img/other/6.png')">
         <div class="container">
@@ -187,24 +188,24 @@
             </div>
 
             @livewire('site.view-property_add-component')
-
         </div>
 
 
         {{--    create auction popup--}}
-
-
         <div wire:ignore.self class="modal fade" id="add_bid_popup" tabindex="-1" role="dialog"
              aria-labelledby="add_bid_popup_label" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center position-relative">
-                        <h2> new property</h2>
+                        <h5 class="modal-title position-absolute">Create Bid</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div>
+                            <h5>{{$property_name}}</h5>
+                        </div>
                         <!-- Popup Form Start -->
                         <form wire:submit.prevent="createBid" id="popupForm">
                             <div class="form-row">
