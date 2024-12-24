@@ -14,6 +14,7 @@ class SecondaryMarketComponent extends Component
      public $sharesToBuy;
      public $totalPrice;
      public $confirmAction;
+     public $property_name;
 
      public $selectedAuction;
     public function OpenCreateBidPopup(int $id)
@@ -22,6 +23,7 @@ class SecondaryMarketComponent extends Component
             ->with('property')->first();
         $this->selectedAuction = $auction;
         $this->totalshares = (int) $auction->no_of_shares;
+        $this->property_name = $auction->property->property_name;
 
     }
     public function calculateTotal()
@@ -86,11 +88,12 @@ class SecondaryMarketComponent extends Component
 
     public function render()
     {
-        if (!empty(auth()->user())) {
-            $user = auth()->user();
-        }else{
-            return redirect('/login');
-        }
+
+//        if (!empty(auth()->user())) {
+//            $user = auth()->user();
+//        }else{
+//            return redirect('/login');
+//        }
 
         $auctions = Auctions::with('property')->with('user')->get();
 

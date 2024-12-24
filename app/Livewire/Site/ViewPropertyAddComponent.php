@@ -97,11 +97,11 @@ class ViewPropertyAddComponent extends Component
 
     public function render()
     {
-        if (!empty(auth()->user())) {
-            $user = auth()->user();
-        } else {
-            return redirect('/login');
-        }
+//        if (!empty(auth()->user())) {
+//            $user = auth()->user();
+//        } else {
+//            return redirect('/login');
+//        }
 
         $propertyAdds = Selling::where('status', 'active')
             ->with('property')

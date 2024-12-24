@@ -380,17 +380,20 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center position-relative">
-                        <h5 class="modal-title">{{$property_name}}</h5>
+                        <h5 class="modal-title position-absolute">Auction table</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div>
+                            <h5>{{$property_name}}</h5>
+                        </div>
                         <!-- Popup Form Start -->
                         <form wire:submit.prevent="createAuction" id="popupForm">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="shares">Price Per Share</label>
+                                    <label for="shares">Min Price Per Share</label>
                                     <input type="number" id="shares" placeholder="Enter shares"
                                            wire:model="price_per_share"
                                            wire:input="calculateTotal">
@@ -434,7 +437,7 @@
                             <div class="form-group">
                                 <div class="d-flex flex-row">
                                     <input type="checkbox" id="confirmAction" wire:model="confirmAction">
-                                    <label for="confirmAction">I confirm that I want to sell these shares</label>
+                                    <label for="confirmAction">I confirm that I want to make an auction of these shares</label>
                                 </div>
                                 <div>
                                     @error('confirmAction')
@@ -457,17 +460,19 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header justify-content-center position-relative">
-                        <h5 class="modal-title">{{$property_name}}</h5>
+
+                        <h5 class="modal-title position-absolute">Selling table</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
+                        <h5 >{{$property_name}}</h5>
                         <!-- Popup Form Start -->
                         <form wire:submit.prevent="createSellingAdd" id="popupForm">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="shares">Price Per Share</label>
+                                    <label for="shares">Min Price Per Share</label>
                                     <input type="number" id="shares" placeholder="Enter shares"
                                            wire:model="price_per_share"
                                            wire:input="calculateTotal">
