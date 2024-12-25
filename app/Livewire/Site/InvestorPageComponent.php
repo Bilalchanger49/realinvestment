@@ -18,10 +18,15 @@ class InvestorPageComponent extends Component
 {
     public $bids = [];
     public $confirmAction;
+    public $confirmActionForAdd;
     public $price_per_share = 0;
+    public $price_per_share_for_add = 0;
     public $no_of_shares = 0;
+    public $no_of_shares_for_add = 0;
+    public $total_price_for_add = 0;
     public $total_price = 0;
     public $shares_to_sell = 0;
+    public $shares_to_sell_for_add = 0;
     public $property_name;
     public $investmentId;
 
@@ -47,7 +52,7 @@ class InvestorPageComponent extends Component
     {
         $propertyInvestment = Property_investment::where('id', $id)
             ->with('property')->first();
-        $this->no_of_shares = (int)$propertyInvestment->shares_owned;
+        $this->no_of_shares_for_add = (int)$propertyInvestment->shares_owned;
         $this->property_name = $propertyInvestment->property->property_name;
         $this->investment = $propertyInvestment;
     }
@@ -61,6 +66,17 @@ class InvestorPageComponent extends Component
         } else {
 
             $this->total_price = $this->shares_to_sell * $this->price_per_share;
+        }
+    }
+    public function calculateTotalForAdd()
+    {
+        if ($this->shares_to_sell_for_add < 1 || $this->price_per_share_for_add < 1) {
+            $this->total_price_for_add = 0;
+        } elseif ($this->shares_to_sell_for_add > $this->no_of_shares_for_add) {
+            $this->total_price_for_add = 0;
+        } else {
+
+            $this->total_price_for_add = $this->shares_to_sell_for_add * $this->price_per_share_for_add;
         }
     }
 
@@ -99,12 +115,6 @@ class InvestorPageComponent extends Component
 
     public function deleteAuction()
     {
-//        if (!$this->auction_id) {
-//            session()->flash('error', 'No auction selected for deletion.');
-//            return;
-//        }
-
-
         // Find and delete the auction
         $auction = Auctions::where('id', $this->auction_id)->first();
         if ($auction) {
@@ -144,8 +154,6 @@ class InvestorPageComponent extends Component
         if ($bid) {
             $bid->status = 'accepted';
             $bid->save();
-//            $auction->status = 'inactive';
-//            $auction->save();
             session()->flash('success', 'Bid accepted successfully.');
         }
     }
@@ -270,9 +278,9 @@ class InvestorPageComponent extends Component
     public function createSellingAdd(){
 
         $this->validate([
-            'price_per_share' => 'required|numeric|min:1',
-            'shares_to_sell' => 'required|numeric|min:1',
-            'confirmAction' => 'accepted',
+            'price_per_share_for_add' => 'required|numeric|min:1',
+            'shares_to_sell_for_add' => 'required|numeric|min:1',
+            'confirmActionForAdd' => 'accepted',
         ]);
 
         $existingAdd = Selling::where('property_investment_id', $this->investment->id)
@@ -288,10 +296,10 @@ class InvestorPageComponent extends Component
             'user_id' => auth()->id(),
             'property_investment_id' => $this->investment->id,
             'property_id' => $this->investment->property->id,
-            'no_of_shares' => $this->shares_to_sell,
-            'share_amount' => $this->price_per_share,
-            'total_amount' => $this->total_price,
-            'remaining_shares' => $this->no_of_shares - $this->shares_to_sell,
+            'no_of_shares' => $this->shares_to_sell_for_add,
+            'share_amount' => $this->price_per_share_for_add,
+            'total_amount' => $this->total_price_for_add,
+            'remaining_shares' => $this->no_of_shares_for_add - $this->shares_to_sell_for_add,
             'status' => 'active',
         ]);
 

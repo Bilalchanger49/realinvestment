@@ -437,7 +437,8 @@
                             <div class="form-group">
                                 <div class="d-flex flex-row">
                                     <input type="checkbox" id="confirmAction" wire:model="confirmAction">
-                                    <label for="confirmAction">I confirm that I want to make an auction of these shares</label>
+                                    <label for="confirmAction">I confirm that I want to make an auction of these
+                                        shares</label>
                                 </div>
                                 <div>
                                     @error('confirmAction')
@@ -467,17 +468,17 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <h5 >{{$property_name}}</h5>
+                        <h5>{{$property_name}}</h5>
                         <!-- Popup Form Start -->
                         <form wire:submit.prevent="createSellingAdd" id="popupForm">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="shares">Min Price Per Share</label>
                                     <input type="number" id="shares" placeholder="Enter shares"
-                                           wire:model="price_per_share"
-                                           wire:input="calculateTotal">
+                                           wire:model="price_per_share_for_add"
+                                           wire:input="calculateTotalForAdd">
                                     <div>
-                                        @error('price_per_share')
+                                        @error('price_per_share_for_add')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
@@ -486,40 +487,41 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="shares">Total share to sell</label>
-                                    <label for="shares">{{$no_of_shares}}</label>
+                                    <label for="shares">{{$no_of_shares_for_add}}</label>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="dropdown1">Number of Shares</label>
-                                <select id="dropdown1" name="category" wire:model.live="shares_to_sell"
-                                        wire:click="calculateTotal">
-                                    @for ($share = 0; $share <= $no_of_shares; $share++)
+                                <select id="dropdown1" name="category" wire:model.live="shares_to_sell_for_add"
+                                        wire:click="calculateTotalForAdd">
+                                    @for ($share = 0; $share <= $no_of_shares_for_add; $share++)
                                         <option value="{{ $share }}">{{ $share }}</option>
                                     @endfor
                                 </select>
                                 <div>
-                                    @error('shares_to_sell')
+                                    @error('shares_to_sell_for_add')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="totalPrice">Total Price</label>
-                                <input type="number" id="totalPrice" placeholder="Total price" wire:model="total_price"
-                                       value="{{ $total_price }}">
+                                <label for="total_price_for_add">Total Price</label>
+                                <input type="number" id="total_price_for_add" placeholder="Total price"
+                                       wire:model="total_price_for_add"
+                                       value="{{ $total_price_for_add }}">
                                 <div>
-                                    @error('total_price')
+                                    @error('total_price_for_add')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="d-flex flex-row">
-                                    <input type="checkbox" id="confirmAction" wire:model="confirmAction">
-                                    <label for="confirmAction">I confirm that I want to sell these shares</label>
+                                    <input type="checkbox" id="confirmActionForAdd" wire:model="confirmActionForAdd">
+                                    <label for="confirmActionForAdd">I confirm that I want to sell these shares</label>
                                 </div>
                                 <div>
-                                    @error('confirmAction')
+                                    @error('confirmActionForAdd')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -634,21 +636,8 @@
 
 </div>
 
-<script>
-
-    // document.addEventListener('active_investment_popup_modal', event => {
-    //     $('#active_investment_popup').modal('show');
-    // });
-
-    // document.addEventListener('close_modal', event => {
-    //     $('#active_investment_popup').modal('hide');
-    // });
-</script>
-
 
 <script>
-
-
     // Transaction Details Popup Script
     document.querySelectorAll('.details-btn-transaction').forEach(button => {
         button.addEventListener('click', (e) => {

@@ -42,7 +42,8 @@
                                         class="btn btn-danger custom-small-btn"
                                         style="line-height: 0px;"
                                         data-toggle="modal"
-                                        data-target="#delete_auction_popup">
+                                        wire:click.prevent="confirmSellingAddDelete({{ $propertyAdd->id }}, '{{ $propertyAdd->property->property_name }}')"
+                                        data-target="#delete_selling_add_popup">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                 </td>
@@ -51,6 +52,28 @@
                     @endforeach
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+
+    {{--    delete selling add popup--}}
+    <div wire:ignore.self class="modal fade" id="delete_selling_add_popup" tabindex="-1" role="dialog"
+         aria-labelledby="delete_selling_add_popup" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Selling Add</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this Advertisement for <strong>{{ $property_name }}</strong>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" wire:click="deleteSellingAdd">Delete</button>
+                </div>
             </div>
         </div>
     </div>
