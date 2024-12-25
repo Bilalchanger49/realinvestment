@@ -32,11 +32,10 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', DashboardComponent::class)->name('dashboard');
-<<<<<<< HEAD
-    Route::get('/dashboard', function () {
-        return view('livewire.admin.dashboard');
-    })->name('dashboard');
-});
+    // Route::get('/dashboard', function () {
+    //     return view('livewire.admin.dashboard');
+    // })->name('dashboard');
+
 
 Route::prefix('admin')->group(function () {
     Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
@@ -44,8 +43,6 @@ Route::prefix('admin')->group(function () {
     Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
 })->middleware('auth');
 
-=======
-
 
 Route::prefix('admin')->group(function () {
     Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
@@ -53,4 +50,4 @@ Route::prefix('admin')->group(function () {
     Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
 });
 });
->>>>>>> 2ba86e434b05d99ced21aada9a13efa0cd48f3a9
+
