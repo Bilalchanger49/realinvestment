@@ -315,7 +315,6 @@
                                 <th scope="col">Amount</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Activity</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Print</th>
                             </tr>
                             </thead>
@@ -330,8 +329,14 @@
                                     </td>
                                     <td><strong>PK {{$transction->total_investment}}</strong></td>
                                     <td>{{$transction->created_at}}</td>
-                                    <td><span class="status-completed">{{$transction->activity}}</span></td>
-                                    <td><span class="status-completed">{{$transction->status}}</span></td>
+
+                                    <td>
+                                        @if($transction->activity == 'buy')
+                                        <span class="status-completed">{{$transction->activity}}</span>
+                                        @else
+                                            <span class="status-unpaid">{{$transction->activity}}</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <a href="#" class="details-btn-transaction">&rarr;</a>
                                     </td>
@@ -346,7 +351,6 @@
                                 <td><strong>$412.50</strong></td>
                                 <td>10:30 Feb 21 2023</td>
                                 <td><span class="status-unpaid">sold</span></td>
-                                <td><span class="status-cancelled">not holding</span></td>
                                 <td>
                                     <a href="#" class="details-btn-transaction">&rarr;</a>
                                 </td>
@@ -360,7 +364,6 @@
                                 <td><strong>$390.50</strong></td>
                                 <td>10:30 Feb 21 2023</td>
                                 <td><span class="status-completed">Buy</span></td>
-                                <td><span class="status-completed">holding</span></td>
                                 <td>
                                     <a href="#" class="details-btn-transaction">&rarr;</a>
                                 </td>
@@ -567,7 +570,6 @@
                     <p><strong>Amount:</strong> <span id="transactionAmount"></span></p>
                     <p><strong>Date:</strong> <span id="transactionDate"></span></p>
                     <p><strong>Activity:</strong> <span id="transactionActivity"></span></p>
-                    <p><strong>Status:</strong> <span id="transactionStatus"></span></p>
                 </div>
                 <button id="printBill" class="print-btn">Print</button>
             </div>
@@ -653,7 +655,6 @@
             const amount = row.querySelector('td:nth-child(3)').textContent.trim(); // Transaction Amount
             const date = row.querySelector('td:nth-child(4)').textContent.trim(); // Transaction Date
             const activity = row.querySelector('td:nth-child(5)').textContent.trim(); // Transaction Activity
-            const status = row.querySelector('td:nth-child(6)').textContent.trim(); // Transaction Status
 
             // Populate the bill details in the popup
             document.getElementById('transactionName').textContent = name;

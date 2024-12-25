@@ -1,11 +1,11 @@
 <div>
-    <div class="row g-4 mt-5">
+    <div class="row g-4 mt-5" style="justify-content: flex-start">
         @foreach($propertyAdds as $propertyAdd)
         <div class="col-md-6 col-lg-4 mt-5">
             <div class="card__article position-relative">
                 <!-- Keeping the same image -->
-                <img src="{{asset('storage/' . $propertyAdd->property->property_image)}}" alt="img" 
-                style="width: 100%; height: 200px; object-fit: cover; border-radius: 1.5rem; transition: transform 0.5s ease-in-out;">
+                <img src="{{asset('storage/' . $propertyAdd->property->property_image)}}" alt="img"
+                style="width: 100%; height: 250px; object-fit: cover; border-radius: 1.5rem; transition: transform 0.5s ease-in-out;">
 {{--                <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"--}}
 {{--                     class="card__img rounded-3 w-100">--}}
                 <div class="card__data position-absolute bg-white shadow rounded-3">
@@ -39,7 +39,8 @@
             <div class="card__article position-relative">
                 <!-- Keeping the same image -->
                 <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"
-                     class="card__img rounded-3 w-100">
+                     class="card__img rounded-3 w-100"
+                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 1.5rem; transition: transform 0.5s ease-in-out;">
                 <div class="card__data position-absolute bg-white shadow rounded-3">
                     <span class="card__description d-block text-muted small mb-1">Downtown, City</span>
                     <h2 class="card__title">High-Yield Residential Property</h2>
@@ -57,7 +58,8 @@
         </div>
         <div class="col-md-6 col-lg-4">
             <div class="card__article position-relative">
-                <img src="assets/img/banner/2.png" alt="Poon Hill, Nepal" class="card__img rounded-3 w-100">
+                <img src="assets/img/banner/2.png" alt="Poon Hill, Nepal" class="card__img rounded-3 w-100"
+                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 1.5rem; transition: transform 0.5s ease-in-out;">
                 <div class="card__data position-absolute bg-white shadow rounded-3">
                     <span class="card__description d-block text-muted small mb-1">Poon Hill, Nepal</span>
                     <h2 class="card__title">Starry Night</h2>
@@ -76,7 +78,8 @@
         <div class="col-md-6 col-lg-4">
             <div class="card__article position-relative">
                 <img src="assets/img/banner/2.png" alt="Bojcin Forest, Serbia"
-                     class="card__img rounded-3 w-100">
+                     class="card__img rounded-3 w-100"
+                     style="width: 100%; height: 250px; object-fit: cover; border-radius: 1.5rem; transition: transform 0.5s ease-in-out;">
                 <div class="card__data position-absolute bg-white shadow rounded-3">
                     <span class="card__description d-block text-muted small mb-1">Bojcin Forest, Serbia</span>
                     <h2 class="card__title">Path Of Peace</h2>

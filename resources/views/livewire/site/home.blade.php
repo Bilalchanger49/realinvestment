@@ -126,7 +126,7 @@
                 <div class="section-title style-white text-center">
                     <h6>Our Testomonial </h6>
                     <h2>What Client Say</h2>
-                    <p>Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor sit amet, </p>
+{{--                    <p>Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor sit amet, </p>--}}
                 </div>
                 <div class="testimonial-slider-2 owl-carousel text-center">
                     <div class="item">
@@ -156,7 +156,7 @@
                             </div>
                             <div class="details">
                                 <h6 class="name"> Zahid Khan</h6>
-                                <span class="designation">First-Time Investor</span>
+                                <span class="designation">Investor</span>
                                 <p>I never thought owning a share in real estate could be so easy. Thanks to Real
                                     Investment, I'm earning steady rental income every year.</p>
                                 <div class="rating-inner">
@@ -176,9 +176,9 @@
                             </div>
                             <div class="details">
                                 <h6 class="name">Sarif Jaya Miprut</h6>
-                                <span class="designation">Guest</span>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut</p>
+                                <span class="designation">investor</span>
+                                <p>Real Investment made it possible for me to own a share in a commercial property
+                                    without breaking my savings. A seamless and rewarding experience!</p>
                                 <div class="rating-inner">
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
@@ -196,7 +196,7 @@
 
 
         <!-- agent area start -->
-        <div class="agent-area text-center pd-top-118 pd-bottom-90">
+        <div class="agent-area text-center pd-top-118">
             <div class="container">
                 <div class="section-title text-center">
                     <h6>Meet Our Agent</h6>
@@ -263,75 +263,14 @@
         <!-- agent area end -->
 
         <!-- Secondary market area start -->
-        <div class="blog-area pd-top-118 pd-bottom-90">
+        <div class="blog-area pd-top-90 pd-bottom-90">
             <div class="container">
                 <div class="section-title text-center">
                     <h6>Secondary Market</h6>
                     <h2>Properties</h2>
                 </div>
                 @livewire('site.view-property_add-component')
-{{--                <div class="row">--}}
-{{--                    <div class="col-lg-4 col-md-6">--}}
-{{--                        <div class="single-product-wrap style-2">--}}
-{{--                            <div class="thumb">--}}
-{{--                                <img src="assets/img/project/7.png" alt="img">--}}
-{{--                            </div>--}}
-{{--                            <div class="product-details-inner">--}}
-{{--                                <ul class="meta-inner d-flex">--}}
-{{--                                    <li><i class="fa fa-user"></i>By Admin</li>--}}
-{{--                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>--}}
-{{--                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>--}}
-{{--                                </ul>--}}
-{{--                                <div class="d-flex">--}}
-{{--                                    <h4><a href="blog-details.html">Family House</a></h4>--}}
-{{--                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>--}}
-{{--                                </div>--}}
-{{--                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur--}}
-{{--                                    adipisicing eiusmod.</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-lg-4 col-md-6">--}}
-{{--                        <div class="single-product-wrap style-2">--}}
-{{--                            <div class="thumb">--}}
-{{--                                <img src="assets/img/project/7.png" alt="img">--}}
-{{--                            </div>--}}
-{{--                            <div class="product-details-inner">--}}
-{{--                                <ul class="meta-inner d-flex">--}}
-{{--                                    <li><i class="fa fa-user"></i>By Admin</li>--}}
-{{--                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>--}}
-{{--                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>--}}
-{{--                                </ul>--}}
-{{--                                <div class="d-flex">--}}
-{{--                                    <h4><a href="blog-details.html">Family House</a></h4>--}}
-{{--                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>--}}
-{{--                                </div>--}}
-{{--                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur--}}
-{{--                                    adipisicing eiusmod.</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-lg-4 col-md-6">--}}
-{{--                        <div class="single-product-wrap style-2">--}}
-{{--                            <div class="thumb">--}}
-{{--                                <img src="assets/img/project/7.png" alt="img">--}}
-{{--                            </div>--}}
-{{--                            <div class="product-details-inner">--}}
-{{--                                <ul class="meta-inner d-flex">--}}
-{{--                                    <li><i class="fa fa-user"></i>By Admin</li>--}}
-{{--                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>--}}
-{{--                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>--}}
-{{--                                </ul>--}}
-{{--                                <div class="d-flex">--}}
-{{--                                    <h4><a href="blog-details.html">Family House</a></h4>--}}
-{{--                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>--}}
-{{--                                </div>--}}
-{{--                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur--}}
-{{--                                    adipisicing eiusmod.</p>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+
             </div>
         </div>
         <!-- Secondary market area end -->

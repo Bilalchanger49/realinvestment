@@ -20,7 +20,6 @@ Route::get('/about', AboutComponent::class)->name('site.about');
 Route::get('/property-details/{id}', PropertyDetailsComponent::class)->name('site.property.details');
 Route::get('/all-properties', AllPropertiesComponent::class)->name('site.property.all');
 Route::get('/contact-us', ContactComponent::class)->name('site.contact');
-Route::get('/investor-page', InvestorPageComponent::class)->name('site.investor.page');
 Route::get('/faq', FaqComponent::class)->name('site.faq');
 Route::get('/secondary-market', SecondaryMarketComponent::class)->name('site.secondary.market');
 Route::get('/buy-property/{id}', BuyPropertyComponent::class)->name('site.property.buy');
@@ -36,7 +35,7 @@ Route::middleware([
     //     return view('livewire.admin.dashboard');
     // })->name('dashboard');
 
-
+    Route::get('/investor-page', InvestorPageComponent::class)->name('site.investor.page');
 Route::prefix('admin')->group(function () {
     Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
     Route::get('/property/create', createProperty::class)->name('admin.property.create');
