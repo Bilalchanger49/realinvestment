@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {{--<x-guest-layout>--}}
 {{--    <x-authentication-card>--}}
 {{--        <x-slot name="logo">--}}
@@ -61,8 +60,6 @@
 {{--</x-guest-layout>--}}
 
 
-=======
->>>>>>> 2ba86e434b05d99ced21aada9a13efa0cd48f3a9
 <!DOCTYPE html>
 <html lang="en">
 

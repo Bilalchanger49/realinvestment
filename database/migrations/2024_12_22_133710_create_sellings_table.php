@@ -19,11 +19,7 @@ return new class extends Migration
             $table->integer('no_of_shares');
             $table->float('share_amount');
             $table->float('total_amount');
-<<<<<<< HEAD
             $table->float('end_date')->nullable();
-=======
-            $table->time('end_date')->nullable();
->>>>>>> 2ba86e434b05d99ced21aada9a13efa0cd48f3a9
             $table->integer('remaining_shares');
             $table->text('status');
             $table->timestamps();

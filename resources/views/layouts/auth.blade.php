@@ -92,7 +92,6 @@
 
                 </ul>
             </div>
-<<<<<<< HEAD
             <div class="sidebar-footer">
                 <div class="sidebar-footer-content">
                     <ul class="d-flex">
@@ -109,8 +108,6 @@
                     </ul>
                 </div>
             </div>
-=======
->>>>>>> 2ba86e434b05d99ced21aada9a13efa0cd48f3a9
         </div>
     </aside>
     <!-- ====================================
