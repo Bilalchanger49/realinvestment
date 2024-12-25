@@ -55,7 +55,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="single-product-wrap style-bottom">
                                 <div class="thumb">
-                                    <img src="assets/img/project/1.png" alt="img">
+                                    <img src="{{asset('storage/' . $property->property_image)}}" alt="img" >
                                     <div class="product-wrap-details">
                                         <div class="media justify-content-end">
                                             <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
@@ -262,78 +262,79 @@
         </div>
         <!-- agent area end -->
 
-        <!-- blog area start -->
+        <!-- Secondary market area start -->
         <div class="blog-area pd-top-118 pd-bottom-90">
             <div class="container">
                 <div class="section-title text-center">
                     <h6>Secondary Market</h6>
                     <h2>Properties</h2>
                 </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product-wrap style-2">
-                            <div class="thumb">
-                                <img src="assets/img/project/7.png" alt="img">
-                            </div>
-                            <div class="product-details-inner">
-                                <ul class="meta-inner d-flex">
-                                    <li><i class="fa fa-user"></i>By Admin</li>
-                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>
-                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>
-                                </ul>
-                                <div class="d-flex">
-                                    <h4><a href="blog-details.html">Family House</a></h4>
-                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>
-                                </div>
-                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur
-                                    adipisicing eiusmod.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product-wrap style-2">
-                            <div class="thumb">
-                                <img src="assets/img/project/7.png" alt="img">
-                            </div>
-                            <div class="product-details-inner">
-                                <ul class="meta-inner d-flex">
-                                    <li><i class="fa fa-user"></i>By Admin</li>
-                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>
-                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>
-                                </ul>
-                                <div class="d-flex">
-                                    <h4><a href="blog-details.html">Family House</a></h4>
-                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>
-                                </div>
-                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur
-                                    adipisicing eiusmod.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-product-wrap style-2">
-                            <div class="thumb">
-                                <img src="assets/img/project/7.png" alt="img">
-                            </div>
-                            <div class="product-details-inner">
-                                <ul class="meta-inner d-flex">
-                                    <li><i class="fa fa-user"></i>By Admin</li>
-                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>
-                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>
-                                </ul>
-                                <div class="d-flex">
-                                    <h4><a href="blog-details.html">Family House</a></h4>
-                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>
-                                </div>
-                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur
-                                    adipisicing eiusmod.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @livewire('site.view-property_add-component')
+{{--                <div class="row">--}}
+{{--                    <div class="col-lg-4 col-md-6">--}}
+{{--                        <div class="single-product-wrap style-2">--}}
+{{--                            <div class="thumb">--}}
+{{--                                <img src="assets/img/project/7.png" alt="img">--}}
+{{--                            </div>--}}
+{{--                            <div class="product-details-inner">--}}
+{{--                                <ul class="meta-inner d-flex">--}}
+{{--                                    <li><i class="fa fa-user"></i>By Admin</li>--}}
+{{--                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>--}}
+{{--                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>--}}
+{{--                                </ul>--}}
+{{--                                <div class="d-flex">--}}
+{{--                                    <h4><a href="blog-details.html">Family House</a></h4>--}}
+{{--                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>--}}
+{{--                                </div>--}}
+{{--                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur--}}
+{{--                                    adipisicing eiusmod.</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-lg-4 col-md-6">--}}
+{{--                        <div class="single-product-wrap style-2">--}}
+{{--                            <div class="thumb">--}}
+{{--                                <img src="assets/img/project/7.png" alt="img">--}}
+{{--                            </div>--}}
+{{--                            <div class="product-details-inner">--}}
+{{--                                <ul class="meta-inner d-flex">--}}
+{{--                                    <li><i class="fa fa-user"></i>By Admin</li>--}}
+{{--                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>--}}
+{{--                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>--}}
+{{--                                </ul>--}}
+{{--                                <div class="d-flex">--}}
+{{--                                    <h4><a href="blog-details.html">Family House</a></h4>--}}
+{{--                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>--}}
+{{--                                </div>--}}
+{{--                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur--}}
+{{--                                    adipisicing eiusmod.</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="col-lg-4 col-md-6">--}}
+{{--                        <div class="single-product-wrap style-2">--}}
+{{--                            <div class="thumb">--}}
+{{--                                <img src="assets/img/project/7.png" alt="img">--}}
+{{--                            </div>--}}
+{{--                            <div class="product-details-inner">--}}
+{{--                                <ul class="meta-inner d-flex">--}}
+{{--                                    <li><i class="fa fa-user"></i>By Admin</li>--}}
+{{--                                    <li><i class="fa fa-calendar-alt"></i>Marce 9, 2020</li>--}}
+{{--                                    <li class="ms-auto"><i class="fa fa-solid fa-money"></i> PK 50000</li>--}}
+{{--                                </ul>--}}
+{{--                                <div class="d-flex">--}}
+{{--                                    <h4><a href="blog-details.html">Family House</a></h4>--}}
+{{--                                    <p class="ms-auto"><i class="fa fa-solid fa-coins"></i> 12</p>--}}
+{{--                                </div>--}}
+{{--                                <p>Lorem ipsum dolor consectetur iicing elit, sed do eius Lorem ipsum dolo amet, costur--}}
+{{--                                    adipisicing eiusmod.</p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
-        <!-- Blog area end -->
+        <!-- Secondary market area end -->
 
         <script>
             document.querySelectorAll('.toggle-content-btn').forEach(button => {

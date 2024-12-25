@@ -1,11 +1,12 @@
 <div>
     <div class="row g-4 mt-5">
         @foreach($propertyAdds as $propertyAdd)
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4 mt-5">
             <div class="card__article position-relative">
                 <!-- Keeping the same image -->
-                <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"
-                     class="card__img rounded-3 w-100">
+                <img src="{{asset('storage/' . $propertyAdd->property->property_image)}}" alt="img" >
+{{--                <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"--}}
+{{--                     class="card__img rounded-3 w-100">--}}
                 <div class="card__data position-absolute bg-white shadow rounded-3">
                     <span class="card__description d-block text-muted small mb-1">
                         {{$propertyAdd->property->property_address}}</span>

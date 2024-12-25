@@ -1,4 +1,25 @@
 
+{{--<style>--}}
+{{--    .description-container {--}}
+{{--        max-height: 3em; /* Approx. 3 lines */--}}
+{{--        overflow: hidden;--}}
+{{--        text-overflow: ellipsis;--}}
+{{--        white-space: nowrap;--}}
+{{--    }--}}
+{{--    .description-container.expanded {--}}
+{{--        max-height: none; /* Remove restriction */--}}
+{{--        white-space: normal; /* Allow multiline display */--}}
+{{--    }--}}
+{{--    .read-more {--}}
+{{--        cursor: pointer;--}}
+{{--        font-size: 0.9em;--}}
+{{--        color: #007bff;--}}
+{{--        text-decoration: none;--}}
+{{--        background: none;--}}
+{{--        border: none;--}}
+{{--        padding: 0;--}}
+{{--    }--}}
+{{--</style>--}}
     <div class="content-wrapper">
         <div class="content">
             <h1 class="mb-3">Property</h1>
@@ -27,7 +48,9 @@
                         @foreach($properties as $property)
                             <tr>
                                 <td>{{ $property->property_name }}</td>
-                                <td>{{ $property->property_description }}</td>
+                                <td style="max-height: 100px; display: -webkit-box; overflow-y: hidden;}">
+                                    {{ $property->property_description }}
+                                </td>
                                 <td>{{ $property->property_reg_no }}</td>
                                 <td>{{ $property->property_address }}</td>
                                 <td>{{ $property->property_price }}</td>
@@ -79,3 +102,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleReadMore(button) {
+            const descriptionContainer = button.previousElementSibling;
+            const isExpanded = descriptionContainer.classList.toggle('expanded');
+
+            button.textContent = isExpanded ? 'Read Less' : 'Read More';
+        }
+    </script>

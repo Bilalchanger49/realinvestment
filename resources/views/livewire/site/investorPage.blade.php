@@ -121,7 +121,7 @@
                                         <!-- New Selling Column -->
                                         <td>
                                             <button
-                                                wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"
+                                                wire:click.prevent="open_property_add_popup({{$propertyInvestment->id}})"
                                                 id="openPopup" class="details-btn-investment openPopup"
                                                 data-toggle="modal" data-target="#property_add_popup">
                                                 Sell
