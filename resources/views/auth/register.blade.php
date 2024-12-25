@@ -58,9 +58,6 @@
 {{--        </form>--}}
 {{--    </x-authentication-card>--}}
 {{--</x-guest-layout>--}}
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 

@@ -25,11 +25,7 @@
                         <div class="col-12 col-md-6 d-flex align-items-center justify-content-center">
                             <div class="col-12 col-lg-11 col-xl-10">
                                 <div class="card-body p-3 p-md-4 p-xl-5">
-                                    @session('status')
-                                    <div class="mb-4 font-medium text-sm text-green-600">
-                                        {{ $value }}
-                                    </div>
-                                    @endsession
+
 
                                     <div class="row">
                                         <div class="col-12">
@@ -43,6 +39,12 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    @session('status')
+                                    <div class="mb-4 font-medium text-sm text-green-600">
+                                        {{ $value }}
+                                    </div>
+                                    @endsession
                                     <form method="POST" action="{{ route('password.email') }}">
                                         @csrf
                                         <div class="row gy-3 overflow-hidden">
