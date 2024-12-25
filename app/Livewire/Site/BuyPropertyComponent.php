@@ -31,7 +31,6 @@ class BuyPropertyComponent extends Component
 
     public function render()
     {
-        // Render the corresponding Blade file for this component
         return view('livewire.site.buy-property')->extends('layouts.site');
     }
 

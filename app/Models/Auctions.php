@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Auctions extends Model
 {
     use HasFactory;
+
     protected $fillable = ['user_id', 'property_investment_id', 'property_id', 'no_of_shares', 'share_amount_placed',
         'total_amount_placed', 'remaining_shares', 'status'];
 

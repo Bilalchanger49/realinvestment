@@ -9,7 +9,6 @@ class AboutComponent extends Component
 {
     public function render()
     {
-//        dd('')
         return view('livewire.site.about')->extends('layouts.site');
     }
 }
