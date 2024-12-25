@@ -60,6 +60,7 @@
 {{--</x-guest-layout>--}}
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,26 +102,38 @@
                                         <div class="row gy-3 overflow-hidden">
                                             <div class="col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" :value="old('name')" required autofocus autocomplete="name">
+                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" value="{{old('name')}}"  autofocus autocomplete="name">
                                                     <label for="name" class="form-label ">Name</label>
+                                                    @error('name')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" required autocomplete="username">
+                                                    <input type="email" class="form-control" name="email" id="email" value="{{old('email')}}"  placeholder="name@example.com"  autocomplete="username">
                                                     <label for="email" class="form-label ">Email</label>
+                                                    @error('email')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="password" class="form-control" name="password" id="password" placeholder="Password" required autocomplete="new-password">
+                                                    <input type="password" class="form-control" name="password" id="password"  placeholder="Password"  autocomplete="new-password">
                                                     <label for="password" class="form-label">Password</label>
+                                                    @error('password')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
+                                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password"  autocomplete="new-password">
                                                     <label for="password_confirmation" class="form-label">Confirm Password</label>
+                                                    @error('password_confirmation')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12">

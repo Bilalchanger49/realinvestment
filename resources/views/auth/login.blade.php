@@ -58,14 +58,20 @@
                                         <div class="row gy-3 overflow-hidden">
                                             <div class="col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" :value="old('email')" required autofocus autocomplete="username">
+                                                    <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" value="{{old('email')}}" autofocus autocomplete="username">
                                                     <label for="email" class="form-label">Email</label>
+                                                    @error('email')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required autocomplete="current-password">
+                                                    <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password"  autocomplete="current-password">
                                                     <label for="password" class="form-label">Password</label>
+                                                    @error('password')
+                                                    <p class="text-danger">{{$message}}</p>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div class="col-12">
