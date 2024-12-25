@@ -60,44 +60,45 @@
                 <h2>Start Bidding Today</h2>
             </div>
 
-            <!-- 0 layer starts -->
-            <div class="d-flex flex-wrap gap-4">
-                @foreach($auctions as $auction)
-                    @if($auction->status == 'active')
-                        <div class="card__article"
-                             style="flex: 1 1 calc(33.333% - 1rem); max-width: calc(33.333% - 1rem);">
-                            <!-- Card Content -->
-                            <img src="assets/img/banner/2.png" alt="Vancouver Mountains, Canada"
-                                 class="card__img rounded-3 w-100">
-                            <div class="card__data position-absolute bg-white shadow rounded-3">
+           <!-- 0 layer starts -->
+<div class="d-flex flex-wrap gap-4">
+    @foreach($auctions as $auction)
+        @if($auction->status == 'active')
+            <div class="card__article"
+                 style="flex: 1 1 calc(33.333% - 1rem); max-width: calc(33.333% - 1rem); position: relative;">
+                <!-- Card Content -->
+                <img src="{{ $auction->property->image_url }}" alt="Property Image"
+                     class="card__img rounded-3 w-100">
+                <div class="card__data position-absolute bg-white shadow rounded-3">
                     <span class="card__description d-block text-muted small mb-1">
                         {{$auction->property->property_address}}
                     </span>
-                                <h2 class="card__title">{{$auction->property->property_name}}</h2>
-                                <span class="card__token-price d-block text-muted small mb-1">
+                    <h2 class="card__title">{{$auction->property->property_name}}</h2>
+                    <span class="card__token-price d-block text-muted small mb-1">
                         Token Price: {{$auction->share_amount_placed}}
                     </span>
-                                <span class="card__tokens-available d-block text-muted small mb-1">
+                    <span class="card__tokens-available d-block text-muted small mb-1">
                         Tokens Available: {{$auction->no_of_shares}}
                     </span>
-                                <span class="card__expected-return d-block text-muted small mb-1">
+                    <span class="card__expected-return d-block text-muted small mb-1">
                         Expected Annual Return: 8%
                     </span>
-                                <span class="card__owner d-block text-muted small mb-1">
+                    <span class="card__owner d-block text-muted small mb-1">
                         Owner: {{$auction->user->name}}
                     </span>
-                                <div>
-                                    <button wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
-                                            id="openBidPopup" class="btn btn-primary"
-                                            data-toggle="modal" data-target="#add_bid_popup">
-                                        Place Bid
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach
+                    <div>
+                        <button wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
+                                id="openBidPopup" class="btn btn-primary"
+                                data-toggle="modal" data-target="#add_bid_popup">
+                            Place Bid
+                        </button>
+                    </div>
+                </div>
             </div>
+        @endif
+    @endforeach
+</div>
+
 
             <!-- 0 layer ends -->
             <!-- First Row of Cards -->

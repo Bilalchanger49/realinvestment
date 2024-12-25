@@ -3188,8 +3188,11 @@ section.bg-light {
   margin-right: 10px;
 }
 
-.single-product-wrap.style-bottom {
-  border-radius: 5px 5px 0 0;
+.single-product-wrap.style-bottom .thumb img {
+  width: 100%; 
+  height: 250px; 
+  object-fit: cover; 
+  border-radius: 5px 5px 0 0; 
 }
 
 .single-product-wrap.style-bottom:after {
@@ -5511,13 +5514,24 @@ select:focus {
 
 .card__img {
   width: 100%;
+  height: 230px; /* Fixed height for uniform image sizing */
   border-radius: 1.5rem;
+  object-fit: cover; /* Ensures the image fills the dimensions without distortion */
   transition: transform 0.5s ease-in-out;
 }
 
 .card__article:hover .card__img {
   transform: scale(1.1);
 }
+
+.card__data {
+  padding: 1rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
 
 .card__data {
   display: none;
