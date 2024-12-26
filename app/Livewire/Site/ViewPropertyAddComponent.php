@@ -91,18 +91,12 @@ class ViewPropertyAddComponent extends Component
             'activity' => 'sold',
             'status' => 'active',
         ]);
-
+        session()->flash('success', 'shares transferred successfully.');
         return redirect()->route('site.investor.page');
     }
 
     public function render()
     {
-//        if (!empty(auth()->user())) {
-//            $user = auth()->user();
-//        } else {
-//            return redirect('/login');
-//        }
-
         $propertyAdds = Selling::where('status', 'active')
             ->with('property')
             ->with('user')->get();

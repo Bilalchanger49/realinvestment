@@ -21,7 +21,7 @@ class PropertyComponent extends Component
 
         if ($property) {
             $property->delete();
-            session()->flash('message', 'Property deleted successfully.');
+            session()->flash('success', 'Property deleted successfully.');
         } else {
             session()->flash('error', 'Property not found.');
         }

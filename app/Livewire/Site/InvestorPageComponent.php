@@ -288,7 +288,7 @@ class InvestorPageComponent extends Component
             ->where('status', 'active')->first();
 
         if ($existingAdd) {
-            session()->flash('error', 'you have aldary created an add for this investment.');
+            session()->flash('error', 'you have already created an add for this investment.');
             return redirect()->route('site.investor.page');
         }
 
@@ -303,6 +303,7 @@ class InvestorPageComponent extends Component
             'status' => 'active',
         ]);
 
+        session()->flash('success', 'Advertisement successfully created.');
         return redirect()->route('site.investor.page');
     }
     public function render()

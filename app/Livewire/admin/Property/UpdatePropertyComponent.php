@@ -78,7 +78,7 @@ class UpdatePropertyComponent extends Component
             'property_image' => $path,
         ]);
 
-        session()->flash('message', 'Property updated successfully.');
+        session()->flash('success', 'Property updated successfully.');
         return redirect()->route('admin.property.index');
     }
 

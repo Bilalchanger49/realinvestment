@@ -449,7 +449,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <button type="submit" class="submit-btn btn">Sell</button>
+                            <button type="submit" class="submit-btn btn">Create Auction</button>
                         </form>
                         <!-- Popup Form End -->
                     </div>
@@ -529,7 +529,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <button type="submit" class="submit-btn btn">Sell</button>
+                            <button type="submit" class="submit-btn btn">Create Advertisement</button>
                         </form>
                         <!-- Popup Form End -->
                     </div>

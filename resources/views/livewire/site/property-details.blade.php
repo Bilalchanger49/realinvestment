@@ -89,52 +89,6 @@
                             </div>
                         </div>
                     </div>
-{{--                    <div class="col-lg-4">--}}
-{{--                        <aside class="sidebar-area">--}}
-{{--                            <div class="widget widget-category">--}}
-{{--                                <form wire:submit.prevent="calculateTotal" method="POST">--}}
-{{--                                    <div class="d-flex justify-content-between align-items-center" style="border-bottom: 1px solid black;">--}}
-{{--                                        <label>Total Shares</label>--}}
-{{--                                        <p class="mb-0 text-right">{{ $totalShares }}</p>--}}
-{{--                                    </div>--}}
-
-{{--                                    <div class="mt-2 d-flex justify-content-between align-items-center" style="border-bottom: 1px solid black;">--}}
-{{--                                        <label>Available Shares</label>--}}
-{{--                                        <p class="mb-0 text-right">{{ $availableShares }}</p>--}}
-{{--                                    </div>--}}
-
-{{--                                    <div class="mt-2 d-flex justify-content-between align-items-center" style="border-bottom: 1px solid black;">--}}
-{{--                                        <label>Share Price</label>--}}
-{{--                                        <p id="sharePrice" class="mb-0 text-right">{{ $sharePrice }}</p>--}}
-{{--                                    </div>--}}
-
-{{--                                    <!-- Input to select the number of shares -->--}}
-{{--                                    <div class="mt-3">--}}
-{{--                                        <label for="numShares">Number of Shares to Buy:</label>--}}
-
-{{--                                        <input type="number" id="numShares" name="numShares" class="form-control" min="1"--}}
-{{--                                               max="{{ $availableShares }}"--}}
-{{--                                               wire:model="numShares"--}}
-{{--                                               wire:input="calculateTotal">--}}
-{{--                                    </div>--}}
-
-{{--                                    <!-- Display the total price -->--}}
-{{--                                    <div class="mt-3 d-flex justify-content-between align-items-center" style="border-bottom: 1px solid black;">--}}
-{{--                                        <label>Total Price</label>--}}
-{{--                                        <p id="totalPrice" class="mb-0 text-right">{{ $totalPrice }}</p>--}}
-{{--                                    </div>--}}
-
-{{--                                    <!-- Buy button -->--}}
-{{--                                    <div class="mt-3 text-center">--}}
-{{--                                        <div class="btn-wrap">--}}
-{{--                                            <button  wire.click="BuyProperty({{$property->id}})" class="btn btn-base w-md-auto w-50">Buy</button>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </form>--}}
-{{--                            </div>--}}
-{{--                        </aside>--}}
-{{--                    </div>--}}
-{{--                    @include('livewire.site.buy-property')--}}
                     @livewire('site.buy-property-component', ['id' => $property->id])
                 </div>
             </div>
@@ -178,12 +132,12 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <a href="PDFLINK.html" download>
-                                            <img src="assets/img/icon/9.png" alt="img">
+                                            <img src="{{asset('assets/img/icon/9.png')}}" alt="img">
                                         </a>
                                     </div>
                                     <div class="col-sm-6 mt-2 mt-sm-0">
                                         <a href="PDFLINK.html" download>
-                                            <img src="assets/img/icon/9.png" alt="img">
+                                            <img src="{{asset('assets/img/icon/9.png')}}" alt="img">
                                         </a>
                                     </div>
                                 </div>
@@ -191,20 +145,7 @@
                             <div class="single-property-grid">
                                 <h4>Estate Location</h4>
                                 <div class="property-map">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d198059.49240377638!2d-84.68048827338674!3d39.13652252762691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1615660592820!5m2!1sen!2sbd"></iframe>
-                                </div>
-                            </div>
-                            <div class="single-property-grid">
-                                <h4>Floor Plans</h4>
-                                <img src="assets/img/project-single/6.png" alt="img">
-                            </div>
-                            <div class="single-property-grid">
-                                <h4>Intro Video</h4>
-                                <div class="property-video text-center"
-                                     style="background: url(assets/img/project-single/8.png);">
-                                    <a class="play-btn" href="https://www.youtube.com/embed/Wimkqo8gDZ0"
-                                       data-effect="mfp-zoom-in"><i class="fa fa-play" aria-hidden="true"></i></a>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26559.881691762537!2d72.96755217665297!3d33.68344710204144!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbde37b1f3fe9%3A0x742d0ad4f5b956fd!2sF-11%2C%20Islamabad%2C%20Islamabad%20Capital%20Territory%2C%20Pakistan!5e0!3m2!1sen!2s!4v1735188285577!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
                             </div>
                             <form class="single-property-comment-form">

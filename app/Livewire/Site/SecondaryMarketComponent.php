@@ -79,7 +79,6 @@ class SecondaryMarketComponent extends Component
 
             session()->flash('success', 'Bid created successfully!');
         } catch (\Exception $e) {
-            dd($e->getMessage());
             session()->flash('error', 'Failed to create bid. Please try again.');
         }
         // Redirect to the desired page
@@ -88,16 +87,7 @@ class SecondaryMarketComponent extends Component
 
     public function render()
     {
-
-//        if (!empty(auth()->user())) {
-//            $user = auth()->user();
-//        }else{
-//            return redirect('/login');
-//        }
-
         $auctions = Auctions::with('property')->with('user')->get();
-
-//        dd($auctions);
         return view('livewire.site.secondary-market', compact('auctions'))->extends('layouts.site');
     }
 }

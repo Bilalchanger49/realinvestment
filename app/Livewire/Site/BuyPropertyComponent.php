@@ -106,7 +106,7 @@ class BuyPropertyComponent extends Component
             'property_remaining_shares' => $remainingShares, // Update the remaining shares in the property table
         ]);
 
-        session()->flash('message', 'Investment successful!');
+        session()->flash('success', 'Investment successful!');
         return redirect()->route('site.property.details', ['id' => $propertyid]);
     }
 

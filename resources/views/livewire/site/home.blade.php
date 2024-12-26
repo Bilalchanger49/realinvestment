@@ -172,10 +172,10 @@
                     <div class="item">
                         <div class="single-testimonial-inner style-three text-center">
                             <div class="thumb main-thumb">
-                                <img src="assets/img/testimonial/4.png" alt="img" style="height: 120px">
+                                <img src="assets/img/agent/9.png" alt="img" style="height: 120px">
                             </div>
                             <div class="details">
-                                <h6 class="name">Sarif Jaya Miprut</h6>
+                                <h6 class="name">Saim Malik</h6>
                                 <span class="designation">investor</span>
                                 <p>Real Investment made it possible for me to own a share in a commercial property
                                     without breaking my savings. A seamless and rewarding experience!</p>
@@ -193,74 +193,6 @@
             </div>
         </div>
         <!-- testimonial area end -->
-
-
-        <!-- agent area start -->
-        <div class="agent-area text-center pd-top-118">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h6>Meet Our Agent</h6>
-                    <h2>Our Best Agent</h2>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-agent-wrap style-3">
-                            <div class="thumb">
-                                <img src="assets/img/agent/Bilal Ahmed.png" alt="img">
-                            </div>
-                            <div class="details">
-                                <a class="phone-inner" href="#"><i class="fa fa-phone"></i></a>
-                                <h4>Bilal Ahmed</h4>
-                                <h6>Estate Agent</h6>
-                                <ul class="social-area style-2">
-                                    <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-agent-wrap style-3">
-                            <div class="thumb">
-                                <img src="assets/img/agent/hamza.png" alt="img">
-                            </div>
-                            <div class="details">
-                                <a class="phone-inner" href="#"><i class="fa fa-phone"></i></a>
-                                <h4>Hamza Khan</h4>
-                                <h6>Estate Agent</h6>
-                                <ul class="social-area style-2">
-                                    <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-agent-wrap style-3">
-                            <div class="thumb">
-                                <img src="assets/img/agent/Bilal Ahmed.png" alt="img">
-                            </div>
-                            <div class="details">
-                                <a class="phone-inner" href="#"><i class="fa fa-phone"></i></a>
-                                <h4>Bilal Ahmed</h4>
-                                <h6>Estate Agent</h6>
-                                <ul class="social-area style-2">
-                                    <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- agent area end -->
 
         <!-- Secondary market area start -->
         <div class="blog-area pd-top-90 pd-bottom-90">

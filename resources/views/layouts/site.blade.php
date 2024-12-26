@@ -87,8 +87,8 @@
                     <li class="menu-item menu-item-has-children">
                         <a href="{{route('site.property.all')}}">Property</a>
                         <ul class="sub-menu">
-                            <li><a href="{{route('site.property.all')}}">Main Properties</a></li>
-                            <li><a href="{{route('site.secondary.market')}}">Secondary Properties</a></li>
+                            <li><a href="{{route('site.property.all')}}">Main Market</a></li>
+                            <li><a href="{{route('site.secondary.market')}}">Secondary Market</a></li>
                         </ul>
                     </li>
                     <li class="menu-item">
@@ -283,12 +283,6 @@
 </footer>
 
 <!-- footer area end-->
-
-<!-- back to top area start -->
-<div class="back-to-top">
-    <span class="back-top"><i class="fa fa-angle-up"></i></span>
-</div>
-<!-- back to top area end -->
 
 
 <script>

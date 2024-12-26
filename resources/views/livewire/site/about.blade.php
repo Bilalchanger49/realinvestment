@@ -41,7 +41,7 @@
     <!-- about area end -->
 
     <!-- agent area start -->
-    <div class="agent-area text-center pd-top-118 pd-bottom-90">
+    <div class="agent-area text-center  pd-bottom-90">
             <div class="container">
               <div class="section-title text-center">
                 <h6>Meet Our Team</h6>
@@ -55,8 +55,8 @@
                     </div>
                     <div class="agent-details">
                       <h4>Bilal Ahmed</h4>
-                      <h6>Founder & CEO</h6>
-                      <p>Bilal brings a vision to democratize real estate investments through innovative tokenization solutions.</p>
+                      <h6>Laravel Develper</h6>
+                      <p>Bilal is an expert laravel developer. responsible for creating the backend of real investment</p>
                       <ul class="social-area style-2">
                         <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                         <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
@@ -69,12 +69,12 @@
                 <div class="col-lg-4 col-sm-6">
                   <div class="agent-card style-2 text-center">
                     <div class="agent-thumb">
-                      <img src="assets/img/agent/8.png" alt="Ayesha Khan">
+                      <img src="assets/img/agent/9.png" alt="Ayesha Khan">
                     </div>
                     <div class="agent-details">
-                      <h4>Ayesha Khan</h4>
-                      <h6>CTO</h6>
-                      <p>Ayesha is an expert in blockchain technology, ensuring seamless and secure transactions for investors.</p>
+                      <h4>Furqan</h4>
+                      <h6>Developer</h6>
+                      <p>Furqan is an expert in php technology, ensuring seamless and secure transactions for investors.</p>
                       <ul class="social-area style-2">
                         <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                         <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
@@ -87,12 +87,12 @@
                 <div class="col-lg-4 col-sm-6">
                   <div class="agent-card style-2 text-center">
                     <div class="agent-thumb">
-                      <img src="assets/img/agent/9.png" alt="Ali Raza">
+                      <img src="assets/img/agent/11.png" alt="Ali Raza">
                     </div>
                     <div class="agent-details">
-                      <h4>Ali Raza</h4>
-                      <h6>Investment Manager</h6>
-                      <p>Ali oversees property acquisitions and ensures the best returns for our investors.</p>
+                      <h4>Hamza</h4>
+                      <h6>Frontend Developer</h6>
+                      <p>Hamza is an expert in frontend development by using bootstrap.</p>
                       <ul class="social-area style-2">
                         <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
                         <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
@@ -105,61 +105,10 @@
               </div>
             </div>
           </div>
-          
+
     <!-- agent area end -->
-
-    <!-- service start -->
-    <div class="service-area mg-top--50">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="section-title text-center">
-                    <h6>Services we provide</h6>
-                    <h2>Services</h2>
-                </div>
-                <div class="col-lg-4 col-md-10">
-                    <div class="single-service-wrap style-2 small-padding"
-                         style="background-image: url(assets/img/service/01.png);">
-                        <div class="thumb">
-                            <img src="assets/img/service/1.png" alt="icon">
-                        </div>
-                        <div class="single-service-details">
-                            <h4><a href="property-details.html">Sell Poparty</a></h4>
-                            <p>Transforming real estate assets into digital tokens, enabling fractional ownership and
-                                easy investment for everyone.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-10">
-                    <div class="single-service-wrap style-2 small-padding"
-                         style="background-image: url(assets/img/service/02.png);">
-                        <div class="thumb">
-                            <img src="assets/img/service/2.png" alt="icon">
-                        </div>
-                        <div class="single-service-details">
-                            <h4><a href="property-details.html">Daily Apartment</a></h4>
-                            <p>Providing small investors the ability to own a share of premium real estate and earn rental income.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-10">
-                    <div class="single-service-wrap style-2 small-padding"
-                         style="background-image: url(assets/img/service/03.png);">
-                        <div class="thumb">
-                            <img src="assets/img/service/3.png" alt="icon">
-                        </div>
-                        <div class="single-service-details">
-                            <h4><a href="property-details.html">Family House</a></h4>
-                            <p>Providing small investors the ability to own a share of premium real estate and earn rental income.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- service end -->
-
     <!-- blog area start -->
-    <div class="blog-area pd-top-118 pd-bottom-90">
+    <div class="blog-area pd-bottom-90">
             <div class="container">
                 <div class="section-title text-center">
                     <h6>More About Us</h6>
