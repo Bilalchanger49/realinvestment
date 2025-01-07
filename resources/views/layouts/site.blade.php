@@ -115,7 +115,7 @@
                             <ul class="sub-menu">
                                 <li>
                                     <i class="mdi mdi-account-outline"></i>
-                                    <a href=" {{ Auth::user()->name }}">My Profile</a>
+                                    <a href="{{route('profile.show')}}">My Profile</a>
                                 </li>
                                 <li>
                                     <i class="mdi mdi-account-outline"></i>

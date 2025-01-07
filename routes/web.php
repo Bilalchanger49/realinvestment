@@ -31,22 +31,18 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', DashboardComponent::class)->name('dashboard');
-    // Route::get('/dashboard', function () {
-    //     return view('livewire.admin.dashboard');
-    // })->name('dashboard');
-
     Route::get('/investor-page', InvestorPageComponent::class)->name('site.investor.page');
-Route::prefix('admin')->group(function () {
-    Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
-    Route::get('/property/create', createProperty::class)->name('admin.property.create');
-    Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
-})->middleware('auth');
+    Route::prefix('admin')->group(function () {
+        Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
+        Route::get('/property/create', createProperty::class)->name('admin.property.create');
+        Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
+    })->middleware('auth');
 
 
-Route::prefix('admin')->group(function () {
-    Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
-    Route::get('/property/create', createProperty::class)->name('admin.property.create');
-    Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
-});
+    Route::prefix('admin')->group(function () {
+        Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
+        Route::get('/property/create', createProperty::class)->name('admin.property.create');
+        Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
+    });
 });
 
