@@ -6051,5 +6051,9 @@ input:focus, select:focus {
     margin-left: 10px;
 }
 
+/* account setting container */
+.container.light-style.flex-grow-1.container-p-y {
+  padding: 100px; 
+}
 
 

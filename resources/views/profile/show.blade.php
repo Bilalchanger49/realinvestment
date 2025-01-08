@@ -43,21 +43,9 @@
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</x-app-layout>--}}
+@extends('layouts.site')
+@section('content')
 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodingDung | Profile Template</title>
-    <!-- Updated Bootstrap CSS -->
-    <link href="{{asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-</head>
-
-<body>
 <div class="container light-style flex-grow-1 container-p-y">
     <h4 class="font-weight-bold py-3 mb-4" style="color: #5ba600;">Account settings</h4>
 
@@ -69,8 +57,6 @@
                     <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#account-general">General</a>
                     <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#account-change-password">Change Password</a>
                     <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#account-info">Info</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#account-social-links">Social Links</a>
-                    <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#account-connections">Connections</a>
                     <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#account-notifications">Notifications</a>
                 </div>
             </div>
@@ -154,33 +140,8 @@
                             </div>
                         </div>
                     </div>
+                    
 
-                    <!-- Social Links Section -->
-                    <div class="tab-pane fade" id="account-social-links">
-                        <div class="cd-card-body">
-                            <div class="mb-3">
-                                <label class="form-label">Twitter</label>
-                                <input type="text" class="form-control" value="https://twitter.com/username">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Facebook</label>
-                                <input type="text" class="form-control" value="https://facebook.com/username">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Instagram</label>
-                                <input type="text" class="form-control" value="https://instagram.com/username">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Connections Section -->
-                    <div class="tab-pane fade" id="account-connections">
-                        <div class="cd-card-body">
-                            <button class="btn btn-outline-primary d-block w-100 mb-2">Connect to Google</button>
-                            <button class="btn btn-outline-primary d-block w-100 mb-2">Connect to Facebook</button>
-                            <button class="btn btn-outline-primary d-block w-100">Connect to LinkedIn</button>
-                        </div>
-                    </div>
 
                     <!-- Notifications Section -->
                     <div class="tab-pane fade" id="account-notifications">
@@ -188,10 +149,6 @@
                             <div class="form-check form-switch mb-3">
                                 <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
                                 <label class="form-check-label" for="emailNotifications">Email Notifications</label>
-                            </div>
-                            <div class="form-check form-switch mb-3">
-                                <input class="form-check-input" type="checkbox" id="smsNotifications">
-                                <label class="form-check-label" for="smsNotifications">SMS Notifications</label>
                             </div>
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="pushNotifications" checked>
@@ -209,9 +166,9 @@
 {{--        <button type="button" class="btn btn-secondary">Cancel</button>--}}
 {{--    </div>--}}
 </div>
-
+@endsection
 <!-- Updated Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- </body>
 
-</html>
+</html> -->

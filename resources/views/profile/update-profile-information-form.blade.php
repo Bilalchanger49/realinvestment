@@ -101,36 +101,41 @@
         <x-slot name="form">
             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                 <div class="cd-card-body d-flex align-items-center">
-                    @if($this->user->profile_photo_path)
-                    <img  src="{{asset('storage/'. $this->user->profile_photo_path )}}"  alt="{{ $this->user->name }}"
-                          class="d-block ui-w-80">
-                    @else
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="{{ $this->user->name }}"
-                             class="d-block ui-w-80">
-                    @endif
-                    <div class="ms-4">
+                   <div x-data="{ photoPreview: @entangle('photoPreview') }" class="d-flex align-items-center">
+    <!-- Profile Photo Display -->
+    <div class="me-3"> <!-- Add margin to the right of the image to separate the button area -->
+        <img :src="photoPreview ? photoPreview : '{{ $this->user->profile_photo_path ? asset('storage/'.$this->user->profile_photo_path) : 'https://bootdey.com/img/Content/avatar/avatar1.png' }}'"
+             alt="{{ $this->user->name }}" class="d-block ui-w-80">
+    </div>
 
-                        <label class="btn btn-outline-primary">
-                            Upload new photo
-                            <input type="file" class="account-settings-fileinput"
-                                   wire:model.live="photo"
-                                   x-ref="photo"
-                                   x-on:change="
-                                       photoName = $refs.photo.files[0].name;
-                                       const reader = new FileReader();
-                                       reader.onload = (e) => {
-                                       photoPreview = e.target.result;
-                                       };
-                                       reader.readAsDataURL($refs.photo.files[0]);
-                                  ">
-                        </label> &nbsp;
+    <!-- Button Area (Upload & Reset) -->
+    <div class="ms-4">
+        <!-- Upload New Photo Button -->
+        <label class="btn btn-base m-0">
+            Upload new photo
+            <input type="file" class="account-settings-fileinput"
+                   wire:model.live="photo"
+                   x-ref="photo"
+                   x-on:change="
+                       photoName = $refs.photo.files[0].name;
+                       const reader = new FileReader();
+                       reader.onload = (e) => {
+                           photoPreview = e.target.result;  // Update preview
+                       };
+                       reader.readAsDataURL($refs.photo.files[0]);
+                   ">
+        </label> &nbsp;
 
-                        @if ($this->user->profile_photo_path)
-                            <button type="button" class="btn btn-secondary" wire:click="deleteProfilePhoto">Reset
-                            </button>
-                        @endif
-                        <x-input-error for="photo" class="mt-2"/>
-                    </div>
+        <!-- Reset Button (if photo exists) -->
+        @if ($this->user->profile_photo_path)
+            <button type="button" class="btn btn-secondary" wire:click="deleteProfilePhoto">
+                Reset
+            </button>
+        @endif
+        <x-input-error for="photo" class="mt-2"/>
+    </div>
+</div>
+
                 </div>
             @endif
             <hr class="border-light m-0">
@@ -163,22 +168,20 @@
                         @endif
                     @endif
                 </div>
-
             </div>
 
         </x-slot>
+
         <div class="text-end mt-3">
             <x-slot name="actions">
                 <x-action-message class="me-3" on="saved">
                     {{ __('Saved.') }}
                 </x-action-message>
-                {{--                <button type="button" class="btn btn-primary" wire:loading.attr="disabled" wire:target="photo">--}}
-                {{--                    Save changes--}}
-                {{--                </button>--}}
                 <x-button class="btn btn-primary" wire:loading.attr="disabled" wire:target="photo">
                     {{ __('Save') }}
                 </x-button>
             </x-slot>
         </div>
+
     </x-form-section>
 </div>
