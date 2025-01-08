@@ -46,6 +46,22 @@
 @extends('layouts.site')
 @section('content')
 
+<!-- Breadcrumb Start -->
+<div class="breadcrumb-area bg-overlay-2" style="background-image:url('assets/img/other/1.jpg')">
+    <div class="container">
+        <div class="breadcrumb-inner">
+            <div class="section-title text-center">
+                <h2 class="page-title">Account Settings</h2>
+                <ul class="page-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li>Account Settings</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
 <div class="container light-style flex-grow-1 container-p-y">
     <h4 class="font-weight-bold py-3 mb-4" style="color: #5ba600;">Account settings</h4>
 
