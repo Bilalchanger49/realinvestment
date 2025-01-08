@@ -3189,10 +3189,10 @@ section.bg-light {
 }
 
 .single-product-wrap.style-bottom .thumb img {
-  width: 100%; 
-  height: 250px; 
-  object-fit: cover; 
-  border-radius: 5px 5px 0 0; 
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px 5px 0 0;
 }
 
 .single-product-wrap.style-bottom:after {
@@ -5979,5 +5979,77 @@ input:focus, select:focus {
 .notification-dropdown ul li:hover a {
   color: #333;
 }
+
+
+/*profile page*/
+
+/* Card Styling */
+.cd-card {
+    border: 2px solid #5ba600;
+    /* border-radius: 10px; */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cd-card-body {
+    padding: 20px;
+}
+
+/* Sidebar Links */
+.account-settings-links {
+    border-right: 1px solid #eaeaea;
+}
+
+.account-settings-links a {
+    padding: 15px 20px;
+    font-weight: 500;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Active state: Changes color only when clicked */
+.account-settings-links a.active {
+    background-color: #0d1741;
+    color: #fff;
+    /* border-radius: 8px; */
+    border: 1px solid #0d1741
+}
+
+/* Hover state: Do not change background color */
+.account-settings-links a:hover {
+    color: black; /* Optional: Keep text color on hover */
+}
+
+/* Override hover for the active link to prevent changes */
+.account-settings-links a.active:hover {
+    background-color: #0d1741;
+    color: #fff;
+    border: 1px solid #0d1741 ;
+}
+
+/* File Input Styling */
+.account-settings-fileinput {
+    display: none;
+}
+
+/* Profile Picture */
+.ui-w-80 {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #dee2e6;
+}
+
+/* Toggle Switches */
+.form-check-input {
+    cursor: pointer;
+}
+
+
+/* Save and Cancel Buttons */
+.text-end button {
+    margin-left: 10px;
+}
+
 
 
