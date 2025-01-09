@@ -174,12 +174,15 @@
 
         <div class="text-end mt-3">
             <x-slot name="actions">
-                <x-action-message class="me-3" on="saved">
+                <x-action-message class="me-3 align-self-end" on="saved">
                     {{ __('Saved.') }}
                 </x-action-message>
-                <x-button class="btn btn-primary" wire:loading.attr="disabled" wire:target="photo">
-                    {{ __('Save') }}
-                </x-button>
+                <button class="btn btn-primary w-25 mb-5 me-3 align-self-end" wire:loading.attr="disabled" wire:target="photo">
+                    Save
+                </button>
+{{--                <x-button class="btn btn-secondary w-25 mb-5 me-3 align-self-end" wire:loading.attr="disabled" wire:target="photo">--}}
+{{--                    {{ __('Save') }}--}}
+{{--                </x-button>--}}
             </x-slot>
         </div>
 

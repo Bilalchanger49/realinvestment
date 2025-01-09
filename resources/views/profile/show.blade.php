@@ -47,7 +47,7 @@
 @section('content')
 
 <!-- Breadcrumb Start -->
-<div class="breadcrumb-area bg-overlay-2" style="background-image:url('assets/img/other/1.jpg')">
+<div class="breadcrumb-area bg-overlay-2" style="background-image:url({{asset('assets/img/other/1.png')}})">
     <div class="container">
         <div class="breadcrumb-inner">
             <div class="section-title text-center">
@@ -68,7 +68,7 @@
     <div class="cd-card cd-overflow-hidden">
         <div class="row g-0 row-bordered">
             <!-- Sidebar Links -->
-            <div class="col-md-3 pt-0">
+            <div class="col-md-3 pt-0 account-settings-links-section">
                 <div class="list-group list-group-flush account-settings-links">
                     <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#account-general">General</a>
                     <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#account-change-password">Change Password</a>
@@ -156,7 +156,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
 
                     <!-- Notifications Section -->

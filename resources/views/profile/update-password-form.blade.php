@@ -42,8 +42,8 @@
 {{--</x-form-section>--}}
 
 
-<div class="tab-pane fade" id="account-change-password">
-    <x-form-section submit="updatePassword">
+<div  wire:ignore.self class="tab-pane fade" id="account-change-password">
+    <x-form-section  submit="updatePassword">
         <x-slot name="form">
             <div class="cd-card-body">
                 <div class="mb-3">
@@ -69,13 +69,19 @@
         </x-slot>
         <div class="text-end mt-3">
             <x-slot name="actions">
-                <x-action-message class="me-3" on="saved">
+                <x-action-message class="me-3 align-self-end" on="saved">
                     {{ __('Saved.') }}
                 </x-action-message>
+                <button class="btn btn-primary w-25 mb-5 me-3 align-self-end">
+                    Save
+                </button>
+{{--                <x-action-message class="me-3" on="saved">--}}
+{{--                    {{ __('Saved.') }}--}}
+{{--                </x-action-message>--}}
 
-                <x-button class="btn btn-primary">
-                    {{ __('Save') }}
-                </x-button>
+{{--                <x-button class="btn btn-primary">--}}
+{{--                    {{ __('Save') }}--}}
+{{--                </x-button>--}}
             </x-slot>
         </div>
     </x-form-section>

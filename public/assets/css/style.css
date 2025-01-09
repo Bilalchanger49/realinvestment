@@ -5996,6 +5996,8 @@ input:focus, select:focus {
 
 /* Sidebar Links */
 .account-settings-links {
+    background-color: #fff;
+    height: 100%;
     border-right: 1px solid #eaeaea;
 }
 
@@ -6053,7 +6055,7 @@ input:focus, select:focus {
 
 /* account setting container */
 .container.light-style.flex-grow-1.container-p-y {
-  padding: 100px; 
+  padding: 100px;
 }
 
 
