@@ -306,7 +306,7 @@
 </script>
 
 <!-- all plugins here -->
-
+<script src="https://js.stripe.com/v3/"></script>
 <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 <script src="{{asset('assets/js/vendor.js')}}"></script>
 

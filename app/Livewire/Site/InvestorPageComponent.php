@@ -25,6 +25,8 @@ class InvestorPageComponent extends Component
     public $no_of_shares_for_add = 0;
     public $total_price_for_add = 0;
     public $total_price = 0;
+    public $total_shares;
+    public $share_amount;
     public $shares_to_sell = 0;
     public $shares_to_sell_for_add = 0;
     public $property_name;
@@ -50,6 +52,7 @@ class InvestorPageComponent extends Component
 
     public function open_property_add_popup(int $id)
     {
+//        dd('open_property_add_popup');
         $propertyInvestment = Property_investment::where('id', $id)
             ->with('property')->first();
         $this->no_of_shares_for_add = (int)$propertyInvestment->shares_owned;
@@ -68,6 +71,7 @@ class InvestorPageComponent extends Component
             $this->total_price = $this->shares_to_sell * $this->price_per_share;
         }
     }
+
     public function calculateTotalForAdd()
     {
         if ($this->shares_to_sell_for_add < 1 || $this->price_per_share_for_add < 1) {
@@ -128,9 +132,6 @@ class InvestorPageComponent extends Component
         return redirect()->route('site.investor.page');
     }
 
-    /**
-     * Method to load auction data for deletion.
-     */
     public function confirmDelete($id, $propertyName)
     {
         $this->auction_id = $id;
@@ -144,6 +145,25 @@ class InvestorPageComponent extends Component
             ->with('user') // To load user details
             ->get();
     }
+
+//    public function openAuctionTransactionPopup($auctionId, $total_shares, $total_price, $share_amount)
+//    {
+//        dd('openAuctionTransactionPopup');
+//        $this->auction_id = $auctionId;
+//        $this->total_price = $total_price;
+//        $this->total_shares = $total_shares;
+//        $this->share_amount = $share_amount;
+//    }
+    public function openAuctionTransactionPopup($auctionId)
+    {
+        $bid = Bid::findOrFail($auctionId); // Replace `Bid` with your actual model
+
+        $this->auction_id = $auctionId;
+        $this->total_price = $bid->total_price;
+        $this->total_shares = $bid->total_shares;
+        $this->share_amount = $bid->share_amount;
+    }
+
 
     public function acceptBid($bidId)
     {
@@ -170,112 +190,113 @@ class InvestorPageComponent extends Component
         }
     }
 
-    public function buyAuction($auctionId)
+//    public function buyAuction($auctionId)
+//    {
+//        // Fetch the auction details
+//        $auction = Auctions::where('id', $auctionId)->first();
+//
+//        if (!$auction || $auction->status != 'active') {
+//            session()->flash('error', 'This auction is not active or does not exist.');
+//            return;
+//        }
+//
+//        // Fetch the accepted bid for this auction
+//        $bid = Bid::where('auctions_id', $auctionId)
+//            ->where('status', 'accepted')
+//            ->first();
+//
+//        if (!$bid) {
+//            session()->flash('error', 'No accepted bid found for this auction.');
+//            return;
+//        }
+//
+//        // Fetch the buyer (current user)
+//        $buyer = auth()->user();
+//        if (!$buyer) {
+//            return redirect('/login');
+//        }
+//
+//        // Fetch the seller's property investment
+//        $sellerInvestment = Property_investment::where('id', $auction->property_investment_id)->first();
+//        if (!$sellerInvestment || $sellerInvestment->shares_owned < $bid->total_shares) {
+//            session()->flash('error', 'Seller does not have enough shares to complete this transaction.');
+//            return;
+//        }
+//
+//        // Deduct shares from the seller
+//        $sellerInvestment->shares_owned -= $bid->total_shares;
+//        $sellerInvestment->save();
+//
+//        // Update the buyer's property investment or create a new one
+//        $buyerInvestment = Property_investment::where('user_id', $buyer->id)
+//            ->where('property_id', $auction->property_id)
+//            ->first();
+//
+//        if ($buyerInvestment) {
+//            $buyerInvestment->shares_owned += $bid->total_shares;
+//            $buyerInvestment->share_price += $bid->share_amount;
+//            $buyerInvestment->total_investment += $bid->total_price;
+//            $buyerInvestment->save();
+//        } else {
+//            Property_investment::create([
+//                'user_id' => $buyer->id,
+//                'property_id' => $auction->property_id,
+//                'shares_owned' => $bid->total_shares,
+//                'remaining_shares' => $auction->no_of_shares - $bid->total_shares,
+//                'share_price' => $bid->share_amount,
+//                'payment_id' => 0, // Update if integrated with a payment system
+//                'activity' => 'buy',
+//                'status' => 'holding',
+//                'total_investment' => $bid->total_price,
+//            ]);
+//        }
+//
+//        // Update the number of shares in the auction
+//        $auction->no_of_shares -= $bid->total_shares;
+//
+//        // Mark the auction as completed if all shares are sold
+//        if ($auction->no_of_shares <= 0) {
+//            $auction->status = 'completed';
+//        }
+//
+//        $auction->save();
+//
+//        // Mark the bid as completed
+//        $bid->status = 'completed';
+//        $bid->save();
+//
+//        // Log the transaction
+//        Transactions::create([
+//            'user_id' => $buyer->id,
+//            'property_id' => $auction->property_id,
+//            'shares_owned' => $bid->total_shares,
+//            'total_investment' => $bid->total_price,
+//            'remaining_shares' => $sellerInvestment->shares_owned,
+//            'share_price' => $bid->share_amount,
+//            'payment_id' => 0,
+//            'activity' => 'buy',
+//            'status' => 'active',
+//        ]);
+//
+//        Transactions::create([
+//            'user_id' => $auction->user_id,
+//            'property_id' => $auction->property_id,
+//            'shares_owned' => $bid->total_shares,
+//            'total_investment' => $bid->total_price,
+//            'remaining_shares' => $sellerInvestment->shares_owned,
+//            'share_price' => $bid->share_amount,
+//            'payment_id' => 0,
+//            'activity' => 'sold',
+//            'status' => 'active',
+//        ]);
+//
+//        // Flash success message
+//        session()->flash('success', 'Shares successfully transferred.');
+//        return redirect()->route('site.investor.page');
+//    }
+
+    public function createSellingAdd()
     {
-        // Fetch the auction details
-        $auction = Auctions::where('id', $auctionId)->first();
-
-        if (!$auction || $auction->status != 'active') {
-            session()->flash('error', 'This auction is not active or does not exist.');
-            return;
-        }
-
-        // Fetch the accepted bid for this auction
-        $bid = Bid::where('auctions_id', $auctionId)
-            ->where('status', 'accepted')
-            ->first();
-
-        if (!$bid) {
-            session()->flash('error', 'No accepted bid found for this auction.');
-            return;
-        }
-
-        // Fetch the buyer (current user)
-        $buyer = auth()->user();
-        if (!$buyer) {
-            return redirect('/login');
-        }
-
-        // Fetch the seller's property investment
-        $sellerInvestment = Property_investment::where('id', $auction->property_investment_id)->first();
-        if (!$sellerInvestment || $sellerInvestment->shares_owned < $bid->total_shares) {
-            session()->flash('error', 'Seller does not have enough shares to complete this transaction.');
-            return;
-        }
-
-        // Deduct shares from the seller
-        $sellerInvestment->shares_owned -= $bid->total_shares;
-        $sellerInvestment->save();
-
-        // Update the buyer's property investment or create a new one
-        $buyerInvestment = Property_investment::where('user_id', $buyer->id)
-            ->where('property_id', $auction->property_id)
-            ->first();
-
-        if ($buyerInvestment) {
-            $buyerInvestment->shares_owned += $bid->total_shares;
-            $buyerInvestment->share_price += $bid->share_amount;
-            $buyerInvestment->total_investment += $bid->total_price;
-            $buyerInvestment->save();
-        } else {
-            Property_investment::create([
-                'user_id' => $buyer->id,
-                'property_id' => $auction->property_id,
-                'shares_owned' => $bid->total_shares,
-                'remaining_shares' => $auction->no_of_shares - $bid->total_shares,
-                'share_price' => $bid->share_amount,
-                'payment_id' => 0, // Update if integrated with a payment system
-                'activity' => 'buy',
-                'status' => 'holding',
-                'total_investment' => $bid->total_price,
-            ]);
-        }
-
-        // Update the number of shares in the auction
-        $auction->no_of_shares -= $bid->total_shares;
-
-        // Mark the auction as completed if all shares are sold
-        if ($auction->no_of_shares <= 0) {
-            $auction->status = 'completed';
-        }
-
-        $auction->save();
-
-        // Mark the bid as completed
-        $bid->status = 'completed';
-        $bid->save();
-
-        // Log the transaction
-        Transactions::create([
-            'user_id' => $buyer->id,
-            'property_id' => $auction->property_id,
-            'shares_owned' => $bid->total_shares,
-            'total_investment' => $bid->total_price,
-            'remaining_shares' => $sellerInvestment->shares_owned,
-            'share_price' => $bid->share_amount,
-            'payment_id' => 0,
-            'activity' => 'buy',
-            'status' => 'active',
-        ]);
-
-        Transactions::create([
-            'user_id' => $auction->user_id,
-            'property_id' => $auction->property_id,
-            'shares_owned' => $bid->total_shares,
-            'total_investment' => $bid->total_price,
-            'remaining_shares' => $sellerInvestment->shares_owned,
-            'share_price' => $bid->share_amount,
-            'payment_id' => 0,
-            'activity' => 'sold',
-            'status' => 'active',
-        ]);
-
-        // Flash success message
-        session()->flash('success', 'Shares successfully transferred.');
-        return redirect()->route('site.investor.page');
-    }
-
-    public function createSellingAdd(){
 
         $this->validate([
             'price_per_share_for_add' => 'required|numeric|min:1',
@@ -306,6 +327,7 @@ class InvestorPageComponent extends Component
         session()->flash('success', 'Advertisement successfully created.');
         return redirect()->route('site.investor.page');
     }
+
     public function render()
     {
         if (!empty(auth()->user())) {

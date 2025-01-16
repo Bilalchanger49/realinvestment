@@ -274,12 +274,20 @@
                                         @endif
                                         <td>
                                             @if($bid->status == 'accepted')
+                                                {{--                                                <button--}}
+                                                {{--                                                    wire:click.prevent="buyAuction({{$bid->auctions_id}})"--}}
+                                                {{--                                                    class="btn btn-base custom-small-btn"--}}
+                                                {{--                                                    style="line-height: 0px;">--}}
+                                                {{--                                                    Buy--}}
+                                                {{--                                                </button>--}}
                                                 <button
-                                                    wire:click.prevent="buyAuction({{$bid->auctions_id}})"
+                                                    wire:click.prevent="openAuctionTransactionPopup({{$bid->auctions_id}})"
                                                     class="btn btn-base custom-small-btn"
+                                                    data-toggle="modal" data-target="#send_funds_popup"
                                                     style="line-height: 0px;">
                                                     Buy
                                                 </button>
+
                                             @elseif($bid->status == 'rejected')
                                                 <span class="status-unpaid">rejected</span>
                                             @else
@@ -298,7 +306,6 @@
                     </div>
                 </div>
             </div>
-
 
             {{--        transaction table--}}
             <div class="container mt-5">
@@ -332,7 +339,7 @@
 
                                     <td>
                                         @if($transction->activity == 'buy')
-                                        <span class="status-completed">{{$transction->activity}}</span>
+                                            <span class="status-completed">{{$transction->activity}}</span>
                                         @else
                                             <span class="status-unpaid">{{$transction->activity}}</span>
                                         @endif
@@ -633,10 +640,35 @@
             </div>
         </div>
 
+        {{--    auction transactions popup--}}
+        <div wire:ignore.self class="modal fade" id="send_funds_popup" tabindex="-1" role="dialog"
+             aria-labelledby="send_funds_popup_label" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center position-relative">
+                        <h5 class="modal-title position-absolute">Send Funds table</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"
+                         wire:key="totalPrice-{{ $total_price }}-numShares-{{ $total_shares }}-{{ now() }}">
+                        @livewire('site.stripe.payment-component',
+                        [
+                        'propertyId' => $auction_id,
+                        'totalPrice' => $total_price,
+                        'numShares' => $total_shares,
+                        'sharePrice' => $share_amount,
+                        'paymentType' => 'auction'
+                        ],
+                        key('totalPrice-' . $total_price . '-numShares-' . $total_shares . '-' . now()))
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
-</div>
 
 
 <script>

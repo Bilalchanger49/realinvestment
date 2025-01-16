@@ -5,7 +5,10 @@ namespace App\Livewire\Site;
 use App\Models\Property;
 use App\Models\Property_investment;
 use App\Models\Transactions;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Stripe\Stripe;
+use Stripe\Charge;
 
 class BuyPropertyComponent extends Component
 {
@@ -14,9 +17,7 @@ class BuyPropertyComponent extends Component
     public $sharePrice;
     public $numShares = 1;
     public $totalPrice;
-
     public $property;
-
 
     public function mount($id)
     {
@@ -28,29 +29,30 @@ class BuyPropertyComponent extends Component
         $this->availableShares = $this->property->property_remaining_shares;
     }
 
-
     public function render()
     {
-        // Render the corresponding Blade file for this component
         return view('livewire.site.buy-property')->extends('layouts.site');
     }
 
-    public function buyProperty($id)
-    {
-        $propertyid = $this->property->id;
-        $numOfShares = $this->numShares;
-        $remainingShares = $this->property->property_remaining_shares - $this->numShares;
-        $totalInvestment = $this->totalPrice;
-        $sharePrice = $this->sharePrice;
-        $paymentId = 12345678;
-        $status = 'holding';
-        $activity = 'buy';
 
+    public function buyProperty()
+    {
+        dd('inside buy property');
         if (!empty(auth()->user()->id)) {
             $userId = auth()->user()->id;
         } else {
             return redirect('/login');
         }
+
+        $propertyid = $this->property->id;
+        $numOfShares = $this->numShares;
+        $remainingShares = $this->property->property_remaining_shares - $this->numShares;
+        $totalInvestment = $this->totalPrice;
+        $sharePrice = $this->sharePrice;
+        $paymentId = uniqid(); // Generate a unique payment ID
+        $status = 'holding';
+        $activity = 'buy';
+
 
         $existingInvestment = Property_investment::where('user_id', $userId)
             ->where('property_id', $propertyid)
@@ -58,7 +60,6 @@ class BuyPropertyComponent extends Component
             ->first();
 
         if ($existingInvestment) {
-            // Update the existing investment
             $existingInvestment->update([
                 'shares_owned' => $existingInvestment->shares_owned + $numOfShares,
                 'total_investment' => $existingInvestment->total_investment + $totalInvestment,
@@ -76,7 +77,6 @@ class BuyPropertyComponent extends Component
                 'status' => $status,
             ]);
         } else {
-
             Property_investment::create([
                 'user_id' => $userId,
                 'property_id' => $propertyid,
@@ -103,7 +103,7 @@ class BuyPropertyComponent extends Component
         }
 
         $this->property->update([
-            'property_remaining_shares' => $remainingShares, // Update the remaining shares in the property table
+            'property_remaining_shares' => $remainingShares,
         ]);
 
         session()->flash('success', 'Investment successful!');

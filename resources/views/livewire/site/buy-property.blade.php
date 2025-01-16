@@ -7,12 +7,14 @@
                     <p class="mb-0 text-right">{{ $totalShares }}</p>
                 </div>
 
-                <div class="mt-2 d-flex justify-content-between align-items-center" style="border-bottom: 1px solid black;">
+                <div class="mt-2 d-flex justify-content-between align-items-center"
+                     style="border-bottom: 1px solid black;">
                     <label>Available Shares</label>
                     <p class="mb-0 text-right">{{ $availableShares }}</p>
                 </div>
 
-                <div class="mt-2 d-flex justify-content-between align-items-center" style="border-bottom: 1px solid black;">
+                <div class="mt-2 d-flex justify-content-between align-items-center"
+                     style="border-bottom: 1px solid black;">
                     <label>Share Price</label>
                     <p id="sharePrice" class="mb-0 text-right">{{ $sharePrice }}</p>
                 </div>
@@ -28,7 +30,8 @@
                 </div>
 
                 <!-- Display the total price -->
-                <div class="mt-3 d-flex justify-content-between align-items-center" style="border-bottom: 1px solid black;">
+                <div class="mt-3 d-flex justify-content-between align-items-center"
+                     style="border-bottom: 1px solid black;">
                     <label>Total Price</label>
                     <p id="totalPrice" class="mb-0 text-right">{{ $totalPrice }}</p>
                 </div>
@@ -36,10 +39,57 @@
                 <!-- Buy button -->
                 <div class="mt-3 text-center">
                     <div class="btn-wrap">
-                        <button  wire:click="buyProperty({{$property->id}})" class="btn btn-base w-md-auto w-50">Buy</button>
+                        {{--                        <button  wire:click="buyProperty({{$property->id}})" class="btn btn-base w-md-auto w-50">Buy</button>--}}
+                        {{--                        <button class="btn btn-base w-md-auto w-50"><a href="{{route('checkout')}}">Buy</a></button>--}}
+                        <button
+                            {{--                            wire:click.prevent="open_property_add_popup({{$propertyInvestment->id}})"--}}
+                            id="openPopup" class="btn btn-base w-md-auto w-50"
+                            data-toggle="modal" data-target="#send_funds_popup">
+                            Buy
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </aside>
+
+    <div wire:ignore.self class="modal fade" id="send_funds_popup" tabindex="-1" role="dialog"
+         aria-labelledby="send_funds_popup_label" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center position-relative">
+                    <h5 class="modal-title position-absolute">Send Funds table</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{--                <div class="modal-body" wire:key="totalPrice-{{ $totalPrice }}-{{ now() }}">--}}
+                {{--                    --}}{{--                    @livewire('site.stripe.payment-component',--}}
+                {{--                    --}}{{--                    ['propertyId' => $property->id,--}}
+                {{--                    --}}{{--                    'totalPrice' => $totalPrice,--}}
+                {{--                    --}}{{--                    'numShares' => $numShares], key="$numShares . now()")--}}
+
+                {{--                    @livewire('site.stripe.payment-component', [--}}
+                {{--                    'propertyId' => $property->id,--}}
+                {{--                    'totalPrice' => $totalPrice,--}}
+                {{--                    'numShares' => $numShares--}}
+                {{--                    ],--}}
+                {{--                    key('totalPrice-' . $totalPrice . now())--}}
+                {{--                    )--}}
+                {{--                </div>--}}
+                <div class="modal-body" wire:key="totalPrice-{{ $totalPrice }}-numShares-{{ $numShares }}-{{ now() }}">
+                    @livewire('site.stripe.payment-component',
+                    [
+                    'propertyId' => $property->id,
+                    'totalPrice' => $totalPrice,
+                    'numShares' => $numShares,
+                    'sharePrice' => $sharePrice,
+                    'paymentType' => 'property'
+                    ],
+                    key('totalPrice-' . $totalPrice . '-numShares-' . $numShares .  '-' . now()))
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
