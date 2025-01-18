@@ -14,6 +14,7 @@ class PaymentComponent extends Component
 {
     public $paymentType;
     public $propertyId;
+    public $sellingAddId;
 
     public $auctionId;
     public $totalPrice;
@@ -30,7 +31,8 @@ class PaymentComponent extends Component
 
     protected $listeners = [
         'processPropertyPayment',
-        'processAuctionPayment'
+        'processAuctionPayment',
+        'processSellingAddPayment'
     ];
 
     protected $rules = [
@@ -39,11 +41,12 @@ class PaymentComponent extends Component
         'cardExpiryYear' => 'required|numeric|digits:4',
         'cardCVC' => 'required|numeric|digits:3',
     ];
-    public function mount($propertyId, $totalPrice, $numShares, $sharePrice, $paymentType)
+    public function mount($id, $totalPrice, $numShares, $sharePrice, $paymentType)
     {
         $this->paymentType = $paymentType;
-        $this->propertyId = $propertyId;
-        $this->auctionId = $propertyId;
+        $this->propertyId = $id;
+        $this->auctionId = $id;
+        $this->sellingAddId = $id;
         $this->totalPrice = $totalPrice;
         $this->numShares = $numShares;
         $this->sharePrice = $sharePrice;
@@ -76,7 +79,6 @@ class PaymentComponent extends Component
 
     public function processAuctionPayment($token)
     {
-//        dd('processAuctionPayment');
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         try {
@@ -92,6 +94,32 @@ class PaymentComponent extends Component
             $buyPropertyService = new BuyPropertyService();
 
             $buyPropertyService->buyAuction($this->auctionId, $token);
+            session()->flash('success', 'Payment successful!');
+            return redirect()->route('site.investor.page');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Payment failed: ' . $e->getMessage());
+            return redirect()->route('site.home');
+        }
+    }
+
+    public function processSellingAddPayment($token)
+    {
+//
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        try {
+            // Use the token to create a charge
+            $charge = Charge::create([
+                'amount' => $this->totalPrice * 100,
+                'currency' => 'pkr',
+                'source' => $token, // The token received from the frontend
+                'description' => "Purchase of {$this->numShares} shares for property ID {$this->sellingAddId}",
+                'receipt_email' => Auth::user()->email,
+            ]);
+
+
+            $buyPropertyService = new BuyPropertyService();
+            $buyPropertyService->buyPropertyByAdd($this->sellingAddId, $token);
             session()->flash('success', 'Payment successful!');
             return redirect()->route('site.investor.page');
         } catch (\Exception $e) {

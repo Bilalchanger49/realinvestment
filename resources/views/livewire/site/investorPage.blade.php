@@ -655,7 +655,7 @@
                          wire:key="totalPrice-{{ $total_price }}-numShares-{{ $total_shares }}-{{ now() }}">
                         @livewire('site.stripe.payment-component',
                         [
-                        'propertyId' => $auction_id,
+                        'id' => $auction_id,
                         'totalPrice' => $total_price,
                         'numShares' => $total_shares,
                         'sharePrice' => $share_amount,

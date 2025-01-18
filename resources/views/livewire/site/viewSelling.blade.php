@@ -21,34 +21,32 @@
                     </thead>
                     <tbody>
                     @foreach($propertyAdds as $propertyAdd)
-{{--                        @if($auction->status == 'active')--}}
-                            <tr>
-                                <td>1</td>
-                                <td>
-                                    {{$propertyAdd->property->property_name}}
-                                    <br><small class="text-muted">code:#{{$propertyAdd->property->property_reg_no}}</small>
-                                </td>
-                                <td>{{$propertyAdd->no_of_shares}}</td>
-                                <td>{{$propertyAdd->share_amount}}</td>
-                                <td>{{$propertyAdd->total_amount}}</td>
-                                <td>{{$propertyAdd->created_at}}</td>
-                                <td>{{$propertyAdd->status}}</td>
-                                <td>
-                                    <button type="button" class="btn btn-base custom-small-btn"
-                                            style="line-height: 0px;"><i
-                                            class="fas fa-edit"></i></button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger custom-small-btn"
-                                        style="line-height: 0px;"
-                                        data-toggle="modal"
-                                        wire:click.prevent="confirmSellingAddDelete({{ $propertyAdd->id }}, '{{ $propertyAdd->property->property_name }}')"
-                                        data-target="#delete_selling_add_popup">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </td>
-                            </tr>
-{{--                        @endif--}}
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                {{$propertyAdd->property->property_name}}
+                                <br><small class="text-muted">code:#{{$propertyAdd->property->property_reg_no}}</small>
+                            </td>
+                            <td>{{$propertyAdd->no_of_shares}}</td>
+                            <td>{{$propertyAdd->share_amount}}</td>
+                            <td>{{$propertyAdd->total_amount}}</td>
+                            <td>{{$propertyAdd->created_at}}</td>
+                            <td>{{$propertyAdd->status}}</td>
+                            <td>
+                                <button type="button" class="btn btn-base custom-small-btn"
+                                        style="line-height: 0px;"><i
+                                        class="fas fa-edit"></i></button>
+                                <button
+                                    type="button"
+                                    class="btn btn-danger custom-small-btn"
+                                    style="line-height: 0px;"
+                                    data-toggle="modal"
+                                    wire:click.prevent="confirmSellingAddDelete({{ $propertyAdd->id }}, '{{ $propertyAdd->property->property_name }}')"
+                                    data-target="#delete_selling_add_popup">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>

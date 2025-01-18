@@ -63,24 +63,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {{--                <div class="modal-body" wire:key="totalPrice-{{ $totalPrice }}-{{ now() }}">--}}
-                {{--                    --}}{{--                    @livewire('site.stripe.payment-component',--}}
-                {{--                    --}}{{--                    ['propertyId' => $property->id,--}}
-                {{--                    --}}{{--                    'totalPrice' => $totalPrice,--}}
-                {{--                    --}}{{--                    'numShares' => $numShares], key="$numShares . now()")--}}
-
-                {{--                    @livewire('site.stripe.payment-component', [--}}
-                {{--                    'propertyId' => $property->id,--}}
-                {{--                    'totalPrice' => $totalPrice,--}}
-                {{--                    'numShares' => $numShares--}}
-                {{--                    ],--}}
-                {{--                    key('totalPrice-' . $totalPrice . now())--}}
-                {{--                    )--}}
-                {{--                </div>--}}
                 <div class="modal-body" wire:key="totalPrice-{{ $totalPrice }}-numShares-{{ $numShares }}-{{ now() }}">
                     @livewire('site.stripe.payment-component',
                     [
-                    'propertyId' => $property->id,
+                    'id' => $property->id,
                     'totalPrice' => $totalPrice,
                     'numShares' => $numShares,
                     'sharePrice' => $sharePrice,

@@ -142,6 +142,9 @@
                                 } else if (paymentType === 'property') {
                                     console.log(paymentType)
                                     Livewire.dispatch('processPropertyPayment', { token: result.token.id })
+                                } else if (paymentType === 'sellingAdd') {
+                                    console.log(paymentType)
+                                    Livewire.dispatch('processSellingAddPayment', { token: result.token.id })
                                 } else {
                                     console.error('Unknown payment type:', paymentType)
                                 }

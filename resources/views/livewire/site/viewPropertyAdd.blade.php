@@ -25,9 +25,12 @@
                     <span class="card__owner d-block text-muted small mb-1">
                         Owner: {{$propertyAdd->user->name}}</span>
                     <div>
+{{--                        <a href="#" class="card__button text-decoration-none"--}}
+{{--                           wire:click="buyProperty({{$propertyAdd->id}})"--}}
+{{--                        >Buy Now</a>--}}
                         <a href="#" class="card__button text-decoration-none"
-                           wire:click="buyProperty({{$propertyAdd->id}})"
-                        >Buy Now</a>
+                           wire:click.prevent="openSellingAddTransactionPopup({{$propertyAdd->id}})"
+                           data-toggle="modal" data-target="#send_funds_popup">Buy Now</a>
                     </div>
                 </div>
             </div>
@@ -92,6 +95,31 @@
                     <div>
                         <a href="#" class="card__button text-decoration-none">Read More</a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div wire:ignore.self class="modal fade" id="send_funds_popup" tabindex="-1" role="dialog"
+         aria-labelledby="send_funds_popup_label" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center position-relative">
+                    <h5 class="modal-title position-absolute">Send Funds table</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" wire:key="totalPrice-{{ $totalPrice }}-numShares-{{ $numShares }}-{{ now() }}">
+                    @livewire('site.stripe.payment-component',
+                    [
+                    'id' => $sellingAddId,
+                    'totalPrice' => $totalPrice,
+                    'numShares' => $numShares,
+                    'sharePrice' => $sharePrice,
+                    'paymentType' => 'sellingAdd'
+                    ],
+                    key('totalPrice-' . $totalPrice . '-numShares-' . $numShares .  '-' . now()))
                 </div>
             </div>
         </div>
