@@ -13,7 +13,8 @@ use App\Livewire\Site\InvestorPageComponent;
 use App\Livewire\Site\SecondaryMarketComponent;
 use App\Livewire\Site\FaqComponent;
 use App\Livewire\Site\BuyPropertyComponent;
-use \App\Livewire\Site\Stripe\PaymentComponent;
+use App\Livewire\Site\Stripe\PaymentComponent;
+use App\Livewire\admin\DistributeReturnsComponent;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeComponent::class)->name('site.home');
@@ -40,13 +41,14 @@ Route::middleware([
         Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
         Route::get('/property/create', createProperty::class)->name('admin.property.create');
         Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
+        Route::get('/distribute-returns', DistributeReturnsComponent::class)->name('admin.distribute.returns');
     })->middleware('auth');
 
 
-    Route::prefix('admin')->group(function () {
-        Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
-        Route::get('/property/create', createProperty::class)->name('admin.property.create');
-        Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
-    });
+//    Route::prefix('admin')->group(function () {
+//        Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
+//        Route::get('/property/create', createProperty::class)->name('admin.property.create');
+//        Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
+//    });
 });
 

@@ -89,7 +89,12 @@
                             </div>
                         </ul>
                     </li>
-
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="{{route('admin.distribute.returns')}}" >
+                            <i class="mdi mdi-folder-outline"></i>
+                            <span class="nav-text">Distribution</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

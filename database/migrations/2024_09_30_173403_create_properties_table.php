@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('property_share_price')->nullable();
             $table->text('property_total_shares')->default('0')->nullable();
             $table->text('property_remaining_shares')->default('0')->nullable();
+            $table->float('property_roi')->nullable();
             $table->text('property_image')->nullable();
             $table->timestamps();
         });

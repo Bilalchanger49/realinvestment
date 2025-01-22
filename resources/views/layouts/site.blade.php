@@ -109,7 +109,9 @@
                     @if(Auth::User())
                         <li class="menu-item-has-children current-menu-item d-none d-lg-block" style=" width: 125px;">
 
-                            <img src="assets/img/agent/3.png" class="user-image rounded-circle" style="height: 40px;"
+{{--                            <img src="assets/img/agent/3.png" class="user-image rounded-circle" style="height: 40px;"--}}
+{{--                                 alt=""/>--}}
+                            <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}" class="user-image rounded-circle" style="height: 40px;"
                                  alt=""/>
                             <a href="#">{{ Auth::User()->name }}</a>
                             <ul class="sub-menu">
@@ -154,6 +156,7 @@
 
                             <img src="assets/img/agent/default user.jpeg" class="user-image rounded-circle" style="height: 40px;"
                                  alt=""/>
+
                             <a href="#">Login</a>
                             <ul class="sub-menu">
                                 <li><a href="{{route('login')}}">Login</a></li>

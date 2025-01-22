@@ -27,7 +27,11 @@
                 <div class="col-lg-12 col-md-6 col-sm-12 mb-4">
                     <div class="card investor-profile-card">
                         <div class="card-img">
-                            <img src="assets/img/agent/default user.jpeg" style="border-radius: 100%"
+
+                            {{--                            <img src="assets/img/agent/default user.jpeg" style="border-radius: 100%"--}}
+                            {{--                                 class="card-img-top" alt="...">--}}
+                            <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
+                                 style="border-radius: 100%"
                                  class="card-img-top" alt="...">
                         </div>
                         <div class="card-body investor-profile-card-body">
@@ -63,10 +67,12 @@
                             </div>
                             <div class="cta-section">
                                 <div>
-                                    <p>Investment<strong> ${{$overallInvestment}}</strong></p>
-                                    <p>Profit <strong> $1200</strong></p>
+                                    <p>Investment<strong> PK {{$overallInvestment}}</strong></p>
+                                    <p>Profit <strong> PK 1200</strong></p>
                                 </div>
-                                <button class="btn btn-base ">View Profile</button>
+                                <a href="{{route('profile.show')}}">
+                                    <button class="btn btn-base "> View Profile</button>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -670,51 +676,50 @@
     </div>
 
 
+    <script>
+        // Transaction Details Popup Script
+        document.querySelectorAll('.details-btn-transaction').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent default link behavior
 
-<script>
-    // Transaction Details Popup Script
-    document.querySelectorAll('.details-btn-transaction').forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault(); // Prevent default link behavior
+                // Open the transaction details popup
+                const transactionPopup = document.getElementById('transaction-popup');
+                transactionPopup.style.display = 'flex';
 
-            // Open the transaction details popup
-            const transactionPopup = document.getElementById('transaction-popup');
-            transactionPopup.style.display = 'flex';
+                // Extract data from the corresponding row
+                const row = button.closest('tr'); // Get the table row
+                const name = row.querySelector('td:nth-child(2)').textContent.trim(); // Transaction Name
+                const amount = row.querySelector('td:nth-child(3)').textContent.trim(); // Transaction Amount
+                const date = row.querySelector('td:nth-child(4)').textContent.trim(); // Transaction Date
+                const activity = row.querySelector('td:nth-child(5)').textContent.trim(); // Transaction Activity
 
-            // Extract data from the corresponding row
-            const row = button.closest('tr'); // Get the table row
-            const name = row.querySelector('td:nth-child(2)').textContent.trim(); // Transaction Name
-            const amount = row.querySelector('td:nth-child(3)').textContent.trim(); // Transaction Amount
-            const date = row.querySelector('td:nth-child(4)').textContent.trim(); // Transaction Date
-            const activity = row.querySelector('td:nth-child(5)').textContent.trim(); // Transaction Activity
-
-            // Populate the bill details in the popup
-            document.getElementById('transactionName').textContent = name;
-            document.getElementById('transactionAmount').textContent = amount;
-            document.getElementById('transactionDate').textContent = date;
-            document.getElementById('transactionActivity').textContent = activity;
-            document.getElementById('transactionStatus').textContent = status;
+                // Populate the bill details in the popup
+                document.getElementById('transactionName').textContent = name;
+                document.getElementById('transactionAmount').textContent = amount;
+                document.getElementById('transactionDate').textContent = date;
+                document.getElementById('transactionActivity').textContent = activity;
+                document.getElementById('transactionStatus').textContent = status;
+            });
         });
-    });
 
-    // Close the transaction details popup
-    document.getElementById('closeTransactionPopup').addEventListener('click', () => {
-        const transactionPopup = document.getElementById('transaction-popup');
-        transactionPopup.style.display = 'none';
-    });
+        // Close the transaction details popup
+        document.getElementById('closeTransactionPopup').addEventListener('click', () => {
+            const transactionPopup = document.getElementById('transaction-popup');
+            transactionPopup.style.display = 'none';
+        });
 
-    // Close the transaction popup when clicking outside of it
-    document.getElementById('transaction-popup').addEventListener('click', (e) => {
-        if (e.target === document.getElementById('transaction-popup')) {
-            document.getElementById('transaction-popup').style.display = 'none';
-        }
-    });
+        // Close the transaction popup when clicking outside of it
+        document.getElementById('transaction-popup').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('transaction-popup')) {
+                document.getElementById('transaction-popup').style.display = 'none';
+            }
+        });
 
-    // Print the bill
-    document.getElementById('printBill').addEventListener('click', () => {
-        const billContent = document.getElementById('bill-details').innerHTML;
-        const printWindow = window.open('', '_blank', 'width=600,height=400');
-        printWindow.document.write(`
+        // Print the bill
+        document.getElementById('printBill').addEventListener('click', () => {
+            const billContent = document.getElementById('bill-details').innerHTML;
+            const printWindow = window.open('', '_blank', 'width=600,height=400');
+            printWindow.document.write(`
         <html>
             <head>
                 <title>Print Bill</title>
@@ -730,11 +735,11 @@
             </body>
         </html>
     `);
-        printWindow.document.close();
-        printWindow.print();
-    });
+            printWindow.document.close();
+            printWindow.print();
+        });
 
-</script>
+    </script>
 
 
 </div>

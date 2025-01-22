@@ -105,8 +105,8 @@
                 <!-- Stripe Card element will be injected here -->
             </div>
         </div>
-{{--        <button type="submit" id="submit-button" class="btn btn-primary btn-lg px-5">Pay Now</button>--}}
-        <button type="submit" id="submit-button">Pay</button>
+        <button type="submit" id="submit-button" class="btn btn-primary btn-lg px-5">Pay Now</button>
+{{--        <button type="submit" id="submit-button">Pay</button>--}}
     </form>
 
 </div>
@@ -120,7 +120,7 @@
                 setTimeout(function () {
                     // Initialize Stripe and Elements after the modal has shown
                     const stripe = Stripe("{{ env('STRIPE_KEY') }}");
-                    const elements = stripe.elements();
+                    const elements = stripe.elements()
                     const cardElement = elements.create('card');
                     cardElement.mount('#card-element'); // Mount Stripe card element
 

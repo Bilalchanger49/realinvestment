@@ -34,14 +34,12 @@ class CreateComponent extends Component
     public function createproperty(){
 
         $validate = $this->validate($this->rules, $this->messages);
-        $rentPerMonth  = $this->property_rent * 12;
-        $returnPercent = $rentPerMonth * 0.09;
-        $noOfShares = $this->property_price / $returnPercent;
 
-        $noOfShares = round($noOfShares);
-
-// Calculate the price of each share
+        // Set the number of shares to a fixed value
+        $noOfShares = 150;
+        $rentPerYear = $this->property_rent * 12;
         $pricePerShare = $this->property_price / $noOfShares;
+        $returnPercent = ($rentPerYear / $this->property_price) * 100;
 
         if ($this->property_image) {
             $file = $this->property_image;
@@ -59,6 +57,7 @@ class CreateComponent extends Component
             'property_share_price' => $pricePerShare,
             'property_total_shares' => $noOfShares,
             'property_remaining_shares' => $noOfShares,
+            'property_roi' => $returnPercent,
             'property_image' => $path,
         ]);
 
