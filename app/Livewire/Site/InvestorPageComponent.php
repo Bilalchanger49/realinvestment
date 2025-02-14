@@ -5,6 +5,7 @@ namespace App\Livewire\Site;
 use App\Models\Auctions;
 use App\Models\Bid;
 use App\Models\Property_investment;
+use App\Models\ReturnDistributions;
 use App\Models\Selling;
 use App\Models\Transactions;
 use Illuminate\Http\Request;
@@ -372,7 +373,9 @@ class InvestorPageComponent extends Component
             ->with('user')
             ->get();
 
-        return view('livewire.site.investorPage', compact('userbids', 'auctions', 'transctions', 'propertyInvestments', 'user', 'overallShares', 'overallInvestment', 'totalProperties'))->extends('layouts.site');
+        $returndistribution = ReturnDistributions::where('user_id', $user->id)->first();
+//        dd($returndistribution->amount);
+        return view('livewire.site.investorPage', compact('returndistribution', 'userbids', 'auctions', 'transctions', 'propertyInvestments', 'user', 'overallShares', 'overallInvestment', 'totalProperties'))->extends('layouts.site');
     }
 
 }

@@ -24,7 +24,6 @@ class ReturnDistributions extends Model
 
     public function investments()
     {
-
         return $this->hasMany(Property_investment::class);
     }
 }

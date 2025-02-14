@@ -18,6 +18,9 @@ class UpdatePropertyComponent extends Component
     public $property_address;
     public $property_price;
     public $property_rent;
+    public $property_share_price;
+    public $property_total_shares;
+    public $property_remaining_shares;
     public $property_image;
     public $rules;
     public $messages;
@@ -35,6 +38,9 @@ class UpdatePropertyComponent extends Component
         $this->property_address = $this->property->property_address;
         $this->property_price = $this->property->property_price;
         $this->property_rent = $this->property->property_rent;
+        $this->property_share_price = $this->property->property_share_price;
+        $this->property_total_shares = $this->property->property_total_shares;
+        $this->property_remaining_shares = $this->property->property_remaining_shares;
     }
 
 
@@ -72,9 +78,9 @@ class UpdatePropertyComponent extends Component
             'property_address' => $this->property_address,
             'property_price' => $this->property_price,
             'property_rent' => $this->property_rent,
-            'property_share_price' => $pricePerShare,
-            'property_total_shares' => $noOfShares,
-            'property_remaining_shares' => $noOfShares,
+            'property_share_price' => $this->property_share_price,
+            'property_total_shares' => $this->property_total_shares,
+            'property_remaining_shares' => $this->property_remaining_shares,
             'property_image' => $path,
         ]);
 

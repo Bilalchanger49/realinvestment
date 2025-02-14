@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade'); // The investor
             $table->foreignId('property_id')->constrained()->onDelete('cascade');
-            $table->foreignId('property_investment_id')->constrained()->onDelete('cascade');
+            $table->foreignId('property_investment_id')->constrained()->onDelete('cascade')->nullable();
             $table->decimal('amount', 10, 2);
             $table->timestamps();
         });

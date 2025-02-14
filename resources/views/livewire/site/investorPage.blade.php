@@ -68,7 +68,7 @@
                             <div class="cta-section">
                                 <div>
                                     <p>Investment<strong> PK {{$overallInvestment}}</strong></p>
-                                    <p>Profit <strong> PK 1200</strong></p>
+                                    <p>Profit <strong> PK {{$returndistribution->amount}}</strong></p>
                                 </div>
                                 <a href="{{route('profile.show')}}">
                                     <button class="btn btn-base "> View Profile</button>

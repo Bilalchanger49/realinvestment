@@ -26,6 +26,8 @@ class DistributeReturnsComponent extends Component
             'amount' => 'required|numeric',
         ]);
 
+        $this->amount = $validate['amount'] * 12;
+
         $propertyId = $this->property_id;
         $property = Property::findOrFail($propertyId);
 
@@ -42,7 +44,7 @@ class DistributeReturnsComponent extends Component
         foreach ($investors as $investor) {
             $investmentDate = \Carbon\Carbon::parse($investor->created_at);
             $now = \Carbon\Carbon::now();
-//            $monthsHeld = $investmentDate->diffInMonths($now);
+//          $monthsHeld = $investmentDate->diffInMonths($now);
             $monthsHeld = 12;
 
             // Ensure the duration is within a year (12 months max)
@@ -57,17 +59,18 @@ class DistributeReturnsComponent extends Component
             // Add to total distributed amount
             $totalDistributed += $returnForInvestor;
 
-            dd([
-                'property_id' => $propertyId,
-                'user_id' => $investor->user_id,
-                'amount' => $returnForInvestor,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+//            dd([
+//                'property_id' => $propertyId,
+//                'user_id' => $investor->user_id,
+//                'amount' => $returnForInvestor,
+//                'created_at' => now(),
+//                'updated_at' => now(),
+//            ]);
             // Record the return in the `return_distributions` table
             DB::table('return_distributions')->insert([
                 'property_id' => $propertyId,
                 'user_id' => $investor->user_id,
+                'property_investment_id' => $investor->id,
                 'amount' => $returnForInvestor,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -82,6 +85,7 @@ class DistributeReturnsComponent extends Component
             DB::table('return_distributions')->insert([
                 'property_id' => $propertyId,
                 'user_id' => 1, // Admin user_id
+                'property_investment_id' => $investor->id,
                 'amount' => $remainingAmount,
                 'created_at' => now(),
                 'updated_at' => now(),
