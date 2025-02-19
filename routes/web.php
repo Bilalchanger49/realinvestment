@@ -10,6 +10,10 @@ use App\Livewire\Site\ContactComponent;
 use App\Livewire\Site\HomeComponent;
 use App\Livewire\Site\PropertyDetailsComponent;
 use App\Livewire\Site\InvestorPageComponent;
+use App\Livewire\Site\RolesAndPermissions\Permissions\CreatePermissionComponent;
+use App\Livewire\Site\RolesAndPermissions\Roles\CreateRoleComponent;
+use App\Livewire\Site\RolesAndPermissions\Permissions\PermissionsComponent;
+use App\Livewire\Site\RolesAndPermissions\Roles\RolesComponent;
 use App\Livewire\Site\SecondaryMarketComponent;
 use App\Livewire\Site\FaqComponent;
 use App\Livewire\Site\BuyPropertyComponent;
@@ -44,6 +48,10 @@ Route::middleware([
         Route::get('/property/create', createProperty::class)->name('admin.property.create');
         Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
         Route::get('/distribute-returns', DistributeReturnsComponent::class)->name('admin.distribute.returns');
+
+        Route::get('permissions/all', PermissionsComponent::class)->name('open.permission');
+        Route::get('permissions/create', CreatePermissionComponent::class)->name('create.permission');
+
     })->middleware('auth');
 
 
@@ -53,4 +61,13 @@ Route::middleware([
 //        Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
 //    });
 });
+
+
+Route::get('roles/create', CreateRoleComponent::class)->name('create.roles');
+Route::get('roles', RolesComponent::class)->name('open.roles');
+//Route::get('roles/create', [RolesAndPermissionController::class, 'createRoles'])->name('create.roles')->middleware('permission:create-role');
+//Route::get('roles/edit/{id}', [RolesAndPermissionController::class, 'editRole'])->name('edit.roles')->middleware('permission:update-role');
+//Route::post('roles/update', [RolesAndPermissionController::class, 'updateRole'])->name('update.roles')->middleware('permission:update-role');
+//Route::get('roles/delete/{id}', [RolesAndPermissionController::class, 'deleteRole'])->name('delete.roles')->middleware('permission:delete-role');
+//
 

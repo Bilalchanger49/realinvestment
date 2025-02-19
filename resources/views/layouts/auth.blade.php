@@ -95,6 +95,30 @@
                             <span class="nav-text">Distribution</span>
                         </a>
                     </li>
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="" >
+                            <i class="mdi mdi-folder-outline"></i>
+                            <span class="nav-text">Transactions</span>
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="" >
+                            <i class="mdi mdi-folder-outline"></i>
+                            <span class="nav-text">Investments</span>
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="" >
+                            <i class="mdi mdi-folder-outline"></i>
+                            <span class="nav-text">Bids</span>
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="" >
+                            <i class="mdi mdi-folder-outline"></i>
+                            <span class="nav-text">Adds</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

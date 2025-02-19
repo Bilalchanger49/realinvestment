@@ -1,0 +1,66 @@
+@extends('layouts.auth')
+
+@section('title', 'Students')
+
+@section('css')
+    <link href="{{ asset('assets/auth/plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css') }}" rel="stylesheet" />
+@endsection
+
+@section('content')
+    <div class="content-wrapper">
+        <div class="content">
+
+            @include('roles_and_permissions.users.topbar')
+
+            <!-- Masked Input -->
+            <div class="card card-default">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                <div class="card-header">
+                    <h2>Users</h2>
+                </div>
+                <div class="card-body">
+
+                    <table id="role_table" class="table table-hover table-product" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>S/N</th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach($users as $user)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>
+                                    {{$user->getRoleNames()}}
+                                </td>
+                                <td>
+                                    <a href="{{ URL('users/assign-roles/edit') }}/{{ $user->id }}" class="btn btn-success">{{ __('Edit') }}</a>
+                                    <a href="{{ URL('users/delete') }}/{{ $user->id }}" class="btn btn-danger">{{ __('Delete') }}</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+@endsection
