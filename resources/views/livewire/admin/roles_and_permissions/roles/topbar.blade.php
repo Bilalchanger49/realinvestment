@@ -3,10 +3,10 @@
         <p>
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link {{ Request::path() == 'roles/create' ? 'active': '' }}" aria-current="page" href="{{route('create.roles')}}">New Role</a>
+                <a class="nav-link {{ Request::path() == 'admin/roles/create' ? 'active': '' }}" aria-current="page" href="{{route('create.roles')}}">New Role</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::path() == 'roles' ? 'active': '' }}" aria-current="page" href="{{route('open.roles')}}">Roles</a>
+                <a class="nav-link {{ Request::path() == 'admin/roles' ? 'active': '' }}" aria-current="page" href="{{route('open.roles')}}">Roles</a>
             </li>
         </ul>
         </p>

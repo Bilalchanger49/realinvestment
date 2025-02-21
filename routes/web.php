@@ -14,6 +14,8 @@ use App\Livewire\Site\RolesAndPermissions\Permissions\CreatePermissionComponent;
 use App\Livewire\Site\RolesAndPermissions\Roles\CreateRoleComponent;
 use App\Livewire\Site\RolesAndPermissions\Permissions\PermissionsComponent;
 use App\Livewire\Site\RolesAndPermissions\Roles\RolesComponent;
+use App\Livewire\Site\RolesAndPermissions\Users\AssignRoleComponent;
+use App\Livewire\Site\RolesAndPermissions\Users\UsersComponent;
 use App\Livewire\Site\SecondaryMarketComponent;
 use App\Livewire\Site\FaqComponent;
 use App\Livewire\Site\BuyPropertyComponent;
@@ -44,13 +46,19 @@ Route::middleware([
     Route::get('/dashboard', DashboardComponent::class)->name('dashboard');
     Route::get('/investor-page', InvestorPageComponent::class)->name('site.investor.page');
     Route::prefix('admin')->group(function () {
-        Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
-        Route::get('/property/create', createProperty::class)->name('admin.property.create');
-        Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
-        Route::get('/distribute-returns', DistributeReturnsComponent::class)->name('admin.distribute.returns');
+    Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
+    Route::get('/property/create', createProperty::class)->name('admin.property.create');
+    Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
+    Route::get('/distribute-returns', DistributeReturnsComponent::class)->name('admin.distribute.returns');
 
-        Route::get('permissions/all', PermissionsComponent::class)->name('open.permission');
-        Route::get('permissions/create', CreatePermissionComponent::class)->name('create.permission');
+    Route::get('permissions/all', PermissionsComponent::class)->name('open.permission');
+    Route::get('permissions/create', CreatePermissionComponent::class)->name('create.permission');
+
+    Route::get('roles/create', CreateRoleComponent::class)->name('create.roles');
+    Route::get('roles', RolesComponent::class)->name('open.roles');
+
+    Route::get('users', UsersComponent::class)->name('open.users');
+    Route::get('users/assign-role/{id}', AssignRoleComponent::class)->name('assign.role.users');
 
     })->middleware('auth');
 
@@ -63,11 +71,9 @@ Route::middleware([
 });
 
 
-Route::get('roles/create', CreateRoleComponent::class)->name('create.roles');
-Route::get('roles', RolesComponent::class)->name('open.roles');
-//Route::get('roles/create', [RolesAndPermissionController::class, 'createRoles'])->name('create.roles')->middleware('permission:create-role');
-//Route::get('roles/edit/{id}', [RolesAndPermissionController::class, 'editRole'])->name('edit.roles')->middleware('permission:update-role');
-//Route::post('roles/update', [RolesAndPermissionController::class, 'updateRole'])->name('update.roles')->middleware('permission:update-role');
-//Route::get('roles/delete/{id}', [RolesAndPermissionController::class, 'deleteRole'])->name('delete.roles')->middleware('permission:delete-role');
+//Route::get('roles/create', CreateRoleComponent::class)->name('create.roles');
+//Route::get('roles', RolesComponent::class)->name('open.roles');
+////Route::get('roles/edit/{id}', [RolesAndPermissionController::class, 'editRole'])->name('edit.roles')->middleware('permission:update-role');
 //
-
+//Route::get('users', UsersComponent::class)->name('open.users');
+//Route::get('users/assign-role/{id}', AssignRoleComponent::class)->name('assign.role.users');

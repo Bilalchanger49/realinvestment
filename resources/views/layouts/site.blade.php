@@ -121,6 +121,10 @@
                                 </li>
                                 <li>
                                     <i class="mdi mdi-account-outline"></i>
+                                    <a href="{{route('dashboard')}}">Dashboard</a>
+                                </li>
+                                <li>
+                                    <i class="mdi mdi-account-outline"></i>
                                     <a href=" {{ route('site.investor.page') }}">Investor Details</a>
                                 </li>
                                 <li>

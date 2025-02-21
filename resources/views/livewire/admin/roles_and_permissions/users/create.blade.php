@@ -1,15 +1,8 @@
-@extends('layouts.auth')
 
-@section('title', 'New Student')
-
-@section('css')
-@endsection
-
-@section('content')
     <div class="content-wrapper">
         <div class="content">
 
-            @include('roles_and_permissions.users.topbar')
+            @include('livewire.admin.roles_and_permissions.users.topbar')
 
             <!-- Masked Input -->
             <div class="card card-default">
@@ -17,8 +10,7 @@
                     <h2>Create User</h2>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('store.users') }}">
-                        @csrf
+                    <form  action="">
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -87,4 +79,3 @@
             </div>
         </div>
     </div>
-@endsection

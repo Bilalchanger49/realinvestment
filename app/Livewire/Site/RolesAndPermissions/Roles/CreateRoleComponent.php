@@ -20,16 +20,19 @@ class CreateRoleComponent extends Component
                 'role_name' => 'required|unique:roles,name',
                 'selectPermission' => 'required|array|min:1',
             ]);
-            $role = Role::create(['name' => $validate['role_name']]);
+            $role = Role::create([
+                    'name' => $validate['role_name'],
+                    'guard_name' => 'web'
+                ]);
             foreach ($validate['selectPermission'] as $permission) {
                 $role->givePermissionTo($permission);
             }
-            return redirect()->route('open.roles')
-                ->with('success', 'Role created successfully');
+            return redirect()->route('open.users')
+                ->with('success', 'Role assigned successfully');
 
         } catch (\Exception $e) {
-            return redirect()->route('open.roles')
-                ->with('error', 'Error occured while creating a role' . $e->getMessage());
+            return redirect()->route('open.users')
+                ->with('error', 'Error occured while assigning role' . $e->getMessage());
         }
 
     }

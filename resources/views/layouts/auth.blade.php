@@ -119,6 +119,24 @@
                             <span class="nav-text">Adds</span>
                         </a>
                     </li>
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="{{route('open.users')}}" >
+                            <i class="mdi mdi-folder-outline"></i>
+                            <span class="nav-text">Users</span>
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="{{route('open.permission')}}" >
+                            <i class="mdi mdi-folder-outline"></i>
+                            <span class="nav-text">Permissions</span>
+                        </a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="sidenav-item-link" href="{{route('open.roles')}}" >
+                            <i class="mdi mdi-folder-outline"></i>
+                            <span class="nav-text">Roles</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

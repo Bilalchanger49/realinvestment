@@ -1,16 +1,8 @@
-@extends('layouts.auth')
 
-@section('title', 'Students')
-
-@section('css')
-    <link href="{{ asset('assets/auth/plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css') }}" rel="stylesheet" />
-@endsection
-
-@section('content')
     <div class="content-wrapper">
         <div class="content">
 
-            @include('roles_and_permissions.users.topbar')
+            @include('livewire.admin.roles_and_permissions.users.topbar')
 
             <!-- Masked Input -->
             <div class="card card-default">
@@ -46,12 +38,15 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
+{{--                                <td>--}}
+{{--                                    {{$user->getRoleNames()}}--}}
+
+{{--                                </td>--}}
+                                <td>{{ implode(', ', $user->getRoleNames()->toArray()) }}</td>
+
                                 <td>
-                                    {{$user->getRoleNames()}}
-                                </td>
-                                <td>
-                                    <a href="{{ URL('users/assign-roles/edit') }}/{{ $user->id }}" class="btn btn-success">{{ __('Edit') }}</a>
-                                    <a href="{{ URL('users/delete') }}/{{ $user->id }}" class="btn btn-danger">{{ __('Delete') }}</a>
+                                    <a href="{{ URL('admin/users/assign-role/') }}/{{ $user->id }}" class="btn btn-success">{{ __('Edit') }}</a>
+                                    <a href="{{ URL('admin/users/delete') }}/{{ $user->id }}" class="btn btn-danger">{{ __('Delete') }}</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -63,4 +58,3 @@
 
         </div>
     </div>
-@endsection
