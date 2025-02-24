@@ -31,6 +31,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'cnic',
+        'nic_front',
+        'nic_back',
+        'is_verified',
     ];
 
     /**

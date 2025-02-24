@@ -58,14 +58,15 @@
 {{--        </form>--}}
 {{--    </x-authentication-card>--}}
 {{--</x-guest-layout>--}}
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
     @livewireStyles
 </head>
@@ -86,8 +87,9 @@
                                         <div class="col-12">
                                             <div class="mb-3">
                                                 <div class="text-center mb-4">
-                                                    <a href="#!">
-                                                        <img src="assets/img/logo-white.png" alt="BootstrapBrain Logo" width="175" height="57">
+                                                    <a href="/">
+                                                        <img src="assets/img/logo-white.png" alt="BootstrapBrain Logo"
+                                                             width="175" height="57">
                                                     </a>
                                                 </div>
                                                 <h4 class="text-center">Join us and start your journey!</h4>
@@ -99,7 +101,9 @@
                                         <div class="row gy-3 overflow-hidden">
                                             <div class="col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" value="{{old('name')}}"  autofocus autocomplete="name">
+                                                    <input type="text" class="form-control" name="name" id="name"
+                                                           placeholder="Your Name" value="{{old('name')}}" autofocus
+                                                           autocomplete="name">
                                                     <label for="name" class="form-label ">Name</label>
                                                     @error('name')
                                                     <p class="text-danger">{{$message}}</p>
@@ -108,7 +112,9 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="email" class="form-control" name="email" id="email" value="{{old('email')}}"  placeholder="name@example.com"  autocomplete="username">
+                                                    <input type="email" class="form-control" name="email" id="email"
+                                                           value="{{old('email')}}" placeholder="name@example.com"
+                                                           autocomplete="username">
                                                     <label for="email" class="form-label ">Email</label>
                                                     @error('email')
                                                     <p class="text-danger">{{$message}}</p>
@@ -117,7 +123,9 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="password" class="form-control" name="password" id="password"  placeholder="Password"  autocomplete="new-password">
+                                                    <input type="password" class="form-control" name="password"
+                                                           id="password" placeholder="Password"
+                                                           autocomplete="new-password">
                                                     <label for="password" class="form-label">Password</label>
                                                     @error('password')
                                                     <p class="text-danger">{{$message}}</p>
@@ -126,24 +134,55 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-floating mb-3">
-                                                    <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Confirm Password"  autocomplete="new-password">
-                                                    <label for="password_confirmation" class="form-label">Confirm Password</label>
+                                                    <input type="password" class="form-control"
+                                                           name="password_confirmation" id="password_confirmation"
+                                                           placeholder="Confirm Password" autocomplete="new-password">
+                                                    <label for="password_confirmation" class="form-label">Confirm
+                                                        Password</label>
                                                     @error('password_confirmation')
                                                     <p class="text-danger">{{$message}}</p>
                                                     @enderror
                                                 </div>
+
+
+                                                @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                                                    <div class="mt-4 ">
+                                                        <x-label for="terms">
+                                                            <p>please read the "term and Services" and "privacy policy"</p>
+                                                            <div class="d-flex">
+                                                                <x-checkbox name="terms" id="terms"/>
+
+                                                                <div class="ms-2">
+                                                                    {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                                                            'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
+                                                                            'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
+                                                                    ]) !!}
+                                                                </div>
+                                                            </div>
+                                                        </x-label>
+                                                        @error('terms')
+                                                        <p class="text-danger">{{$message}}</p>
+                                                        @enderror
+                                                    </div>
+                                                @endif
                                             </div>
+
                                             <div class="col-12">
                                                 <div class="d-grid">
-                                                    <button class="btn btn-primary btn-lg" type="submit">Sign up now</button>
+                                                    <button class="btn btn-primary btn-lg" type="submit">Sign up now
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </form>
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-5">
-                                                <a href="{{ route('login') }}" class="link-secondary text-decoration-none">Already have an account?</a>
+                                            <div
+                                                class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-center mt-5">
+                                                <a href="{{ route('login') }}"
+                                                   class="link-secondary text-decoration-none">Already have an
+                                                    account?</a>
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +192,8 @@
 
                         <!-- Image Column (now on the right) -->
                         <div class="col-12 col-md-6">
-                            <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy" src="assets/img/banner/1.jpg" alt="Join us and start your journey!">
+                            <img class="img-fluid rounded-start w-100 h-100 object-fit-cover" loading="lazy"
+                                 src="assets/img/banner/1.jpg" alt="Join us and start your journey!">
                         </div>
                     </div>
                 </div>
@@ -162,7 +202,9 @@
     </div>
 </section>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 @livewireScripts
 </body>
 
