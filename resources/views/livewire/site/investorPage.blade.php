@@ -68,7 +68,9 @@
                             <div class="cta-section">
                                 <div>
                                     <p>Investment<strong> PK {{$overallInvestment}}</strong></p>
+                                    @if($returndistribution)
                                     <p>Profit <strong> PK {{$returndistribution->amount}}</strong></p>
+                                    @endif
                                 </div>
                                 <a href="{{route('profile.show')}}">
                                     <button class="btn btn-base "> View Profile</button>
@@ -342,8 +344,8 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="#" class="details-btn-transaction btn btn-secondary btn-sm">&rarr;</a>
-                            <button class="btn btn-secondary btn-sm">Print</button>
+                                {{-- <a href="#" class="details-btn-transaction btn btn-secondary btn-sm">&rarr;</a> --}}
+                            <button class="btn btn-secondary btn-sm details-btn-transaction">Print</button>
                             </td>
                         </tr>
                     @endforeach
@@ -640,6 +642,9 @@
             </div>
         </div>
     </div>
+
+    
+   
 
     <script>
         // Transaction Details Popup Script
