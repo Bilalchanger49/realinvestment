@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/vendor.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+
     <style>
         .floating-alert {
             position: fixed;
@@ -29,6 +30,7 @@
             max-width: 80%;
             display: none;
         }
+
     </style>
     @livewireStyles
 </head>
@@ -329,6 +331,41 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/1.5.3/signature_pad.min.js"></script>
+<script>
+    function signaturePad() {
+        return {
+            signaturePad: null,
+
+            init() {
+                let canvas = this.$refs.signature_canvas;
+                let input = this.$refs.signature_input;
+
+                canvas.width = 400;
+                canvas.height = 200;
+
+                let ctx = canvas.getContext("2d");
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                this.signaturePad = new SignaturePad(canvas, {
+                    backgroundColor: "rgba(255, 255, 255, 0)"
+                });
+
+                // Update hidden input value and force Livewire update
+                this.signaturePad.onEnd = () => {
+                    let signatureData = this.signaturePad.toDataURL("image/png");
+                    input.value = signatureData;
+                    input.dispatchEvent(new Event('change'));
+                    console.log("Captured Signature:", signatureData); // Debugging
+                };
+            }
+        };
+    }
+
+</script>
+
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

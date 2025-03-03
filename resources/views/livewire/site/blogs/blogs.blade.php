@@ -1,217 +1,49 @@
 <div>
-    <!-- breadcrumb start -->
-    <div class="breadcrumb-area bg-overlay-2" style="background-image:url('assets/img/other/4.png')">
-        <div class="container">
-            <div class="breadcrumb-inner">
-                <div class="section-title text-center">
-                    <h2 class="page-title">Blog</h2>
-                    <ul class="page-list">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Blog</li>
-                    </ul>
-                </div>
-            </div>
+    <div x-data="signaturePad()" class="p-4">
+        <div>
+            <canvas x-ref="signature_canvas" class="border rounded shadow"></canvas>
         </div>
+
+        <!-- Hidden input for Livewire binding -->
+        <input type="hidden" wire:model.defer="signature" x-ref="signature_input"
+               @change="$wire.set('signature', $event.target.value)">
+
+        <button type="button" wire:click="submit" class="text-white bg-blue-500 px-4 py-2 mt-2">
+            Submit
+        </button>
     </div>
 
-    <!-- blog-page- Start -->
-    <div class="blog-page-area pd-top-120">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="single-blog-inner">
-                        <div class="thumb">
-                            <img src="assets/img/blog/1.png" alt="img">
-                        </div>
-                        <div class="details">
-                            <div class="cat"><a href="#">Business</a></div>
-                            <h3><a href="blog-details.html">Lorem ipsum dolor sit amet Lorem dolor sit amet sed do
-                                    eiusmod tempor.</a></h3>
-                            <ul class="meta-inner">
-                                <li><img src="assets/img/icon/1.png" alt="img"> By Admin</li>
-                                <li><img src="assets/img/icon/2.png" alt="img"> Marce 9 , 2020</li>
-                                <li><img src="assets/img/icon/3.png" alt="img"> Marce 9 , 2020</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetur et adipisicing
-                                eiLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor</p>
-                            <div class="row">
-                                <div class="col-7">
-                                    <div class="author-inner">
-                                        <img src="assets/img/blog/author1.png" alt="img">
-                                        <span>By Admin</span>
-                                    </div>
-                                </div>
-                                <div class="col-5 align-self-center text-right">
-                                    <a class="read-more" href="blog-details.html">Read More <i
-                                            class="la la-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-blog-inner">
-                        <div class="thumb">
-                            <img src="assets/img/blog/2.png" alt="img">
-                        </div>
-                        <div class="details">
-                            <div class="cat"><a href="#">Business</a></div>
-                            <h3><a href="blog-details.html">Lorem ipsum dolor sit amet Lorem dolor sit amet sed do
-                                    eiusmod tempor.</a></h3>
-                            <ul class="meta-inner">
-                                <li><img src="assets/img/icon/1.png" alt="img"> By Admin</li>
-                                <li><img src="assets/img/icon/2.png" alt="img"> Marce 9 , 2020</li>
-                                <li><img src="assets/img/icon/3.png" alt="img"> Marce 9 , 2020</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetur et adipisicing
-                                eiLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor</p>
-                            <div class="row">
-                                <div class="col-7">
-                                    <div class="author-inner">
-                                        <img src="assets/img/blog/author1.png" alt="img">
-                                        <span>By Admin</span>
-                                    </div>
-                                </div>
-                                <div class="col-5 align-self-center text-right">
-                                    <a class="read-more" href="blog-details.html">Read More <i
-                                            class="la la-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-blog-inner">
-                        <div class="details">
-                            <div class="cat"><a href="#">Business</a></div>
-                            <h3><a href="blog-details.html">Lorem ipsum dolor sit amet Lorem dolor sit amet sed do
-                                    eiusmod tempor.</a></h3>
-                            <ul class="meta-inner">
-                                <li><img src="assets/img/icon/1.png" alt="img"> By Admin</li>
-                                <li><img src="assets/img/icon/2.png" alt="img"> Marce 9 , 2020</li>
-                                <li><img src="assets/img/icon/3.png" alt="img"> Marce 9 , 2020</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="single-blog-inner style-quote text-center"
-                         style="background: url(assets/img/blog/4.png);">
-                        <div class="details">
-                            <div class="quote-thumb">
-                                <img src="assets/img/icon/quote.png" alt="img">
-                            </div>
-                            <h3><a href="blog-details.html">“Lorem ipsum dolor sit amet, consectetur et adipisicing
-                                    eiLorem ipsum dolor sit amet, consectetur elit”</a></h3>
-                            <ul class="meta-inner">
-                                <li><img src="assets/img/icon/4.png" alt="img"> By Admin</li>
-                                <li><img src="assets/img/icon/5.png" alt="img"> Marce 9 , 2020</li>
-                                <li><img src="assets/img/icon/6.png" alt="img"> Marce 9 , 2020</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="single-blog-inner">
-                        <div class="details">
-                            <div class="cat"><a href="#">Business</a></div>
-                            <h3><a href="blog-details.html">Lorem ipsum dolor sit amet Lorem dolor sit amet sed do
-                                    eiusmod tempor.</a></h3>
-                            <ul class="meta-inner">
-                                <li><img src="assets/img/icon/1.png" alt="img"> By Admin</li>
-                                <li><img src="assets/img/icon/2.png" alt="img"> Marce 9 , 2020</li>
-                                <li><img src="assets/img/icon/3.png" alt="img"> Marce 9 , 2020</li>
-                            </ul>
-                            <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetur et adipisicing
-                                eiLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor</p>
-                            <div class="row">
-                                <div class="col-7">
-                                    <div class="author-inner">
-                                        <img src="assets/img/blog/author1.png" alt="img">
-                                        <span>By Admin</span>
-                                    </div>
-                                </div>
-                                <div class="col-5 align-self-center text-right">
-                                    <a class="read-more" href="blog-details.html">Read More <i
-                                            class="la la-arrow-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pagination-area text-center">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#"><i class="la la-angle-double-left"></i></a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><i class="la la-angle-double-right"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- col of sidebar  -->
+    <script>
+        function signaturePad() {
+            return {
+                signaturePad: null,
 
-                <div class="col-lg-4">
-                    <aside class="sidebar-area">
-                        <div class="widget widget-search">
-                            <div class="single-search-inner">
-                                <input type="text" placeholder="Search your keyword">
-                                <button><i class="la la-search"></i></button>
-                            </div>
-                        </div>
-                        <div class="widget widget-author text-center">
-                            <h4 class="widget-title">About Me</h4>
-                            <div class="thumb">
-                                <img src="assets/img/agent/1.png" alt="img">
-                            </div>
-                            <div class="details">
-                                <h5>Sandara Mrikon</h5>
-                                <p>Lorem ipsum dolor amet, Lore ipsum dolor sit amet, consectetur et eiLorem ipsum dolor
-                                    sit amet</p>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="widget widget-news">
-                            <h5 class="widget-title">Popular Feeds</h5>
-                            <div class="single-news-wrap media">
-                                <div class="thumb">
-                                    <img src="assets/img/blog/5.png" alt="img">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h6><a href="blog-details.html">Dolor eorem ipsum sit amet Lorem ipsum</a></h6>
-                                    <p class="date"><i class="far fa-calendar-alt"></i>25 Aug 2020</p>
-                                </div>
-                            </div>
-                            <div class="single-news-wrap media">
-                                <div class="thumb">
-                                    <img src="assets/img/blog/6.png" alt="img">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h6><a href="blog-details.html">Responsive Web And Desktop Develope</a></h6>
-                                    <p class="date"><i class="far fa-calendar-alt"></i>25 Aug 2020</p>
-                                </div>
-                            </div>
-                            <div class="single-news-wrap media">
-                                <div class="thumb">
-                                    <img src="assets/img/blog/7.png" alt="img">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h6><a href="blog-details.html">Admin Web is Django Highlig Models</a></h6>
-                                    <p class="date"><i class="far fa-calendar-alt"></i>25 Aug 2020</p>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </div>
-    </div>
+                init() {
+                    let canvas = this.$refs.signature_canvas;
+                    let input = this.$refs.signature_input;
+
+                    canvas.width = 400;
+                    canvas.height = 200;
+
+                    let ctx = canvas.getContext("2d");
+                    ctx.fillStyle = "#ffffff";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    this.signaturePad = new SignaturePad(canvas, {
+                        backgroundColor: "rgba(255, 255, 255, 0)"
+                    });
+
+                    // Update hidden input value and force Livewire update
+                    this.signaturePad.onEnd = () => {
+                        let signatureData = this.signaturePad.toDataURL("image/png");
+                        input.value = signatureData;
+                        input.dispatchEvent(new Event('change'));
+                        console.log("Captured Signature:", signatureData); // Debugging
+                    };
+                }
+            };
+        }
+    </script>
+
+
 </div>
