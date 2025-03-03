@@ -22,13 +22,8 @@ use App\Livewire\Site\BuyPropertyComponent;
 use App\Livewire\Site\Blogs\BlogsComponent;
 use App\Livewire\Site\Stripe\PaymentComponent;
 use App\Livewire\admin\DistributeReturnsComponent;
-use App\Livewire\Site\Pdf\OfferLetterComponent;
 use Illuminate\Support\Facades\Route;
 
-
-
-Route::get('/download-offer-letter/{transactionId}/{type}', OfferLetterComponent::class)
-    ->name('download.offer.letter');
 
 Route::get('/', HomeComponent::class)->name('site.home');
 Route::get('/about', AboutComponent::class)->name('site.about');
