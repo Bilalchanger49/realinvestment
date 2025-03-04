@@ -69,11 +69,17 @@
                 <div class="mb-3">
                     <label class="form-label">NIC Front Image:</label>
                     <div class="me-3 d-flex">
+
+                    <img src="{{asset('storage/'.$this->user->nic_front)}}"
+                         alt="{{ $this->user->name }}" class="d-block ui-w-80">
+                    <input type="file" name="nic_front" accept="image/*" class="form-control nic-input" wire:model="state.nic_front">
+                    <x-input-error for="nic_front" class="mt-2"/>
                         <img src="{{asset('storage/'.$this->user->nic_front)}}"
                              alt="{{ $this->user->name }}" class="d-block ui-w-80">
                         <input type="file" name="nic_front" accept="image/*" class="form-control"
                                wire:model="state.nic_front">
                         <x-input-error for="nic_front" class="mt-2"/>
+
                     </div>
                 </div>
                 <div class="mb-3">
@@ -82,9 +88,14 @@
                         <img src="{{asset('storage/'.$this->user->nic_back)}}"
                              alt="{{ $this->user->name }}" class="d-block ui-w-80">
 
+
+                    <input type="file" name="nic_back" accept="image/*" class="form-control nic-input" wire:model="state.nic_back">
+                    <x-input-error for="nic_back" class="mt-2"/>
+
                         <input type="file" name="nic_back" accept="image/*" class="form-control"
                                wire:model="state.nic_back" >
                         <x-input-error for="nic_back" class="mt-2"/>
+
                     </div>
                 </div>
 

@@ -16,7 +16,7 @@
             </thead>
             <tbody>
             @foreach($propertyAdds as $propertyAdd)
-                <tr>
+                <tr >
                     <td>1</td>
                     <td>
                         {{$propertyAdd->property->property_name}}
@@ -48,7 +48,7 @@
         </table>
     </div>
 
-    {{--    delete selling add popup--}}
+     {{--    delete selling add popup--}}
     <div wire:ignore.self class="modal fade" id="delete_selling_add_popup" tabindex="-1" role="dialog"
          aria-labelledby="delete_selling_add_popup" aria-hidden="true">
         <div class="modal-dialog" role="document">

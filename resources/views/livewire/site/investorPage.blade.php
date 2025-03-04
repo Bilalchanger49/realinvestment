@@ -69,7 +69,11 @@
                                 <div>
                                     <p>Investment<strong> PK {{$overallInvestment}}</strong></p>
                                     @if($returndistribution)
+
+                                    <p>Profit <strong> PK {{$returndistribution->amount}}</strong></p>
+
                                         <p>Profit <strong> PK {{$returndistribution->amount}}</strong></p>
+
                                     @endif
                                 </div>
                                 <a href="{{route('profile.show')}}">
@@ -344,6 +348,10 @@
                                 @endif
                             </td>
                             <td>
+
+                                {{-- <a href="#" class="details-btn-transaction btn btn-secondary btn-sm">&rarr;</a> --}}
+                            <button class="btn btn-secondary btn-sm details-btn-transaction">Print</button>
+
 {{--                                <a href="#" class="details-btn-transaction btn btn-secondary btn-sm">&rarr;</a>--}}
 {{--                                <button class="btn btn-secondary btn-sm">Print</button>--}}
                                 <a href="{{ route('download.offer.letter', ['transactionId' => $transction->id, 'type' => 'buyer']) }}"
@@ -649,6 +657,9 @@
             </div>
         </div>
     </div>
+
+    
+   
 
     <script>
         // Transaction Details Popup Script

@@ -595,10 +595,10 @@ ul {
 }
 /* auction accept reject button   */
 .btn.btn-sm {
-  height: 28px;
+  height: 33px;
   line-height: 20px;
-  font-size: 11px;
-  width: 29px;
+  font-size: 13px;
+  width: 55px;
   padding: 0;
 }
 
@@ -2297,6 +2297,17 @@ section.bg-light {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
   border: 1px solid #5ba600;
+}
+
+.nic-input {
+  width: 400px; /* Set your desired width */
+  border: 1px solid #5ba600;
+  height: 36px !important;
+  /* margin-left: 17px; */
+}
+.me-3.d-flex{
+  align-items: center;
+  gap: 10px;gap: 10px;
 }
 
 .form-control[type="email"]:focus,
@@ -5320,13 +5331,14 @@ section.bg-light {
 .details-btn-transaction{
   background-color: #5ba600;
   color: #fff;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   width: 35px;
   height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  margin: auto;
 }
 .details-btn-auction{
   background-color: #5ba600;
@@ -6035,9 +6047,8 @@ input:focus, select:focus {
 
 /* Profile Picture */
 .ui-w-80 {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+    width: 88px;
+    height: 61px;
     object-fit: cover;
     border: 2px solid #dee2e6;
 }

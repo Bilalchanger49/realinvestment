@@ -9,10 +9,12 @@ class ViewSellingComponent extends Component
 {
     public $sellingAdd_id;
     public $property_name;
+
     public function confirmSellingAddDelete($id, $propertyName)
     {
         $this->sellingAdd_id = $id;
         $this->property_name = $propertyName;
+        
     }
     public function deleteSellingAdd()
     {
