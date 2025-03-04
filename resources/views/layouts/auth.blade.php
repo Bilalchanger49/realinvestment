@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@yield('title') |  {{ config('app.name') }}</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>@yield('title') | {{ config('app.name') }}</title>
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
-    <link href="{{ asset('assets/auth/plugins/material/css/materialdesignicons.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/auth/plugins/simplebar/simplebar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/auth/plugins/material/css/materialdesignicons.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/auth/plugins/simplebar/simplebar.css') }}" rel="stylesheet"/>
     <!-- PLUGINS CSS STYLE -->
-    <link href="{{ asset('assets/auth/plugins/nprogress/nprogress.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/auth/plugins/prism/prism.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/auth/plugins/nprogress/nprogress.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/auth/plugins/prism/prism.css') }}" rel="stylesheet"/>
     <!-- MONO CSS -->
-    <link id="main-css-href" rel="stylesheet" href="{{ asset('assets/auth/css/style.css') }}" />
+    <link id="main-css-href" rel="stylesheet" href="{{ asset('assets/auth/css/style.css') }}"/>
     <!-- FAVICON -->
-    <link href="{{ asset('assets/auth/images/favicon.png') }}" rel="shortcut icon" />
+    <link href="{{ asset('assets/auth/images/favicon.png') }}" rel="shortcut icon"/>
 
     @yield('css')
 
@@ -51,9 +51,9 @@
         <div id="sidebar" class="sidebar sidebar-with-footer">
             <!-- Aplication Brand -->
             <div class="app-brand">
-                <a href="/index.html">
+                <a href="/">
                     <img src="{{ asset('assets/img/logo-black.png') }}" alt="Mono">
-{{--                    <span class="brand-name">MONO</span>--}}
+                    {{--                    <span class="brand-name">MONO</span>--}}
                 </a>
             </div>
             <!-- begin sidebar scrollbar -->
@@ -66,10 +66,11 @@
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
-                    <li class="section-title"> Apps </li>
+                    <li class="section-title"> Apps</li>
 
                     <li class="has-sub">
-                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#property-menu" aria-expanded="false" aria-controls="playlist-menu">
+                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                           data-target="#property-menu" aria-expanded="false" aria-controls="playlist-menu">
                             <i class="mdi mdi-folder-outline"></i>
                             <span class="nav-text">Property</span>
                             <b class="caret"></b>
@@ -89,50 +90,56 @@
                             </div>
                         </ul>
                     </li>
-                    <li class="has-sub">
-                        <a class="sidenav-item-link" href="{{route('admin.distribute.returns')}}" >
-                            <i class="mdi mdi-folder-outline"></i>
+                    <li>
+                        <a class="sidenav-item-link" href="{{route('admin.distribute.returns')}}">
+                            <i class="mdi mdi-account-group"></i>
                             <span class="nav-text">Distribution</span>
                         </a>
                     </li>
-                    <li class="has-sub">
-                        <a class="sidenav-item-link" href="" >
-                            <i class="mdi mdi-folder-outline"></i>
+                    <li>
+                        <a class="sidenav-item-link" href="{{route('admin.all.investments')}}">
+                            <i class="mdi mdi-bank-transfer-in"></i>
+                            <span class="nav-text">Investments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="sidenav-item-link" href="{{route('admin.all.auctions')}}">
+                            <i class="mdi mdi-coins"></i>
+                            <span class="nav-text">Auctions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="sidenav-item-link" href="{{route('admin.all.advertisements')}}">
+                            <i class="mdi mdi-square-inc"></i>
+                            <span class="nav-text">Advertisements</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="sidenav-item-link" href="{{route('admin.all.bids')}}">
+                            <i class="mdi mdi-coins"></i>
+                            <span class="nav-text">Bids</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="sidenav-item-link" href="{{route('admin.all.transactions')}}">
+                            <i class="mdi mdi-bank-transfer"></i>
                             <span class="nav-text">Transactions</span>
                         </a>
                     </li>
                     <li class="has-sub">
-                        <a class="sidenav-item-link" href="" >
-                            <i class="mdi mdi-folder-outline"></i>
-                            <span class="nav-text">Investments</span>
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="sidenav-item-link" href="" >
-                            <i class="mdi mdi-folder-outline"></i>
-                            <span class="nav-text">Bids</span>
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="sidenav-item-link" href="" >
-                            <i class="mdi mdi-folder-outline"></i>
-                            <span class="nav-text">Adds</span>
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="sidenav-item-link" href="{{route('open.users')}}" >
-                            <i class="mdi mdi-folder-outline"></i>
+                        <a class="sidenav-item-link" href="{{route('open.users')}}">
+                            <i class="mdi mdi-account"></i>
                             <span class="nav-text">Users</span>
                         </a>
                     </li>
                     <li class="has-sub">
-                        <a class="sidenav-item-link" href="{{route('open.permission')}}" >
-                            <i class="mdi mdi-folder-outline"></i>
+                        <a class="sidenav-item-link" href="{{route('open.permission')}}">
+                            <i class="mdi mdi-folder-lock-open"></i>
                             <span class="nav-text">Permissions</span>
                         </a>
                     </li>
                     <li class="has-sub">
-                        <a class="sidenav-item-link" href="{{route('open.roles')}}" >
+                        <a class="sidenav-item-link" href="{{route('open.roles')}}">
                             <i class="mdi mdi-folder-outline"></i>
                             <span class="nav-text">Roles</span>
                         </a>
@@ -158,7 +165,8 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown user-menu">
                             <button class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                <img src="{{ asset('assets/auth/images/user/user-xs-01.jpg') }}" class="user-image rounded-circle" alt="User Image" />
+                                <img src="{{ asset('assets/auth/images/user/user-xs-01.jpg') }}"
+                                     class="user-image rounded-circle" alt="User Image"/>
                                 <span class="d-none d-lg-inline-block">{{ Auth::User()->name }}</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
@@ -179,7 +187,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-{{--                                    <a class="dropdown-link-item" href="{{ route('logout') }}"> <i class="mdi mdi-logout"></i> Log Out </a>--}}
+                                    {{--                                    <a class="dropdown-link-item" href="{{ route('logout') }}"> <i class="mdi mdi-logout"></i> Log Out </a>--}}
                                 </li>
                             </ul>
                         </li>
@@ -196,7 +204,9 @@
         <!-- Footer -->
         <footer class="footer mt-auto">
             <div class="copyright bg-white">
-                <p> &copy; <span id="copy-year"></span> Copyright by <a class="text-primary" href="http://pakcr.org" target="_blank">{{ config('app.name') }}</a>. </p>
+                <p> &copy; <span id="copy-year"></span> Copyright by <a class="text-primary" href="http://pakcr.org"
+                                                                        target="_blank">{{ config('app.name') }}</a>.
+                </p>
             </div>
             <script>
                 var d = new Date();
@@ -216,8 +226,8 @@
 @yield('script')
 
 <script>
-    $(document).ready(function() {
-        $('#logout').click(function(e) {
+    $(document).ready(function () {
+        $('#logout').click(function (e) {
             e.preventDefault();
 
             $('#logout_form').submit();

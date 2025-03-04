@@ -2,18 +2,18 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\Property_investment;
+use App\Models\Auctions;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AllInvestmentsComponent extends Component
+class AllAuctionsComponent extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $userName, $propertyName, $sharesOwned, $activity, $status;
+    public $userName, $propertyName, $activity,$noOfShares, $status;
 
-    protected $queryString = ['userName', 'propertyName', 'sharesOwned', 'activity', 'status'];
+    protected $queryString = ['userName', 'propertyName', 'noOfShares', 'activity', 'status'];
 
     public function updating($property)
     {
@@ -22,7 +22,7 @@ class AllInvestmentsComponent extends Component
 
     public function render()
     {
-        $query = Property_investment::query();
+        $query = Auctions::query();
 
         if ($this->propertyName) {
             $query->whereHas('property', function ($q) {
@@ -35,11 +35,8 @@ class AllInvestmentsComponent extends Component
                 $q->where('name', 'like', '%' . $this->userName . '%');
             });
         }
-
-        if ($this->sharesOwned) {
-            $query->whereHas('user', function ($q) {
-                $q->where('shares_owned', 'like', '%' . $this->sharesOwned . '%');
-            });
+        if ($this->noOfShares) {
+            $query->where('no_of_shares', $this->noOfShares);
         }
 
         if ($this->activity) {
@@ -50,9 +47,9 @@ class AllInvestmentsComponent extends Component
             $query->where('status', $this->status);
         }
 
-        $investments = $query->latest()->paginate(1);
+        $auctions = $query->latest()->paginate(1);
+//dd($auctions);
 
-//dd($investments);
-        return view('livewire.admin.allinvestments', compact('investments'))->extends('layouts.auth');
+        return view('livewire.admin.allauctions', compact('auctions'))->extends('layouts.auth');
     }
 }

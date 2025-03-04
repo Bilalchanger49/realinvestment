@@ -2,18 +2,19 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\Property_investment;
+use App\Models\Auctions;
+use App\Models\Selling;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class AllInvestmentsComponent extends Component
+class AllAdvertisementsComponent extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
 
-    public $userName, $propertyName, $sharesOwned, $activity, $status;
+    public $userName, $propertyName, $noOfShares,$shareAmount, $status;
 
-    protected $queryString = ['userName', 'propertyName', 'sharesOwned', 'activity', 'status'];
+    protected $queryString = ['userName', 'propertyName', 'activity', 'status'];
 
     public function updating($property)
     {
@@ -22,7 +23,7 @@ class AllInvestmentsComponent extends Component
 
     public function render()
     {
-        $query = Property_investment::query();
+        $query = Selling::query();
 
         if ($this->propertyName) {
             $query->whereHas('property', function ($q) {
@@ -35,24 +36,21 @@ class AllInvestmentsComponent extends Component
                 $q->where('name', 'like', '%' . $this->userName . '%');
             });
         }
-
-        if ($this->sharesOwned) {
-            $query->whereHas('user', function ($q) {
-                $q->where('shares_owned', 'like', '%' . $this->sharesOwned . '%');
-            });
+        if ($this->noOfShares) {
+            $query->where('no_of_shares', $this->noOfShares);
         }
 
-        if ($this->activity) {
-            $query->where('activity', $this->activity);
+        if ($this->shareAmount) {
+            $query->where('share_amount', $this->shareAmount);
         }
 
         if ($this->status) {
             $query->where('status', $this->status);
         }
 
-        $investments = $query->latest()->paginate(1);
+        $advertisements = $query->latest()->paginate(1);
 
-//dd($investments);
-        return view('livewire.admin.allinvestments', compact('investments'))->extends('layouts.auth');
+//dd($advertisements);
+        return view('livewire.admin.alladvertisements', compact('advertisements'))->extends('layouts.auth');
     }
 }

@@ -14,21 +14,25 @@
                         <input type="text" wire:model.defer="userName" class="form-control"
                                placeholder="Search User Name">
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
+                        <input type="text" wire:model.defer="sharesOwned" class="form-control"
+                               placeholder="Search shares owned">
+                    </div>
+                    <div class="col-md-3">
                         <select wire:model="activity" class="form-control">
                             <option value="">All Activities</option>
                             <option value="buy">Buy</option>
                             <option value="sell">Sell</option>
                         </select>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3 mt-3">
                         <select wire:model="status" class="form-control">
                             <option value="">All Status</option>
                             <option value="holding">Holding</option>
                             <option value="sold">Sold</option>
                         </select>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 mt-3">
                         <button wire:click="$refresh" class="btn btn-primary">Search</button>
                     </div>
                 </div>
@@ -82,16 +86,18 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9" class="text-center">No transactions found.</td>
+                                    <td colspan="9" class="text-center">No investments found.</td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
 
                     <!-- Pagination -->
-                    <div class="mt-3">
+                    <div class="my-3 flex justify-center">
                         {{ $investments->links() }}
                     </div>
+
+
                 </div>
             </div>
         </div>

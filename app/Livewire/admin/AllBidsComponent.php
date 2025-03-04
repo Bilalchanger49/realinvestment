@@ -3,17 +3,18 @@
 namespace App\Livewire\Admin;
 
 use App\Models\Bid;
-use App\Models\Property_investment;
+use App\Models\Property;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class AllBidsComponent extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
-    public $userName, $propertyName, $activity, $status;
+    public $userName, $propertyName,$sharePrice, $totalPrice, $totalShares, $status;
 
-    protected $queryString = ['userName', 'propertyName', 'activity', 'status'];
+    protected $queryString = ['userName', 'propertyName', 'sharePrice', 'totalPrice', 'totalShares', 'status'];
 
     public function updating($property)
     {
@@ -22,10 +23,10 @@ class AllBidsComponent extends Component
 
     public function render()
     {
-        $query = Bid::query();
+        $query = Bid::query()->with(['user', 'auctions.property']); // Ensure relationships are loaded
 
         if ($this->propertyName) {
-            $query->whereHas('property', function ($q) {
+            $query->whereHas('auctions.property', function ($q) {
                 $q->where('property_name', 'like', '%' . $this->propertyName . '%');
             });
         }
@@ -35,18 +36,24 @@ class AllBidsComponent extends Component
                 $q->where('name', 'like', '%' . $this->userName . '%');
             });
         }
+        if ($this->sharePrice) {
+            $query->where('share_amount', '>=', $this->sharePrice);
+        }
 
-        if ($this->activity) {
-            $query->where('activity', $this->activity);
+        if ($this->totalPrice) {
+            $query->where('total_price', '>=', $this->totalPrice);
+        }
+
+        if ($this->totalShares) {
+            $query->where('total_shares', '>=', $this->totalShares);
         }
 
         if ($this->status) {
             $query->where('status', $this->status);
         }
 
-        $bids = $query->latest()->paginate(1);
-
-
+        $bids = $query->latest()->paginate(10);
+//dd($bids);
         return view('livewire.admin.allbids', compact('bids'))->extends('layouts.auth');
     }
 }

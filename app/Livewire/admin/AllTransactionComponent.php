@@ -9,10 +9,11 @@ use Livewire\WithPagination;
 class AllTransactionComponent extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
-    public $userName, $propertyName, $activity, $status;
+    public $userName, $propertyName,$sharesOwned, $activity, $status;
 
-    protected $queryString = ['userName', 'propertyName', 'activity', 'status'];
+    protected $queryString = ['userName', 'propertyName','sharesOwned', 'activity', 'status'];
 
     public function updating($property)
     {
@@ -35,6 +36,9 @@ class AllTransactionComponent extends Component
             });
         }
 
+        if ($this->sharesOwned) {
+            $query->where('shares_owned', $this->sharesOwned);
+        }
         if ($this->activity) {
             $query->where('activity', $this->activity);
         }
@@ -44,7 +48,7 @@ class AllTransactionComponent extends Component
         }
 
         $transactions = $query->latest()->paginate(1);
-
+//dd($transactions);
 
         return view('livewire.admin.alltransaction', compact('transactions'))->extends('layouts.auth');
     }
