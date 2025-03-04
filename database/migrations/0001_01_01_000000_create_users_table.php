@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('cnic', 13)->unique()->nullable();
             $table->string('nic_front')->nullable();
             $table->string('nic_back')->nullable();
+            $table->text('signature')->nullable();
             $table->timestamps();
         });
 

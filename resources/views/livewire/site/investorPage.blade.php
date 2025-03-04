@@ -69,7 +69,11 @@
                                 <div>
                                     <p>Investment<strong> PK {{$overallInvestment}}</strong></p>
                                     @if($returndistribution)
+
                                     <p>Profit <strong> PK {{$returndistribution->amount}}</strong></p>
+
+                                        <p>Profit <strong> PK {{$returndistribution->amount}}</strong></p>
+
                                     @endif
                                 </div>
                                 <a href="{{route('profile.show')}}">
@@ -279,12 +283,12 @@
                                 @endif
                                 <td>
                                     @if($bid->status == 'accepted')
-{{--                                        <button--}}
-{{--                                            wire:click.prevent="buyAuction({{$bid->auctions_id}})"--}}
-{{--                                            class="btn btn-base custom-small-btn"--}}
-{{--                                            style="line-height: 0px;">--}}
-{{--                                            Buy--}}
-{{--                                        </button>--}}
+                                        {{--                                        <button--}}
+                                        {{--                                            wire:click.prevent="buyAuction({{$bid->auctions_id}})"--}}
+                                        {{--                                            class="btn btn-base custom-small-btn"--}}
+                                        {{--                                            style="line-height: 0px;">--}}
+                                        {{--                                            Buy--}}
+                                        {{--                                        </button>--}}
                                         <button
                                             wire:click.prevent="openAuctionTransactionPopup({{$bid->auctions_id}})"
                                             class="btn btn-base custom-small-btn"
@@ -344,23 +348,35 @@
                                 @endif
                             </td>
                             <td>
+
                                 {{-- <a href="#" class="details-btn-transaction btn btn-secondary btn-sm">&rarr;</a> --}}
                             <button class="btn btn-secondary btn-sm details-btn-transaction">Print</button>
+
+{{--                                <a href="#" class="details-btn-transaction btn btn-secondary btn-sm">&rarr;</a>--}}
+{{--                                <button class="btn btn-secondary btn-sm">Print</button>--}}
+                                <a href="{{ route('download.offer.letter', ['transactionId' => $transction->id, 'type' => 'buyer']) }}"
+                                   class="btn btn-primary">
+                                    Download Buyer Offer Letter
+                                </a>
+
+                                <a href="{{ route('download.offer.letter', ['transactionId' => $transction->id, 'type' => 'seller']) }}"
+                                   class="btn btn-secondary">
+                                    Download Seller Offer Letter
+                                </a>
+
                             </td>
                         </tr>
                     @endforeach
-{{--                        <td><span class="badge bg-danger">Sold</span></td>--}}
-{{--                        <td><button class="btn btn-secondary btn-sm">Print</button></td>--}}
-{{--                    </tr>--}}
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
+    {{--    @livewire('offer-letter', ['transaction' => $transaction, 'type' => 'buyer'])--}}
+    {{--    @livewire('offer-letter', ['transaction' => $transaction, 'type' => 'seller'])--}}
 
-{{--    // popups--}}
-
+    {{--    // popups--}}
     <div wire:ignore.self class="modal fade" id="active_investment_popup" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -441,7 +457,7 @@
     </div>
 
 
-{{--    create property add popup--}}
+    {{--    create property add popup--}}
     <div wire:ignore.self class="modal fade" id="property_add_popup" tabindex="-1" role="dialog"
          aria-labelledby="property_add_label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -521,7 +537,7 @@
     </div>
 
 
-{{--    delete auction popup--}}
+    {{--    delete auction popup--}}
     <div wire:ignore.self class="modal fade" id="delete_auction_popup" tabindex="-1" role="dialog"
          aria-labelledby="delete_auction_popup" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -543,7 +559,7 @@
         </div>
     </div>
 
-{{--    print transactions popup--}}
+    {{--    print transactions popup--}}
     <div id="transaction-popup">
         <div class="popup-content">
             <span class="close-btn" id="closeTransactionPopup">&times;</span>
@@ -557,7 +573,6 @@
             <button id="printBill" class="print-btn">Print</button>
         </div>
     </div>
-
 
     <div wire:ignore.self class="modal fade" id="bidsModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -616,7 +631,7 @@
         </div>
     </div>
 
-{{--    auction transactions popup--}}
+    {{--    auction transactions popup--}}
     <div wire:ignore.self class="modal fade" id="send_funds_popup" tabindex="-1" role="dialog"
          aria-labelledby="send_funds_popup_label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
