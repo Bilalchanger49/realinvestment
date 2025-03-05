@@ -8,6 +8,7 @@ use App\Models\Property;
 use App\Models\Property_investment;
 use App\Models\Selling;
 use App\Models\Transactions;
+use App\Notifications\InvestmentConfirmedNotification;
 
 class BuyPropertyService
 {
@@ -34,7 +35,7 @@ class BuyPropertyService
             ->where('property_id', $propertyId)
             ->where('status', 'holding')
             ->first();
-
+$investment = $existingInvestment;
         if ($existingInvestment) {
             $existingInvestment->update([
                 'shares_owned' => $existingInvestment->shares_owned + $numOfShares,
@@ -53,7 +54,7 @@ class BuyPropertyService
                 'status' => $status,
             ]);
         } else {
-            Property_investment::create([
+            $investment = Property_investment::create([
                 'user_id' => $userId,
                 'property_id' => $propertyId,
                 'shares_owned' => $numOfShares,
@@ -81,6 +82,14 @@ class BuyPropertyService
         $property->update([
             'property_remaining_shares' => $remainingShares,
         ]);
+//        dd($investment->total_investment);
+        $user = auth()->user();
+        if ($user) {
+            $user->notify(new InvestmentConfirmedNotification($investment, $property));
+            session()->flash('success', 'Bid created successfully!');
+        } else {
+            session()->flash('error', 'User not found for notification.');
+        }
 
         session()->flash('success', 'Investment successful!');
         return redirect()->route('site.property.details', ['id' => $propertyId]);

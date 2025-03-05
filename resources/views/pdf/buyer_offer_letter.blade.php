@@ -1,23 +1,21 @@
 <div>
-   
-
     <section id="offerLetter" class="offerLetter container-fluid mt-5 pt-5">
-        <h2>REAL INVESTMENT</h2>
-        <h3>Digital Investment Confirmation Letter</h3>
+        <h4>REAL INVESTMENT</h4>
+        <h5>Digital Investment Confirmation Letter</h5>
         <p><strong>Issued by:</strong> Real Investment</p>
         <p><strong>Date:</strong> {{ $date }}</p>
         <p><strong>Transaction ID:</strong> {{ $transaction->id }}</p>
 
-        <h4>To:</h4>
+        <h5>To:</h5>
         <p><strong>Investor Name:</strong> {{ $user->name }}</p>
         <p><strong>CNIC/NICOP:</strong> {{ $user->cnic }}</p>
         <p><strong>Email:</strong> {{ $user->email }}</p>
 
-        <h4>Subject: Investment Confirmation for {{ $property->property_name }}</h4>
+        <h5>Subject: Investment Confirmation for {{ $property->property_name }}</h5>
         <p>Dear {{ $user->name }},</p>
         <p>We are pleased to confirm your investment in {{ $property->property_name }}.</p>
 
-        <h4>Investment Details:</h4>
+        <h5>Investment Details:</h5>
         <ul>
             <li><strong>Property Name:</strong> {{ $property->property_name }}</li>
             <li><strong>Location:</strong> {{ $property->property_location }}</li>
@@ -27,13 +25,13 @@
             <li><strong>Payment Method:</strong> {{ $transaction->payment_id }}</li>
         </ul>
 
-        <h4>Terms & Conditions:</h4>
+        <h5>Terms & Conditions:</h5>
         <p>This transaction is final and cannot be reversed once completed.</p>
         <p>Shares are non-transferable outside of the Real Investment platform.</p>
         <p>Future profits are based on market performance and are not guaranteed.</p>
         <p>The investor agrees that these shares do not grant direct ownership of the property.</p>
 
-        <h4>Investor Agreement & Acknowledgment:</h4>
+        <h5>Investor Agreement & Acknowledgment:</h5>
         <p>By signing, I confirm that I agree to the terms outlined.</p>
         <p>
         <div class="d-flex flex-row">

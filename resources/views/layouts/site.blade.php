@@ -111,9 +111,10 @@
                     @if(Auth::User())
                         <li class="menu-item-has-children current-menu-item d-none d-lg-block" style=" width: 125px;">
 
-{{--                            <img src="assets/img/agent/3.png" class="user-image rounded-circle" style="height: 40px;"--}}
-{{--                                 alt=""/>--}}
-                            <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}" class="user-image rounded-circle" style="height: 40px;"
+                            {{--                            <img src="assets/img/agent/3.png" class="user-image rounded-circle" style="height: 40px;"--}}
+                            {{--                                 alt=""/>--}}
+                            <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
+                                 class="user-image rounded-circle" style="height: 40px;"
                                  alt=""/>
                             <a href="#">{{ Auth::User()->name }}</a>
                             <ul class="sub-menu">
@@ -160,7 +161,8 @@
                     @else
                         <li class="menu-item-has-children current-menu-item d-none d-lg-block">
 
-                            <img src="assets/img/agent/default user.jpeg" class="user-image rounded-circle" style="height: 40px;"
+                            <img src="assets/img/agent/default user.jpeg" class="user-image rounded-circle"
+                                 style="height: 40px;"
                                  alt=""/>
 
                             <a href="#">Login</a>
@@ -186,25 +188,33 @@
 
                 <!-- notifications  -->
                 <div class="notification-container">
-  <div class="notification-icon">
-    <i class="fa fa-bell"></i> <!-- Font Awesome Bell Icon -->
-    <div class="notification-indicator">
-      <div class="notification-count" role="status">1</div>
-    </div>
-  </div>
+                    <div class="notification-icon">
+                        <i class="fa fa-bell"></i> <!-- Font Awesome Bell Icon -->
+                        <div class="notification-indicator">
 
-  <!-- Dropdown Menu -->
-  <div class="notification-dropdown">
-    <ul>
-      <li><a href="#">Message 1</a></li>
-      <li><a href="#">Message 2</a></li>
-      <li><a href="#">Message 3</a></li>
-    </ul>
-  </div>
-</div>
+                            <div class="notification-count" role="status">{{auth()->user()->unreadNotifications->count()}}</div>
+                        </div>
+                    </div>
 
+                    <!-- Dropdown Menu -->
+                    <div class="notification-dropdown">
 
+                        <ul>
+                            @foreach(auth()->user()->notifications as $notification)
+                                <li><a>
+                                        <p>{{ $notification->data['message'] }}</p>
+                                        {{--                                    <small>Bid Amount: {{ $notification->data['bid_amount'] }}</small>--}}
+                                        <small>Status: {{ $notification->data['status'] }}</small>
+                                    </a>
+                                </li>
+                            @endforeach
 
+                            {{--                            <li><a href="#">Message 1</a></li>--}}
+                            {{--                            <li><a href="#">Message 2</a></li>--}}
+                            {{--                            <li><a href="#">Message 3</a></li>--}}
+                        </ul>
+                    </div>
+                </div>
 
 
     </nav>
@@ -295,22 +305,22 @@
 
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-  const bellIcon = document.querySelector('.notification-icon');
-  const dropdownMenu = document.querySelector('.notification-dropdown');
+    document.addEventListener("DOMContentLoaded", function () {
+        const bellIcon = document.querySelector('.notification-icon');
+        const dropdownMenu = document.querySelector('.notification-dropdown');
 
-  // Toggle the visibility of the dropdown when clicking the bell icon
-  bellIcon.addEventListener('click', function() {
-    dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-  });
+        // Toggle the visibility of the dropdown when clicking the bell icon
+        bellIcon.addEventListener('click', function () {
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
 
-  // Close the dropdown if clicked outside
-  document.addEventListener('click', function(event) {
-    if (!event.target.closest('.notification-container')) {
-      dropdownMenu.style.display = 'none'; // Hide the dropdown if clicked outside
-    }
-  });
-});
+        // Close the dropdown if clicked outside
+        document.addEventListener('click', function (event) {
+            if (!event.target.closest('.notification-container')) {
+                dropdownMenu.style.display = 'none'; // Hide the dropdown if clicked outside
+            }
+        });
+    });
 
 </script>
 
@@ -364,7 +374,6 @@
     }
 
 </script>
-
 
 
 <script>

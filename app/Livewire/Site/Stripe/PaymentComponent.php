@@ -80,7 +80,7 @@ class PaymentComponent extends Component
     public function processAuctionPayment($token)
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
-
+//dd($this->totalPrice *100);
         try {
             // Use the token to create a charge
             $charge = Charge::create([

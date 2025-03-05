@@ -329,40 +329,38 @@
                     </thead>
                     <tbody>
                     <tr>
-                    @foreach($transctions as $transction)
+                    @foreach($transctions as $transaction)
                         <tr>
                             <td>1</td>
                             <td>
-                                {{$transction->property->property_name}}
+                                {{$transaction->property->property_name}}
                                 <br><small
-                                    class="text-muted">code:#{{$transction->property->property_reg_no}}</small>
+                                    class="text-muted">code:#{{$transaction->property->property_reg_no}}</small>
                             </td>
-                            <td><strong>PK {{$transction->total_investment}}</strong></td>
-                            <td>{{$transction->created_at}}</td>
+                            <td><strong>PK {{$transaction->total_investment}}</strong></td>
+                            <td>{{$transaction->created_at}}</td>
 
                             <td>
-                                @if($transction->activity == 'buy')
-                                    <span class="status-completed">{{$transction->activity}}</span>
+                                @if($transaction->activity == 'buy')
+                                    <span class="status-completed">{{$transaction->activity}}</span>
                                 @else
-                                    <span class="status-unpaid">{{$transction->activity}}</span>
+                                    <span class="status-unpaid">{{$transaction->activity}}</span>
                                 @endif
                             </td>
                             <td>
-
-                                {{-- <a href="#" class="details-btn-transaction btn btn-secondary btn-sm">&rarr;</a> --}}
-                            <button class="btn btn-secondary btn-sm details-btn-transaction">Print</button>
-
-{{--                                <a href="#" class="details-btn-transaction btn btn-secondary btn-sm">&rarr;</a>--}}
-{{--                                <button class="btn btn-secondary btn-sm">Print</button>--}}
-                                <a href="{{ route('download.offer.letter', ['transactionId' => $transction->id, 'type' => 'buyer']) }}"
+{{--                            <button class="btn btn-secondary btn-sm details-btn-transaction">Print</button>--}}
+{{--                                {{dd($transaction)}}--}}
+                                @if($transaction->activity == 'buy')
+                                <a href="{{ route('download.offer.letter', ['transactionId' => $transaction->id, 'type' => 'buyer']) }}"
                                    class="btn btn-primary">
-                                    Download Buyer Offer Letter
+                                    Print
                                 </a>
-
-                                <a href="{{ route('download.offer.letter', ['transactionId' => $transction->id, 'type' => 'seller']) }}"
+                                @elseif($transaction->activity == 'sell')
+                                <a href="{{ route('download.offer.letter', ['transactionId' => $transaction->id, 'type' => 'seller']) }}"
                                    class="btn btn-secondary">
                                     Download Seller Offer Letter
                                 </a>
+                                @endif
 
                             </td>
                         </tr>
@@ -658,8 +656,8 @@
         </div>
     </div>
 
-    
-   
+
+
 
     <script>
         // Transaction Details Popup Script

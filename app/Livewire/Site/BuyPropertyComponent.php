@@ -10,6 +10,7 @@ use Livewire\Component;
 use Stripe\Stripe;
 use Stripe\Charge;
 
+
 class BuyPropertyComponent extends Component
 {
     public $totalShares;
@@ -37,7 +38,6 @@ class BuyPropertyComponent extends Component
 
     public function buyProperty()
     {
-        dd('inside buy property');
         if (!empty(auth()->user()->id)) {
             $userId = auth()->user()->id;
         } else {
