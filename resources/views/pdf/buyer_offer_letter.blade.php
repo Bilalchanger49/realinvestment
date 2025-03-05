@@ -1,19 +1,7 @@
 <div>
-    <div class="breadcrumb-area bg-overlay-2" style="background-image:url('assets/img/other/4.png')">
-        <div class="container">
-            <div class="breadcrumb-inner">
-                <div class="section-title text-center">
-                    <h2 class="page-title">Offer Letter</h2>
-                    <ul class="page-list">
-                        <li><a href="index.html">Home</a></li>
-                        <li>Offer letter</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
-    <section id="offerLetter" class="offerLetter container-fluid my-5">
+    <section id="offerLetter" class="offerLetter container-fluid mt-5 pt-5">
         <h2>REAL INVESTMENT</h2>
         <h3>Digital Investment Confirmation Letter</h3>
         <p><strong>Issued by:</strong> Real Investment</p>

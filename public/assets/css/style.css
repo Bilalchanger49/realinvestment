@@ -1536,9 +1536,12 @@ ul {
 }
 
 .navbar-area {
-  position: absolute;
-  z-index: 98;
+  position: fixed;  /* Keeps navbar at the top */
+  top: 0;
+  left: 0;
   width: 100%;
+  z-index: 98;
+
 }
 
 .navbar-area .navbar {
@@ -6143,3 +6146,94 @@ input:focus, select:focus {
     margin: auto;
 }
 
+/* ####offer letter  ######*/
+#offerLetter {
+  max-width: 800px;
+  margin: auto;
+  padding: 30px;
+  border: 2px solid #000;
+  background: #fff;
+  font-family: 'Times New Roman', serif;
+  line-height: 1.6;
+}
+
+#offerLetter h2, #offerLetter h3, #offerLetter h4 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+#offerLetter p, #offerLetter ul {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+#offerLetter ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#offerLetter ul li {
+  padding: 5px 0;
+  border-bottom: 1px dashed #000;
+}
+
+#offerLetter .signature-section {
+  margin-top: 30px;
+  text-align: left;
+  font-weight: bold;
+}
+
+#offerLetter .signature-box {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+#offerLetter .signature-box div {
+  width: 45%;
+}
+
+#offerLetter img {
+  height: 70px;
+  width: auto;
+  display: block;
+  margin-top: 10px;
+}
+
+.signature-line {
+  display: block;
+  border-top: 2px solid #000;
+  width: 200px;
+  margin-top: 10px;
+}
+#offerLetter {
+  margin-top: 150px !important; 
+  padding-top: 20px;
+  position: relative; 
+}
+
+#downloadPDF {
+  background-color: #0d1741; 
+  color: #fff; 
+  font-weight: bold;
+  font-size: 16px;
+  padding: 0px 21px; /* Adjusted padding for better look */
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  display: block; /* Makes sure it follows block rules */
+  margin: 10px auto; /* Centers horizontally */
+  position: relative;
+}
+
+#downloadPDF:hover {
+  background-color: #5ba600; 
+  transform: scale(1.05);
+}
+
+#downloadPDF:active {
+  transform: scale(0.95);
+}
