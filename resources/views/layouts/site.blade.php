@@ -113,9 +113,16 @@
 
                             {{--                            <img src="assets/img/agent/3.png" class="user-image rounded-circle" style="height: 40px;"--}}
                             {{--                                 alt=""/>--}}
-                            <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
-                                 class="user-image rounded-circle" style="height: 40px;"
-                                 alt=""/>
+                            @if(Auth::User()->profile_photo_path)
+                                <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
+                                     class="user-image rounded-circle" style="height: 40px;"
+                                     alt=""/>
+                            @else
+                                <img src="assets/img/agent/default user.jpeg" class="user-image rounded-circle"
+                                     style="height: 40px;"
+                                     alt=""/>
+                            @endif
+
                             <a href="#">{{ Auth::User()->name }}</a>
                             <ul class="sub-menu">
                                 <li>
@@ -192,7 +199,8 @@
                         <i class="fa fa-bell"></i> <!-- Font Awesome Bell Icon -->
                         <div class="notification-indicator">
 
-                            <div class="notification-count" role="status">{{auth()->user()->unreadNotifications->count()}}</div>
+                            <div class="notification-count"
+                                 role="status">{{auth()->user()->unreadNotifications->count()}}</div>
                         </div>
                     </div>
 
