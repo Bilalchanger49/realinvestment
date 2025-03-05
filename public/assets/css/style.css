@@ -6046,6 +6046,16 @@ input:focus, select:focus {
 }
 
 /* Profile Picture */
+
+.profile-image {
+  display: block;
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border: 2px solid #dee2e6;
+  border-radius: 50%;
+}
+
 .ui-w-80 {
     width: 88px;
     height: 61px;
