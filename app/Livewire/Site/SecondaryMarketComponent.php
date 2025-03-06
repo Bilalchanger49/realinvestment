@@ -84,7 +84,7 @@ class SecondaryMarketComponent extends Component
             $user = User::find($bid->user_id); // Find user by ID
 
             if ($user) {
-                $notification = $user->notify(new AuctionBidResponse($bid->auctions_id, $bid->share_amount, 'bid placed'));
+                $notification = $user->notify(new AuctionBidResponse($this->selectedAuction, $bid->share_amount, $user->name));
 //                dd($notification);
                 session()->flash('success', 'Bid created successfully!');
             } else {

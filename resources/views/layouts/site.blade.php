@@ -194,37 +194,35 @@
                 </ul>
 
                 <!-- notifications  -->
-                <div class="notification-container">
-                    <div class="notification-icon">
-                        <i class="fa fa-bell"></i> <!-- Font Awesome Bell Icon -->
-                        <div class="notification-indicator">
+                @auth
+                    <div class="notification-container">
+                        <div class="notification-icon">
+                            <i class="fa fa-bell"></i> <!-- Font Awesome Bell Icon -->
+                            @if(auth()->check() && auth()->user()->unreadNotifications->count())
+                                <div class="notification-indicator">
+                                    <div class="notification-count" role="status">
+                                        {{ auth()->user()->unreadNotifications->count() }}
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
 
-                            <div class="notification-count"
-                                 role="status">{{auth()->user()->unreadNotifications->count()}}</div>
+                        <!-- Dropdown Menu -->
+                        <div class="notification-dropdown">
+                            <ul>
+                                @foreach(auth()->user()->notifications as $notification)
+                                    <li><a>
+                                            <h5>{{ $notification->data['name'] }}</h5>
+                                            <p>{{ $notification->data['message'] }}</p>
+                                            {{--                                    <small>Bid Amount: {{ $notification->data['bid_amount'] }}</small>--}}
+                                            <small>{{ \Carbon\Carbon::createFromTimestamp($notification->data['time'])->diffForHumans() }}</small>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
-
-                    <!-- Dropdown Menu -->
-                    <div class="notification-dropdown">
-
-                        <ul>
-                            @foreach(auth()->user()->notifications as $notification)
-                                <li><a>
-                                        <p>{{ $notification->data['message'] }}</p>
-                                        {{--                                    <small>Bid Amount: {{ $notification->data['bid_amount'] }}</small>--}}
-                                        <small>Status: {{ $notification->data['status'] }}</small>
-                                    </a>
-                                </li>
-                            @endforeach
-
-                            {{--                            <li><a href="#">Message 1</a></li>--}}
-                            {{--                            <li><a href="#">Message 2</a></li>--}}
-                            {{--                            <li><a href="#">Message 3</a></li>--}}
-                        </ul>
-                    </div>
-                </div>
-
-
+                @endauth
     </nav>
 </div>
 

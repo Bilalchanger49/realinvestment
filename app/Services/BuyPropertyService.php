@@ -85,7 +85,7 @@ $investment = $existingInvestment;
 //        dd($investment->total_investment);
         $user = auth()->user();
         if ($user) {
-            $user->notify(new InvestmentConfirmedNotification($investment, $property));
+            $user->notify(new InvestmentConfirmedNotification($investment, $property, $user->name));
             session()->flash('success', 'Bid created successfully!');
         } else {
             session()->flash('error', 'User not found for notification.');

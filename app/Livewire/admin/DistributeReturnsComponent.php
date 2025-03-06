@@ -75,6 +75,12 @@ class DistributeReturnsComponent extends Component
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+
+            // Send notification to the investor
+            $user = User::find($investor->user_id);
+            if ($user) {
+                $user->notify(new DividendDistributedNotification($returnForInvestor, $property->name, $user->name));
+            }
         }
 
         // Calculate the remaining amount

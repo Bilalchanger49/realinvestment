@@ -5,25 +5,22 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Messages\DatabaseMessage;
 use Illuminate\Notifications\Notification;
 
-
-class AuctionBidResponse extends Notification
+class InvestmentRejectedNotification extends Notification
 {
     use Queueable;
-
-    protected $auction;
-    protected $bidAmount;
-    protected $username;
+    public $amount;
+    public $property;
+    public $username;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($auction, $bidAmount, $username)
+    public function __construct($investment, $property, $username)
     {
-        $this->auction = $auction;
-        $this->bidAmount = $bidAmount;
+        $this->investment = $investment;
+        $this->property = $property;
         $this->username = $username;
     }
 
@@ -38,13 +35,13 @@ class AuctionBidResponse extends Notification
     }
 
     /**
-     * Get the array representation of the notification for database storage.
+     * Get the mail representation of the notification.
      */
     public function toDatabase($notifiable)
     {
         return [
             'name' => $this->username,
-            'message' => "Your bid of {$this->bidAmount} on {$this->auction->title} has been placed.",
+            'message' => 'Your investment in ' . $this->property->property_name . ' has been rejected.',
             'time' => now()->timestamp
         ];
     }

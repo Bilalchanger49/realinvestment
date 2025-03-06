@@ -10,14 +10,18 @@ use Illuminate\Notifications\Notification;
 class InvestmentConfirmedNotification extends Notification
 {
     use Queueable;
+    public $investment;
+    public $property;
+    public $username;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($investment, $property)
+    public function __construct($investment, $property, $username)
     {
         $this->investment = $investment;
         $this->property = $property;
+        $this->username = $username;
     }
 
     /**
@@ -36,9 +40,9 @@ class InvestmentConfirmedNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
+            'name' => $this->username,
             'message' => 'Your investment in ' . $this->property->property_name . ' has been confirmed.',
-            'amount' => $this->investment->total_investment,
-            'status' => 'success'
+            'time' => now()->timestamp // Stores the Unix timestamp
         ];
     }
 
