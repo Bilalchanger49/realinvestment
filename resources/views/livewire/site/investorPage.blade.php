@@ -355,11 +355,11 @@
                                    class="btn btn-primary">
                                     Print
                                 </a>
-                                @elseif($transaction->activity == 'sell')
-                                <a href="{{ route('download.offer.letter', ['transactionId' => $transaction->id, 'type' => 'seller']) }}"
-                                   class="btn btn-secondary">
-                                    Download Seller Offer Letter
-                                </a>
+                                @elseif($transaction->activity == 'sold')
+                                    <a href="{{ route('download.offer.letter', ['transactionId' => $transaction->id, 'type' => 'seller']) }}"
+                                       class="btn btn-primary">
+                                        Print
+                                    </a>
                                 @endif
 
                             </td>
