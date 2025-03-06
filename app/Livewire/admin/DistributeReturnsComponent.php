@@ -3,6 +3,8 @@
 namespace App\Livewire\admin;
 
 use App\Models\Property;
+use App\Models\User;
+use App\Notifications\DividendDistributedNotification;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
