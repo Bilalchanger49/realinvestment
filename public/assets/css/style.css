@@ -6237,3 +6237,128 @@ input:focus, select:focus {
 #downloadPDF:active {
   transform: scale(0.95);
 }
+
+
+/* Notification Dropdown Styling ######### */
+.notification-container {
+  position: relative;
+  display: inline-block;
+}
+
+.notification-icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.notification-indicator {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  width: 320px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1000;
+  display: none;
+}
+
+.notification-container:hover .notification-dropdown {
+  display: block;
+}
+
+.nav-underline .nav-link {
+  padding: 10px 15px;
+  color: #333;
+  font-weight: bold;
+}
+
+.nav-underline .nav-link.active {
+  border-bottom: 2px solid #5ba600;
+  color: #5ba600;
+}
+
+.media-sm {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.media-sm-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden; /* Ensures the image stays within the circle */
+  margin-right: 10px;
+  margin-bottom: auto;
+}
+
+.media-sm-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes sure the image fully covers the area */
+}
+
+.media-body {
+  flex: 1;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.discribe {
+  font-size: 12px;
+  color: #666;
+}
+
+.time {
+  font-size: 11px;
+  color: #aaa;
+}
+
+.dropdown-notify-footer {
+  background: #f8f9fa;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+}
+
+/* Notification Image Styling */
+.notification-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff; /* Optional: adds a white border */
+}
+
+.notification-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: background 0.2s ease-in-out;
+}
+
+.notification-link:hover {
+  background: #d3d5d6; /* Light gray background on hover */
+}
