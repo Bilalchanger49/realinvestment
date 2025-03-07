@@ -6280,9 +6280,9 @@ input:focus, select:focus {
   display: none;
 }
 
-.notification-container:hover .notification-dropdown {
+/* .notification-container:hover .notification-dropdown {
   display: block;
-}
+} */
 
 .nav-underline .nav-link {
   padding: 10px 15px;
