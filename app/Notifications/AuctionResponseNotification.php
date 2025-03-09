@@ -9,22 +9,24 @@ use Illuminate\Notifications\Messages\DatabaseMessage;
 use Illuminate\Notifications\Notification;
 
 
-class AuctionBidResponse extends Notification
+class AuctionResponseNotification extends Notification
 {
     use Queueable;
 
-    protected $auction;
+    protected $propertyName;
     protected $bidAmount;
     protected $username;
+    protected $investorname;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($auction, $bidAmount, $username)
+    public function __construct($propertyName, $bidAmount, $username, $investorname)
     {
-        $this->auction = $auction;
+        $this->propertyName = $propertyName;
         $this->bidAmount = $bidAmount;
         $this->username = $username;
+        $this->investorname = $investorname;
     }
 
     /**
@@ -43,8 +45,8 @@ class AuctionBidResponse extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'name' => $this->username,
-            'message' => "Your bid of {$this->bidAmount} on {$this->auction->title} has been placed.",
+            'name' => $this->investorname,
+            'message' => "Your have received a bid of {$this->bidAmount} on {$this->propertyName} by {$this->username}",
             'time' => now()->timestamp
         ];
     }

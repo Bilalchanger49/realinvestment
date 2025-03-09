@@ -7,22 +7,27 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class BidConfirmedNotification extends Notification
+class BidResponseNotification extends Notification
 {
     use Queueable;
     protected $propertyName;
-    protected $bidAmount;
-    protected $username;
+    protected $respose;
+    protected $bidCreator;
+    protected $auctionCreator;
+    protected $bidTotalAmount;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($propertyName, $bidAmount, $username)
+    public function __construct($propertyName, $respose, $bidCreator, $auctionCreator, $bidTotalAmount)
     {
         $this->propertyName = $propertyName;
-        $this->bidAmount = $bidAmount;
-        $this->username = $username;
+        $this->respose = $respose;
+        $this->bidCreator = $bidCreator;
+        $this->auctionCreator = $auctionCreator;
+        $this->bidTotalAmount = $bidTotalAmount;
     }
+
     /**
      * Get the notification's delivery channels.
      *
@@ -34,14 +39,15 @@ class BidConfirmedNotification extends Notification
     }
 
 
+
     /**
      * Get the mail representation of the notification.
      */
     public function toDatabase($notifiable)
     {
         return [
-            'name' => $this->username,
-            'message' => "Your bid of {$this->bidAmount} on {$this->propertyName} has been placed.",
+            'name' => $this->bidCreator,
+            'message' => "Your bid on {$this->propertyName} of amount {$this->bidTotalAmount} has been {$this->respose} by {$this->auctionCreator}",
             'time' => now()->timestamp
         ];
     }

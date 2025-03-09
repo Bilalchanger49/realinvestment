@@ -10,13 +10,18 @@ use Illuminate\Notifications\Notification;
 class NewAdvertisementNotification extends Notification
 {
     use Queueable;
+    protected $sellerName;
+    protected $propertyName;
+    protected $Amount;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($Amount, $propertyName, $sellerName)
     {
-        //
+        $this->sellerName = $sellerName;
+        $this->propertyName = $propertyName;
+        $this->Amount = $Amount;
     }
 
     /**
@@ -24,20 +29,21 @@ class NewAdvertisementNotification extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toDatabase($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return [
+            'name' => $this->sellerName,
+            'message' => "Your Advertisement of {$this->Amount} on {$this->propertyName} has been placed.",
+            'time' => now()->timestamp // Stores the Unix timestamp
+        ];
     }
 
     /**

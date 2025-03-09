@@ -209,18 +209,37 @@
 
                         <!-- Dropdown Menu -->
                         <div class="notification-dropdown">
-                            <ul>
-                                @foreach(auth()->user()->notifications as $notification)
-                                    <li><a>
-                                            <h5>{{ $notification->data['name'] }}</h5>
-                                            <p>{{ $notification->data['message'] }}</p>
-                                            {{--                                    <small>Bid Amount: {{ $notification->data['bid_amount'] }}</small>--}}
-                                            <small>{{ \Carbon\Carbon::createFromTimestamp($notification->data['time'])->diffForHumans() }}</small>
+                            <header>
+                                <div class="nav nav-underline" id="nav-tab" role="tablist">
+                                    <a class="nav-item nav-link active" id="all-tabs" data-toggle="tab" href="#all"
+                                       role="tab">All ({{ auth()->user()->notifications->count() }})</a>
+                                    <a class="nav-item nav-link" id="message-tab" data-toggle="tab" href="#message"
+                                       role="tab">Msgs ({{ auth()->user()->unreadNotifications->count() }})</a>
+                                    <a class="nav-item nav-link" id="other-tab" data-toggle="tab" href="#other"
+                                       role="tab">Others</a>
+                                </div>
+                            </header>
+
+                            <div class="tab-content" id="myTabContent" style="max-height: 325px; overflow-y: auto;">
+                                <div class="tab-pane fade show active" id="all" role="tabpanel">
+                                    @foreach(auth()->user()->notifications as $notification)
+                                        <a href="{{ $notification->data['url'] ?? '#' }}" class="notification-link">
+                                            <div class="media media-sm p-3 border-bottom">
+                                                <div class="media-sm-wrapper">
+                                                    <img src="{{ asset('assets/img/agent/11.png') }}" alt="User Image" class="notification-img">
+                                                </div>
+                                                <div class="media-body">
+                                                    <h5 class="title mb-0">{{ $notification->data['name'] }}</h5>
+                                                    <p class="discribe">{{ $notification->data['message'] }}</p>
+                                                    <small class="text-muted">{{
+                                                \Carbon\Carbon::createFromTimestamp($notification->data['time'])->diffForHumans()
+                                                }}</small>
+                                                </div>
+                                            </div>
                                         </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                     </div>
                 @endauth
     </nav>

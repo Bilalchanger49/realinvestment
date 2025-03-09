@@ -10,13 +10,20 @@ use Illuminate\Notifications\Notification;
 class InvestmentSoldNotification extends Notification
 {
     use Queueable;
+    protected $investmentAmount;
+    protected $property;
+    protected $sellerName;
+    protected $investorName;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($investmentAmount, $property, $sellerName, $investorName)
     {
-        //
+        $this->investmentAmount = $investmentAmount;
+        $this->property = $property;
+        $this->sellerName = $sellerName;
+        $this->investorName = $investorName;
     }
 
     /**
@@ -24,20 +31,22 @@ class InvestmentSoldNotification extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
+
 
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toDatabase($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return [
+            'name' => $this->sellerName,
+            'message' => "Your investment in {$this->property->property_name} has been sold to {$this->investorName} for Total Amount {$this->investmentAmount}.",
+            'time' => now()->timestamp // Stores the Unix timestamp
+        ];
     }
 
     /**

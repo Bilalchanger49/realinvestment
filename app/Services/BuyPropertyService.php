@@ -8,7 +8,9 @@ use App\Models\Property;
 use App\Models\Property_investment;
 use App\Models\Selling;
 use App\Models\Transactions;
+use App\Models\User;
 use App\Notifications\InvestmentConfirmedNotification;
+use App\Notifications\InvestmentSoldNotification;
 
 class BuyPropertyService
 {
@@ -86,12 +88,12 @@ $investment = $existingInvestment;
         $user = auth()->user();
         if ($user) {
             $user->notify(new InvestmentConfirmedNotification($investment, $property, $user->name));
-            session()->flash('success', 'Bid created successfully!');
+            session()->flash('success', 'property has been bought successfully');
         } else {
             session()->flash('error', 'User not found for notification.');
         }
 
-        session()->flash('success', 'Investment successful!');
+//        session()->flash('success', 'Investment successful!');
         return redirect()->route('site.property.details', ['id' => $propertyId]);
     }
 
@@ -195,6 +197,19 @@ $investment = $existingInvestment;
             'activity' => 'sold',
             'status' => 'active',
         ]);
+        $investmentAmount = $bid->total_price;
+        $property = Property::find($auction->property_id);
+        $seller = User::find($auction->user_id);
+        $investor = User::find($buyer->id);
+
+        $user = auth()->user();
+        if ($user) {
+            $seller->notify(new InvestmentSoldNotification($investmentAmount, $property, $seller->name, $investor->name));
+            $user->notify(new InvestmentConfirmedNotification($investmentAmount, $property, $investor->name));
+            session()->flash('success', 'shares has been bought successfully');
+        } else {
+            session()->flash('error', 'User not found for notification.');
+        }
 
         // Flash success message
         session()->flash('success', 'Shares successfully transferred.');
@@ -287,6 +302,22 @@ $investment = $existingInvestment;
             'activity' => 'sold',
             'status' => 'active',
         ]);
+
+        $investmentAmount = $propertyAdd->total_amount;
+        $property = Property::find($propertyAdd->property_id);
+        $seller = User::find($propertyAdd->user_id);
+        $investor = User::find($buyer->id);
+
+        $user = auth()->user();
+        if ($user) {
+            $seller->notify(new InvestmentSoldNotification($investmentAmount, $property, $seller->name, $investor->name));
+            $user->notify(new InvestmentConfirmedNotification($investmentAmount, $property, $investor->name));
+            session()->flash('success', 'shares has been bought successfully');
+        } else {
+            session()->flash('error', 'User not found for notification.');
+        }
+
+
         session()->flash('success', 'shares transferred successfully.');
         return redirect()->route('site.investor.page');
     }

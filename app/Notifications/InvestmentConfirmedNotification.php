@@ -12,16 +12,16 @@ class InvestmentConfirmedNotification extends Notification
     use Queueable;
     public $investment;
     public $property;
-    public $username;
+    public $investorName;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($investment, $property, $username)
+    public function __construct($investment, $property, $investorName)
     {
         $this->investment = $investment;
         $this->property = $property;
-        $this->username = $username;
+        $this->investorName = $investorName;
     }
 
     /**
@@ -40,7 +40,7 @@ class InvestmentConfirmedNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'name' => $this->username,
+            'name' => $this->investorName,
             'message' => 'Your investment in ' . $this->property->property_name . ' has been confirmed.',
             'time' => now()->timestamp // Stores the Unix timestamp
         ];
