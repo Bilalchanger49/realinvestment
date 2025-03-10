@@ -7,21 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvestmentConfirmedNotification extends Notification
+class AuctionConfirmedNotification extends Notification
 {
     use Queueable;
-    public $investment;
-    public $property;
-    public $investorName;
-
+    protected $auctionAmount;
+    protected $propertyName;
+    protected $username;
     /**
      * Create a new notification instance.
      */
-    public function __construct($investment, $property, $investorName)
+    public function __construct($auctionAmount, $propertyName, $username)
     {
-        $this->investment = $investment;
-        $this->property = $property;
-        $this->investorName = $investorName;
+        $this->auctionAmount = $auctionAmount;
+        $this->propertyName = $propertyName;
+        $this->username = $username;
     }
 
     /**
@@ -40,9 +39,9 @@ class InvestmentConfirmedNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'name' => $this->investorName,
-            'message' => 'Your investment in ' . $this->property->property_name . ' has been confirmed.',
-            'time' => now()->timestamp // Stores the Unix timestamp
+            'name' => $this->username,
+            'message' => "Your auction of {$this->auctionAmount} on {$this->propertyName} has been placed.",
+            'time' => now()->timestamp
         ];
     }
 

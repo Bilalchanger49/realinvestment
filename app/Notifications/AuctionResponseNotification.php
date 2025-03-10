@@ -5,23 +5,28 @@ namespace App\Notifications;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Messages\DatabaseMessage;
 use Illuminate\Notifications\Notification;
 
-class InvestmentConfirmedNotification extends Notification
+
+class AuctionResponseNotification extends Notification
 {
     use Queueable;
-    public $investment;
-    public $property;
-    public $investorName;
+
+    protected $propertyName;
+    protected $bidAmount;
+    protected $username;
+    protected $investorname;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($investment, $property, $investorName)
+    public function __construct($propertyName, $bidAmount, $username, $investorname)
     {
-        $this->investment = $investment;
-        $this->property = $property;
-        $this->investorName = $investorName;
+        $this->propertyName = $propertyName;
+        $this->bidAmount = $bidAmount;
+        $this->username = $username;
+        $this->investorname = $investorname;
     }
 
     /**
@@ -35,14 +40,14 @@ class InvestmentConfirmedNotification extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
+     * Get the array representation of the notification for database storage.
      */
     public function toDatabase($notifiable)
     {
         return [
-            'name' => $this->investorName,
-            'message' => 'Your investment in ' . $this->property->property_name . ' has been confirmed.',
-            'time' => now()->timestamp // Stores the Unix timestamp
+            'name' => $this->investorname,
+            'message' => "Your have received a bid of {$this->bidAmount} on {$this->propertyName} by {$this->username}",
+            'time' => now()->timestamp
         ];
     }
 

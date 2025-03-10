@@ -4,10 +4,15 @@ namespace App\Livewire\Site;
 
 use App\Models\Auctions;
 use App\Models\Bid;
+use App\Models\Property;
 use App\Models\Property_investment;
 use App\Models\ReturnDistributions;
 use App\Models\Selling;
 use App\Models\Transactions;
+use App\Models\User;
+use App\Notifications\AuctionConfirmedNotification;
+use App\Notifications\BidResponseNotification;
+use App\Notifications\NewAdvertisementNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -99,10 +104,10 @@ class InvestorPageComponent extends Component
             ->where('user_id', auth()->id())
             ->where('status', 'active')->first();
 
-        //auction exist then user will be sent back and asked to edit the previous auction
         if ($existingAuction) {
             return back()->withErrors(['auction' => 'You have already created an auction for these shares.']);
         }
+
 
         $auctions = Auctions::create([
             'user_id' => auth()->id(),
@@ -114,6 +119,14 @@ class InvestorPageComponent extends Component
             'remaining_shares' => $this->no_of_shares - $this->shares_to_sell,
             'status' => 'active',
         ]);
+        $user = auth()->user();
+        $property = Property::where('id', $auctions->property_id)->first();
+        if($auctions){
+            $user->notify(new AuctionConfirmedNotification($auctions->total_amount_placed, $property->property_name, $user->name));
+            session()->flash('success', 'Auction created successfully.');
+        }else{
+            session()->flash('error', 'Auction not created due to an issue');
+        }
         return redirect()->route('site.investor.page');
     }
 
@@ -175,19 +188,39 @@ class InvestorPageComponent extends Component
         if ($bid) {
             $bid->status = 'accepted';
             $bid->save();
-            session()->flash('success', 'Bid accepted successfully.');
+            $bidCreator = User::find($bid->user_id);
+            $auctionCreator = User::find($auction->user_id);
+            $property = Property::find($auction->property_id);
+            $response = 'accepted';
+
+            if ($bidCreator) {
+                $bidCreator->notify(new BidResponseNotification($property->property_name, $response, $bidCreator->name, $auctionCreator->name,$bid->total_price));
+                session()->flash('success', 'Bid accepted successfully.');
+            } else {
+                session()->flash('error', 'User not found for notification.');
+            }
         }
     }
 
     public function rejectBid($bidId)
     {
         $bid = Bid::find($bidId);
+        $auction = Auctions::where('id', $bid->auctions_id)->first();
 
         if ($bid) {
             $bid->status = 'rejected';
             $bid->save();
+            $bidCreator = User::find($bid->user_id);
+            $auctionCreator = User::find($auction->user_id);
+            $property = Property::find($auction->property_id);
+            $response = 'rejected';
 
-            session()->flash('error', 'Bid rejected successfully.');
+            if ($bidCreator) {
+                $bidCreator->notify(new BidResponseNotification($property->property_name, $response, $bidCreator->name, $auctionCreator->name,$bid->total_price));
+                session()->flash('error', 'Bid rejected successfully.');
+            } else {
+                session()->flash('error', 'User not found for notification.');
+            }
         }
     }
 
@@ -325,7 +358,17 @@ class InvestorPageComponent extends Component
             'status' => 'active',
         ]);
 
-        session()->flash('success', 'Advertisement successfully created.');
+        $seller = User::find($propertyAdd->user_id);
+        $Amount = $propertyAdd->total_amount;
+        $property = Property::where('id', $propertyAdd->property_id)->first();
+        if($seller){
+            $seller->notify(new NewAdvertisementNotification($Amount, $property->property_name, $seller->name));
+            session()->flash('success', 'Advertisement created successfully.');
+        }else{
+            session()->flash('error', 'Advertisement not created due to an issue');
+        }
+
+//        session()->flash('success', 'Advertisement successfully created.');
         return redirect()->route('site.investor.page');
     }
 

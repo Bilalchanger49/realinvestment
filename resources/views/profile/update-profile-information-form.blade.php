@@ -60,40 +60,44 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">CNIC</label>
-                    <input type="text" class="form-control" wire:model.defer="state.cnic">
+                    <input type="text" id="cnic" maxlength="15" class="form-control"
+                           placeholder="XXXXX-XXXXXXX-X"
+                           pattern="\d{5}-\d{7}-\d{1}" wire:model.defer="state.cnic">
                     <x-input-error for="cnic" class="mt-2" />
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">NIC Front Image:</label>
-                    <div class="me-3 d-flex">
+                    <div class="me-3 d-flex" wire:ignore>
                         <!-- Preview Image -->
-                        <img id="nicFrontPreview" 
-                             src="{{ $this->user->nic_front ? asset('storage/'.$this->user->nic_front) : 'https://via.placeholder.com/88x61' }}" 
-                             alt="{{ $this->user->name }}" 
+                        <img id="nicFrontPreview"
+                             src="{{ $this->user->nic_front ? asset('storage/'.$this->user->nic_front) : 'https://via.placeholder.com/88x61' }}"
+                             alt="{{ $this->user->name }}"
                              class="d-block ui-w-80">
-                
+
                         <!-- File Input -->
                         <input type="file" id="nicFrontInput" name="nic_front" accept="image/*" class="form-control nic-input"
-                               wire:model="nic_front" onchange="previewImage(event, 'nicFrontPreview')">
+                               wire:model.live="state.nic_front" onchange="previewImage(event, 'nicFrontPreview')">
                         <x-input-error for="nic_front" class="mt-2"/>
                     </div>
                 </div>
-                
+
                 <div class="mb-3">
                     <label class="form-label">NIC Back Image:</label>
-                    <div class="me-3 d-flex">
+                    <div class="me-3 d-flex" wire:ignore>
                         <!-- Preview Image -->
-                        <img id="nicBackPreview" 
-                             src="{{ $this->user->nic_back ? asset('storage/'.$this->user->nic_back) : 'https://via.placeholder.com/88x61' }}" 
-                             alt="{{ $this->user->name }}" 
+                        <img id="nicBackPreview"
+                             src="{{ $this->user->nic_back ? asset('storage/'.$this->user->nic_back) : 'https://via.placeholder.com/88x61' }}"
+                             alt="{{ $this->user->name }}"
                              class="d-block ui-w-80">
-                
+
                         <!-- File Input -->
                         <input type="file" id="nicBackInput" name="nic_back" accept="image/*" class="form-control nic-input"
-                               wire:model="nic_back" onchange="previewImage(event, 'nicBackPreview')">
+                               wire:model.live="state.nic_back" onchange="previewImage(event, 'nicBackPreview')">
                         <x-input-error for="nic_back" class="mt-2"/>
                     </div>
+
+
                 </div>
 
                 <div class="mb-3">
@@ -167,18 +171,14 @@
         </div>
 
     </x-form-section>
+
+    <script>
+        document.getElementById("cnic").addEventListener("input", function (e) {
+            let value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+            if (value.length > 5) value = value.slice(0, 5) + "-" + value.slice(5);
+            if (value.length > 13) value = value.slice(0, 13) + "-" + value.slice(13);
+            e.target.value = value;
+        });
+    </script>
 </div>
-<script>
-    function previewImage(event, previewId) {
-        let file = event.target.files[0];
-        let reader = new FileReader();
 
-        reader.onload = function() {
-            document.getElementById(previewId).src = reader.result;
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
-    }
-</script>

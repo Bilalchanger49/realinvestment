@@ -7,21 +7,16 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class InvestmentConfirmedNotification extends Notification
+class ProfileUpdatedNotification extends Notification
 {
     use Queueable;
-    public $investment;
-    public $property;
-    public $investorName;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($investment, $property, $investorName)
+    public function __construct()
     {
-        $this->investment = $investment;
-        $this->property = $property;
-        $this->investorName = $investorName;
+        //
     }
 
     /**
@@ -29,21 +24,20 @@ class InvestmentConfirmedNotification extends Notification
      *
      * @return array<int, string>
      */
-    public function via($notifiable)
+    public function via(object $notifiable): array
     {
-        return ['database'];
+        return ['mail'];
     }
 
     /**
      * Get the mail representation of the notification.
      */
-    public function toDatabase($notifiable)
+    public function toMail(object $notifiable): MailMessage
     {
-        return [
-            'name' => $this->investorName,
-            'message' => 'Your investment in ' . $this->property->property_name . ' has been confirmed.',
-            'time' => now()->timestamp // Stores the Unix timestamp
-        ];
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
     }
 
     /**

@@ -5,9 +5,11 @@ namespace App\Livewire\Site;
 
 use App\Models\Auctions;
 use App\Models\Bid;
+use App\Models\Property;
 use App\Models\User;
+use App\Notifications\BidConfirmedNotification;
 use Livewire\Component;
-use App\Notifications\AuctionBidResponse;
+use App\Notifications\AuctionResponseNotification;
 
 class SecondaryMarketComponent extends Component
 {
@@ -81,18 +83,21 @@ class SecondaryMarketComponent extends Component
             ])->fresh(); // Ensures we get the model instance
 
             // Ensure user exists
-            $user = User::find($bid->user_id); // Find user by ID
+            $user = User::find($bid->user_id);
+            $auctionCreator = User::find($this->selectedAuction->user_id);
+            $property = Property::find($this->selectedAuction->property_id);
+
 
             if ($user) {
-                $notification = $user->notify(new AuctionBidResponse($this->selectedAuction, $bid->share_amount, $user->name));
-//                dd($notification);
+                $user->notify(new BidConfirmedNotification($property->property_name, $bid->share_amount, $user->name));
+                $auctionCreator->notify(new AuctionResponseNotification($property->property_name, $bid->share_amount, $user->name, $this->selectedAuction->user_id));
                 session()->flash('success', 'Bid created successfully!');
             } else {
                 session()->flash('error', 'User not found for notification.');
             }
         } catch (\Exception $e) {
             session()->flash('error', 'Failed to create bid: ' . $e->getMessage());
-            \Log::error('Bid creation failed', ['error' => $e]);
+//            \Log::error('Bid creation failed', ['error' => $e]);
         }
 
         // Redirect to the desired page
