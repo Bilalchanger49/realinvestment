@@ -35,7 +35,7 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6 mt-2 mt-md-0">
                                 <div class="widget-search">
                                     <div class="single-search-inner">
@@ -44,15 +44,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3 mt-2 mt-md-0 align-self-center">
-                                <div class="single-select-inner">
-                                    <select>
-                                        <option value="1">Low to High</option>
-                                        <option value="2">High to Low</option>
-                                        <option value="3">Newest Listings</option>
-                                    </select>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
