@@ -3195,6 +3195,7 @@ section.bg-light {
   border-bottom-right-radius: 10px;
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
   /* transition: all 0.3s ease-in-out; */
+  margin-bottom: 15px;
 }
 
 .single-product-wrap .product-meta-bottom.style-2 span {
