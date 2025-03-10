@@ -26,6 +26,15 @@
                                 <h5>21 Properties</h5>
                             </div> --}}
 
+                            <div class="col-md-6 mt-2 mt-md-0">
+                                <div class="widget-search">
+                                    <div class="single-search-inner">
+                                        <input type="text" placeholder="Search your keyword">
+                                        <button><i class="la la-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col-md-3 mt-2 mt-md-0 align-self-center">
                                 <div class="single-select-inner">
                                     <select>
@@ -33,15 +42,6 @@
                                         <option value="2">High to Low</option>
                                         <option value="3">Newest Listings</option>
                                     </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 mt-2 mt-md-0">
-                                <div class="widget-search">
-                                    <div class="single-search-inner">
-                                        <input type="text" placeholder="Search your keyword">
-                                        <button><i class="la la-search"></i></button>
-                                    </div>
                                 </div>
                             </div>
                             
@@ -53,9 +53,9 @@
                         <!-- Header with Links and Property Count -->
                         <div class="property-header d-flex justify-content-between align-items-center">
                             <div class="property-links">
-                                <a href="#" class="active">Main Property</a>
-                                <a href="#">Featured</a>
-                                <a href="#">For Sale</a>
+                                <a href="main-property.html" class="active">Main Property</a>
+                                <a href="featured-properties.html">Featured</a>
+                                <a href="for-sale-properties.html">For Sale</a>
                             </div>
                             <span class="property-count">Total Properties: <strong>4</strong></span>
                         </div>
