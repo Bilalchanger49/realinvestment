@@ -21,44 +21,52 @@
                         </thead>
                         <tbody>
                             @foreach($requests as $request)
-                                <tr>
-                                    <td class="text-capitalize">{{ $request->name }}</td>
-                                    <td class="text-nowrap">{{ $request->email }}</td>
-                                    <td class="text-nowrap">{{ $request->cnic }}</td>
-                                    <td>
-                                        <img src="{{ asset('storage/'.$request->profile_photo_path) }}" class="img-thumbnail preview-img">
-                                    </td>
-                                    <td>
-                                        <img src="{{ asset('storage/'.$request->nic_front) }}" class="img-thumbnail preview-img">
-                                    </td>
-                                    <td>
-                                        <img src="{{ asset('storage/'.$request->nic_back) }}" class="img-thumbnail preview-img">
-                                    </td>
-                                    <td>
-                                        <img src="{{ asset('storage/'.$request->signature) }}" class="img-thumbnail preview-img">
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-success">Verify</button>
-                                        <button class="btn btn-danger">Reject</button>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td class="text-capitalize">{{ $request->name }}</td>
+                                <td class="text-nowrap">{{ $request->email }}</td>
+                                <td class="text-nowrap">{{ $request->cnic }}</td>
+                                <td>
+                                    <img src="{{ asset('storage/'.$request->profile_photo_path) }}"
+                                        class="img-thumbnail preview-img">
+                                </td>
+                                <td>
+                                    <img src="{{ asset('storage/'.$request->nic_front) }}"
+                                        class="img-thumbnail preview-img">
+                                </td>
+                                <td>
+                                    <img src="{{ asset('storage/'.$request->nic_back) }}"
+                                        class="img-thumbnail preview-img">
+                                </td>
+                                <td>
+                                    <img src="{{ asset('storage/'.$request->signature) }}"
+                                        class="img-thumbnail preview-img">
+                                </td>
+                                <td>
+                                    {{-- <button wire:click="verify({{$request->id}})"
+                                        class="btn btn-success">Verify</button> --}}
+                                    {{-- <button wire:click="reject({{$request->id}})"
+                                        class="btn btn-danger">Reject</button> --}}
+                                    <button class="btn btn-success">Verify</button>
+                                    <button class="btn btn-danger">Reject</button>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-<!-- Fullscreen Image Preview Modal -->
-<div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body text-center">
-                <img id="previewImage" src="" class="img-fluid" alt="Preview">
+        <!-- Fullscreen Image Preview Modal -->
+        <div class="modal fade" id="imagePreviewModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body text-center">
+                        <img id="previewImage" src="" class="img-fluid" alt="Preview">
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-        
+
     </div>
 </div>
 
@@ -73,4 +81,3 @@
         });
     });
 </script>
-
