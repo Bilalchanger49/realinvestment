@@ -97,6 +97,12 @@
                         </a>
                     </li>
                     <li>
+                        <a class="sidenav-item-link" href="{{route('admin.profile.verification')}}">
+                            <i class="mdi mdi-account-group"></i>
+                            <span class="nav-text">Profile Verification</span>
+                        </a>
+                    </li>
+                    <li>
                         <a class="sidenav-item-link" href="{{route('admin.all.investments')}}">
                             <i class="mdi mdi-bank-transfer-in"></i>
                             <span class="nav-text">Investments</span>

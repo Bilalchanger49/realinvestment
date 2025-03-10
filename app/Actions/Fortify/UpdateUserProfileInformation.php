@@ -22,13 +22,14 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $validator = Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'cnic' => ['required', 'string', 'size:13', Rule::unique('users')->ignore($user->id)], // 13-digit CNIC
+            'cnic' => ['required', 'string', 'size:15', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
             'nic_front' => ['nullable'],
             'nic_back' => ['nullable'],
+            'signature' => ['nullable'],
 //            'nic_front' =>  'nullable|image|max:2048',
 //            'nic_back' =>  'nullable|image|max:2048',
-            'signature' => ['required', 'string'], // Ensure signature is provided
+//            'signature' => ['required', 'string'], // Ensure signature is provided
         ])->validateWithBag('updateProfileInformation');
 
 //        dd($validator);
@@ -67,7 +68,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $this->updateVerifiedUser($user, $input);
         } else {
             $isVerified = $user->hasVerifiedEmail()
-                ? $this->verifyCNIC($input['cnic'], $user->nic_front, $user->nic_back)
+                ? $this->verifyCNIC($input['name'], $input['email'],$input['cnic'], $user->nic_front, $user->nic_back)
                 : false;
 
             $user->forceFill([
@@ -104,8 +105,30 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         }
     }
 
-    protected function verifyCNIC(string $cnic, string $nicFront, string $nicBack): bool
+//    protected function verifyCNIC(string $cnic, string $nicFront, string $nicBack): bool
+//    {
+//        return true;
+//    }
+
+    protected function verifyCNIC(string $name, string $email, string $cnic, string $nicFront, string $nicBack): bool
     {
-        return true;
+        $user = User::where('cnic', $cnic)->first(); // Find user by CNIC
+
+        if ($user) {
+            $user->update([
+                'name' => $name,
+                'email' => $email,
+                'cnic' => $cnic,
+                'nic_front' => $nicFront,
+                'nic_back' => $nicBack,
+                'verification_status' => 'pending',
+            ]);
+        } else {
+            // Handle case where user is not found
+            return back()->withErrors(['error' => 'User not found!']);
+        }
+//        Notification::route('mail', 'admin@example.com')->notify(new User(auth()->user()));
+
+        return false; // User is not verified until admin manually approves
     }
 }

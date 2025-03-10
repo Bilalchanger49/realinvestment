@@ -36,6 +36,7 @@ class User extends Authenticatable
         'nic_back',
         'is_verified',
         'signature',
+        'verification_status'
     ];
 
     /**
