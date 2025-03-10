@@ -2891,6 +2891,7 @@ section.bg-light {
 .big-card-container {
   background: #fff; /* White background */
   padding: 20px; /* Adds space inside the big card */
+  border-radius: 0px!important;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
   margin: 0px auto; /* Adds space around the big card */
   max-width: 95%; /* Ensures it doesn’t go too wide */
@@ -6382,21 +6383,13 @@ input:focus, select:focus {
   background: #d3d5d6; /* Light gray background on hover */
 }
 
-.big-card-container {
-  background: #fff; /* White background */
-  padding: 20px; /* Adds space inside the big card */
-  border-radius: 15px; /* Soft rounded corners */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-  margin: 0px auto; /* Adds space around the big card */
-  max-width: 95%; /* Ensures it doesn’t go too wide */
-}
 /* Property header ########## */
 .property-header {
   background: #f8f9fa;
   padding: 10px 15px;
   border-radius: 8px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
 }
 
 .property-links a {
