@@ -6392,39 +6392,63 @@ input:focus, select:focus {
   box-shadow: 0 2px 5px rgb(0 0 0 / 30%);
 }
 
-.property-links a {
+/* Remove bottom border from tabs */
+.property-links .nav-tabs {
+  border-bottom: none;
+}
+
+/* Default tab styling */
+.property-links .nav-link {
   font-weight: bold;
   font-size: 16px;
-  color: #0d1741; /* Dark blue color */
+  color: #0d1741; /* Dark blue */
   text-decoration: none;
   padding: 5px 10px;
   position: relative;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
 }
 
-.property-links a.active {
-  color: #5ba600; /* Green color for active link */
-  text-decoration: none;
+/* Active tab: Green background, white text */
+.property-links .nav-link.active {
+  background: #5ba600;
+  color: white;
+  border: none;
 }
 
-.property-links a.active::after,
-.property-links a:hover::after {
+/* Hover effect: Green underline only */
+.property-links .nav-link:hover {
+  color: #5ba600;
+  background: transparent; 
+}
+
+.property-links .nav-link:hover::after {
   content: "";
   display: block;
   width: 100%;
-  height: 3px; /* Thicker underline */
-  background: #5ba600; /* Green underline */
+  height: 3px;
+  background: #5ba600;
   position: absolute;
-  bottom: -5px; /* Adjust the position */
+  bottom: -3px;
   left: 0;
-  transition: width 0.3s ease-in-out;
-}
-
-.property-links a:hover {
-  color: #5ba600; /* Change text color on hover */
 }
 
 .property-count {
   font-weight: bold;
   color: #565872;
 }
+      
+.table th, .table td {
+  vertical-align: middle;
+  text-align: center;
+}
+.img-thumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+
+
+
+

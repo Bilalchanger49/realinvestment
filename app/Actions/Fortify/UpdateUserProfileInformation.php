@@ -112,7 +112,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 
     protected function verifyCNIC(string $name, string $email, string $cnic, string $nicFront, string $nicBack): bool
     {
-        $user = User::where('cnic', $cnic)->first(); // Find user by CNIC
+        $user = User::where('email', $email)->first(); // Find user by CNIC
 
         if ($user) {
             $user->update([
@@ -125,7 +125,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             ]);
         } else {
             // Handle case where user is not found
-            return back()->withErrors(['error' => 'User not found!']);
+            return false;
         }
 //        Notification::route('mail', 'admin@example.com')->notify(new User(auth()->user()));
 
