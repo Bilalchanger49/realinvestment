@@ -2888,9 +2888,9 @@ section.bg-light {
 
 /***product-area***/
 .single-product-wrap {
-  position: relative;
-  border-radius: 5px;
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures all cards take full height */
 }
 
 .single-product-wrap:hover:before {
@@ -3128,8 +3128,13 @@ section.bg-light {
 }
 
 .single-product-wrap .product-details-inner {
-  background: #f7f7f7;
+  background: #ffffff; /* Use white or light background for better shadow effect */
   padding: 20px 35px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+  /* transition: all 0.3s ease-in-out;  */
+  flex-grow: 1; /* Ensures content expands evenly */
+  display: flex;
+  flex-direction: column;
 }
 
 .single-product-wrap .product-details-inner h4 {
@@ -3181,11 +3186,15 @@ section.bg-light {
 }
 
 .single-product-wrap .product-meta-bottom {
-  background: #ececec;
+  background: #f8f9fa; /* Slightly lighter for a modern look */
   color: #656c7d;
   font-size: 14px;
   font-weight: 500;
   padding: 12px 35px;
+  border-bottom-left-radius: 10px; /* Matches the card's rounded corners */
+  border-bottom-right-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
+  /* transition: all 0.3s ease-in-out; */
 }
 
 .single-product-wrap .product-meta-bottom.style-2 span {
