@@ -477,20 +477,114 @@ mark,
 .blockquote-footer::before {
   content: "— ";
 }
-
-.img-fluid {
-  max-width: 100%;
-  height: auto;
+/* profile verification ############# */
+/* Ensure table headers are in one row */
+.table thead th {
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.img-thumbnail {
+/* Adjust table cells to align properly */
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* Set a fixed size for images to align properly */
+.preview-img {
+  width: 60px; 
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Center align the images */
+td img {
+  display: block;
+  margin: auto;
+}
+
+/* Make the action buttons smaller */
+.btn {
+  padding: 5px 8px;
+  font-size: 14px;
+}
+
+/* Style buttons to only show icons */
+.btn-success::before {
+  content: "✔"; /* Tick icon */
+  font-size: 18px;
+  color: white;
+}
+
+.btn-danger::before {
+  content: "✖"; /* Cross icon */
+  font-size: 18px;
+  color: white;
+}
+
+/* Remove text inside buttons */
+.btn-success, .btn-danger {
+  text-indent: -9999px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+
+/* Ensure modal image is properly sized and centered */
+#previewImage {
+  max-width: 90%; /* Limits width to 90% of the modal */
+  max-height: 80vh; /* Limits height to 80% of the viewport height */
+  display: block;
+  margin: auto;
+  border-radius: 10px; /* Optional: Adds rounded corners for a polished look */
+}
+
+/* Center the modal content */
+.modal-dialog {
+  max-width: 80%; /* Ensures the modal is not too wide */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure image zooms properly */
+#imagePreviewModal .modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+/* .img-fluid {
+  max-width: 100%;
+  height: auto;
+} */
+
+/* .img-thumbnail {
   padding: 0.25rem;
   background-color: #f0f1f5;
   border: 1px solid #b6bdca;
   border-radius: 0.25rem;
   max-width: 100%;
   height: auto;
-}
+} */
+
+/*   
+  .table th, .table td {
+    vertical-align: middle;
+    text-align: center;
+  }
+   */
+ 
 
 .figure {
   display: inline-block;
