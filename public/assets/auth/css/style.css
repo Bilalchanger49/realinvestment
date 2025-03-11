@@ -477,22 +477,39 @@ mark,
 .blockquote-footer::before {
   content: "— ";
 }
-/* profile verification ############# */
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-thumbnail {
+  /* padding: 0.25rem; */
+  background-color: #f0f1f5;
+  border: 1px solid #b6bdca;
+  border-radius: 0.25rem;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ########Profile verification ############# 
+######################################*/
+
 /* Ensure table headers are in one row */
-.table thead th {
+.profile-verification-table thead th {
   vertical-align: middle;
   text-align: center;
   white-space: nowrap;
 }
 
 /* Adjust table cells to align properly */
-.table td {
+.profile-verification-table td {
   vertical-align: middle;
   text-align: center;
 }
 
 /* Set a fixed size for images to align properly */
-.preview-img {
+.profile-verification-table .preview-img {
   width: 60px; 
   height: 60px;
   object-fit: cover;
@@ -500,41 +517,54 @@ mark,
 }
 
 /* Center align the images */
-td img {
+.profile-verification-table td img {
   display: block;
   margin: auto;
 }
 
-/* Make the action buttons smaller */
-.btn {
-  padding: 5px 8px;
-  font-size: 14px;
-}
-
-/* Style buttons to only show icons */
-.btn-success::before {
-  content: "✔"; /* Tick icon */
-  font-size: 18px;
-  color: white;
-}
-
-.btn-danger::before {
-  content: "✖"; /* Cross icon */
-  font-size: 18px;
-  color: white;
-}
-
-/* Remove text inside buttons */
-.btn-success, .btn-danger {
-  text-indent: -9999px;
-  width: 30px;
-  height: 30px;
-  display: flex;
+/* General button styling */
+.action-verify-btn,
+.action-reject-btn {
+  width: 35px; /* Small button size */
+  height: 35px;
+  font-size: 16px; /* Icon size */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%; /* Make buttons circular */
+  transition: all 0.3s ease-in-out;
+  color: white; /* Ensure icon is visible */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  margin-right: 8px; /* Spacing between buttons */
 }
 
+/* Green Verify Button */
+.action-verify-btn {
+  background-color: #28a745;
+}
+
+.action-verify-btn i {
+  color: white; /* Ensure tick is always visible */
+}
+
+.action-verify-btn:hover {
+  background-color: #218838;
+}
+
+/* Red Reject Button */
+.action-reject-btn {
+  background-color: #dc3545;
+}
+
+.action-reject-btn i {
+  color: white; /* Ensure cross is always visible */
+}
+
+.action-reject-btn:hover {
+  background-color: #c82333;
+}
 
 /* Ensure modal image is properly sized and centered */
 #previewImage {
@@ -564,27 +594,52 @@ td img {
   align-items: center;
   padding: 20px;
 }
-/* .img-fluid {
-  max-width: 100%;
-  height: auto;
-} */
 
-/* .img-thumbnail {
-  padding: 0.25rem;
-  background-color: #f0f1f5;
-  border: 1px solid #b6bdca;
-  border-radius: 0.25rem;
-  max-width: 100%;
-  height: auto;
-} */
+/* Add padding inside table cells for better spacing */
+.profile-verification-table th,
+.profile-verification-table td {
+  padding: 12px; /* Adjust spacing inside table cells */
+}
 
-/*   
-  .table th, .table td {
-    vertical-align: middle;
-    text-align: center;
-  }
-   */
- 
+/* Add spacing between images in the table */
+.profile-verification-table td img {
+  margin: 5px; /* Adds space between images */
+}
+
+/* Ensure table cells are evenly spaced */
+.profile-verification-table th,
+.profile-verification-table td {
+  white-space: nowrap;
+}
+
+/* Ensure actions buttons have space */
+.profile-verification-table td .action-verify-btn,
+.profile-verification-table td .action-reject-btn {
+  margin: 0 5px; /* Adds spacing between buttons */
+}
+
+/* Adjust column widths */
+.profile-verification-table th:nth-child(4),
+.profile-verification-table td:nth-child(4), /* Profile Photo */
+.profile-verification-table th:nth-child(5),
+.profile-verification-table td:nth-child(5), /* NIC Front */
+.profile-verification-table th:nth-child(6),
+.profile-verification-table td:nth-child(6), /* NIC Back */
+.profile-verification-table th:nth-child(7),
+.profile-verification-table td:nth-child(7)  /* Signature */
+{
+  min-width: 100px; /* Set minimum width */
+  text-align: center;
+}
+
+/* Adjust action buttons column */
+.profile-verification-table th:nth-child(8),
+.profile-verification-table td:nth-child(8) {
+  min-width: 120px;
+  text-align: center;
+}
+
+
 
 .figure {
   display: inline-block;
@@ -11168,6 +11223,7 @@ button.bg-smoke:focus {
 
 .text-center {
   text-align: center !important;
+  width: 100%;
 }
 
 @media (min-width: 576px) {

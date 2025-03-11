@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <div class="content-wrapper">
     <div class="content">
         <h1 class="mb-3">Profile Verification</h1>
@@ -6,7 +7,7 @@
         <div class="card card-default">
             <div class="container mt-4">
                 <div>
-                    <table class="table table-bordered text-center align-middle">
+                    <table class="profile-verification-table table-bordered text-center align-middle">
                         <thead class="table-light">
                             <tr>
                                 <th>Name</th>
@@ -46,8 +47,8 @@
                                         class="btn btn-success">Verify</button> --}}
                                     {{-- <button wire:click="reject({{$request->id}})"
                                         class="btn btn-danger">Reject</button> --}}
-                                    <button class="btn btn-success">Verify</button>
-                                    <button class="btn btn-danger">Reject</button>
+                                        <button class="action-verify-btn"><i class="fas fa-check"></i></button>
+                                        <button class="action-reject-btn"><i class="fas fa-times"></i></button>
                                 </td>
                             </tr>
                             @endforeach
