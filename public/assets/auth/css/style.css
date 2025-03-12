@@ -13561,6 +13561,12 @@ label {
   color: #ffffff;
   background-color: rgba(158, 109, 224, 0.4);
 }
+.sidenav-item-link.active {
+  position: relative;
+  z-index: 10;
+  color: #ffffff;
+  background-color: rgba(158, 109, 224, 0.4); /* Purple background */
+}
 .sidebar .sidebar-inner .section-title {
   padding: 1.25rem 1.56rem 1rem;
   font-weight: 700;
