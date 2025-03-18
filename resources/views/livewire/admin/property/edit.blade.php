@@ -53,6 +53,22 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="rooms">Rooms</label>
+                        <input type="number" class="form-control" id="rooms" name="rooms" wire:model="property_rooms" >
+                        @error('property_rooms') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="kitchens">kitchens</label>
+                        <input type="number" class="form-control" id="kitchens" name="kitchens" wire:model="property_kitchens" >
+                        @error('property_kitchens') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <input type="text" class="form-control" id="type" name="type" wire:model="property_type" >
+                        @error('property_type') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div class="form-group">
                         <label for="property_price">Property Price</label>
                         <input type="number" class="form-control" id="property_price" wire:model="property_price">
                         @error('property_price') <span class="text-danger">{{ $message }}</span> @enderror
@@ -64,12 +80,36 @@
                         @error('property_rent') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 
+{{--                    <div class="form-group">--}}
+{{--                        <label for="property_image">Property Image</label>--}}
+{{--                        <input type="file" class="form-control" id="property_image" wire:model="property_image">--}}
+{{--                        @error('property_image') <span class="text-danger">{{ $message }}</span> @enderror--}}
+{{--                        <div wire:loading wire:target="property_image">Uploading...</div>--}}
+{{--                    </div>--}}
+
                     <div class="form-group">
-                        <label for="property_image">Property Image</label>
-                        <input type="file" class="form-control" id="property_image" wire:model="property_image">
-                        @error('property_image') <span class="text-danger">{{ $message }}</span> @enderror
-                        <div wire:loading wire:target="property_image">Uploading...</div>
+                        <label for="property_images">Property Images (Max: 10)</label>
+
+                        @foreach ($property_images as $index => $image)
+                            <div class="mb-2">
+                                <input type="file" class="form-control" wire:model="property_images.{{ $index }}" />
+                                <div wire:loading wire:target="property_images.{{ $index }}">
+                                    <span>Uploading...</span>
+                                </div>
+                                <button type="button" class="btn btn-danger btn-sm mt-2" wire:click="removeImage({{ $index }})">
+                                    Remove
+                                </button>
+                                @error("property_images.{$index}")
+                                <span class="error text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        @endforeach
+
+                        @if (count($property_images) < 10)
+                            <button type="button" class="btn btn-secondary mt-3" wire:click="addImage">Add Another Image</button>
+                        @endif
                     </div>
+
 
                     <button type="submit" class="btn btn-primary">Update Property</button>
                 </form>

@@ -10,13 +10,13 @@ use Illuminate\Notifications\Notification;
 class ProfileVerificationResponseNotification extends Notification
 {
     use Queueable;
-
+    public $reason;
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($reason)
     {
-        //
+        $this->reason = $reason;
     }
 
     /**
@@ -24,21 +24,24 @@ class ProfileVerificationResponseNotification extends Notification
      *
      * @return array<int, string>
      */
-    public function via(object $notifiable): array
+    public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
+
 
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toDatabase($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return [
+            'name' => 'Real Investment',
+            'message' => $this->reason,
+            'time' => now()->timestamp
+        ];
     }
+
 
     /**
      * Get the array representation of the notification.

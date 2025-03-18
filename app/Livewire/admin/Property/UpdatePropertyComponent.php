@@ -3,6 +3,7 @@
 namespace App\Livewire\admin\Property;
 
 use App\Models\Property;
+use App\Models\PropertyImage;
 use Livewire\Component;
 use App\Http\Requests\PropertyRequest;
 use Livewire\WithFileUploads;
@@ -16,12 +17,15 @@ class UpdatePropertyComponent extends Component
     public $property_description;
     public $property_reg_no;
     public $property_address;
+    public $property_rooms;
+    public $property_kitchens;
+    public $property_type;
     public $property_price;
     public $property_rent;
     public $property_share_price;
     public $property_total_shares;
     public $property_remaining_shares;
-    public $property_image;
+    public $property_images = [];
     public $rules;
     public $messages;
 
@@ -36,17 +40,30 @@ class UpdatePropertyComponent extends Component
         $this->property_description = $this->property->property_description;
         $this->property_reg_no = $this->property->property_reg_no;
         $this->property_address = $this->property->property_address;
+        $this->property_rooms = $this->property->property_rooms;
+        $this->property_kitchens = $this->property->property_kitchens;
+        $this->property_type = $this->property->property_type;
         $this->property_price = $this->property->property_price;
         $this->property_rent = $this->property->property_rent;
         $this->property_share_price = $this->property->property_share_price;
         $this->property_total_shares = $this->property->property_total_shares;
         $this->property_remaining_shares = $this->property->property_remaining_shares;
+        $this->rules['property_images.*'] = 'image|max:2048';
     }
 
 
     public function render()
     {
         return view('livewire.admin.property.edit' )->extends('layouts.auth');
+    }
+    public function addImage()
+    {
+        $this->property_images[] = null; // Add an empty slot
+    }
+    public function removeImage($index)
+    {
+        unset($this->property_images[$index]);
+        $this->property_images = array_values($this->property_images);
     }
 
     public function updateProperty()
@@ -61,14 +78,11 @@ class UpdatePropertyComponent extends Component
 // Calculate the price of each share
         $pricePerShare = $this->property_price / $noOfShares;
 
-        // Update property details
-
-
         // Handle image upload if a new one is provided
-        if ($this->property_image) {
-            $file = $this->property_image;
-            $path = $file->store('create-property', 'public');
-        }
+//        if ($this->property_image) {
+//            $file = $this->property_image;
+//            $path = $file->store('create-property', 'public');
+//        }
 
         $this->property->update([
             'user_id' => auth()->user()->id,
@@ -76,13 +90,25 @@ class UpdatePropertyComponent extends Component
             'property_description'=> $this->property_description,
             'property_reg_no' => $this->property_reg_no,
             'property_address' => $this->property_address,
+            'property_rooms' => $this->property_rooms,
+            'property_kitchens' => $this->property_kitchens,
+            'property_type' => $this->property_type,
             'property_price' => $this->property_price,
             'property_rent' => $this->property_rent,
             'property_share_price' => $this->property_share_price,
             'property_total_shares' => $this->property_total_shares,
             'property_remaining_shares' => $this->property_remaining_shares,
-            'property_image' => $path,
         ]);
+
+        foreach ($this->property_images as $image) {
+            if ($image) {
+                $path = $image->store('create-property', 'public');
+                PropertyImage::create([
+                    'property_id' => $this->property->id,
+                    'image_path' => $path,
+                ]);
+            }
+        }
 
         session()->flash('success', 'Property updated successfully.');
         return redirect()->route('admin.property.index');

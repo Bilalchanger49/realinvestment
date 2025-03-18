@@ -9,7 +9,7 @@ class Property extends Model
 {
     use HasFactory;
     protected $fillable = ['user_id', 'property_name', 'property_description', 'property_reg_no',
-        'property_address', 'property_price', 'property_rent', 'property_share_price',
+        'property_address', 'property_rooms', 'property_kitchens', 'property_type', 'property_price', 'property_rent', 'property_share_price',
         'property_total_shares', 'property_remaining_shares','property_roi', 'property_image'];
 
     public function user()

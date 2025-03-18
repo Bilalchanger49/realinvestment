@@ -1,13 +1,12 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <div class="content-wrapper">
     <div class="content">
         <h1 class="mb-3">Profile Verification</h1>
 
         <!-- Transactions Table -->
         <div class="card card-default">
-            <div class="container mt-4">
+            <div>
                 <div>
-                    <table class="profile-verification-table table-bordered text-center align-middle">
+                    <table class=" profile-verification-table table-bordered text-center align-middle">
                         <thead class="table-light">
                             <tr>
                                 <th>Name</th>
@@ -47,8 +46,12 @@
                                         class="btn btn-success">Verify</button> --}}
                                     {{-- <button wire:click="reject({{$request->id}})"
                                         class="btn btn-danger">Reject</button> --}}
-                                        <button class="action-verify-btn"><i class="fas fa-check"></i></button>
-                                        <button class="action-reject-btn"><i class="fas fa-times"></i></button>
+                                        <button wire:click="verify({{$request->id}})" class="action-verify-btn"><i class="fas fa-check"></i></button>
+{{--                                        <button class="action-reject-btn"><i class="fas fa-times"></i></button>--}}
+                                    <!-- Update Reject Button -->
+                                    <button wire:click="openRejectionPopup({{$request->id}})" class="action-reject-btn" data-bs-toggle="modal" data-bs-target="#rejectModal">
+                                        <i class="fas fa-times"></i>
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach
@@ -68,10 +71,33 @@
             </div>
         </div>
 
+
+        <!-- Reject Modal -->
+        <div wire:ignore.self class="modal fade" id="rejectModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content"> <!-- This was missing -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">Reject Verification {{$this->userId}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <textarea class="form-control" id="rejectionReason" placeholder="Enter rejection reason" wire:model="rejectionReason" ></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button wire:click="reject({{$userId}})" type="button" class="btn btn-danger" id="rejectConfirmBtn">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+
 </div>
 
 <!-- JavaScript for Image Preview -->
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".preview-img").forEach(img => {

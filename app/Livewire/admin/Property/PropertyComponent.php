@@ -3,6 +3,7 @@
 namespace App\Livewire\admin\Property;
 
 use App\Models\Property;
+use App\Models\PropertyImage;
 use Livewire\Component;
 
 class PropertyComponent extends Component
@@ -30,7 +31,8 @@ class PropertyComponent extends Component
     }
     public function render()
     {
+        $images = PropertyImage::all();
         $properties = Property::all();
-        return view('livewire.admin.property.index',compact('properties') )->extends('layouts.auth');
+        return view('livewire.admin.property.index',compact('properties','images') )->extends('layouts.auth');
     }
 }

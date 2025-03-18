@@ -4,11 +4,18 @@ namespace App\Livewire\admin;
 
 
 use App\Models\User;
+use App\Notifications\ProfileVerificationResponseNotification;
 use Livewire\Component;
 
 class ProfileVerificationComponent extends Component
 {
+    public $rejectionReason;
+    public $userId;
 
+    public function openRejectionPopup($userId)
+    {
+        $this->userId = $userId;
+    }
     public function render()
     {
         $requests = User::where('verification_status', 'pending')->get();
@@ -18,7 +25,6 @@ class ProfileVerificationComponent extends Component
     public function verify($id)
     {
         $verification = User::findOrFail($id);
-        $verification->update(['verification_status' => 'verified']);
 
         if ($verification) {
             $verification->update(['verification_status' => 'verified']);
@@ -26,15 +32,19 @@ class ProfileVerificationComponent extends Component
         }
 
         session()->flash('success', 'CNIC verified successfully.');
+        return redirect()->route('admin.profile.verification');
     }
 
     public function reject($id)
     {
-        dd();
-        $verification = User::findOrFail($id);
+        $verification = User::findOrFail($this->userId);
+//        dd($this->rejectionReason);
         $verification->update(['verification_status' => 'rejected']);
 
-        session()->flash('error', 'CNIC verification request rejected.');
+        $verification->notify(new ProfileVerificationResponseNotification( $this->rejectionReason));
+
+        session()->flash('success', 'CNIC verification request rejected.');
+        return redirect()->route('admin.profile.verification');
     }
 
 

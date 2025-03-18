@@ -21,9 +21,11 @@ class PropertyRequest extends FormRequest
             'property_description'=> 'required|string|max:255',
             'property_reg_no' => 'required|integer',
             'property_address' => 'required|string',
+            'property_rooms' => 'nullable',
+            'property_kitchens' => 'nullable',
+            'property_type' => 'nullable',
             'property_price' => 'required|integer',
             'property_rent' => 'required|integer',
-            'property_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 
@@ -68,11 +70,6 @@ class PropertyRequest extends FormRequest
 
             'property_rent.required' => 'Rent price is required',
             'property_rent.integer' => 'Rent price must be an integer',
-
-            'property_image.required' => 'Image is required',
-            'property_image.image' => 'The file must be an image',
-            'property_image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, svg',
-            'property_image.max' => 'The image must not be larger than 2MB',
         ];
     }
 

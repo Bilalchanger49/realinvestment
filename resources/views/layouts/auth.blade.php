@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,7 +15,8 @@
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="{{ asset('assets/auth/css/style.css') }}" />
     <!-- FAVICON -->
-    <link href="{{ asset('assets/auth/images/favicon.png') }}" rel="shortcut icon" />
+    <link href="{{ asset('assets/auth/images/favicon.png') }}" rel="shortcut icon"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     @yield('css')
 
@@ -69,100 +69,88 @@
                     </li>
                     <li class="section-title"> Apps</li>
 
-                    <li class="has-sub {{ request()->is('admin/property/*') ? 'active open' : '' }}">
+                    <li class="has-sub">
                         <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                           data-target="#property-menu" aria-expanded="{{ request()->is('admin/property/*') ? 'true' : 'false' }}"
-                           aria-controls="property-menu">
+                           data-target="#property-menu" aria-expanded="false" aria-controls="playlist-menu">
                             <i class="mdi mdi-folder-outline"></i>
                             <span class="nav-text">Property</span>
                             <b class="caret"></b>
                         </a>
-                        <ul class="collapse {{ request()->is('admin/property/*') ? 'show' : '' }}" id="property-menu" data-parent="#sidebar-menu">
+                        <ul class="collapse" id="property-menu" data-parent="#sidebar-menu">
                             <div class="sub-menu">
-                                <li class="{{ request()->is('admin/property/index') ? 'active' : '' }}">
+                                <li>
                                     <a class="sidenav-item-link" href="{{route('admin.property.index')}}">
-                                        <span class="nav-text">Index</span>
+                                        <span class="nav-text">index</span>
                                     </a>
                                 </li>
-                                <li class="{{ request()->is('admin/property/create') ? 'active' : '' }}">
+                                <li>
                                     <a class="sidenav-item-link" href="{{route('admin.property.create')}}">
-                                        <span class="nav-text">Create</span>
+                                        <span class="nav-text">create</span>
                                     </a>
                                 </li>
                             </div>
                         </ul>
                     </li>
-                    
-                    <li class="{{ request()->routeIs('admin.distribute.returns') ? 'active' : '' }}">
-                        <a class="sidenav-item-link {{ request()->routeIs('admin.distribute.returns') ? 'active' : '' }}" 
-                           href="{{ route('admin.distribute.returns') }}">
+                    <li>
+                        <a class="sidenav-item-link" href="{{route('admin.distribute.returns')}}">
                             <i class="mdi mdi-account-group"></i>
                             <span class="nav-text">Distribution</span>
                         </a>
                     </li>
-                    <li class="{{ request()->routeIs('admin.profile.verification') ? 'active' : '' }}">
-                        <a class="sidenav-item-link {{ request()->routeIs('admin.profile.verification') ? 'active' : '' }}" 
-                           href="{{ route('admin.profile.verification') }}">
+                    <li>
+                        <a class="sidenav-item-link" href="{{route('admin.profile.verification')}}">
                             <i class="mdi mdi-account-group"></i>
                             <span class="nav-text">Profile Verification</span>
                         </a>
                     </li>
-                    <li class="{{ request()->is('admin/all-investments') ? 'active' : '' }}">
+                    <li>
                         <a class="sidenav-item-link" href="{{route('admin.all.investments')}}">
                             <i class="mdi mdi-bank-transfer-in"></i>
                             <span class="nav-text">Investments</span>
                         </a>
                     </li>
-                    
-                    <li class="{{ request()->is('admin/all-auctions') ? 'active' : '' }}">
+                    <li>
                         <a class="sidenav-item-link" href="{{route('admin.all.auctions')}}">
                             <i class="mdi mdi-coins"></i>
                             <span class="nav-text">Auctions</span>
                         </a>
                     </li>
-                    
-                    <li class="{{ request()->is('admin/all-advertisements') ? 'active' : '' }}">
+                    <li>
                         <a class="sidenav-item-link" href="{{route('admin.all.advertisements')}}">
                             <i class="mdi mdi-square-inc"></i>
                             <span class="nav-text">Advertisements</span>
                         </a>
                     </li>
-                    
-                    <li class="{{ request()->is('admin/all-bids') ? 'active' : '' }}">
+                    <li>
                         <a class="sidenav-item-link" href="{{route('admin.all.bids')}}">
                             <i class="mdi mdi-coins"></i>
                             <span class="nav-text">Bids</span>
                         </a>
                     </li>
-                    
-                    <li class="{{ request()->is('admin/all-transactions') ? 'active' : '' }}">
+                    <li>
                         <a class="sidenav-item-link" href="{{route('admin.all.transactions')}}">
                             <i class="mdi mdi-bank-transfer"></i>
                             <span class="nav-text">Transactions</span>
                         </a>
                     </li>
-                    
                     <li class="has-sub">
-                        <a class="sidenav-item-link {{ request()->is('admin/users*') ? 'active' : '' }}" href="{{route('open.users')}}">
+                        <a class="sidenav-item-link" href="{{route('open.users')}}">
                             <i class="mdi mdi-account"></i>
                             <span class="nav-text">Users</span>
                         </a>
                     </li>
-                    
                     <li class="has-sub">
-                        <a class="sidenav-item-link {{ request()->is('admin/permissions*') ? 'active' : '' }}" href="{{route('open.permission')}}">
+                        <a class="sidenav-item-link" href="{{route('open.permission')}}">
                             <i class="mdi mdi-folder-lock-open"></i>
                             <span class="nav-text">Permissions</span>
                         </a>
                     </li>
-                    
                     <li class="has-sub">
-                        <a class="sidenav-item-link {{ request()->is('admin/roles*') ? 'active' : '' }}" href="{{route('open.roles')}}">
+                        <a class="sidenav-item-link" href="{{route('open.roles')}}">
                             <i class="mdi mdi-folder-outline"></i>
                             <span class="nav-text">Roles</span>
                         </a>
                     </li>
-                    
                 </ul>
             </div>
         </div>

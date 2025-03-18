@@ -47,44 +47,18 @@
                             <div class="product-thumbnail-wrapper pt-3" wire:ignore>
 
                                 <div class="single-thumbnail-slider">
-                                     <div class="slider-item">
-                                        <img src="{{asset('storage/' . $property->property_image)}}" alt="img" >
-                                    </div>
-                                    <div class="slider-item">
-                                        <img src="{{asset('assets/img/project-single/2.png')}}" alt="img">
-                                    </div>
-                                    <div class="slider-item">
-                                        <img src="{{asset('assets/img/project-single/3.png')}}" alt="img">
-                                    </div>
-                                    <div class="slider-item">
-                                        <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
-                                    </div>
-                                    <div class="slider-item">
-                                        <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
-                                    </div>
+                                    @foreach($images as $image)
+                                        <div class="slider-item">
+                                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="Property Image">
+                                        </div>
+                                    @endforeach
                                 </div>
                                 <div class="product-thumbnail-carousel">
-                                     <div class="single-thumbnail-item">
-                                        <img src="{{asset('storage/' . $property->property_image)}}" alt="img">
-                                    </div>
-                                    <div class="single-thumbnail-item">
-                                        <img src="{{asset('assets/img/project-single/2.png')}}" alt="img">
-                                    </div>
-                                    <div class="single-thumbnail-item">
-                                        <img src="{{asset('assets/img/project-single/3.png')}}" alt="img">
-                                    </div>
-                                    <div class="single-thumbnail-item">
-                                        <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
-                                    </div>
-                                    <div class="single-thumbnail-item">
-                                        <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
-                                    </div>
-                                    <div class="single-thumbnail-item">
-                                        <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
-                                    </div>
-                                    <div class="single-thumbnail-item">
-                                        <img src="{{asset('assets/img/project-single/4.png')}}" alt="img">
-                                    </div>
+                                    @foreach($images as $image)
+                                        <div class="single-thumbnail-item">
+                                            <img src="{{ asset('storage/' . $image->image_path) }}" alt="Property Image">
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -101,44 +75,12 @@
                             <div class="single-property-grid">
                                 <h4>Poperty Details</h4>
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <ul>
-                                            <li>Bedrooms: 3</li>
-                                            <li>All Rooms: 12</li>
-                                            <li>Kitchen: 2</li>
-                                            <li>Type: Privet House</li>
+                                    <div class="">
+                                        <ul class="d-flex justify-content-between">
+                                            <li>No of Rooms: {{$property->property_rooms}}</li>
+                                            <li>Kitchen: {{$property->property_kitchens}}</li>
+                                            <li>Type: {{$property->property_type}}</li>
                                         </ul>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul>
-                                            <li>Bedrooms: 3</li>
-                                            <li>Livingroom: 2</li>
-                                            <li>Year Built: 2020</li>
-                                            <li>Area: 1258</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <ul>
-                                            <li>Bedrooms: 3</li>
-                                            <li>All Rooms: 12</li>
-                                            <li>Kitchen: 2</li>
-                                            <li>Type: Privet House</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-property-grid">
-                                <h4>Proparty Attachment</h4>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <a href="PDFLINK.html" download>
-                                            <img src="{{asset('assets/img/icon/9.png')}}" alt="img">
-                                        </a>
-                                    </div>
-                                    <div class="col-sm-6 mt-2 mt-sm-0">
-                                        <a href="PDFLINK.html" download>
-                                            <img src="{{asset('assets/img/icon/9.png')}}" alt="img">
-                                        </a>
                                     </div>
                                 </div>
                             </div>

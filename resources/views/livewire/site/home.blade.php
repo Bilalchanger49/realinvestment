@@ -55,7 +55,13 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="single-product-wrap style-bottom">
                                 <div class="thumb">
-                                    <img src="{{asset('storage/' . $property->property_image)}}" alt="img" >
+                                    @php
+                                        /** @var string $images */
+                                        $image = $images->firstWhere('property_id', $property->id);
+                                    @endphp
+                                    @if($image)
+                                        <img src="{{ asset('storage/' . $image->image_path) }}" alt="Property Image"></td>
+                                    @endif
                                     <div class="product-wrap-details">
                                         <div class="media justify-content-end">
                                             <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>
