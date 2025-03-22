@@ -16,7 +16,6 @@ class BuyPropertyService
 {
     public function buyProperty($numShares, $propertyId, $totalPrice, $sharePrice, $token)
     {
-//        dd('inside buy property');
         if (!empty(auth()->user()->id)) {
             $userId = auth()->user()->id;
         } else {
@@ -27,7 +26,6 @@ class BuyPropertyService
         $numOfShares = $numShares;
         $remainingShares = $property->property_remaining_shares - $numShares;
         $totalInvestment = $totalPrice;
-//        $sharePrice = $sharePrice;
         $paymentId = $token;
         $status = 'holding';
         $activity = 'buy';
@@ -37,7 +35,7 @@ class BuyPropertyService
             ->where('property_id', $propertyId)
             ->where('status', 'holding')
             ->first();
-$investment = $existingInvestment;
+        $investment = $existingInvestment;
         if ($existingInvestment) {
             $existingInvestment->update([
                 'shares_owned' => $existingInvestment->shares_owned + $numOfShares,
@@ -84,7 +82,6 @@ $investment = $existingInvestment;
         $property->update([
             'property_remaining_shares' => $remainingShares,
         ]);
-//        dd($investment->total_investment);
         $user = auth()->user();
         if ($user) {
             $user->notify(new InvestmentConfirmedNotification($investment, $property, $user->name));
@@ -92,8 +89,6 @@ $investment = $existingInvestment;
         } else {
             session()->flash('error', 'User not found for notification.');
         }
-
-//        session()->flash('success', 'Investment successful!');
         return redirect()->route('site.property.details', ['id' => $propertyId]);
     }
 
@@ -222,7 +217,6 @@ $investment = $existingInvestment;
         if (!$buyer) {
             return redirect('/login');
         }
-
 
 
         $propertyAdd = Selling::where('id', $id)

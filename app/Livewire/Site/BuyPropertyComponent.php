@@ -5,6 +5,7 @@ namespace App\Livewire\Site;
 use App\Models\Property;
 use App\Models\Property_investment;
 use App\Models\Transactions;
+use App\Services\ProfitCalculationService;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Stripe\Stripe;
@@ -16,15 +17,17 @@ class BuyPropertyComponent extends Component
     public $totalShares;
     public $availableShares;
     public $sharePrice;
-    public $numShares = 1;
-    public $totalPrice;
+    public $numShares = 0;
+    public $totalPrice = 0;
     public $property;
+    public $profitAmount = 0;
+    public $priceWithCharges = 0;
 
     public function mount($id)
     {
         $this->property = Property::where('id', $id)->first();
         $this->calculateTotal();
-        $this->totalPrice = $this->property->property_share_price;
+//        $this->totalPrice = $this->property->property_share_price;
         $this->sharePrice = $this->property->property_share_price;
         $this->totalShares = $this->property->property_total_shares;
         $this->availableShares = $this->property->property_remaining_shares;
@@ -114,8 +117,13 @@ class BuyPropertyComponent extends Component
     {
         if ($this->numShares < 1) {
             $this->totalPrice = 0;
+            $this->profitAmount = 0;
+            $this->priceWithCharges = 0;
         } else {
             $this->totalPrice = $this->numShares * $this->sharePrice;
+            $profitCalculationService = new ProfitCalculationService();
+            $this->profitAmount = $profitCalculationService->calculateProfit($this->totalPrice);
+            $this->priceWithCharges = $this->totalPrice + $this->profitAmount;
         }
     }
 }

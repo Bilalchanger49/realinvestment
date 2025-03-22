@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Notifications\AuctionConfirmedNotification;
 use App\Notifications\BidResponseNotification;
 use App\Notifications\NewAdvertisementNotification;
+use App\Services\ProfitCalculationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
@@ -31,6 +32,8 @@ class InvestorPageComponent extends Component
     public $no_of_shares_for_add = 0;
     public $total_price_for_add = 0;
     public $total_price = 0;
+    public $profitAmount;
+    public $priceWithCharges;
     public $total_shares;
     public $share_amount;
     public $shares_to_sell = 0;
@@ -170,12 +173,16 @@ class InvestorPageComponent extends Component
 //    }
     public function openAuctionTransactionPopup($auctionId)
     {
-        $bid = Bid::findOrFail($auctionId); // Replace `Bid` with your actual model
+        $bid = Bid::findOrFail($auctionId);
 
         $this->auction_id = $auctionId;
         $this->total_price = $bid->total_price;
         $this->total_shares = $bid->total_shares;
         $this->share_amount = $bid->share_amount;
+
+        $profitCalculationService = new ProfitCalculationService();
+        $this->profitAmount = $profitCalculationService->calculateProfit($this->total_price);
+        $this->priceWithCharges = $this->total_price + $this->profitAmount;
     }
 
 

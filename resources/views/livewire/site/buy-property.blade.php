@@ -32,8 +32,18 @@
                 <!-- Display the total price -->
                 <div class="mt-3 d-flex justify-content-between align-items-center"
                      style="border-bottom: 1px solid black;">
-                    <label>Total Price</label>
+                    <label>Shares Total Price</label>
                     <p id="totalPrice" class="mb-0 text-right">{{ $totalPrice }}</p>
+                </div>
+                <div class="mt-3 d-flex justify-content-between align-items-center"
+                     style="border-bottom: 1px solid black;">
+                    <label>Real Investment Profit</label>
+                    <p id="totalPrice" class="mb-0 text-right">{{ $profitAmount }}</p>
+                </div>
+                <div class="mt-3 d-flex justify-content-between align-items-center"
+                     style="border-bottom: 1px solid black;">
+                    <label>Total Price</label>
+                    <p id="totalPrice" class="mb-0 text-right">{{ $priceWithCharges }}</p>
                 </div>
 
                 <!-- Buy button -->
@@ -68,6 +78,8 @@
                     [
                     'id' => $property->id,
                     'totalPrice' => $totalPrice,
+                    'profitAmount' => $profitAmount,
+                    'priceWithCharges' => $priceWithCharges,
                     'numShares' => $numShares,
                     'sharePrice' => $sharePrice,
                     'paymentType' => 'property'

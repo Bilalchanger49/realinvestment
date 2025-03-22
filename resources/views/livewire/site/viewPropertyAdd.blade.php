@@ -115,6 +115,8 @@
                     [
                     'id' => $sellingAddId,
                     'totalPrice' => $totalPrice,
+                    'profitAmount' => $profitAmount,
+                    'priceWithCharges' => $priceWithCharges,
                     'numShares' => $numShares,
                     'sharePrice' => $sharePrice,
                     'paymentType' => 'sellingAdd'

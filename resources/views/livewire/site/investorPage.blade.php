@@ -646,6 +646,8 @@
                     [
                     'id' => $auction_id,
                     'totalPrice' => $total_price,
+                    'profitAmount' => $profitAmount,
+                    'priceWithCharges' => $priceWithCharges,
                     'numShares' => $total_shares,
                     'sharePrice' => $share_amount,
                     'paymentType' => 'auction'

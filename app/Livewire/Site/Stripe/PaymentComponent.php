@@ -18,6 +18,8 @@ class PaymentComponent extends Component
 
     public $auctionId;
     public $totalPrice;
+    public $profitAmount;
+    public $priceWithCharges;
     public $numShares;
     public $amount;
     public $sharePrice;
@@ -41,13 +43,15 @@ class PaymentComponent extends Component
         'cardExpiryYear' => 'required|numeric|digits:4',
         'cardCVC' => 'required|numeric|digits:3',
     ];
-    public function mount($id, $totalPrice, $numShares, $sharePrice, $paymentType)
+    public function mount($id, $totalPrice, $profitAmount, $priceWithCharges, $numShares, $sharePrice, $paymentType)
     {
         $this->paymentType = $paymentType;
         $this->propertyId = $id;
         $this->auctionId = $id;
         $this->sellingAddId = $id;
         $this->totalPrice = $totalPrice;
+        $this->profitAmount = $profitAmount;
+        $this->priceWithCharges = $priceWithCharges;
         $this->numShares = $numShares;
         $this->sharePrice = $sharePrice;
         $this->amount = $totalPrice;
@@ -60,7 +64,7 @@ class PaymentComponent extends Component
         try {
             // Use the token to create a charge
             $charge = Charge::create([
-                'amount' => $this->totalPrice * 100, // Convert to cents
+                'amount' => $this->priceWithCharges * 100, // Convert to cents
                 'currency' => 'pkr',
                 'source' => $token, // The token received from the frontend
                 'description' => "Purchase of {$this->numShares} shares for property ID {$this->propertyId}",
@@ -68,7 +72,7 @@ class PaymentComponent extends Component
             ]);
 
             $buyPropertyService = new BuyPropertyService();
-            $buyPropertyService->buyProperty($this->numShares, $this->propertyId, $this->totalPrice, $this->sharePrice, $token);
+            $buyPropertyService->buyProperty($this->numShares, $this->propertyId, $this->priceWithCharges, $this->sharePrice, $token);
             session()->flash('success', 'Payment successful!');
             return redirect()->route('site.investor.page');
         } catch (\Exception $e) {
@@ -84,7 +88,7 @@ class PaymentComponent extends Component
         try {
             // Use the token to create a charge
             $charge = Charge::create([
-                'amount' => $this->totalPrice * 100, // Convert to cents
+                'amount' => $this->priceWithCharges * 100, // Convert to cents
                 'currency' => 'pkr',
                 'source' => $token, // The token received from the frontend
                 'description' => "Purchase of {$this->numShares} shares for property ID {$this->auctionId}",
@@ -110,13 +114,12 @@ class PaymentComponent extends Component
         try {
             // Use the token to create a charge
             $charge = Charge::create([
-                'amount' => $this->totalPrice * 100,
+                'amount' => $this->priceWithCharges * 100,
                 'currency' => 'pkr',
                 'source' => $token, // The token received from the frontend
                 'description' => "Purchase of {$this->numShares} shares for property ID {$this->sellingAddId}",
                 'receipt_email' => Auth::user()->email,
             ]);
-
 
             $buyPropertyService = new BuyPropertyService();
             $buyPropertyService->buyPropertyByAdd($this->sellingAddId, $token);

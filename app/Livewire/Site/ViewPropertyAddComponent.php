@@ -5,6 +5,7 @@ namespace App\Livewire\Site;
 use App\Models\Property_investment;
 use App\Models\Selling;
 use App\Models\Transactions;
+use App\Services\ProfitCalculationService;
 use Livewire\Component;
 
 class ViewPropertyAddComponent extends Component
@@ -13,6 +14,8 @@ class ViewPropertyAddComponent extends Component
     public $numShares;
     public $totalPrice;
     public $sharePrice;
+    public $profitAmount;
+    public $priceWithCharges;
     public function openSellingAddTransactionPopup($sellingAddId)
     {
         $sellingAdd = Selling::where('id', $sellingAddId)->first();
@@ -20,6 +23,10 @@ class ViewPropertyAddComponent extends Component
         $this->totalPrice = $sellingAdd->total_amount;
         $this->numShares = $sellingAdd->no_of_share;
         $this->sharePrice = $sellingAdd->share_amount;
+
+        $profitCalculationService = new ProfitCalculationService();
+        $this->profitAmount = $profitCalculationService->calculateProfit($this->totalPrice);
+        $this->priceWithCharges = $this->totalPrice + $this->profitAmount;
     }
 
 //    public function buyProperty($id)

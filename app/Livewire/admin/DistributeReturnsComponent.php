@@ -36,15 +36,14 @@ class DistributeReturnsComponent extends Component
         $totalRentalIncome = $this->amount;
 
         // Fetch all investors who own shares in this property
-        $investors = DB::table('property_investments')
+        $investments = DB::table('property_investments')
             ->where('property_id', $propertyId)
             ->where('status', 'holding')
             ->get();
-
         $totalDistributed = 0;
 
-        foreach ($investors as $investor) {
-            $investmentDate = \Carbon\Carbon::parse($investor->created_at);
+        foreach ($investments as $investment) {
+            $investmentDate = \Carbon\Carbon::parse($investment->created_at);
             $now = \Carbon\Carbon::now();
 //          $monthsHeld = $investmentDate->diffInMonths($now);
             $monthsHeld = 12;
@@ -56,30 +55,23 @@ class DistributeReturnsComponent extends Component
             $proratedRentalIncome = ($totalRentalIncome / 12) * $monthsHeld;
 
             // Calculate the return for this investor
-            $returnForInvestor = ($investor->shares_owned / $property->property_total_shares) * $proratedRentalIncome;
+            $returnForInvestor = ($investment->shares_owned / $property->property_total_shares) * $proratedRentalIncome;
 
             // Add to total distributed amount
             $totalDistributed += $returnForInvestor;
 
-//            dd([
-//                'property_id' => $propertyId,
-//                'user_id' => $investor->user_id,
-//                'amount' => $returnForInvestor,
-//                'created_at' => now(),
-//                'updated_at' => now(),
-//            ]);
             // Record the return in the `return_distributions` table
             DB::table('return_distributions')->insert([
                 'property_id' => $propertyId,
-                'user_id' => $investor->user_id,
-                'property_investment_id' => $investor->id,
+                'user_id' => $investment->user_id,
+                'property_investment_id' => $investment->id,
                 'amount' => $returnForInvestor,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
 
             // Send notification to the investor
-            $user = User::find($investor->user_id);
+            $user = User::find($investment->user_id);
             if ($user) {
                 $user->notify(new DividendDistributedNotification($returnForInvestor, $property->name, $user->name));
             }
@@ -92,8 +84,7 @@ class DistributeReturnsComponent extends Component
             // Send the remaining amount to the admin (user_id 1)
             DB::table('return_distributions')->insert([
                 'property_id' => $propertyId,
-                'user_id' => 1, // Admin user_id
-                'property_investment_id' => $investor->id,
+                'user_id' => 1,
                 'amount' => $remainingAmount,
                 'created_at' => now(),
                 'updated_at' => now(),
