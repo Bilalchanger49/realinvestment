@@ -5454,7 +5454,7 @@ section.bg-light {
 form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  /* gap: 20px; */
 }
 
 .form-row {
@@ -5511,6 +5511,7 @@ select:focus {
   cursor: pointer;
 }
 
+
 .form-group label {
   display: inline-block;
   font-size: 14px;
@@ -5520,6 +5521,13 @@ select:focus {
   /* Makes the label clickable */
   margin: 0;
   vertical-align: middle;
+}
+.form-group:nth-of-type(2) label {
+  color: #938c8c !important;
+}
+
+.form-group:nth-of-type(3) label {
+  color: #938c8c !important;
 }
 
 
@@ -5749,7 +5757,7 @@ select:focus {
 form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  /* gap: 20px; */
 }
 
 .form-row {
