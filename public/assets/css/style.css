@@ -6444,6 +6444,163 @@ input:focus, select:focus {
   font-weight: bold;
   color: #565872;
 }
+
+
+/*** #########secondary market 2 Card portion ######  ***/
+.updated-product-wrap {
+  position: relative;
+  border-radius: 43px;
+  overflow: visible;
+  background: #f5f6f7;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.updated-thumb {
+  position: relative;
+  border-radius: 10px;
+  /* overflow: visible; */
+}
+
+.updated-thumb img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.updated-product-wrap:hover .updated-thumb img {
+  transform: scale(1.05);
+}
+
+/*** Card Content ***/
+.updated-content {
+  position: relative; /* Change from absolute to relative for better positioning */
+  border-radius: 5px; /* Match the 5px border-radius */
+  margin: -50px 20px 0 20px; /* Same negative margin and side spacing */
+  z-index: 2; /* Keep it above other elements */
+  padding: 20px 25px 15px 25px; /* Adjust padding to match */
+  background: #fff;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1); /* Keep shadow */
+  width: calc(100% - 40px); /* Ensures it matches container width dynamically */
+  text-align: left; /* Align text to the left */
+  justify-content: space-between; 
+  min-height: 120px;
+}
+
+.updated-meta {
+  font-size: 14px;
+  color: #666;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 10px;
+}
+
+.updated-meta span {
+  display: flex;
+   align-items: center;
+   
+}
+
+.updated-meta i {
+  margin-right: 5px;
+  color: #333;
+}
+
+.updated-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 5px;
+  color: #0d1741;
+  text-align: left;
+}
+
+.updated-desc {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+  text-align: left;
+  word-wrap: break-word;  /* Ensures long words break into the next line */
+  overflow-wrap: break-word;  /* Modern alternative for better support */
+  white-space: normal;  /* Ensures text wraps */
+  max-width: 100%;  /* Prevents exceeding parent width */
+}
+
+/*** Floating Button ***/
+.updated-btn {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #5ba600;
+  color: #fff;
+  width: 35px;
+  height: 33px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  transition: 0.4s ease-in-out;
+  border: none;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background Hover Animation */
+.updated-btn::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(6, 21, 57, 0.3);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.updated-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.updated-btn:hover {
+  background: #5ba600;
+}
+
+/* Icon Adjustments */
+.updated-btn i {
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+
+/* Ensure the image container hides overflow */
+.updated-thumb {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden; /* Prevents the image from expanding outside */
+}
+
+/* Image with smooth zoom-in effect */
+.updated-thumb img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.6s ease-in-out; /* Smooth transition */
+}
+
+/* Zoom effect only inside the container */
+.updated-product-wrap:hover .updated-thumb img {
+  transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+
+
+
   
 
 
