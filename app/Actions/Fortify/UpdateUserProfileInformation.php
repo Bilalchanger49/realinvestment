@@ -27,9 +27,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'nic_front' => ['nullable'],
             'nic_back' => ['nullable'],
             'signature' => ['nullable'],
-//            'nic_front' =>  'nullable|image|max:2048',
-//            'nic_back' =>  'nullable|image|max:2048',
-//            'signature' => ['required', 'string'], // Ensure signature is provided
+            'stripe_account_id' => ['nullable'],
         ])->validateWithBag('updateProfileInformation');
 
 //        dd($validator);
@@ -75,7 +73,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'cnic' => $input['cnic'],
-                'is_verified' => $isVerified, // Only verify if email is verified
+                'stripe_account_id' => $input['stripe_account_id'],
+                'is_verified' => $isVerified,
                 'signature' => $user->signature,
             ])->save();
         }
@@ -105,10 +104,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         }
     }
 
-//    protected function verifyCNIC(string $cnic, string $nicFront, string $nicBack): bool
-//    {
-//        return true;
-//    }
 
     protected function verifyCNIC(string $name, string $email, string $cnic, string $nicFront, string $nicBack): bool
     {

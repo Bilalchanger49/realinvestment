@@ -65,6 +65,13 @@
                            pattern="\d{5}-\d{7}-\d{1}" wire:model.defer="state.cnic">
                     <x-input-error for="cnic" class="mt-2" />
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Stripe Acount id</label>
+                    <input type="text" id="stripe_account_id" maxlength="15" class="form-control"
+                           placeholder="acct_1P8GeT05LRdqzajo"
+                           wire:model.defer="state.stripe_account_id">
+                    <x-input-error for="stripe_account_id" class="mt-2" />
+                </div>
 
                 <div class="mb-3">
                     <label class="form-label">NIC Front Image:</label>

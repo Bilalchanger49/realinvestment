@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('nic_front')->nullable();
             $table->string('nic_back')->nullable();
             $table->text('signature')->nullable();
+            $table->text('stripe_account_id')->nullable();
             $table->text('verification_status')->nullable();
             $table->timestamps();
         });

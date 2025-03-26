@@ -112,7 +112,6 @@ class PaymentComponent extends Component
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         try {
-            // Use the token to create a charge
             $charge = Charge::create([
                 'amount' => $this->priceWithCharges * 100,
                 'currency' => 'pkr',

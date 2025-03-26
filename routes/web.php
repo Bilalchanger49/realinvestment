@@ -29,7 +29,11 @@ use App\Livewire\Site\RolesAndPermissions\Users\AssignRoleComponent;
 use App\Livewire\Site\RolesAndPermissions\Users\UsersComponent;
 use App\Livewire\Site\SecondaryMarketComponent;
 use App\Livewire\Site\Stripe\PaymentComponent;
+use App\Livewire\Site\Stripe\PayoutComponent;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Stripe\Stripe;
 
 
 Route::get('/download-offer-letter/{transactionId}/{type}', LetterComponent::class)->name('download.offer.letter');
@@ -44,6 +48,40 @@ Route::get('/secondary-market', SecondaryMarketComponent::class)->name('site.sec
 Route::get('/buy-property/{id}', BuyPropertyComponent::class)->name('site.property.buy');
 Route::get('/blogs', BlogsComponent::class)->name('site.blogs');
 Route::get('/payment', PaymentComponent::class)->name('site.payment');
+Route::get('/payout', PayoutComponent::class)->name('site.payout');
+Route::get('/stripe/link', [PayoutComponent::class, 'redirectToStripe'])->name('stripe.link');
+Route::get('/stripe/unlink', [PayoutComponent::class, 'unlinkStripe'])->name('stripe.unlink');
+Route::get('/stripe/callback', [PayoutComponent::class, 'handleCallback'])->name('stripe.callback');
+//Route::get('/stripe/callback', function (Request $request) {
+//    $code = $request->get('code');
+//    $state = $request->get('state');
+//    // Validate state token
+//    if ($state !== csrf_token()) {
+//        return redirect('/')->with('error', 'Invalid state parameter.');
+//    }
+//    if (!$code) {
+//        return redirect('/')->with('error', 'Stripe authorization failed.');
+//    }
+//    \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+//    try {
+//        $response = \Stripe\OAuth::token([
+//            'grant_type' => 'authorization_code',
+//            'code' => $code,
+//        ]);
+//dd($response->stripe_user_id);
+//        // Get connected Stripe account ID
+//        $connectedAccountId = $response->stripe_user_id;
+//
+//        // Store it in database (assuming users table)
+//        auth()->user()->update(['stripe_account_id' => $connectedAccountId]);
+//
+//        return redirect('/dashboard')->with('success', 'Stripe account connected successfully.');
+//    } catch (\Exception $e) {
+//        return redirect('/')->with('error', 'Error connecting to Stripe: ' . $e->getMessage());
+//    }
+//
+//})->name('stripe.callback');
+
 Route::get('checkout', function () {
     return view('livewire.site.stripe.test')->extends('layouts.site');
 });
@@ -56,26 +94,26 @@ Route::middleware([
     Route::get('/dashboard', DashboardComponent::class)->name('dashboard');
     Route::get('/investor-page', InvestorPageComponent::class)->name('site.investor.page');
     Route::prefix('admin')->group(function () {
-    Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
-    Route::get('/property/create', createProperty::class)->name('admin.property.create');
-    Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
-    Route::get('/distribute-returns', DistributeReturnsComponent::class)->name('admin.distribute.returns');
+        Route::get('/property/index', PropertyComponent::class)->name('admin.property.index');
+        Route::get('/property/create', createProperty::class)->name('admin.property.create');
+        Route::get('/property/edit/{id}', UpdatePropertyComponent::class)->name('admin.property.edit');
+        Route::get('/distribute-returns', DistributeReturnsComponent::class)->name('admin.distribute.returns');
 
-    Route::get('/all-transactions', AllTransactionComponent::class)->name('admin.all.transactions');
-    Route::get('/all-investments', AllInvestmentsComponent::class)->name('admin.all.investments');
-    Route::get('/all-bids', AllBidsComponent::class)->name('admin.all.bids');
-    Route::get('/all-auctions', AllAuctionsComponent::class)->name('admin.all.auctions');
-    Route::get('/all-advertisements', AllAdvertisementsComponent::class)->name('admin.all.advertisements');
-    Route::get('/profile-verification', ProfileVerificationComponent::class)->name('admin.profile.verification');
+        Route::get('/all-transactions', AllTransactionComponent::class)->name('admin.all.transactions');
+        Route::get('/all-investments', AllInvestmentsComponent::class)->name('admin.all.investments');
+        Route::get('/all-bids', AllBidsComponent::class)->name('admin.all.bids');
+        Route::get('/all-auctions', AllAuctionsComponent::class)->name('admin.all.auctions');
+        Route::get('/all-advertisements', AllAdvertisementsComponent::class)->name('admin.all.advertisements');
+        Route::get('/profile-verification', ProfileVerificationComponent::class)->name('admin.profile.verification');
 
-    Route::get('permissions/all', PermissionsComponent::class)->name('open.permission');
-    Route::get('permissions/create', CreatePermissionComponent::class)->name('create.permission');
+        Route::get('permissions/all', PermissionsComponent::class)->name('open.permission');
+        Route::get('permissions/create', CreatePermissionComponent::class)->name('create.permission');
 
-    Route::get('roles/create', CreateRoleComponent::class)->name('create.roles');
-    Route::get('roles', RolesComponent::class)->name('open.roles');
+        Route::get('roles/create', CreateRoleComponent::class)->name('create.roles');
+        Route::get('roles', RolesComponent::class)->name('open.roles');
 
-    Route::get('users', UsersComponent::class)->name('open.users');
-    Route::get('users/assign-role/{id}', AssignRoleComponent::class)->name('assign.role.users');
+        Route::get('users', UsersComponent::class)->name('open.users');
+        Route::get('users/assign-role/{id}', AssignRoleComponent::class)->name('assign.role.users');
 
     })->middleware('auth');
 

@@ -69,16 +69,31 @@
                                 <div>
                                     <p>Investment<strong> PK {{$overallInvestment}}</strong></p>
                                     @if($returndistribution)
-
-                                    <p>Profit <strong> PK {{$returndistribution->amount}}</strong></p>
-
                                         <p>Profit <strong> PK {{$returndistribution->amount}}</strong></p>
-
                                     @endif
                                 </div>
                                 <a href="{{route('profile.show')}}">
                                     <button class="btn btn-base "> View Profile</button>
                                 </a>
+                                @if( $returndistribution && auth()->user()->stripe_account_id)
+                                    <button
+                                        class="btn btn-base"
+                                        data-toggle="modal" data-target="#withdraw_popup">
+                                        Withdraw
+                                    </button>
+                                    <a href="{{ route('stripe.unlink') }}">
+                                        <button class="btn btn-base">UNLink Account</button>
+                                    </a>
+                                @elseif(auth()->user()->stripe_account_id)
+                                    <a href="{{ route('stripe.unlink') }}">
+                                        <button class="btn btn-base">UNLink Account</button>
+                                    </a>
+                                @else
+                                    <a href="{{ route('stripe.link') }}">
+                                        <button class="btn btn-base">Link Account</button>
+                                    </a>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -348,13 +363,13 @@
                                 @endif
                             </td>
                             <td>
-{{--                            <button class="btn btn-secondary btn-sm details-btn-transaction">Print</button>--}}
-{{--                                {{dd($transaction)}}--}}
+                                {{--                            <button class="btn btn-secondary btn-sm details-btn-transaction">Print</button>--}}
+                                {{--                                {{dd($transaction)}}--}}
                                 @if($transaction->activity == 'buy')
-                                <a href="{{ route('download.offer.letter', ['transactionId' => $transaction->id, 'type' => 'buyer']) }}"
-                                   class="btn btn-primary">
-                                    Print
-                                </a>
+                                    <a href="{{ route('download.offer.letter', ['transactionId' => $transaction->id, 'type' => 'buyer']) }}"
+                                       class="btn btn-primary">
+                                        Print
+                                    </a>
                                 @elseif($transaction->activity == 'sold')
                                     <a href="{{ route('download.offer.letter', ['transactionId' => $transaction->id, 'type' => 'seller']) }}"
                                        class="btn btn-primary">
@@ -658,8 +673,18 @@
         </div>
     </div>
 
-
-
+    @if( $returndistribution)
+        <div wire:ignore.self class="modal fade payout-container" id="withdraw_popup" tabindex="-1" role="dialog"
+             aria-labelledby="send_funds_popup_label" aria-hidden="true">
+            <div class="modal-dialog modal-lg mb-0" role="document">
+                <div class="modal-content border-0">
+                    <div class="modal-body">
+                        @livewire('site.stripe.payout-component', ['profitAmount' => $returndistribution->amount])
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
     <script>
         // Transaction Details Popup Script
