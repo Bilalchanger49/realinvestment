@@ -25,7 +25,7 @@ class PayoutComponent extends Component
     }
     public function transferfunds()
     {
-
+        try {
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         $stripe = new StripeClient(env('STRIPE_SECRET'));
@@ -39,7 +39,11 @@ class PayoutComponent extends Component
             'currency' => 'usd',
             'destination' => $stripeAccountId,
         ]);
-        dd($transfer);
+//        dd($transfer);
+            return redirect('/')->with('success', 'Account send.');
+        } catch (\Exception $e) {
+            return redirect('/')->with('error',  $e->getMessage());
+        }
     }
 
 

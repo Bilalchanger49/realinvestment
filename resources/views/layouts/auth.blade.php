@@ -15,7 +15,7 @@
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="{{ asset('assets/auth/css/style.css') }}" />
     <!-- FAVICON -->
-    <link href="{{ asset('assets/auth/images/favicon.png') }}" rel="shortcut icon"/>
+    <link href="{{ asset('assets/img/favicon-32x32.png') }}" rel="shortcut icon"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     @yield('css')

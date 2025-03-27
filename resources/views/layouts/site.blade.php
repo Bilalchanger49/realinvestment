@@ -17,6 +17,7 @@
 
     <link rel="stylesheet" href="{{asset('assets/css/vendor.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link href="{{ asset('assets/img/favicon-32x32.png') }}" rel="shortcut icon"/>
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 
     <style>
@@ -86,13 +87,16 @@
                     <li class="menu-item">
                         <a href="{{route('site.home')}}">Home</a>
                     </li>
-                    <li class="menu-item menu-item-has-children">
+                    <li class="menu-item">
                         <a href="{{route('site.property.all')}}">Property</a>
-                        <ul class="sub-menu">
-                            <li><a href="{{route('site.property.all')}}">Main Market</a></li>
-                            <li><a href="{{route('site.secondary.market')}}">Secondary Market</a></li>
-                        </ul>
                     </li>
+{{--                    <li class="menu-item menu-item-has-children">--}}
+{{--                        <a href="{{route('site.property.all')}}">Property</a>--}}
+{{--                        <ul class="sub-menu">--}}
+{{--                            <li><a href="{{route('site.property.all')}}">Main Market</a></li>--}}
+{{--                            <li><a href="{{route('site.secondary.market')}}">Secondary Market</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
                     <li class="menu-item">
                         <a href="{{route('site.about')}}">About</a>
                     </li>
