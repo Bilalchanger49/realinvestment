@@ -45,7 +45,7 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="d-flex gap-3 flex-column">
-                                                <a href="" class="btn">
+                                                <a href="{{route('auth.google')}}" class="btn">
                                                     <!-- <span class="ms-2 fs-6">Log in with Google</span> -->
                                                     <button class="ms-2 fs-6 btn btn-base">Log in with Google</button>
                                                 </a>
