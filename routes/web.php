@@ -14,6 +14,8 @@ use App\Livewire\admin\Property\UpdatePropertyComponent;
 use App\Livewire\Site\AboutComponent;
 use App\Livewire\Site\AllPropertiesComponent;
 use App\Livewire\Site\Blogs\BlogsComponent;
+use App\Livewire\Site\Blogs\BlogsDetailComponent;
+use App\Livewire\Site\Blogs\CreateBlogsComponent;
 use App\Livewire\Site\BuyPropertyComponent;
 use App\Livewire\Site\ContactComponent;
 use App\Livewire\Site\FaqComponent;
@@ -45,12 +47,15 @@ Route::get('/contact-us', ContactComponent::class)->name('site.contact');
 Route::get('/faq', FaqComponent::class)->name('site.faq');
 Route::get('/secondary-market', SecondaryMarketComponent::class)->name('site.secondary.market');
 Route::get('/buy-property/{id}', BuyPropertyComponent::class)->name('site.property.buy');
-Route::get('/blogs', BlogsComponent::class)->name('site.blogs');
 Route::get('/payment', PaymentComponent::class)->name('site.payment');
 Route::get('/payout', PayoutComponent::class)->name('site.payout');
 Route::get('/stripe/link', [PayoutComponent::class, 'redirectToStripe'])->name('stripe.link');
 Route::get('/stripe/unlink', [PayoutComponent::class, 'unlinkStripe'])->name('stripe.unlink');
 Route::get('/stripe/callback', [PayoutComponent::class, 'handleCallback'])->name('stripe.callback');
+
+Route::get('/blogs', BlogsComponent::class)->name('site.blogs');
+Route::get('/blogs/details/{id}', BlogsDetailComponent::class)->name('blog.show');
+Route::get('/blogs/create', CreateBlogsComponent::class)->name('site.blogs.create');
 
 //Route::get('checkout', function () {
 //    return view('livewire.site.stripe.test')->extends('layouts.site');
