@@ -52,6 +52,7 @@ class CreateBlogsComponent extends Component
         session()->flash('success', 'Blog created successfully.');
         $this->reset(['title', 'category_id', 'content']);
         $this->dispatch('resetSummernote');
+        return redirect()->route('site.blogs');
     }
     public function render()
     {

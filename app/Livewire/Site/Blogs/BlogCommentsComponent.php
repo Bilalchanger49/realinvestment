@@ -12,25 +12,20 @@ class BlogCommentsComponent extends Component
 {
     public $post;
     public $replyText = [];
-
     public $newComment = '';
-    public $comments;
+    public $activeReply = null;
 
 
     public function mount(BlogsPosts $post)
     {
         $this->post = $post;
-        $this->loadComments();
     }
 
-    public function loadComments()
+    public function showReplyInput($commentId)
     {
-        $this->comments = Comment::where('blogs_post_id', $this->post->id)
-            ->whereNull('parent_id')
-            ->with(['replies.user', 'user'])
-            ->latest()
-            ->get();
+        $this->activeReply = $this->activeReply === $commentId ? null : $commentId;
     }
+
 
     public function addComment()
     {
@@ -46,13 +41,12 @@ class BlogCommentsComponent extends Component
         ]);
 
         $this->newComment = '';
-        $this->loadComments();
     }
 
     public function replyTo($parentId)
     {
         $this->validate([
-            'replyText.' . $parentId => 'required|string'
+            'replyText.' . $parentId => 'required|string',
         ]);
 
         Comment::create([
@@ -63,13 +57,18 @@ class BlogCommentsComponent extends Component
         ]);
 
         $this->replyText[$parentId] = '';
-        $this->loadComments();
+        $this->activeReply = null;
     }
 
     public function render()
     {
-        $comments = Comment::where('blogs_post_id', $this->post->id)->get();
+        $comments = Comment::where('blogs_post_id', $this->post->id)
+            ->whereNull('parent_id')
+            ->with(['replies.user', 'user'])
+            ->latest()
+            ->get();
 
         return view('livewire.site.blogs.blogComment', compact('comments'));
     }
 }
+

@@ -18,7 +18,7 @@
         </div>
 
         @foreach ($comments as $comment)
-            <div class="media mb-4">
+            <div class="media mb-4" wire:key="comment-{{ $comment->id }}">
                 <a href="#"><img src="{{ asset('assets/img/blog/comment3.png') }}" alt="comment"></a>
                 <div class="media-body">
                     <h5><a href="#">{{ $comment->user->name }}</a></h5>
@@ -26,9 +26,22 @@
                     <p>{{ $comment->body }}</p>
 
                     @auth
-                        <textarea wire:model.defer="replyText.{{ $comment->id }}" class="form-control mb-1" rows="2" placeholder="Write a reply..."></textarea>
-                        <button class="btn btn-sm btn-outline-secondary mb-3" wire:click="replyTo({{ $comment->id }})">Reply</button>
-                        @error('replyText.'.$comment->id) <span class="text-danger">{{ $message }}</span> @enderror
+                        <button class="btn btn-sm btn-outline-secondary mb-3"
+                                wire:click="showReplyInput({{ $comment->id }})">
+                            {{ $activeReply === $comment->id ? 'Cancel' : 'Reply' }}
+                        </button>
+
+                        @if ($activeReply === $comment->id)
+                            <div wire:key="reply-input-{{ $comment->id }}">
+                                <textarea wire:model.defer="replyText.{{ $comment->id }}" class="form-control mb-1"
+                                          rows="2" placeholder="Write a reply..."></textarea>
+                                <button class="btn btn-sm btn-outline-secondary mb-3"
+                                        wire:click="replyTo({{ $comment->id }})">Reply
+                                </button>
+                                @error('replyText.'.$comment->id) <span
+                                    class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        @endif
                     @endauth
 
                     @if($comment->replies)

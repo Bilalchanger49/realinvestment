@@ -15,7 +15,9 @@ use App\Livewire\Site\AboutComponent;
 use App\Livewire\Site\AllPropertiesComponent;
 use App\Livewire\Site\Blogs\BlogsComponent;
 use App\Livewire\Site\Blogs\BlogsDetailComponent;
+use App\Livewire\Site\Blogs\BlogsManagerComponent;
 use App\Livewire\Site\Blogs\CreateBlogsComponent;
+use App\Livewire\Site\Blogs\EditBlogsComponent;
 use App\Livewire\Site\BuyPropertyComponent;
 use App\Livewire\Site\ContactComponent;
 use App\Livewire\Site\FaqComponent;
@@ -54,12 +56,10 @@ Route::get('/stripe/unlink', [PayoutComponent::class, 'unlinkStripe'])->name('st
 Route::get('/stripe/callback', [PayoutComponent::class, 'handleCallback'])->name('stripe.callback');
 
 Route::get('/blogs', BlogsComponent::class)->name('site.blogs');
-Route::get('/blogs/details/{id}', BlogsDetailComponent::class)->name('blog.show');
+Route::get('/blogs/details/{id}', BlogsDetailComponent::class)->name('site.blogs.details');
 Route::get('/blogs/create', CreateBlogsComponent::class)->name('site.blogs.create');
-
-//Route::get('checkout', function () {
-//    return view('livewire.site.stripe.test')->extends('layouts.site');
-//});
+Route::get('/blogs/manager', BlogsManagerComponent::class)->name('site.blogs.manager');
+Route::get('/blogs/edit/{id}', EditBlogsComponent::class)->name('site.blogs.edit');
 
 Route::get('auth/google', [UsersComponent::class, 'googlepage'])->name('auth.google');
 Route::get('auth/google/callback', [UsersComponent::class, 'googlecallback'])->name('auth.google.callback');

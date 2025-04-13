@@ -34,7 +34,9 @@
                                 <li><img src="assets/img/icon/2.png" alt="img"> Marce 9 , 2020</li>
                                 <li><img src="assets/img/icon/3.png" alt="img"> Marce 9 , 2020</li>
                             </ul>
-                            <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet, consectetur et adipisicing  eiLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
+
+                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($blog->content), 250, '...') }}</p>
+
                             <div class="row">
                                 <div class="col-7">
                                     <div class="author-inner">
@@ -43,7 +45,7 @@
                                     </div>
                                 </div>
                                 <div class="col-5 align-self-center text-right">
-                                    <a class="read-more" href="{{ route('blog.show', $blog->id) }}">Read More <i class="la la-arrow-right"></i></a>
+                                    <a class="read-more" href="{{ route('site.blogs.details', $blog->id) }}">Read More <i class="la la-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
