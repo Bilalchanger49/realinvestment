@@ -31,7 +31,7 @@
                                     <li><img src="{{asset('assets/img/icon/2.png')}}" alt="img"> {{ $blog->created_at->diffForHumans() }}</li>
                                 </ul>
                             </div>
-                            <div class="thumb my-5">
+                            <div class="blog-thumbnail">
                                 <img src="{{asset('storage/'.$blog->thumbnail)}}" alt="img">
                             </div>
                             <div class="container details p-0 pt-3">

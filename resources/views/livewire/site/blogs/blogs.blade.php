@@ -22,10 +22,10 @@
                 <div class="col-lg-8">
                     @forelse($blogs as $blog)
                     <div class="single-blog-inner">
-                        <div class="thumb">
-{{--                            <img src="assets/img/blog/1.png" alt="img">--}}
-                            <img src="{{asset('storage/'.$blog->thumbnail)}}" alt="img">
+                        <div class="blog-thumbnail">
+                            <img src="{{ asset('storage/' . $blog->thumbnail) }}" alt="img">
                         </div>
+                        
                         <div class="details">
                             <div class="cat"><a href="#">{{ $blog->category->name }}</a></div>
                             <h3><a href="blog-details.html">{{ $blog->title }}</a></h3>

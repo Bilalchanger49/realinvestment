@@ -6598,6 +6598,140 @@ input:focus, select:focus {
   transform: scale(1.1); /* Slight zoom-in effect */
 }
 
+/*####### blog page designs ###### */
+.blog-thumbnail {
+  width: 100%;
+  height: auto; /* or whatever height you prefer */
+  max-height: 600px;
+  overflow: hidden;
+  border-radius: 10px; /* optional for rounded corners */
+}
+
+.blog-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* #### Blog manager design #### */
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0d1741;
+}
+
+.btn-create-blog {
+  background-color: #5ba600;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-create-blog:hover {
+  background-color: #4a8e00;
+  text-decoration: none;
+  color: #fff;
+}
+
+.custom-blog-card {
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  padding: 20px 25px;
+  transition: transform 0.2s ease;
+}
+
+.custom-blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-card-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.blog-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.blog-meta {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.blog-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.action-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.action-btn.view {
+  background-color: #0d6efd;
+}
+
+.action-btn.edit {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.action-btn.delete {
+  background-color: #dc3545;
+}
+
+.action-btn:hover {
+  opacity: 0.85;
+}
+
+.no-blog-text {
+  text-align: center;
+  font-size: 16px;
+  color: #999;
+  margin-top: 40px;
+}
+
+.custom-alert {
+  border-radius: 8px;
+  font-weight: 500;
+}
+.blog-thumb-wrapper {
+  width: 120px;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #f4f4f4;
+  margin-right: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.blog-thumb-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
 
 
 
