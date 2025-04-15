@@ -5,6 +5,8 @@ use App\Livewire\Admin\AllAuctionsComponent;
 use App\Livewire\Admin\AllBidsComponent;
 use App\Livewire\Admin\AllInvestmentsComponent;
 use App\Livewire\admin\AllTransactionComponent;
+use App\Livewire\Admin\Blogs\Categories\CategoryComponent;
+use App\Livewire\Admin\Blogs\Categories\CreateCategoryComponent;
 use App\Livewire\admin\DashboardComponent;
 use App\Livewire\admin\DistributeReturnsComponent;
 use App\Livewire\admin\ProfileVerificationComponent;
@@ -84,6 +86,9 @@ Route::middleware([
         Route::get('/all-auctions', AllAuctionsComponent::class)->name('admin.all.auctions');
         Route::get('/all-advertisements', AllAdvertisementsComponent::class)->name('admin.all.advertisements');
         Route::get('/profile-verification', ProfileVerificationComponent::class)->name('admin.profile.verification');
+
+        Route::get('/blog-categories', CategoryComponent::class)->name('admin.category');
+        Route::get('/blog-categories/create', CreateCategoryComponent::class)->name('admin.category.create');
 
         Route::get('permissions/all', PermissionsComponent::class)->name('open.permission');
         Route::get('permissions/create', CreatePermissionComponent::class)->name('create.permission');
