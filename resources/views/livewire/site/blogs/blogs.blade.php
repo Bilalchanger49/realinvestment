@@ -25,10 +25,10 @@
                         <div class="blog-thumbnail">
                             <img src="{{ asset('storage/' . $blog->thumbnail) }}" alt="img">
                         </div>
-                        
+
                         <div class="details">
                             <div class="cat"><a href="#">{{ $blog->category->name }}</a></div>
-                            <h3><a href="blog-details.html">{{ $blog->title }}</a></h3>
+                            <h3><a href="{{ route('site.blogs.details', $blog->id) }}">{{ $blog->title }}</a></h3>
                             <ul class="meta-inner">
                                 <li><img src="assets/img/icon/1.png" alt="img"> By Admin</li>
                                 <li><img src="assets/img/icon/2.png" alt="img"> Marce 9 , 2020</li>
@@ -72,22 +72,6 @@
                             <div class="single-search-inner">
                                 <input type="text" placeholder="Search your keyword">
                                 <button><i class="la la-search"></i></button>
-                            </div>
-                        </div>
-                        <div class="widget widget-author text-center">
-                            <h4 class="widget-title">About Me</h4>
-                            <div class="thumb">
-                                <img src="assets/img/agent/1.png" alt="img">
-                            </div>
-                            <div class="details">
-                                <h5>Sandara Mrikon</h5>
-                                <p>Lorem ipsum dolor amet, Lore ipsum dolor sit amet, consectetur et  eiLorem ipsum dolor sit amet</p>
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
-                                </ul>
                             </div>
                         </div>
                         <div class="widget widget-news">

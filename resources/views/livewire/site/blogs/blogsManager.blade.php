@@ -26,20 +26,20 @@
                 <h2 class="section-title">📝 My Blogs</h2>
                 <a href="{{ route('site.blogs.create') }}" class="btn btn-base">+ Create Blog</a>
             </div>
-    
+
             @if (session()->has('message'))
                 <div class="alert alert-success custom-alert">{{ session('message') }}</div>
             @endif
-    
+
             @forelse($blogs as $blog)
                 <div class="custom-blog-card mb-4 d-flex">
                     <div class="blog-thumb-wrapper">
-                        <img src="{{ $blog->thumbnail_url ?? asset('default-thumb.jpg') }}" alt="Thumbnail">
+                        <img src="{{ asset('storage/' . $blog->thumbnail) }}" alt="Thumbnail">
                     </div>
-                    
+
                     <div class="blog-card-content flex-grow-1 d-flex justify-content-between align-items-center">
                         <div>
-                            <h5 class="blog-title">{{ $blog->title }}</h5>
+                            <h5 class="blog-title"><a href="{{ route('site.blogs.details', $blog->id) }}">{{ $blog->title }}</a></h5>
                             <p class="blog-meta">🕒 {{ $blog->created_at->diffForHumans() }}</p>
                         </div>
                         <div class="blog-actions">
@@ -55,6 +55,6 @@
             @endforelse
         </div>
     </div>
-    
-    
+
+
 </div>
