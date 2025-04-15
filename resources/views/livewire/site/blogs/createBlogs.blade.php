@@ -43,7 +43,7 @@
 
                 <div class="col-12 mb-4">
                     <label for="thumbnail" class="form-label fw-semibold">Thumbnail</label>
-                    <input type="file" class="form-control" wire:model="thumbnail" accept="image/*">
+                    <input type="file" class="form-control nic-input" wire:model="thumbnail" accept="image/*">
 
                     @if ($thumbnail)
                         <img src="{{ $thumbnail->temporaryUrl() }}" alt="Preview" class="img-thumbnail mt-2" style="max-height: 150px;">
