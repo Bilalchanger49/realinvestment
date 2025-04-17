@@ -16,10 +16,14 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         $this->call([
+            PermissionsSeeder::class,
+            RolesSeeder::class,
             UserSeeder::class,
             PropertySeeder::class,
+
             // Add more seeders here
         ]);
+
 
     }
 }

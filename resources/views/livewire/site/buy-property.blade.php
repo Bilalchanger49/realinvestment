@@ -47,18 +47,21 @@
                 </div>
 
                 <!-- Buy button -->
+
                 <div class="mt-3 text-center">
                     <div class="btn-wrap">
-                        {{--                        <button  wire:click="buyProperty({{$property->id}})" class="btn btn-base w-md-auto w-50">Buy</button>--}}
-                        {{--                        <button class="btn btn-base w-md-auto w-50"><a href="{{route('checkout')}}">Buy</a></button>--}}
+                        @if(Auth::user())
                         <button
-                            {{--                            wire:click.prevent="open_property_add_popup({{$propertyInvestment->id}})"--}}
                             id="openPopup" class="btn btn-base w-md-auto w-50"
                             data-toggle="modal" data-target="#send_funds_popup">
                             Buy
                         </button>
+                        @else
+                            <p><a href="{{route('login')}}">Login to Buy</a></p>
+                        @endif
                     </div>
                 </div>
+
             </form>
         </div>
     </aside>

@@ -11,10 +11,15 @@
 
     <!-- Stylesheet -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-bs4.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-bs4.min.js"></script>
@@ -99,13 +104,6 @@
                     <li class="menu-item">
                         <a href="{{route('site.property.all')}}">Property</a>
                     </li>
-{{--                    <li class="menu-item menu-item-has-children">--}}
-{{--                        <a href="{{route('site.property.all')}}">Property</a>--}}
-{{--                        <ul class="sub-menu">--}}
-{{--                            <li><a href="{{route('site.property.all')}}">Main Market</a></li>--}}
-{{--                            <li><a href="{{route('site.secondary.market')}}">Secondary Market</a></li>--}}
-{{--                        </ul>--}}
-{{--                    </li>--}}
                     <li class="menu-item">
                         <a href="{{route('site.about')}}">About</a>
                     </li>
@@ -126,9 +124,6 @@
                     <!-- Dropdown for Larger Screens -->
                     @if(Auth::User())
                         <li class="menu-item-has-children current-menu-item d-none d-lg-block" style=" width: 125px;">
-
-                            {{--                            <img src="assets/img/agent/3.png" class="user-image rounded-circle" style="height: 40px;"--}}
-                            {{--                                 alt=""/>--}}
                             @if(Auth::User()->profile_photo_path)
                                 <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
                                      class="user-image rounded-circle" style="height: 40px;"
@@ -145,10 +140,12 @@
                                     <i class="mdi mdi-account-outline"></i>
                                     <a href="{{route('profile.show')}}">My Profile</a>
                                 </li>
-                                <li>
-                                    <i class="mdi mdi-account-outline"></i>
-                                    <a href="{{route('dashboard')}}">Dashboard</a>
-                                </li>
+                                @if(auth()->user()->hasrole('admin'))
+                                    <li>
+                                        <i class="mdi mdi-account-outline"></i>
+                                        <a href="{{route('dashboard')}}">Dashboard</a>
+                                    </li>
+                                @endif
                                 <li>
                                     <i class="mdi mdi-account-outline"></i>
                                     <a href="{{route('site.blogs.manager')}}">Blogs Manager</a>
@@ -205,33 +202,12 @@
                         </li>
                     @endif
 
-                    <!-- Simple Buttons for Smaller Screens -->
-                    {{--                    <li class="menu-item d-lg-none text-center">--}}
-                    {{--                        <a href="{{route('login')}}" class="btn btn-login">Login</a>--}}
-                    {{--                        <a href="{{route('register')}}" class="btn btn-register">Register</a>--}}
-                    {{--                    </li>--}}
-
                 </ul>
 
                 <!-- notifications  -->
                 @auth
-                    <div class="notification-container">
-                        <div class="notification-icon">
-                            <i class="fa fa-bell"></i> <!-- Font Awesome Bell Icon -->
-                            @if(auth()->check() && auth()->user()->unreadNotifications->count())
-                                <div class="notification-indicator">
-                                    <div class="notification-count" role="status">
-                                        {{ auth()->user()->unreadNotifications->count() }}
-                                    </div>
-                                </div>
-                            @endif
-                        </div>
-
-                        <!-- Dropdown Menu -->
-
-                            @livewire('site.notification.notification-component')
-                    </div>
-                @endauth
+                    @livewire('site.notification.notification-component')
+        @endauth
     </nav>
 </div>
 
@@ -410,7 +386,7 @@
         let file = event.target.files[0];
         let reader = new FileReader();
 
-        reader.onload = function() {
+        reader.onload = function () {
             document.getElementById(previewId).src = reader.result;
         };
 

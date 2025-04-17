@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>@yield('title') | {{ config('app.name') }}</title>
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
-    <link href="{{ asset('assets/auth/plugins/material/css/materialdesignicons.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/auth/plugins/simplebar/simplebar.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/auth/plugins/material/css/materialdesignicons.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/auth/plugins/simplebar/simplebar.css') }}" rel="stylesheet"/>
     <!-- PLUGINS CSS STYLE -->
-    <link href="{{ asset('assets/auth/plugins/nprogress/nprogress.css') }}" rel="stylesheet" />
-    <link href="{{ asset('assets/auth/plugins/prism/prism.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/auth/plugins/nprogress/nprogress.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets/auth/plugins/prism/prism.css') }}" rel="stylesheet"/>
     <!-- MONO CSS -->
-    <link id="main-css-href" rel="stylesheet" href="{{ asset('assets/auth/css/style.css') }}" />
+    <link id="main-css-href" rel="stylesheet" href="{{ asset('assets/auth/css/style.css') }}"/>
     <!-- FAVICON -->
     <link href="{{ asset('assets/img/favicon-32x32.png') }}" rel="shortcut icon"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -68,111 +68,138 @@
                         </a>
                     </li>
                     <li class="section-title"> Apps</li>
-
-                    <li class="has-sub">
-                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                           data-target="#property-menu" aria-expanded="false" aria-controls="playlist-menu">
-                            <i class="mdi mdi-folder-outline"></i>
-                            <span class="nav-text">Property</span>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="collapse" id="property-menu" data-parent="#sidebar-menu">
-                            <div class="sub-menu">
-                                <li>
-                                    <a class="sidenav-item-link" href="{{route('admin.property.index')}}">
-                                        <span class="nav-text">index</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="sidenav-item-link" href="{{route('admin.property.create')}}">
-                                        <span class="nav-text">create</span>
-                                    </a>
-                                </li>
-                            </div>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                           data-target="#blogs-menu" aria-expanded="false" aria-controls="playlist-menu">
-                            <i class="mdi mdi-folder-outline"></i>
-                            <span class="nav-text">Blogs</span>
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="collapse" id="blogs-menu" data-parent="#sidebar-menu">
-                            <div class="sub-menu">
-                                <li>
-                                    <a class="sidenav-item-link" href="{{route('admin.category')}}">
-                                        <span class="nav-text">index</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="sidenav-item-link" href="{{route('admin.category.create')}}">
-                                        <span class="nav-text">create</span>
-                                    </a>
-                                </li>
-                            </div>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="sidenav-item-link" href="{{route('admin.distribute.returns')}}">
-                            <i class="mdi mdi-account-group"></i>
-                            <span class="nav-text">Distribution</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="sidenav-item-link" href="{{route('admin.profile.verification')}}">
-                            <i class="mdi mdi-account-group"></i>
-                            <span class="nav-text">Profile Verification</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="sidenav-item-link" href="{{route('admin.all.investments')}}">
-                            <i class="mdi mdi-bank-transfer-in"></i>
-                            <span class="nav-text">Investments</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="sidenav-item-link" href="{{route('admin.all.auctions')}}">
-                            <i class="mdi mdi-coins"></i>
-                            <span class="nav-text">Auctions</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="sidenav-item-link" href="{{route('admin.all.advertisements')}}">
-                            <i class="mdi mdi-square-inc"></i>
-                            <span class="nav-text">Advertisements</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="sidenav-item-link" href="{{route('admin.all.bids')}}">
-                            <i class="mdi mdi-coins"></i>
-                            <span class="nav-text">Bids</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="sidenav-item-link" href="{{route('admin.all.transactions')}}">
-                            <i class="mdi mdi-bank-transfer"></i>
-                            <span class="nav-text">Transactions</span>
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="sidenav-item-link" href="{{route('open.users')}}">
-                            <i class="mdi mdi-account"></i>
-                            <span class="nav-text">Users</span>
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="sidenav-item-link" href="{{route('open.permission')}}">
-                            <i class="mdi mdi-folder-lock-open"></i>
-                            <span class="nav-text">Permissions</span>
-                        </a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="sidenav-item-link" href="{{route('open.roles')}}">
-                            <i class="mdi mdi-folder-outline"></i>
-                            <span class="nav-text">Roles</span>
-                        </a>
-                    </li>
+                    @can('property.view')
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                               data-target="#property-menu" aria-expanded="false" aria-controls="playlist-menu">
+                                <i class="mdi mdi-folder-outline"></i>
+                                <span class="nav-text">Property</span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="collapse" id="property-menu" data-parent="#sidebar-menu">
+                                <div class="sub-menu">
+                                    <li>
+                                        <a class="sidenav-item-link" href="{{route('admin.property.index')}}">
+                                            <span class="nav-text">index</span>
+                                        </a>
+                                    </li>
+                                    @can('property.create')
+                                        <li>
+                                            <a class="sidenav-item-link" href="{{route('admin.property.create')}}">
+                                                <span class="nav-text">create</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                </div>
+                            </ul>
+                        </li>
+                    @endcan
+                    @can('category.view')
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                               data-target="#blogs-menu" aria-expanded="false" aria-controls="playlist-menu">
+                                <i class="mdi mdi-folder-outline"></i>
+                                <span class="nav-text">Blogs Category</span>
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="collapse" id="blogs-menu" data-parent="#sidebar-menu">
+                                <div class="sub-menu">
+                                    <li>
+                                        <a class="sidenav-item-link" href="{{route('admin.category')}}">
+                                            <span class="nav-text">index</span>
+                                        </a>
+                                    </li>
+                                    @can('category.create')
+                                        <li>
+                                            <a class="sidenav-item-link" href="{{route('admin.category.create')}}">
+                                                <span class="nav-text">create</span>
+                                            </a>
+                                        </li>
+                                    @endcan
+                                </div>
+                            </ul>
+                        </li>
+                    @endcan
+                    @can('property.return.distribution')
+                        <li>
+                            <a class="sidenav-item-link" href="{{route('admin.distribute.returns')}}">
+                                <i class="mdi mdi-account-group"></i>
+                                <span class="nav-text">Distribution</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('profile.verification.view')
+                        <li>
+                            <a class="sidenav-item-link" href="{{route('admin.profile.verification')}}">
+                                <i class="mdi mdi-account-group"></i>
+                                <span class="nav-text">Profile Verification</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('investments.view')
+                        <li>
+                            <a class="sidenav-item-link" href="{{route('admin.all.investments')}}">
+                                <i class="mdi mdi-bank-transfer-in"></i>
+                                <span class="nav-text">Investments</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('auctions.view')
+                        <li>
+                            <a class="sidenav-item-link" href="{{route('admin.all.auctions')}}">
+                                <i class="mdi mdi-coins"></i>
+                                <span class="nav-text">Auctions</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('advertisements.view')
+                        <li>
+                            <a class="sidenav-item-link" href="{{route('admin.all.advertisements')}}">
+                                <i class="mdi mdi-square-inc"></i>
+                                <span class="nav-text">Advertisements</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('bids.view')
+                        <li>
+                            <a class="sidenav-item-link" href="{{route('admin.all.bids')}}">
+                                <i class="mdi mdi-coins"></i>
+                                <span class="nav-text">Bids</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('transactions.view')
+                        <li>
+                            <a class="sidenav-item-link" href="{{route('admin.all.transactions')}}">
+                                <i class="mdi mdi-bank-transfer"></i>
+                                <span class="nav-text">Transactions</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('user.view')
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="{{route('open.users')}}">
+                                <i class="mdi mdi-account"></i>
+                                <span class="nav-text">Users</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('permission.view')
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="{{route('open.permission')}}">
+                                <i class="mdi mdi-folder-lock-open"></i>
+                                <span class="nav-text">Permissions</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('role.view')
+                        <li class="has-sub">
+                            <a class="sidenav-item-link" href="{{route('open.roles')}}">
+                                <i class="mdi mdi-folder-outline"></i>
+                                <span class="nav-text">Roles</span>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </div>
         </div>

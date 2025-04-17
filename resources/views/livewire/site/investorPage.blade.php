@@ -28,11 +28,17 @@
                     <div class="card investor-profile-card">
                         <div class="card-img">
 
-                            {{--                            <img src="assets/img/agent/default user.jpeg" style="border-radius: 100%"--}}
-                            {{--                                 class="card-img-top" alt="...">--}}
-                            <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
-                                 style="border-radius: 100%"
-                                 class="card-img-top" alt="...">
+                            @if(Auth::User()->profile_photo_path)
+                                <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
+                                     style="border-radius: 100%"
+                                     class="card-img-top" alt="...">
+                            @else
+                                <img src="assets/img/agent/default user.jpeg"
+                                     style="border-radius: 100%"
+                                     class="card-img-top" alt="...">
+                            @endif
+
+
                         </div>
                         <div class="card-body investor-profile-card-body">
                             <div class="text-section">
@@ -52,10 +58,17 @@
                                         </div>
                                         <div>
 
-                                            <p>
-                                                <i class="fa fa-solid fa-circle-check" style="color: #5ba600;"></i>
-                                                <strong>Verified</strong>
-                                            </p>
+                                            @if(Auth::user()->verification_status == 'verified')
+                                                <p>
+                                                    <i class="fa fa-solid fa-circle-check" style="color: #5ba600;"></i>
+                                                    <strong>Verified</strong>
+                                                </p>
+                                            @else
+                                                <p>
+                                                    <i class="fa fa-solid fa-circle-check" style="color: #999c95;"></i>
+                                                    <strong>Un Verified</strong>
+                                                </p>
+                                            @endif
                                         </div>
                                     </div>
                                     <!-- <div class="card-text">

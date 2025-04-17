@@ -18,7 +18,7 @@
         @endif
         <div class="card card-default">
             <div class="card-header">
-                <h2>Roles</h2>
+                <h2>Permissions</h2>
             </div>
             <div class="card-body">
 
@@ -28,6 +28,9 @@
                         <th>S/N</th>
                         <th>ID</th>
                         <th>Name</th>
+                        @can('permission.delete')
+                            <th>Actions</th>
+                        @endcan
                     </tr>
                     </thead>
                     <tbody>
@@ -38,9 +41,11 @@
                             <td>{{ $permission->id }}</td>
                             <td>{{ $permission->name }}</td>
                             <td>
-                                <button wire:click="deletePermission({{ $permission->id }})" class="btn btn-danger">
-                                    <i class="icon-trash"></i> Delete
-                                </button>
+                                @can('permission.delete')
+                                    <button wire:click="deletePermission({{ $permission->id }})" class="btn btn-danger">
+                                        <i class="icon-trash"></i> Delete
+                                    </button>
+                                @endcan
                             </td>
                         </tr>
                     @endforeach

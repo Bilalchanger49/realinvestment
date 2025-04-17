@@ -1,5 +1,14 @@
 
 <div>
+    <!-- Loading Overlay -->
+    <!-- Loading Overlay -->
+    <div id="payment-loading-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(255,255,255,0.8); z-index:9999; text-align:center; padding-top:20%;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Processing...</span>
+        </div>
+        <h4 class="mt-3">Processing your payment, please wait...</h4>
+    </div>
+
 
     <form id="payment-form" method="POST">
 
@@ -32,11 +41,15 @@
 {{--        <button type="submit" id="submit-button">Pay</button>--}}
     </form>
 
-</div>
+
+
+
 
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">
+
         document.addEventListener('livewire:init', function () {
+
             // This will ensure that Stripe is initialized after the modal is shown
             $('#send_funds_popup').on('shown.bs.modal', function () {
                 // Add a delay to ensure that Stripe Elements has time to render properly
@@ -61,12 +74,13 @@
                                 const paymentType = "{{ $paymentType }}"; // Passed from the server
 
                                 if (paymentType === 'auction') {
+                                    $('#payment-loading-overlay').show();
                                     Livewire.dispatch('processAuctionPayment', { token: result.token.id })
                                 } else if (paymentType === 'property') {
-                                    console.log(paymentType)
+                                    $('#payment-loading-overlay').show();
                                     Livewire.dispatch('processPropertyPayment', { token: result.token.id })
                                 } else if (paymentType === 'sellingAdd') {
-                                    console.log(paymentType)
+                                    $('#payment-loading-overlay').show();
                                     Livewire.dispatch('processSellingAddPayment', { token: result.token.id })
                                 } else {
                                     console.error('Unknown payment type:', paymentType)
@@ -76,8 +90,13 @@
                         });
 
                     });
-                }, 500); // Adjust delay as needed
+                }, 500);
+                $('#payment-loading-overlay').hide();
+
             });
         });
     </script>
 
+
+
+</div>

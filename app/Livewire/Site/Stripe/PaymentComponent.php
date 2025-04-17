@@ -71,6 +71,7 @@ class PaymentComponent extends Component
                 'receipt_email' => Auth::user()->email,
             ]);
 
+
             $buyPropertyService = new BuyPropertyService();
             $buyPropertyService->buyProperty($this->numShares, $this->propertyId, $this->priceWithCharges, $this->sharePrice, $token);
             session()->flash('success', 'Payment successful!');

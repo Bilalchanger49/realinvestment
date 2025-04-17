@@ -1,4 +1,15 @@
-<div>
+<div class="notification-container">
+    <div class="notification-icon">
+        <i class="fa fa-bell"></i>
+        @if(auth()->user()->unreadNotifications->count())
+            <div class="notification-indicator">
+                <div class="notification-count" role="status">
+                    {{ auth()->user()->unreadNotifications->count() }}
+                </div>
+            </div>
+        @endif
+    </div>
+
     <!-- Dropdown Menu -->
     <div class="notification-dropdown">
         <header>

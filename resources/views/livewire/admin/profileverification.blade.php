@@ -8,53 +8,56 @@
                 <div>
                     <table class=" profile-verification-table table-bordered text-center align-middle">
                         <thead class="table-light">
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>CNIC</th>
-                                <th>Profile Photo</th>
-                                <th>NIC Front</th>
-                                <th>NIC Back</th>
-                                <th>Signature</th>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>CNIC</th>
+                            <th>Profile Photo</th>
+                            <th>NIC Front</th>
+                            <th>NIC Back</th>
+                            <th>Signature</th>
+                            @canany(['profile.verification.reject', 'profile.verification.accept'])
                                 <th>Actions</th>
-                            </tr>
+                            @endcanany
+                        </tr>
                         </thead>
                         <tbody>
-                            @foreach($requests as $request)
+                        @foreach($requests as $request)
                             <tr>
                                 <td class="text-capitalize">{{ $request->name }}</td>
                                 <td class="text-nowrap">{{ $request->email }}</td>
                                 <td class="text-nowrap">{{ $request->cnic }}</td>
                                 <td>
                                     <img src="{{ asset('storage/'.$request->profile_photo_path) }}"
-                                        class="img-thumbnail preview-img">
+                                         class="img-thumbnail preview-img">
                                 </td>
                                 <td>
                                     <img src="{{ asset('storage/'.$request->nic_front) }}"
-                                        class="img-thumbnail preview-img">
+                                         class="img-thumbnail preview-img">
                                 </td>
                                 <td>
                                     <img src="{{ asset('storage/'.$request->nic_back) }}"
-                                        class="img-thumbnail preview-img">
+                                         class="img-thumbnail preview-img">
                                 </td>
                                 <td>
                                     <img src="{{ asset('storage/'.$request->signature) }}"
-                                        class="img-thumbnail preview-img">
+                                         class="img-thumbnail preview-img">
                                 </td>
                                 <td>
-                                    {{-- <button wire:click="verify({{$request->id}})"
-                                        class="btn btn-success">Verify</button> --}}
-                                    {{-- <button wire:click="reject({{$request->id}})"
-                                        class="btn btn-danger">Reject</button> --}}
-                                        <button wire:click="verify({{$request->id}})" class="action-verify-btn"><i class="fas fa-check"></i></button>
-{{--                                        <button class="action-reject-btn"><i class="fas fa-times"></i></button>--}}
-                                    <!-- Update Reject Button -->
-                                    <button wire:click="openRejectionPopup({{$request->id}})" class="action-reject-btn" data-bs-toggle="modal" data-bs-target="#rejectModal">
-                                        <i class="fas fa-times"></i>
-                                    </button>
+                                    @can('profile.verification.accept')
+                                        <button wire:click="verify({{$request->id}})" class="action-verify-btn"><i
+                                                class="fas fa-check"></i></button>
+                                    @endcan
+                                    @can('profile.verification.reject')
+                                        <button wire:click="openRejectionPopup({{$request->id}})"
+                                                class="action-reject-btn"
+                                                data-bs-toggle="modal" data-bs-target="#rejectModal">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    @endcan
                                 </td>
                             </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -81,11 +84,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <textarea class="form-control" id="rejectionReason" placeholder="Enter rejection reason" wire:model="rejectionReason" ></textarea>
+                        <textarea class="form-control" id="rejectionReason" placeholder="Enter rejection reason"
+                                  wire:model="rejectionReason"></textarea>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button wire:click="reject({{$userId}})" type="button" class="btn btn-danger" id="rejectConfirmBtn">Reject</button>
+                        <button wire:click="reject({{$userId}})" type="button" class="btn btn-danger"
+                                id="rejectConfirmBtn">Reject
+                        </button>
                     </div>
                 </div>
             </div>
