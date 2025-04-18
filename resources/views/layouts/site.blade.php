@@ -35,16 +35,59 @@
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
 
     <style>
-        .floating-alert {
-            position: fixed;
-            top: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1050;
-            width: 100%;
-            max-width: 80%;
-            display: none;
-        }
+        .custom-alert {
+        position: fixed;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        border-radius: 10px;
+        padding: 30px 20px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        z-index: 1050;
+        text-align: center;
+    }
+
+    .custom-alert .icon {
+        width: 60px;
+        height: 60px;
+        margin: -60px auto 10px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: white;
+    }
+
+    .custom-alert .btn {
+        margin-top: 5px;
+        width: 100px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .alert-success-box .icon {
+        background-color: #8BC34A;
+    }
+
+    .alert-success-box .btn {
+        background-color: #8BC34A;
+        color: white;
+    }
+
+    .alert-error-box .icon {
+        background-color: #F44336;
+    }
+
+    .alert-error-box .btn {
+        background-color: #F44336;
+        color: white;
+    }
 
     </style>
     @livewireStyles
@@ -63,23 +106,26 @@
 
 <!-- Flash Messages -->
 @if (session('success'))
-    <div class="floating-alert">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="custom-alert alert-success-box">
+        <div class="icon">
+            &#10004;
         </div>
+        <h3>Awesome!</h3>
+        <p>{{ session('success') }}</p>
+        <button class="btn" onclick="this.parentElement.style.display='none'">OK</button>
     </div>
 @endif
 
 @if (session('error'))
-    <div class="floating-alert">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error!</strong> {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="custom-alert alert-error-box">
+        <div class="icon">
+            &#10006;
         </div>
+        <h3>Sorry!</h3>
+        <p>{{ session('error') }}</p>
+        <button class="btn" onclick="this.parentElement.style.display='none'">OK</button>
     </div>
 @endif
-
 <!-- navbar start -->
 <div class="navbar-area navbar-area-2">
 
@@ -123,18 +169,22 @@
                 <ul class="navbar-nav menu-open text-center">
                     <!-- Dropdown for Larger Screens -->
                     @if(Auth::User())
-                        <li class="menu-item-has-children current-menu-item d-none d-lg-block" style=" width: 125px;">
-                            @if(Auth::User()->profile_photo_path)
-                                <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
-                                     class="user-image rounded-circle" style="height: 40px;"
-                                     alt=""/>
-                            @else
-                                <img src="assets/img/agent/default user.jpeg" class="user-image rounded-circle"
-                                     style="height: 40px;"
-                                     alt=""/>
-                            @endif
-
-                            <a href="#">{{ Auth::User()->name }}</a>
+                    <li class="menu-item-has-children current-menu-item d-none d-lg-block" style="width: 180px;">
+                            <div class="user-info-wrapper d-flex align-items-center">
+                                @if(Auth::User()->profile_photo_path)
+                                    <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
+                                         class="user-image rounded-circle"
+                                         alt=""/>
+                                @else
+                                    <img src="{{asset('assets/img/agent/default user.jpeg')}}"
+                                         class="user-image rounded-circle"
+                                         alt=""/>
+                                @endif
+                        
+                                <a href="#" class="user-name" title="{{ Auth::user()->name }}">
+                                    {{ Str::limit(Auth::user()->name, 15) }}
+                                </a>
+                            </div>
                             <ul class="sub-menu">
                                 <li>
                                     <i class="mdi mdi-account-outline"></i>
@@ -312,6 +362,10 @@
             }
         });
     });
+
+    setTimeout(() => {
+        document.querySelectorAll('.custom-alert').forEach(el => el.style.display = 'none');
+    }, 5000); // 5 seconds
 
 </script>
 
