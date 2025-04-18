@@ -21,21 +21,25 @@
 
             <div class="col-md-6 first_col ">
                 <h1 class="text-center mt-3">Contact Us</h1>
-                <form class="p-3 mt-3">
+                <form class="p-3 mt-3"  wire:submit.prevent="submit">
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Enter your Name</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" wire:model="name">
+                        @error('name') <span class="text-danger small">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Email ID</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1">
+                        <input type="email" class="form-control" id="exampleFormControlInput1" wire:model="email">
+                        @error('email') <span class="text-danger small">{{ $message }}</span> @enderror
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Enter your massage</label>
-                        <textarea  type="text" class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+                        <textarea  type="text" class="form-control" id="exampleFormControlTextarea1" rows="7" wire:model="message"></textarea>
+                        @error('message') <span class="text-danger small">{{ $message }}</span> @enderror
                     </div>
+
                     <div class="mb-3">
-                        <button class="btn btn-primary">Send Now</button>
+                        <button type="submit" class="btn btn-primary">Send Now</button>
                     </div>
                 </form>
             </div>

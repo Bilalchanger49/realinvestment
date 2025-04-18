@@ -176,6 +176,14 @@
                             </a>
                         </li>
                     @endcan
+{{--                    @can('transactions.view')--}}
+                        <li>
+                            <a class="sidenav-item-link" href="{{route('admin.messages')}}">
+                                <i class="mdi mdi-bank-transfer"></i>
+                                <span class="nav-text">Messages</span>
+                            </a>
+                        </li>
+{{--                    @endcan--}}
                     @can('user.view')
                         <li class="has-sub">
                             <a class="sidenav-item-link" href="{{route('open.users')}}">
