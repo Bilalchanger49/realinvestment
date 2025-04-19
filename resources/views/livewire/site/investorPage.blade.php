@@ -657,7 +657,7 @@
         </div>
     </div>
 
-    {{--    auction transactions popup--}}
+    {{--    bid transactions popup--}}
     <div wire:ignore.self class="modal fade" id="send_funds_popup" tabindex="-1" role="dialog"
          aria-labelledby="send_funds_popup_label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">

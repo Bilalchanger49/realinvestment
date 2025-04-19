@@ -6,9 +6,11 @@ use App\Models\Auctions;
 use App\Models\Bid;
 use App\Models\Property;
 use App\Models\PropertyImage;
+use App\Models\Selling;
 use App\Models\User;
 use App\Notifications\AuctionResponseNotification;
 use App\Notifications\BidConfirmedNotification;
+use App\Services\ProfitCalculationService;
 use Livewire\Component;
 
 class AllPropertiesComponent extends Component
@@ -23,10 +25,28 @@ class AllPropertiesComponent extends Component
 
     public $selectedAuction;
 
+    public $sellingAddId;
+    public $numShares;
+    public $sharePrice;
+    public $profitAmount;
+    public $priceWithCharges;
+
     public $activeTab = 'properties';
 
     public function setActiveTab($tab){
         $this->activeTab = $tab;
+    }
+    public function openSellingAddTransactionPopup($sellingAddId)
+    {
+        $sellingAdd = Selling::where('id', $sellingAddId)->first();
+        $this->sellingAddId = $sellingAdd->id;
+        $this->totalPrice = $sellingAdd->total_amount;
+        $this->numShares = $sellingAdd->no_of_share;
+        $this->sharePrice = $sellingAdd->share_amount;
+
+        $profitCalculationService = new ProfitCalculationService();
+        $this->profitAmount = $profitCalculationService->calculateProfit($this->totalPrice);
+        $this->priceWithCharges = $this->totalPrice + $this->profitAmount;
     }
     public function OpenCreateBidPopup(int $id)
     {
@@ -62,7 +82,7 @@ class AllPropertiesComponent extends Component
         // Check if the current user is the creator of the auction
         if ($this->selectedAuction->user_id === auth()->id()) {
             session()->flash('error', 'You cannot place a bid on your own auction.');
-            return redirect()->route('site.secondary.market'); // Redirect back to the form
+            return redirect()->route('site.property.all'); // Redirect back to the form
         }
 
         // Check if the user has already placed an active bid on the same investment
@@ -74,7 +94,7 @@ class AllPropertiesComponent extends Component
 
         if ($existingBid) {
             session()->flash('error', 'You already have an active bid on this investment.');
-            return redirect()->route('site.secondary.market'); // Redirect back to the form
+            return redirect()->route('site.property.all'); // Redirect back to the form
         }
 
         try {
@@ -124,7 +144,17 @@ class AllPropertiesComponent extends Component
                     $query->where('property_name', 'like', '%' . $this->search . '%');
                 });
         }
+
+        $queryAdvertisement = Selling::where('status', 'active')->with('property')->with('user');
+
+        if (!empty($this->search)) {
+            $queryAdvertisement->whereHas('property', function ($query) {
+                $query->where('property_name', 'like', '%' . $this->search . '%');
+            });
+        }
+
         return view('livewire.site.allProperties', [
+            'propertyAdds' => $queryAdvertisement->get(),
             'properties' => $queryProperties->get(),
             'auctions' => $queryAuctions->get(),
             'images' => $images

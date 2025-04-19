@@ -1,6 +1,4 @@
-
 <div>
-    <!-- Loading Overlay -->
     <!-- Loading Overlay -->
     <div id="payment-loading-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(255,255,255,0.8); z-index:9999; text-align:center; padding-top:20%;">
         <div class="spinner-border text-primary" role="status">
@@ -11,7 +9,6 @@
 
 
     <form id="payment-form" method="POST">
-
         @csrf
         <div class="form-group">
             <label for="amount">Amount</label>
@@ -25,7 +22,6 @@
             <label for="amount">Price With Charges</label>
             <label>{{$priceWithCharges}}</label>
         </div>
-
         <div class="form-group">
             <label for="cardholder-name">Cardholder Name</label>
             <input type="text" id="cardholder-name" class="form-control" placeholder="John Doe" required>
@@ -42,20 +38,16 @@
     </form>
 
 
-
-
-
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">
 
         document.addEventListener('livewire:init', function () {
 
-            // This will ensure that Stripe is initialized after the modal is shown
             $('#send_funds_popup').on('shown.bs.modal', function () {
-                // Add a delay to ensure that Stripe Elements has time to render properly
                 setTimeout(function () {
                     // Initialize Stripe and Elements after the modal has shown
                     const stripe = Stripe("{{ env('STRIPE_KEY') }}");
+
                     const elements = stripe.elements()
                     const cardElement = elements.create('card');
                     cardElement.mount('#card-element'); // Mount Stripe card element
@@ -64,7 +56,6 @@
                         event.preventDefault(); // Prevent form submission
                         stripe.createToken(cardElement).then(function (result) {
                             if (result.error) {
-                                // Log the specific error message and the entire error object for debugging
                                 console.log('Error: ', result.error.message);
                                 console.log('Full error object: ', result.error);
 
@@ -96,7 +87,6 @@
             });
         });
     </script>
-
 
 
 </div>
