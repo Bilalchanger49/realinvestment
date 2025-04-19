@@ -52,14 +52,17 @@
                             <div class="property-links">
                                 <ul class="nav nav-tabs" id="propertyTabs">
                                     <li class="nav-item">
-                                        <a class="nav-link active" data-bs-toggle="tab" href="#main-property">Main
+                                        <a class="nav-link {{$activeTab === 'properties' ? 'active' : '' }}"
+                                           wire:click="setActiveTab('properties')">Main
                                             Property</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" href="#featured">Featured</a>
+                                        <a class="nav-link {{$activeTab === 'auctions' ? 'active' : '' }}"
+                                           wire:click="setActiveTab('auctions')">Auctions</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" href="#for-sale">For Sale</a>
+                                        <a class="nav-link {{$activeTab === 'advertisements' ? 'active' : '' }}"
+                                           wire:click="setActiveTab('advertisements')">Advertisements</a>
                                     </li>
                                 </ul>
                             </div>
@@ -67,8 +70,9 @@
                         </div>
 
                         <div class="tab-content mt-3">
-                                <!-- Main Property Section -->
-                                <div class="tab-pane fade show active" id="main-property">
+                            <!-- Main Property Section -->
+                            @if($activeTab === 'properties')
+                                <div>
                                     <div class="row">
                                         @foreach($properties as $property)
                                             <div class="col-lg-6">
@@ -115,9 +119,9 @@
                                         @endforeach
                                     </div>
                                 </div>
-                            <!-- Featured Properties Section -->
-
-                                <div class="tab-pane fade" id="featured">
+                                <!-- auctions Properties Section -->
+                            @elseif($activeTab === 'auctions')
+                                <div>
                                     <div class="row">
                                         @foreach($auctions as $auction)
                                             @if($auction->status == 'active')
@@ -128,8 +132,13 @@
                                                 <div class="col-lg-6">
                                                     <div class="single-product-wrap style-bottom">
                                                         <div class="thumb">
-                                                            <img src="{{ asset('storage/' . $image->image_path) }}"
-                                                                 alt="Modern Family House">
+                                                            @if($image)
+                                                                <img src="{{ asset('storage/' . $image->image_path) }}"
+                                                                     alt="Modern Family House">
+                                                            @else
+                                                                <img src="{{ asset('assets/img/other/6.png') }}"
+                                                                     alt="Modern Family House">
+                                                            @endif
                                                             <div class="product-wrap-details">
                                                                 <div class="media justify-content-end">
                                                                     <a class="fav-btn" href="#"><i
@@ -172,15 +181,16 @@
                                         @endforeach
                                     </div>
                                 </div>
-
-                            <!-- For Sale Properties Section -->
-                            <div class="tab-pane fade" id="for-sale">
-                                <div class="row"  wire:key="search-{{ $search }}-{{now()}}">
-                                    @livewire('site.view-property_add-component',
-                                    ['search' => $search],
-                                    key('search-' . $search. '-' . now()))
+                                <!-- advertisements Properties Section -->
+                            @elseif($activeTab === 'advertisements')
+                                <div>
+                                    <div class="row" wire:key="search-{{ $search }}-{{now()}}">
+                                        @livewire('site.view-property_add-component',
+                                        ['search' => $search],
+                                        key('search-' . $search. '-' . now()))
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
 
                         <!-- Pagination -->

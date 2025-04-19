@@ -194,8 +194,13 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="updated-product-wrap">
                                 <div class="updated-thumb">
-                                    <img src="{{ asset('storage/' . $image->image_path) }}"
-                                         alt="High-Yield Residential Property"/>
+                                    @if($image)
+                                        <img src="{{ asset('storage/' . $image->image_path) }}"
+                                             alt="Modern Family House">
+                                    @else
+                                        <img src="{{ asset('assets/img/other/6.png') }}"
+                                             alt="Modern Family House">
+                                    @endif
                                 </div>
                                 <div class="updated-content">
                                     <span>{{$advertisement->property->property_address}}</span>

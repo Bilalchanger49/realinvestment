@@ -22,6 +22,12 @@ class AllPropertiesComponent extends Component
     public $property_name;
 
     public $selectedAuction;
+
+    public $activeTab = 'properties';
+
+    public function setActiveTab($tab){
+        $this->activeTab = $tab;
+    }
     public function OpenCreateBidPopup(int $id)
     {
         $auction = Auctions::where('id', $id)

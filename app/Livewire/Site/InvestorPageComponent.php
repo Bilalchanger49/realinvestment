@@ -49,6 +49,11 @@ class InvestorPageComponent extends Component
     public $end_date;
 
     public $investment;
+    public $activeTab = 'active-investments';
+
+    public function setActiveTab($tab){
+        $this->activeTab = $tab;
+    }
 
     public function open_active_investment_popup(int $id)
     {

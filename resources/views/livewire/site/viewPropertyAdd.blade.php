@@ -7,8 +7,13 @@
         <div class="col-lg-6">
             <div class="single-product-wrap style-bottom">
                 <div class="thumb">
-                    <img src="{{ asset('storage/' . $image->image_path) }}"
-                         alt="Modern Family House">
+                    @if($image)
+                        <img src="{{ asset('storage/' . $image->image_path) }}"
+                             alt="Modern Family House">
+                    @else
+                        <img src="{{ asset('assets/img/other/6.png') }}"
+                             alt="Modern Family House">
+                    @endif
                     <div class="product-wrap-details">
                         <div class="media justify-content-end">
                             <a class="fav-btn" href="#"><i class="far fa-heart"></i></a>

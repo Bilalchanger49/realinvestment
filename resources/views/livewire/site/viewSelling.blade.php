@@ -1,5 +1,5 @@
 <div class="tab-content mt-3">
-    <div class="tab-pane fade" id="selling">
+    <div>
         <h3>Selling Properties</h3>
         <table class="table custom-table">
             <thead>
