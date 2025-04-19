@@ -42,20 +42,21 @@
                                          width="100"></td>
                             @endif
                             <td>
-                                @can('property.edit')
-                                    <button class="btn btn-danger">
-                                        <a href="{{route('admin.property.edit', $property->id)}}"
-                                           class="text-decoration-none text-light">
-                                            <i class="icon-trash"></i> Edit
-                                        </a>
+                                <div class="d-flex justify-content-center">
+                                    @can('property.edit')
+                                    <a href="{{ route('admin.property.edit', $property->id) }}" class=" property-btn-edit  " >
+                                        Edit
+                                    </a>
+                                    @endcan
+                            
+                                    @can('property.delete')
+                                    <button wire:click="confirmDelete({{ $property->id }})" class="btn btn-danger property-btn-delete">
+                                        Delete
                                     </button>
-                                @endcan
-                                @can('property.delete')
-                                    <button wire:click="confirmDelete({{ $property->id }})" class="btn btn-danger">
-                                        <i class="icon-trash"></i> Delete
-                                    </button>
-                                @endcan
+                                    @endcan
+                                </div>
                             </td>
+                            
                         </tr>
                     @endforeach
                     </tbody>

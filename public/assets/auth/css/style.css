@@ -17604,3 +17604,51 @@ html[dir=rtl] .sidebar li > a .caret:before {
   font-weight: 500;
 }
 /*# sourceMappingURL=style.css.map */
+
+/* dashboard style ########## */
+.property-btn-delete {
+  padding: 0.25rem 0.5rem;
+  line-height: 1.2;
+  border-radius: 0.2rem;
+  margin: 2px;
+  height: 29px;
+ 
+}
+.property-btn-edit {
+  padding: 0.25rem 0.5rem;
+  line-height: 1.2;
+  border-radius: 0.2rem;
+  margin: 2px;
+  height: 29px;
+  background: #9e6de0;
+  border:none; 
+  color:white;
+}
+.property-btn-edit:hover{
+  background-color: #8f50e5;
+  color:white ;
+}
+
+.btn-add-image {
+  background-color: #9e6de0;
+  color: white;
+  padding: 5px 9px;
+  font-size: 15px;
+  font-weight: 400;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-add-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+
+}
+
+
