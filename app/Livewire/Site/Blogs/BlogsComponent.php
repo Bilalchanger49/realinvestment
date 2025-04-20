@@ -10,15 +10,22 @@ use Livewire\WithPagination;
 class BlogsComponent extends Component
 {
     use WithPagination;
-
-    public $perPage = 6;
+    protected $paginationTheme = 'bootstrap';
+    public $search = '';
 
     public function render()
     {
+        $queryblogs = BlogsPosts::with('category');
+
+        if (!empty($this->search)) {
+            $queryblogs->where('title', 'like', '%' . $this->search . '%');
+        }
+
+        $blogs = $queryblogs->latest()->paginate(1);
+
         return view('livewire.site.blogs.blogs', [
-            'blogs' => BlogsPosts::with('category')->latest()->paginate($this->perPage)
+            'blogs' => $blogs,
         ])->extends('layouts.site');
-//        return view('livewire.site.blogs.blogs')->extends('layouts.site');
     }
 
 }

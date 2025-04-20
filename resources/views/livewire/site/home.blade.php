@@ -212,11 +212,15 @@
                                         Expected Annual Return: 8% <br>
                                         Owner: {{$advertisement->user->name}}
                                     </p>
-                                    <button class="updated-btn"
-                                            wire:click.prevent="openSellingAddTransactionPopup({{$advertisement->id}})"
-                                            data-toggle="modal" data-target="#send_funds_popup"><i
-                                            class="fas fa-arrow-right"></i>
-                                    </button>
+                                    @if(Auth::user())
+                                        <button class="updated-btn"
+                                                wire:click.prevent="openSellingAddTransactionPopup({{$advertisement->id}})"
+                                                data-toggle="modal" data-target="#send_funds_popup"><i
+                                                class="fas fa-arrow-right"></i>
+                                        </button>
+                                    @else
+                                        <p class="m-0 text-center"><a href="{{route('login')}}">Login to Buy</a></p>
+                                    @endif
                                 </div>
                             </div>
                         </div>

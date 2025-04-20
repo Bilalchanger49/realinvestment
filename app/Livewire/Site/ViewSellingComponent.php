@@ -14,7 +14,7 @@ class ViewSellingComponent extends Component
     {
         $this->sellingAdd_id = $id;
         $this->property_name = $propertyName;
-        
+
     }
     public function deleteSellingAdd()
     {

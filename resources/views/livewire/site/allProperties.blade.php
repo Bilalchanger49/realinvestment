@@ -6,7 +6,7 @@
                 <div class="section-title text-center">
                     <h2 class="page-title">Investment Opportunities</h2>
                     <ul class="page-list">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li>Property</li>
                     </ul>
                 </div>
@@ -102,7 +102,7 @@
                                                         @endif
 
                                                         <span
-                                                            class="price"><strong>PK {{$property->property_share_price}}</strong></span>
+                                                                class="price"><strong>PK {{$property->property_share_price}}</strong></span>
                                                         <ul class="meta-inner">
                                                             <li><img src="assets/img/icon/location2.png" alt="Location">New
                                                                 {{$property->property_address}}
@@ -118,6 +118,10 @@
                                             </div>
                                         @endforeach
                                     </div>
+                                </div>
+                                <!-- Pagination -->
+                                <div class="pagination-area text-center mt-4 mb-5">
+                                    {{ $properties->links() }}
                                 </div>
                                 <!-- auctions Properties Section -->
                             @elseif($activeTab === 'auctions')
@@ -142,7 +146,7 @@
                                                             <div class="product-wrap-details">
                                                                 <div class="media justify-content-end">
                                                                     <a class="fav-btn" href="#"><i
-                                                                            class="far fa-heart"></i></a>
+                                                                                class="far fa-heart"></i></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -151,7 +155,7 @@
                                                                 <a href="{{route('site.property.details', 2)}}">{{$auction->property->property_name}}</a>
                                                             </h4>
                                                             <span
-                                                                class="price"><strong>Tokens Available: {{$auction->no_of_shares}}</strong></span>
+                                                                    class="price"><strong>Tokens Available: {{$auction->no_of_shares}}</strong></span>
                                                             <ul class="meta-inner">
                                                                 <li><img src="assets/img/icon/location2.png"
                                                                          alt="Location">
@@ -164,12 +168,12 @@
                                                         </div>
                                                         <div class="product-meta-bottom">
                                                         <span
-                                                            class="price">Token Price: {{$auction->share_amount_placed}}</span>
+                                                                class="price">Token Price: {{$auction->share_amount_placed}}</span>
                                                             <span>
                                                             <button
-                                                                wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
-                                                                id="openBidPopup" class="btn btn-primary"
-                                                                data-toggle="modal" data-target="#add_bid_popup">
+                                                                    wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
+                                                                    id="openBidPopup" class="btn btn-primary"
+                                                                    data-toggle="modal" data-target="#add_bid_popup">
                                                             Place Bid
                                                         </button>
                                                         </span>
@@ -181,14 +185,13 @@
                                         @endforeach
                                     </div>
                                 </div>
+                                <!-- Pagination -->
+                                <div class="pagination-area text-center mt-4 mb-5">
+                                    {{ $auctions->links() }}
+                                </div>
                                 <!-- advertisements Properties Section -->
                             @elseif($activeTab === 'advertisements')
                                 <div>
-                                    {{--                                    <div class="row" wire:key="search-{{ $search }}-{{now()}}">--}}
-                                    {{--                                        @livewire('site.view-property_add-component', ['search' => $search],--}}
-                                    {{--                                        key('search-' . $search. '-' . now()))--}}
-                                    {{--                                    </div>--}}
-
                                     <div>
                                         @foreach($propertyAdds as $propertyAdd)
                                             @php
@@ -216,7 +219,7 @@
                                                             <a href="{{route('site.property.details', 2)}}">{{$propertyAdd->property->property_name}}</a>
                                                         </h4>
                                                         <span
-                                                            class="price"><strong>Tokens Available: {{$propertyAdd->no_of_shares}}</strong></span>
+                                                                class="price"><strong>Tokens Available: {{$propertyAdd->no_of_shares}}</strong></span>
                                                         <ul class="meta-inner">
                                                             <li><img src="assets/img/icon/location2.png" alt="Location">
                                                                 {{$propertyAdd->property->property_address}}
@@ -226,13 +229,21 @@
                                                         <br>
                                                         <p>Expected Annual Return: 8%</p>
                                                     </div>
+                                                    {{--                                                    {{dd($propertyAdd)}}--}}
                                                     <div class="product-meta-bottom">
                                                         <span
-                                                            class="price">Token Price: {{$propertyAdd->share_amount_placed}}</span>
+                                                                class="price">Token Price: {{$propertyAdd->share_amount}}</span>
                                                         <span>
-                                                            <button class="card__button text-decoration-none"
-                                                                    wire:click.prevent="openSellingAddTransactionPopup({{$propertyAdd->id}})"
-                                                                    data-toggle="modal" data-target="#send_funds_popup">Buy Now</button>
+                                                             @if(Auth::user())
+                                                                <button class="btn btn-base w-md-auto w-50"
+                                                                        wire:click.prevent="openSellingAddTransactionPopup({{$propertyAdd->id}})"
+                                                                        data-toggle="modal"
+                                                                        data-target="#send_funds_popup">
+                                                                    Buy
+                                                                </button>
+                                                            @else
+                                                                <p class="m-0 text-center"><a href="{{route('login')}}">Login to Buy</a></p>
+                                                            @endif
                                                         </span>
                                                     </div>
                                                 </div>
@@ -240,22 +251,17 @@
                                         @endforeach
                                     </div>
                                 </div>
+                                <!-- Pagination -->
+                                <div class="pagination-area text-center mt-4 mb-5">
+                                    {{ $propertyAdds->links() }}
+                                </div>
                             @endif
                         </div>
 
                         <!-- Pagination -->
-                        <div class="pagination-area text-center mt-4 mb-5">
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#"><i
-                                            class="la la-angle-double-left"></i></a></li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">
-                                        <i class="la la-angle-double-right"></i></a></li>
-                            </ul>
-                        </div>
+                        {{--                        <div class="pagination-area text-center mt-4 mb-5">--}}
+                        {{--                            {{ $properties->links() }}--}}
+                        {{--                        </div>--}}
 
                     </div>
                 </div>

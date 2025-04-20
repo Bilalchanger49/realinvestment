@@ -14,7 +14,7 @@ class EditBlogsComponent extends Component
     use WithFileUploads;
 
     public $blog;
-    public $title, $content, $category_id, $categories;
+    public $title, $content, $category_id;
     public $newThumbnail;
 
     public function mount($id)
@@ -24,18 +24,19 @@ class EditBlogsComponent extends Component
         $this->title = $this->blog->title;
         $this->content = $this->blog->content;
         $this->category_id = $this->blog->category_id;
-        $this->categories = BlogsCategory::all();
     }
 
     public function update()
     {
+//        dd($this->category_id);
         $thumbnailPath = $this->blog->thumbnail;
         $validator = $this->validate([
             'title' => 'required|string|max:255',
             'content' => 'nullable|string',
-            'category_id' => 'nullable',
+            'category_id' => 'required|integer|exists:blogs_categories,id',
             'newThumbnail' => 'nullable|image|max:2048',
         ]);
+
 
         if ($this->newThumbnail) {
             $thumbnailPath = $this->newThumbnail->store('blogs-thumbnails', 'public');
@@ -56,8 +57,8 @@ class EditBlogsComponent extends Component
 
     public function render()
     {
-
-        return view('livewire.site.blogs.editBlogs')->extends('layouts.site');
+        $categories = BlogsCategory::all();
+        return view('livewire.site.blogs.editBlogs', compact('categories'))->extends('layouts.site');
     }
 
 }

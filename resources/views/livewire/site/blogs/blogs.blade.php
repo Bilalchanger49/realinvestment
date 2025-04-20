@@ -55,22 +55,26 @@
                             <div class="alert alert-info text-center">No blog posts available.</div>
                         </div>
                     @endforelse
-                    <div class="pagination-area text-center">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#"><i class="la la-angle-double-left"></i></a></li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#"><i class="la la-angle-double-right"></i></a></li>
-                        </ul>
-                    </div>
+{{--                    <div class="pagination-area text-center">--}}
+{{--                        <ul class="pagination">--}}
+{{--                            <li class="page-item"><a class="page-link" href="#"><i class="la la-angle-double-left"></i></a></li>--}}
+{{--                            <li class="page-item active"><a class="page-link" href="#">1</a></li>--}}
+{{--                            <li class="page-item"><a class="page-link" href="#">2</a></li>--}}
+{{--                            <li class="page-item"><a class="page-link" href="#">3</a></li>--}}
+{{--                            <li class="page-item"><a class="page-link" href="#">...</a></li>--}}
+{{--                            <li class="page-item"><a class="page-link" href="#"><i class="la la-angle-double-right"></i></a></li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+
+                        <div class="pagination-area text-center mt-4 mb-5">
+                            {{ $blogs->links() }}
+                        </div>
                 </div>
                 <div class="col-lg-4">
                     <aside class="sidebar-area">
                         <div class="widget widget-search">
                             <div class="single-search-inner">
-                                <input type="text" placeholder="Search your keyword">
+                                <input  wire:model.lazy="search" type="text" placeholder="Search your keyword">
                                 <button><i class="la la-search"></i></button>
                             </div>
                         </div>

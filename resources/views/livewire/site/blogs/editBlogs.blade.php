@@ -84,13 +84,14 @@
                 </div>
 
 
-                <div wire:ignore class="col-12">
+                <div class="col-12">
                     <label for="title" class="form-label fw-semibold">Category</label>
                     <div class="single-select-inner style-bg-border">
-                        <select class="form-control" wire:model="category_id" wire:model.defer="category_id">
+                        <select class="form-control" wire:model="category_id">
                             <option value="">-- Select Category --</option>
                             @foreach($categories as $category)
-                            <option value="{{ $category->id }}" @if($category->id == $category_id) selected @endif>
+{{--                            <option value="{{ $category->id }}" @if($category->id == $category_id) selected @endif>--}}
+                            <option value="{{ $category->id }}" >
                                 {{ $category->name }}
                             </option>
                             @endforeach

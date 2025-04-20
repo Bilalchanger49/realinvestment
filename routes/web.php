@@ -55,6 +55,7 @@ Route::get('/secondary-market', SecondaryMarketComponent::class)->name('site.sec
 Route::get('/buy-property/{id}', BuyPropertyComponent::class)->name('site.property.buy');
 
 Route::get('/blogs', BlogsComponent::class)->name('site.blogs');
+Route::get('/secondary', SecondaryMarketComponent::class)->name('site.test');
 Route::get('/blogs/details/{id}', BlogsDetailComponent::class)->name('site.blogs.details');
 
 Route::get('auth/google', [UsersComponent::class, 'googlepage'])->name('auth.google');

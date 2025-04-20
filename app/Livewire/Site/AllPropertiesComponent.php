@@ -12,9 +12,12 @@ use App\Notifications\AuctionResponseNotification;
 use App\Notifications\BidConfirmedNotification;
 use App\Services\ProfitCalculationService;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AllPropertiesComponent extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
     public $search = '';
     public $bidPrize;
     public $totalshares;
@@ -153,10 +156,14 @@ class AllPropertiesComponent extends Component
             });
         }
 
+        $properties = $queryProperties->latest()->paginate(1);
+        $auctions = $queryAuctions->latest()->paginate(1);
+        $advertisements = $queryAdvertisement->latest()->paginate(1);
+
         return view('livewire.site.allProperties', [
-            'propertyAdds' => $queryAdvertisement->get(),
-            'properties' => $queryProperties->get(),
-            'auctions' => $queryAuctions->get(),
+            'propertyAdds' => $advertisements,
+            'properties' => $properties,
+            'auctions' => $auctions,
             'images' => $images
         ])->extends('layouts.site');
     }
