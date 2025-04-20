@@ -96,39 +96,35 @@
                         <label for="property_images">Property Images (Max: 10)</label>
 
                         @foreach ($property_images as $index => $image)
-                        <div class="mb-3">
-                            <input type="file"
-                                   class="form-control"
-                                   wire:model="property_images.{{ $index }}" />
-                        
+                        <div class="mb-3 position-relative">
+                            <div class="d-flex align-items-center">
+                                <input type="file" class="form-control" wire:model="property_images.{{ $index }}" />
+
+                                <!--  Remove Field Button -->
+                                <button type="button" wire:click="removeImage({{ $index }})" class="btn-remove-field"
+                                    title="Remove Image">
+                                    ×
+                                </button>
+                            </div>
+
                             <!-- Loading Spinner -->
                             <div wire:loading wire:target="property_images.{{ $index }}" class="mt-1 text-muted small">
                                 <div class="spinner-border spinner-border-sm text-primary me-2" role="status"></div>
                                 Uploading...
                             </div>
-                        
-                            <!-- Uploaded File Display with Remove Button -->
+
+                            {{-- <!--  Show File Name -->
                             @if (!empty($property_images[$index]))
-                                <div class="d-flex align-items-center justify-content-between mt-2 p-2 border rounded bg-light">
-                                    <span class="text-truncate me-2" style="max-width: 85%;">
-                                        {{ $property_images[$index]->getClientOriginalName() }}
-                                    </span>
-                                    <button type="button"
-                                            wire:click="removeImage({{ $index }})"
-                                            class="btn btn-sm btn-outline-danger px-2 py-0"
-                                            title="Remove Image">
-                                        ×
-                                    </button>
-                                </div>
-                            @endif
-                        
-                            <!-- Error -->
+                            <div class="mt-2 p-2 border rounded bg-light">
+                                {{ $property_images[$index]->getClientOriginalName() }}
+                            </div>
+                            @endif --}}
+
+                            <!--  Validation Error -->
                             @error("property_images.{$index}")
-                                <div class="text-danger small mt-1">{{ $message }}</div>
+                            <div class="text-danger small mt-1">{{ $message }}</div>
                             @enderror
                         </div>
-                        
-
                         @endforeach
 
                         @if (count($property_images) < 10) <div class="d-flex justify-content-end mt-3">
