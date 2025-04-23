@@ -4262,6 +4262,12 @@ section.bg-light {
   background: var(--main-color);
   color: #fff;
 }
+.pagination .page-item.active .page-link {
+  background-color: #5ba600; /* Your theme green */
+  border-color: #5ba600;
+  color: #fff;
+  font-weight: bold;
+}
 
 .single-blog-inner {
   background: #fff;
@@ -6207,6 +6213,8 @@ input:focus, select:focus {
 
 }
 
+
+
 .btn-details {
     background-color: #5ba600;
     color: #fff;
@@ -6778,6 +6786,7 @@ input:focus, select:focus {
   object-position: center;
   display: block;
 }
+
 
 
 

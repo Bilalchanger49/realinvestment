@@ -85,9 +85,9 @@
                                         <p>Profit <strong> PK {{$returndistribution->amount}}</strong></p>
                                     @endif
                                 </div>
-                                <a href="{{route('profile.show')}}">
+                                {{-- <a href="{{route('profile.show')}}">
                                     <button class="btn btn-base "> View Profile</button>
-                                </a>
+                                </a> --}}
                                 @if( $returndistribution && auth()->user()->stripe_account_id)
                                     <button
                                         class="btn btn-base"
@@ -180,7 +180,7 @@
                                     <td>
                                         <button
                                             wire:click.prevent="open_property_add_popup({{$propertyInvestment->id}})"
-                                            id="openPopup" class="btn btn-details openPopup"
+                                            id="openPopup" class="btn btn-details btn-base openPopup"
                                             data-toggle="modal" data-target="#property_add_popup">
                                             Sell
                                         </button>
@@ -189,7 +189,7 @@
                                     <td>
                                         <button
                                             wire:click.prevent="open_active_investment_popup({{$propertyInvestment->id}})"
-                                            id="openPopup" class="btn btn-details openPopup"
+                                            id="openPopup" class="btn btn-details btn-base openPopup"
                                             data-toggle="modal" data-target="#active_investment_popup">
                                             &rarr;
                                         </button>
@@ -245,7 +245,7 @@
                                     <td>
                                         <!-- Button to open the modal -->
                                         <button wire:click="openBidPopup({{$auction->id}})"
-                                                class="btn btn-details"
+                                                class="btn btn-details btn-base"
                                                 data-toggle="modal"
                                                 data-target="#bidsModal">
                                             &rarr;
@@ -388,7 +388,7 @@
                                         </a>
                                     @elseif($transaction->activity == 'sold')
                                         <a href="{{ route('download.offer.letter', ['transactionId' => $transaction->id, 'type' => 'seller']) }}"
-                                           class="btn btn-primary">
+                                           class="btn btn-primary ">
                                             Print
                                         </a>
                                     @endif

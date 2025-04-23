@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary">Send Now</button>
+                        <button type="submit" class="btn btn-base ">Send Now</button>
                     </div>
                 </form>
             </div>

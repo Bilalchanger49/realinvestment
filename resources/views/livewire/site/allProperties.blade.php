@@ -32,7 +32,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-3 mt-2 mt-md-0 align-self-center">
+                            {{-- <div class="col-md-3 mt-2 mt-md-0 align-self-center">
                                 <div class="single-select-inner">
                                     <select>
                                         <option value="1">Low to High</option>
@@ -40,7 +40,7 @@
                                         <option value="3">Newest Listings</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
@@ -120,7 +120,7 @@
                                     </div>
                                 </div>
                                 <!-- Pagination -->
-                                <div class="pagination-area text-center mt-4 mb-5">
+                                <div class="pagination-area d-flex justify-content-center mt-4 mb-5">
                                     {{ $properties->links() }}
                                 </div>
                                 <!-- auctions Properties Section -->
@@ -172,7 +172,7 @@
                                                             <span>
                                                             <button
                                                                     wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
-                                                                    id="openBidPopup" class="btn btn-primary"
+                                                                    id="openBidPopup" class="btn btn-base w-md-auto w-50"
                                                                     data-toggle="modal" data-target="#add_bid_popup">
                                                             Place Bid
                                                         </button>
@@ -186,8 +186,8 @@
                                     </div>
                                 </div>
                                 <!-- Pagination -->
-                                <div class="pagination-area text-center mt-4 mb-5">
-                                    {{ $auctions->links() }}
+                                <div class="pagination-area d-flex justify-content-center mt-4 mb-5">
+                                    {{ $properties->links() }}
                                 </div>
                                 <!-- advertisements Properties Section -->
                             @elseif($activeTab === 'advertisements')
@@ -242,7 +242,7 @@
                                                                     Buy
                                                                 </button>
                                                             @else
-                                                                <p class="m-0 text-center"><a href="{{route('login')}}">Login to Buy</a></p>
+                                                                <p class="btn btn-primary"><a href="{{route('login')}}">Login to Buy</a></p>
                                                             @endif
                                                         </span>
                                                     </div>
@@ -252,8 +252,8 @@
                                     </div>
                                 </div>
                                 <!-- Pagination -->
-                                <div class="pagination-area text-center mt-4 mb-5">
-                                    {{ $propertyAdds->links() }}
+                                <div class="pagination-area d-flex justify-content-center mt-4 mb-5">
+                                    {{ $properties->links() }}
                                 </div>
                             @endif
                         </div>
