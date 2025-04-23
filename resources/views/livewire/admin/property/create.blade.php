@@ -131,8 +131,9 @@
                             <button type="button" class="btn-add-image" wire:click="addImage">
                                 <span>➕ Add Another Image</span>
                             </button>
+                            @endif
                     </div>
-                    @endif
+                    {{-- @endif --}}
             </div>
 
 
