@@ -76,7 +76,7 @@ Route::middleware([
     Route::get('/blogs/manager', BlogsManagerComponent::class)->name('site.blogs.manager');
     Route::get('/blogs/edit/{id}', EditBlogsComponent::class)->name('site.blogs.edit');
 
-    Route::get('/investor-page', InvestorPageComponent::class)->name('site.investor.page');
+    Route::get('/investor-page/{activeTab}', InvestorPageComponent::class)->name('site.investor.page');
     Route::prefix('admin')->group(function () {
         Route::get('/dashboard', DashboardComponent::class)->name('dashboard')->middleware('role:admin');
         Route::get('/property/index', PropertyComponent::class)->name('admin.property.index')->middleware('permission:property.view');

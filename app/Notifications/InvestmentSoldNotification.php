@@ -45,7 +45,8 @@ class InvestmentSoldNotification extends Notification
         return [
             'name' => $this->sellerName,
             'message' => "Your investment in {$this->property->property_name} has been sold to {$this->investorName} for Total Amount {$this->investmentAmount}.",
-            'time' => now()->timestamp // Stores the Unix timestamp
+            'time' => now()->timestamp, // Stores the Unix timestamp
+            'url' => route('site.investor.page', [$activeTab = 'transactions'])
         ];
     }
 

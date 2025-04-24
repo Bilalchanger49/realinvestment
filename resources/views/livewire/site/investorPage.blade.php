@@ -82,7 +82,7 @@
                                 <div>
                                     <p>Investment<strong> PK {{$overallInvestment}}</strong></p>
                                     @if($returndistribution)
-                                        <p>Profit <strong> PK {{$returndistribution->amount}}</strong></p>
+                                        <p>Profit <strong> PK {{$returndistribution}}</strong></p>
                                     @endif
                                 </div>
                                 {{-- <a href="{{route('profile.show')}}">
@@ -200,6 +200,7 @@
                         </tbody>
                     </table>
                 </div>
+
             @elseif($activeTab === 'active-auctions')
                 <div>
                     <h3>Active Auctions</h3>
@@ -692,7 +693,7 @@
             <div class="modal-dialog modal-lg mb-0" role="document">
                 <div class="modal-content border-0">
                     <div class="modal-body">
-                        @livewire('site.stripe.payout-component', ['profitAmount' => $returndistribution->amount])
+                        @livewire('site.stripe.payout-component', ['profitAmount' => $returndistribution])
                     </div>
                 </div>
             </div>

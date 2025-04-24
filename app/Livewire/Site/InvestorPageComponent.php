@@ -51,6 +51,9 @@ class InvestorPageComponent extends Component
     public $investment;
     public $activeTab = 'active-investments';
 
+    public function mount($activeTab){
+        $this->activeTab = $activeTab;
+    }
     public function setActiveTab($tab){
         $this->activeTab = $tab;
     }
@@ -135,7 +138,7 @@ class InvestorPageComponent extends Component
         }else{
             session()->flash('error', 'Auction not created due to an issue');
         }
-        return redirect()->route('site.investor.page');
+        return redirect()->route('site.investor.page',[$activeTab = 'active-auctions']);
     }
 
 
@@ -151,7 +154,7 @@ class InvestorPageComponent extends Component
             session()->flash('error', 'Auction not found.');
         }
 
-        return redirect()->route('site.investor.page');
+        return redirect()->route('site.investor.page',[$activeTab = 'active-auctions']);
     }
 
     public function confirmDelete($id, $propertyName)
@@ -356,7 +359,7 @@ class InvestorPageComponent extends Component
 
         if ($existingAdd) {
             session()->flash('error', 'you have already created an add for this investment.');
-            return redirect()->route('site.investor.page');
+            return redirect()->route('site.investor.page',[$activeTab = 'advertisements']);
         }
 
         $propertyAdd = Selling::create([
@@ -381,7 +384,7 @@ class InvestorPageComponent extends Component
         }
 
 //        session()->flash('success', 'Advertisement successfully created.');
-        return redirect()->route('site.investor.page');
+        return redirect()->route('site.investor.page',[$activeTab = 'advertisements']);
     }
 
     public function render()
@@ -428,8 +431,8 @@ class InvestorPageComponent extends Component
             ->with('user')
             ->get();
 
-        $returndistribution = ReturnDistributions::where('user_id', $user->id)->first();
-//        dd($returndistribution->amount);
+        $returndistribution = ReturnDistributions::where('user_id', $user->id)->sum('amount');;
+//        dd($returndistribution);
         return view('livewire.site.investorPage', compact('returndistribution', 'userbids', 'auctions', 'transctions', 'propertyInvestments', 'user', 'overallShares', 'overallInvestment', 'totalProperties'))->extends('layouts.site');
     }
 

@@ -35,11 +35,13 @@
                                 <img src="{{ asset('assets/img/agent/11.png') }}" alt="User Image" class="notification-img">
                             </div>
                             <div class="media-body">
+                                <a href="{{$notification->data['url']}}">
                                 <h5 class="title mb-0">{{ $notification->data['name'] }}</h5>
                                 <p class="discribe">{{ $notification->data['message'] }}</p>
                                 <small class="text-muted">
                                     {{ \Carbon\Carbon::createFromTimestamp($notification->data['time'])->diffForHumans() }}
                                 </small>
+                                </a>
                             </div>
                         </div>
                     </a>

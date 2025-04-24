@@ -42,7 +42,8 @@ class InvestmentConfirmedNotification extends Notification
         return [
             'name' => $this->investorName,
             'message' => 'Your investment in ' . $this->property->property_name . ' has been confirmed.',
-            'time' => now()->timestamp // Stores the Unix timestamp
+            'time' => now()->timestamp,
+            'url' => route('site.investor.page', [$activeTab = 'active-investments'])
         ];
     }
 

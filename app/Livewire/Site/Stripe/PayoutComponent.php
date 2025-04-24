@@ -3,6 +3,7 @@
 namespace App\Livewire\Site\Stripe;
 
 
+use App\Models\ReturnDistributions;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Stripe\AccountLink;
@@ -34,12 +35,37 @@ class PayoutComponent extends Component
         $stripeAccountId = $this->user->stripe_account_id;
         $amountInCents = $this->amount * 100;
 
+        if ($this->amount < $this->profitAmount){
         $transfer = Transfer::create([
             'amount' => $amountInCents,
             'currency' => 'usd',
             'destination' => $stripeAccountId,
         ]);
-//        dd($transfer);
+            // Deduct the amount from return distributions table
+            $remainingAmount = $this->amount;
+
+            $distributions = ReturnDistributions::where('user_id', $this->user->id)
+                ->where('amount', '>', 0)
+                ->orderBy('created_at')
+                ->get();
+
+            foreach ($distributions as $distribution) {
+                if ($remainingAmount <= 0) break;
+
+                if ($distribution->amount <= $remainingAmount) {
+                    $remainingAmount -= $distribution->amount;
+                    $distribution->amount = 0;
+                } else {
+                    $distribution->amount -= $remainingAmount;
+                    $remainingAmount = 0;
+                }
+
+                $distribution->save();
+            }
+        }else{
+            return redirect('/')->with('error', 'dont have sufficient funds');
+        }
+
             return redirect('/')->with('success', 'Account send.');
         } catch (\Exception $e) {
             return redirect('/')->with('error',  $e->getMessage());

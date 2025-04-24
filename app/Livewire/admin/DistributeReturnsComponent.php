@@ -28,7 +28,8 @@ class DistributeReturnsComponent extends Component
             'amount' => 'required|numeric',
         ]);
 
-        $this->amount = $validate['amount'] * 12;
+//        $this->amount = $validate['amount'] * 12;
+        $this->amount = $validate['amount'];
 
         $propertyId = $this->property_id;
         $property = Property::findOrFail($propertyId);
@@ -40,6 +41,7 @@ class DistributeReturnsComponent extends Component
             ->where('property_id', $propertyId)
             ->where('status', 'holding')
             ->get();
+
         $totalDistributed = 0;
 
         foreach ($investments as $investment) {
@@ -50,25 +52,35 @@ class DistributeReturnsComponent extends Component
 
             // Ensure the duration is within a year (12 months max)
             $monthsHeld = min($monthsHeld, 12);
-
-            // Prorate the total rental income for the duration the investor held shares
             $proratedRentalIncome = ($totalRentalIncome / 12) * $monthsHeld;
-
-            // Calculate the return for this investor
             $returnForInvestor = ($investment->shares_owned / $property->property_total_shares) * $proratedRentalIncome;
+
+            $existingReturn = DB::table('return_distributions')
+                ->where('property_id', $propertyId)
+                ->where('user_id', $investment->user_id)
+                ->where('property_investment_id', $investment->id)
+                ->first();
 
             // Add to total distributed amount
             $totalDistributed += $returnForInvestor;
 
-            // Record the return in the `return_distributions` table
-            DB::table('return_distributions')->insert([
-                'property_id' => $propertyId,
-                'user_id' => $investment->user_id,
-                'property_investment_id' => $investment->id,
-                'amount' => $returnForInvestor,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            if ($existingReturn) {
+                DB::table('return_distributions')
+                    ->where('id', $existingReturn->id)
+                    ->update([
+                        'amount' => $existingReturn->amount + $returnForInvestor,
+                        'updated_at' => now(),
+                    ]);
+            } else {
+                DB::table('return_distributions')->insert([
+                    'property_id' => $propertyId,
+                    'user_id' => $investment->user_id,
+                    'property_investment_id' => $this->property_id,
+                    'amount' => $returnForInvestor,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
 
             // Send notification to the investor
             $user = User::find($investment->user_id);
@@ -81,17 +93,32 @@ class DistributeReturnsComponent extends Component
         $remainingAmount = $totalRentalIncome - $totalDistributed;
 
         if ($remainingAmount > 0) {
-            // Send the remaining amount to the admin (user_id 1)
-            DB::table('return_distributions')->insert([
-                'property_id' => $propertyId,
-                'user_id' => 1,
-                'amount' => $remainingAmount,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+
+            $adminExist = DB::table('return_distributions')
+                ->where('user_id', 1)
+                ->first();
+            if ($adminExist) {
+                DB::table('return_distributions')
+                    ->where('id', $adminExist->id)
+                    ->update([
+                        'amount' => $adminExist->amount + $remainingAmount,
+                        'updated_at' => now(),
+                    ]);
+            } else {
+                DB::table('return_distributions')->insert([
+                    'property_id' => $propertyId,
+                    'user_id' => 1,
+                    'amount' => $remainingAmount,
+                    'property_investment_id' => $this->property_id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+
         }
 
-        return redirect()->route('admin.distribute.returns')->with('success', 'Returns distributed successfully.');
+
+        return redirect()->route('dashboard')->with('success', 'Returns distributed successfully.');
     }
 
 

@@ -180,7 +180,7 @@
                                          class="user-image rounded-circle"
                                          alt=""/>
                                 @endif
-                        
+
                                 <a href="#" class="user-name" title="{{ Auth::user()->name }}">
                                     {{ Str::limit(Auth::user()->name, 15) }}
                                 </a>
@@ -202,7 +202,7 @@
                                 </li>
                                 <li>
                                     <i class="mdi mdi-account-outline"></i>
-                                    <a href=" {{ route('site.investor.page') }}">Investor Details</a>
+                                    <a href=" {{ route('site.investor.page', [$activeTab = 'active-investments']) }}">Investor Details</a>
                                 </li>
                                 <li>
                                     <i class="mdi mdi-account-outline"></i>
@@ -221,7 +221,7 @@
                         <!-- Simple Buttons for Smaller Screens -->
                         <li class="menu-item d-lg-none text-center">
                             <a href="{{ Auth::user()->name }}" class="btn btn-login">Profile</a>
-                            <a href=" {{ route('site.investor.page') }}" class="btn btn-login">Details</a>
+                            <a href=" {{ route('site.investor.page', [$activeTab = 'active-investments']) }}" class="btn btn-login">Details</a>
                             <a href="{{ route('logout') }}" class="btn btn-register"
                                onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit(); ">

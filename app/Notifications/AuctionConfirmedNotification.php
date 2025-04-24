@@ -41,7 +41,8 @@ class AuctionConfirmedNotification extends Notification
         return [
             'name' => $this->username,
             'message' => "Your auction of {$this->auctionAmount} on {$this->propertyName} has been placed.",
-            'time' => now()->timestamp
+            'time' => now()->timestamp,
+            'url' => route('site.investor.page', [$activeTab = 'active-auctions'])
         ];
     }
 

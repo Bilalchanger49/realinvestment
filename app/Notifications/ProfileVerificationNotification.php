@@ -37,7 +37,8 @@ class ProfileVerificationNotification extends Notification
         return [
             'name' => $this->sellerName,
             'message' => "Your Advertisement of {$this->Amount} on {$this->propertyName} has been placed.",
-            'time' => now()->timestamp // Stores the Unix timestamp
+            'time' => now()->timestamp, // Stores the Unix timestamp
+            'url' => route('site.investor.page', [$activeTab = 'active-investments'])
         ];
     }
 

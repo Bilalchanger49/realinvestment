@@ -48,7 +48,8 @@ class BidResponseNotification extends Notification
         return [
             'name' => $this->bidCreator,
             'message' => "Your bid on {$this->propertyName} of amount {$this->bidTotalAmount} has been {$this->respose} by {$this->auctionCreator}",
-            'time' => now()->timestamp
+            'time' => now()->timestamp,
+            'url' => route('site.investor.page', [$activeTab = 'active-bids'])
         ];
     }
 

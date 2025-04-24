@@ -42,7 +42,8 @@ class DividendDistributedNotification extends Notification
         return [
             'name' => $this->username,
             'message' => 'You have received a dividend of ' . $this->amount . ' for'. $this->property.'.',
-            'time' => now()->timestamp
+            'time' => now()->timestamp,
+            'url' => route('site.investor.page', [$activeTab = 'active-investments'])
         ];
     }
 

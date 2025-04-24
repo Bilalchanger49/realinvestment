@@ -78,8 +78,7 @@
             <h4>Need help with Real Estate Investment?</h4>
             <p>Contact us to learn more or get assistance with your investments.</p>
             <div class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mt-3">
-                <button class="btn btn-base">Chat with us</button>
-                <button class="btn btn-base">Send us an email</button>
+                <button class="btn btn-base"><a href="{{route('site.contact')}}">Chat with us</a></button>
             </div>
         </div>
 

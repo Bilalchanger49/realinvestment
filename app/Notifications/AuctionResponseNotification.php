@@ -47,7 +47,8 @@ class AuctionResponseNotification extends Notification
         return [
             'name' => $this->investorname,
             'message' => "Your have received a bid of {$this->bidAmount} on {$this->propertyName} by {$this->username}",
-            'time' => now()->timestamp
+            'time' => now()->timestamp,
+            'url' => route('site.investor.page', [$activeTab = 'active-auctions'])
         ];
     }
 

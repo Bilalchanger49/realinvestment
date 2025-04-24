@@ -42,7 +42,8 @@ class BidConfirmedNotification extends Notification
         return [
             'name' => $this->username,
             'message' => "Your bid of {$this->bidAmount} on {$this->propertyName} has been placed.",
-            'time' => now()->timestamp
+            'time' => now()->timestamp,
+            'url' => route('site.investor.page', [$activeTab = 'active-bids'])
         ];
     }
 

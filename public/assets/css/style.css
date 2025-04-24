@@ -1571,7 +1571,7 @@ ul {
 
 .navbar-area .nav-container .navbar-collapse .navbar-nav {
   display: block;
-  width: 85%;
+  width: 95%;
 }
 
 .navbar-area .nav-container .navbar-collapse .navbar-nav li {
@@ -6290,14 +6290,14 @@ input:focus, select:focus {
   margin-top: 10px;
 }
 #offerLetter {
-  margin-top: 150px !important; 
+  margin-top: 150px !important;
   padding-top: 20px;
-  position: relative; 
+  position: relative;
 }
 
 #downloadPDF {
-  background-color: #0d1741; 
-  color: #fff; 
+  background-color: #0d1741;
+  color: #fff;
   font-weight: bold;
   font-size: 16px;
   padding: 0px 21px; /* Adjusted padding for better look */
@@ -6311,7 +6311,7 @@ input:focus, select:focus {
 }
 
 #downloadPDF:hover {
-  background-color: #5ba600; 
+  background-color: #5ba600;
   transform: scale(1.05);
 }
 
@@ -6479,7 +6479,7 @@ input:focus, select:focus {
 /* Hover effect: Green underline only */
 .property-links .nav-link:hover {
   color: #5ba600;
-  background: transparent; 
+  background: transparent;
 }
 
 .property-links .nav-link:hover::after {
@@ -6539,7 +6539,7 @@ input:focus, select:focus {
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1); /* Keep shadow */
   width: calc(100% - 40px); /* Ensures it matches container width dynamically */
   text-align: left; /* Align text to the left */
-  justify-content: space-between; 
+  justify-content: space-between;
   min-height: 120px;
 }
 
@@ -6555,7 +6555,7 @@ input:focus, select:focus {
 .updated-meta span {
   display: flex;
    align-items: center;
-   
+
 }
 
 .updated-meta i {
