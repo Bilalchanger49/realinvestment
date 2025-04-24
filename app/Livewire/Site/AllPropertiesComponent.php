@@ -131,7 +131,7 @@ class AllPropertiesComponent extends Component
         }
 
         // Redirect to the desired page
-        return redirect()->route('site.investor.page');
+        return redirect()->route('site.investor.page',[$activeTab = 'active-bids']);
     }
 
     public function render()

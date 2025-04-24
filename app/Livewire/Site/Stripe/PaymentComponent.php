@@ -75,7 +75,7 @@ class PaymentComponent extends Component
             $buyPropertyService = new BuyPropertyService();
             $buyPropertyService->buyProperty($this->numShares, $this->propertyId, $this->priceWithCharges, $this->sharePrice, $token);
             session()->flash('success', 'Payment successful!');
-            return redirect()->route('site.investor.page');
+            return redirect()->route('site.investor.page',[$activeTab = 'active-investments']);
         } catch (\Exception $e) {
             session()->flash('error', 'Payment failed: ' . $e->getMessage());
             return redirect()->route('site.home');
@@ -100,7 +100,7 @@ class PaymentComponent extends Component
 
             $buyPropertyService->buyAuction($this->auctionId, $token);
             session()->flash('success', 'Payment successful!');
-            return redirect()->route('site.investor.page');
+            return redirect()->route('site.investor.page',[$activeTab = 'active-investments']);
         } catch (\Exception $e) {
             session()->flash('error', 'Payment failed: ' . $e->getMessage());
             return redirect()->route('site.home');
@@ -124,7 +124,7 @@ class PaymentComponent extends Component
             $buyPropertyService = new BuyPropertyService();
             $buyPropertyService->buyPropertyByAdd($this->sellingAddId, $token);
             session()->flash('success', 'Payment successful!');
-            return redirect()->route('site.investor.page');
+            return redirect()->route('site.investor.page',[$activeTab = 'active-investments']);
         } catch (\Exception $e) {
             session()->flash('error', 'Payment failed: ' . $e->getMessage());
             return redirect()->route('site.home');

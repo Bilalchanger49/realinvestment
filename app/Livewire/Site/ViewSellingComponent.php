@@ -28,7 +28,7 @@ class ViewSellingComponent extends Component
             session()->flash('error', 'Selling Advertisement not found.');
         }
 
-        return redirect()->route('site.investor.page');
+        return redirect()->route('site.investor.page',[$activeTab = 'advertisements']);
     }
     public function render()
     {

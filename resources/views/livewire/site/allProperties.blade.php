@@ -187,7 +187,7 @@
                                 </div>
                                 <!-- Pagination -->
                                 <div class="pagination-area d-flex justify-content-center mt-4 mb-5">
-                                    {{ $properties->links() }}
+                                    {{ $auctions->links() }}
                                 </div>
                                 <!-- advertisements Properties Section -->
                             @elseif($activeTab === 'advertisements')
@@ -253,7 +253,7 @@
                                 </div>
                                 <!-- Pagination -->
                                 <div class="pagination-area d-flex justify-content-center mt-4 mb-5">
-                                    {{ $properties->links() }}
+                                    {{ $propertyAdds->links() }}
                                 </div>
                             @endif
                         </div>

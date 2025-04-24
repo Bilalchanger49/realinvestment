@@ -88,12 +88,13 @@
                                 {{-- <a href="{{route('profile.show')}}">
                                     <button class="btn btn-base "> View Profile</button>
                                 </a> --}}
+                                <button
+                                    class="btn btn-base"
+                                    data-toggle="modal" data-target="#withdraw_popup">
+                                    Withdraw
+                                </button>
                                 @if( $returndistribution && auth()->user()->stripe_account_id)
-                                    <button
-                                        class="btn btn-base"
-                                        data-toggle="modal" data-target="#withdraw_popup">
-                                        Withdraw
-                                    </button>
+
                                     <a href="{{ route('stripe.unlink') }}">
                                         <button class="btn btn-base">UNLink Account</button>
                                     </a>
@@ -200,7 +201,6 @@
                         </tbody>
                     </table>
                 </div>
-
             @elseif($activeTab === 'active-auctions')
                 <div>
                     <h3>Active Auctions</h3>

@@ -208,7 +208,7 @@ class BuyPropertyService
 
         // Flash success message
         session()->flash('success', 'Shares successfully transferred.');
-        return redirect()->route('site.investor.page');
+        return redirect()->route('site.investor.page',[$activeTab = 'active-auctions']);
     }
 
     public function buyPropertyByAdd($id, $token)
@@ -313,6 +313,6 @@ class BuyPropertyService
 
 
         session()->flash('success', 'shares transferred successfully.');
-        return redirect()->route('site.investor.page');
+        return redirect()->route('site.investor.page',[$activeTab = 'advertisements']);
     }
 }
