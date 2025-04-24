@@ -301,6 +301,7 @@
     });
 </script>
 
+
 <script src="{{ asset('assets/auth/js/mono.js') }}"></script>
 <script src="{{ asset('assets/auth/js/chart.js') }}"></script>
 <script src="{{ asset('assets/auth/js/map.js') }}"></script>

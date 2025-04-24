@@ -17676,39 +17676,3 @@ html[dir=rtl] .sidebar li > a .caret:before {
 
 /* charts######## */
 /* dashboard.css or inside a <style> tag in Blade */
-.card-default {
-  border: 1px solid #e0e0e0;
-  border-radius: 16px;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.05);
-  overflow: hidden;
-}
-
-.card-default .card-header {
-  background-color: #fff;
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid #eee;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #0d1741;
-}
-
-.card-default .card-body {
-  padding: 1.25rem;
-  background-color: #fafafa;
-}
-
-canvas {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Optional: Chart hover effects */
-.card-default:hover {
-  transform: translateY(-2px);
-  transition: 0.3s ease;
-  box-shadow: 0 10px 18px rgba(0,0,0,0.1);
-}
-
-
-
-

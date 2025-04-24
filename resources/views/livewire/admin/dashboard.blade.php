@@ -1,141 +1,139 @@
-@extends('layouts.auth')
+<body style="background-color: #f8fafc;">
+    <div class="container-xl py-5 px-4">
+        <h2 class="mb-4">RealInvestment Dashboard</h2>
 
-@section('title', 'Dashboard')
+        <!-- Stat Cards -->
+        <!-- ... [same as yours] ... -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Bids</h5>
+                        <h3>5,320</h3>
+                        <p class="text-success">+12% ↑</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Properties Sold</h5>
+                        <h3>2,150</h3>
+                        <p class="text-success">+8% ↑</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Active Auctions</h5>
+                        <h3>120</h3>
+                        <p class="text-danger">-5% ↓</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Auction Revenue</h5>
+                        <h3>$980,000</h3>
+                        <p class="text-success">+30% ↑</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-@section('content')
-<div class="content-wrapper">
-    <div class="content">
+
+        <!-- Chart Row -->
+        <!-- ... [same as yours] ... -->
+        <div class="row mb-5">
+            <div class="col-md-8">
+                <canvas id="monthlyChart"></canvas>
+            </div>
+            <div class="col-md-4">
+                <canvas id="propertyTypeChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Line Chart for Bidding Activity -->
+        <!-- ... [same as yours] ... -->
         <div class="row">
-
-            {{-- Status Cards --}}
-            @foreach (['Pending', 'In Progress', 'Completed'] as $status)
-                <div class="col-xl-4 col-sm-6 mb-4">
-                    <div class="card card-default card-mini">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h2>{{ $status }}</h2>
-                            <div class="dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
-                                <div class="dropdown-menu dropdown-menu-right"></div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <i class="mdi mdi-arrow-up-bold text-success"></i>
-                            {{-- <span class="mx-1">{{ $$status }}</span> --}}
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-
-            {{-- Pie Chart --}}
-            <div class="col-xl-4 col-sm-6 mb-4">
-                <div class="card card-default">
-                    <div class="card-header">
-                        <h2>Investment Distribution</h2>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="pieChart" height="220"></canvas>
-                    </div>
-                </div>
+            <div class="col">
+                <canvas id="biddingLineChart"></canvas>
             </div>
-
-            {{-- Bar Chart --}}
-            <div class="col-xl-6 col-sm-12 mb-4">
-                <div class="card card-default">
-                    <div class="card-header">
-                        <h2>Weekly Bids</h2>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="barChart" height="220"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Combo Bar Line --}}
-            <div class="col-xl-12 col-sm-12 mb-4">
-                <div class="card card-default">
-                    <div class="card-header">
-                        <h2>Ads vs Shares vs Profit</h2>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="comboChart" height="220"></canvas>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-</div>
-@endsection
+    </div>
 
-@section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    // Pie Chart - Investment Distribution
-    new Chart(document.getElementById('pieChart'), {
-        type: 'pie',
-        data: {
-            labels: ['Properties', 'Auctions', 'Advertisements', 'Shares'],
-            datasets: [{
-                data: [45, 25, 15, 15],
-                backgroundColor: ['#5ba600', '#2bbbad', '#feca57', '#ff6b6b'],
-                borderWidth: 1
-            }]
-        }
-    });
+    <!-- ✅ Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    // Bar Chart - Weekly Bids
-    new Chart(document.getElementById('barChart'), {
-        type: 'bar',
-        data: {
-            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            datasets: [{
-                label: 'Bids Placed',
-                data: [12, 19, 3, 5, 2, 3, 9],
-                backgroundColor: 'rgba(91, 166, 0, 0.7)'
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: { beginAtZero: true }
-            }
-        }
-    });
-
-    // Combo Bar + Line Chart
-    new Chart(document.getElementById('comboChart'), {
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [
-                {
-                    type: 'bar',
-                    label: 'Ad Revenue ($)',
-                    data: [800, 950, 870, 1100, 1020, 1150],
-                    backgroundColor: '#feca57'
+    <!-- ✅ Run After DOM Loaded -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Monthly Chart
+            new Chart(document.getElementById("monthlyChart"), {
+                type: 'bar',
+                data: {
+                    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    datasets: [
+                        { label: "Bids", backgroundColor: "#6366f1", data: [45, 60, 55, 70, 90, 110, 80, 75, 95, 65, 50, 60] },
+                        { label: "Sold", backgroundColor: "#10b981", data: [30, 45, 50, 60, 80, 95, 60, 70, 85, 55, 40, 50] },
+                        { label: "Profit", type: 'line', borderColor: "#f59e0b", data: [15, 25, 20, 30, 10, 40, 20, 30, 40, 25, 20, 30], fill: false }
+                    ]
                 },
-                {
-                    type: 'bar',
-                    label: 'Share Purchases ($)',
-                    data: [400, 420, 390, 600, 500, 530],
-                    backgroundColor: '#54a0ff'
-                },
-                {
-                    type: 'line',
-                    label: 'Net Gain ($)',
-                    data: [400, 530, 480, 500, 520, 620],
-                    borderColor: '#5ba600',
-                    fill: false,
-                    tension: 0.4
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Monthly Investment Summary'
+                        }
+                    }
                 }
-            ]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: { beginAtZero: true }
-            }
-        }
-    });
-</script>
-@endsection
+            });
+
+            // Property Type Pie Chart
+            new Chart(document.getElementById("propertyTypeChart"), {
+                type: 'pie',
+                data: {
+                    labels: ["Residential", "Commercial", "Land"],
+                    datasets: [{
+                        data: [45, 35, 20],
+                        backgroundColor: ["#3b82f6", "#ec4899", "#facc15"]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Property Type Distribution'
+                        }
+                    }
+                }
+            });
+
+            // Bidding Activity Line Chart
+            new Chart(document.getElementById("biddingLineChart"), {
+                type: 'line',
+                data: {
+                    labels: ["04 Jan", "05 Jan", "06 Jan", "07 Jan", "08 Jan", "09 Jan", "10 Jan"],
+                    datasets: [
+                        { label: "Total Bids", borderColor: "#8b5cf6", data: [6, 10, 8, 18, 15, 5, 17], fill: false },
+                        { label: "Winning Bids", borderColor: "#fbbf24", borderDash: [5, 5], data: [10, 6, 12, 11, 24, 6, 30], fill: false }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Daily Bidding Activity'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
