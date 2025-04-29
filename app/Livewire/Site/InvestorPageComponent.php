@@ -78,7 +78,6 @@ class InvestorPageComponent extends Component
 
     public function open_property_add_popup(int $id)
     {
-//        dd('open_property_add_popup');
         $propertyInvestment = Property_investment::where('id', $id)
             ->with('property')->first();
         $this->no_of_shares_for_add = (int)$propertyInvestment->shares_owned;

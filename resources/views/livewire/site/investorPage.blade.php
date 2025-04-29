@@ -569,7 +569,6 @@
         </div>
     </div>
 
-
     {{--    delete auction popup--}}
     <div wire:ignore.self class="modal fade" id="delete_auction_popup" tabindex="-1" role="dialog"
          aria-labelledby="delete_auction_popup" aria-hidden="true">
@@ -713,8 +712,6 @@
             <button id="printBill" class="print-btn">Print</button>
         </div>
     </div>
-
-
 
     <div wire:ignore.self class="modal fade" id="bidsModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
