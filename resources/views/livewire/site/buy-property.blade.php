@@ -50,12 +50,14 @@
 
                 <div class="mt-3 text-center">
                     <div class="btn-wrap">
-                        @if(Auth::user())
+                        @if(Auth::user() && Auth::user()->is_verified == 1)
                         <button
                             id="openPopup" class="btn btn-base w-md-auto w-50"
                             data-toggle="modal" data-target="#send_funds_popup">
                             Buy
                         </button>
+                        @elseif(Auth::user()->is_verified == 0)
+                            <p><a href="{{route('profile.show')}}">verify your profile</a></p>
                         @else
                             <p><a href="{{route('login')}}">Login to Buy</a></p>
                         @endif

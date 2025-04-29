@@ -101,80 +101,80 @@
     </div>
     <!-- product area end -->
 
-        <!-- testimonial area start -->
-        <div class="testimonial-area bg-overlay pd-top-118 pd-bottom-120 bg-overlay"
-             style="background: url(assets/img/bg/2.png);">
-            <div class="container">
-                <div class="section-title style-white text-center">
-                    <h6>Our Testomonial </h6>
-                    <h2>What Client Say</h2>
-{{--                    <p>Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor sit amet, </p>--}}
+    <!-- testimonial area start -->
+    <div class="testimonial-area bg-overlay pd-top-118 pd-bottom-120 bg-overlay"
+         style="background: url(assets/img/bg/2.png);">
+        <div class="container">
+            <div class="section-title style-white text-center">
+                <h6>Our Testomonial </h6>
+                <h2>What Client Say</h2>
+                {{--                    <p>Lorem ipsum dolor amet, consectetur adipisicing elit Lorem ipsum dolor sit amet, </p>--}}
+            </div>
+            <div class="testimonial-slider-2 owl-carousel text-center">
+                <div class="item">
+                    <div class="single-testimonial-inner style-three text-center">
+                        <div class="thumb main-thumb">
+                            <img src="assets/img/testimonial/1.png" alt="img" style="height: 120px">
+                        </div>
+                        <div class="details">
+                            <h6 class="name">Ayesha Malik</h6>
+                            <span class="designation">Investor</span>
+                            <p>Real Investment made it possible for me to own a share in a commercial property
+                                without breaking my savings. A seamless and rewarding experience!</p>
+                            <div class="rating-inner">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial-slider-2 owl-carousel text-center">
-                    <div class="item">
-                        <div class="single-testimonial-inner style-three text-center">
-                            <div class="thumb main-thumb">
-                                <img src="assets/img/testimonial/1.png" alt="img" style="height: 120px">
-                            </div>
-                            <div class="details">
-                                <h6 class="name">Ayesha Malik</h6>
-                                <span class="designation">Investor</span>
-                                <p>Real Investment made it possible for me to own a share in a commercial property
-                                    without breaking my savings. A seamless and rewarding experience!</p>
-                                <div class="rating-inner">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star" aria-hidden="true"></i>
-                                </div>
+                <div class="item">
+                    <div class="single-testimonial-inner style-three text-center">
+                        <div class="thumb main-thumb">
+                            <img src="assets/img/testimonial/3.png" alt="img" style="height: 120px">
+                        </div>
+                        <div class="details">
+                            <h6 class="name"> Zahid Khan</h6>
+                            <span class="designation">Investor</span>
+                            <p>I never thought owning a share in real estate could be so easy. Thanks to Real
+                                Investment, I'm earning steady rental income every year.</p>
+                            <div class="rating-inner">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="single-testimonial-inner style-three text-center">
-                            <div class="thumb main-thumb">
-                                <img src="assets/img/testimonial/3.png" alt="img" style="height: 120px">
-                            </div>
-                            <div class="details">
-                                <h6 class="name"> Zahid Khan</h6>
-                                <span class="designation">Investor</span>
-                                <p>I never thought owning a share in real estate could be so easy. Thanks to Real
-                                    Investment, I'm earning steady rental income every year.</p>
-                                <div class="rating-inner">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star" aria-hidden="true"></i>
-                                </div>
-                            </div>
+                </div>
+                <div class="item">
+                    <div class="single-testimonial-inner style-three text-center">
+                        <div class="thumb main-thumb">
+                            <img src="assets/img/agent/9.png" alt="img" style="height: 120px">
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="single-testimonial-inner style-three text-center">
-                            <div class="thumb main-thumb">
-                                <img src="assets/img/agent/9.png" alt="img" style="height: 120px">
-                            </div>
-                            <div class="details">
-                                <h6 class="name">Saim Malik</h6>
-                                <span class="designation">investor</span>
-                                <p>Real Investment made it possible for me to own a share in a commercial property
-                                    without breaking my savings. A seamless and rewarding experience!</p>
-                                <div class="rating-inner">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star" aria-hidden="true"></i>
-                                </div>
+                        <div class="details">
+                            <h6 class="name">Saim Malik</h6>
+                            <span class="designation">investor</span>
+                            <p>Real Investment made it possible for me to own a share in a commercial property
+                                without breaking my savings. A seamless and rewarding experience!</p>
+                            <div class="rating-inner">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- testimonial area end -->
+    </div>
+    <!-- testimonial area end -->
 
     <!-- Secondary market area start -->
     <div class="blog-area pd-top-90 pd-bottom-90">
@@ -212,15 +212,18 @@
                                         Expected Annual Return: 8% <br>
                                         Owner: {{$advertisement->user->name}}
                                     </p>
-                                    @if(Auth::user())
+                                    @if(Auth::user() && Auth::user()->is_verified == 1)
                                         <button class="updated-btn"
                                                 wire:click.prevent="openSellingAddTransactionPopup({{$advertisement->id}})"
                                                 data-toggle="modal" data-target="#send_funds_popup"><i
                                                 class="fas fa-arrow-right"></i>
                                         </button>
+                                    @elseif(Auth::user()->is_verified == 0)
+                                        <p><a href="{{route('profile.show')}}">verify your profile</a></p>
                                     @else
                                         <p class="m-0 text-center"><a href="{{route('login')}}">Login to Buy</a></p>
                                     @endif
+
                                 </div>
                             </div>
                         </div>

@@ -39,6 +39,8 @@ class AllPropertiesComponent extends Component
 
     public function setActiveTab($tab){
         $this->activeTab = $tab;
+        $this->resetPage();
+
     }
     public function openSellingAddTransactionPopup($sellingAddId)
     {
@@ -142,7 +144,7 @@ class AllPropertiesComponent extends Component
     {
         $images = PropertyImage::all();
         $queryProperties = Property::query();
-        $queryAuctions = Auctions::with('property', 'user');
+        $queryAuctions = Auctions::where('status', 'active')->with('property', 'user');
 
         if (!empty($this->search)) {
                 $queryProperties->where('property_name', 'like', '%' . $this->search . '%');

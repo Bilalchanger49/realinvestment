@@ -102,7 +102,7 @@
                                                         @endif
 
                                                         <span
-                                                                class="price"><strong>PK {{$property->property_share_price}}</strong></span>
+                                                            class="price"><strong>PK {{$property->property_share_price}}</strong></span>
                                                         <ul class="meta-inner">
                                                             <li><img src="assets/img/icon/location2.png" alt="Location">New
                                                                 {{$property->property_address}}
@@ -146,7 +146,7 @@
                                                             <div class="product-wrap-details">
                                                                 <div class="media justify-content-end">
                                                                     <a class="fav-btn" href="#"><i
-                                                                                class="far fa-heart"></i></a>
+                                                                            class="far fa-heart"></i></a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -155,7 +155,7 @@
                                                                 <a href="{{route('site.property.details', 2)}}">{{$auction->property->property_name}}</a>
                                                             </h4>
                                                             <span
-                                                                    class="price"><strong>Tokens Available: {{$auction->no_of_shares}}</strong></span>
+                                                                class="price"><strong>Tokens Available: {{$auction->no_of_shares}}</strong></span>
                                                             <ul class="meta-inner">
                                                                 <li><img src="assets/img/icon/location2.png"
                                                                          alt="Location">
@@ -168,15 +168,21 @@
                                                         </div>
                                                         <div class="product-meta-bottom">
                                                         <span
-                                                                class="price">Token Price: {{$auction->share_amount_placed}}</span>
-                                                            <span>
-                                                            <button
-                                                                    wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
-                                                                    id="openBidPopup" class="btn btn-base w-md-auto w-50"
-                                                                    data-toggle="modal" data-target="#add_bid_popup">
-                                                            Place Bid
-                                                        </button>
-                                                        </span>
+                                                            class="price">Token Price: {{$auction->share_amount_placed}}</span>
+                                                            <span class="text-center mt-4">
+                                                                @if(Auth::user() && Auth::user()->is_verified == 1)
+                                                                    <button
+                                                                        wire:click.prevent="OpenCreateBidPopup({{$auction->id}})"
+                                                                        id="openBidPopup" class="btn btn-base w-md-auto w-50"
+                                                                        data-toggle="modal" data-target="#add_bid_popup">
+                                                                        Place Bid
+                                                                    </button>
+                                                                @elseif(Auth::user()->is_verified == 0)
+                                                                    <p><a href="{{route('profile.show')}}">verify your profile</a></p>
+                                                                @else
+                                                                    <p><a href="{{route('login')}}">login</a></p>
+                                                                @endif
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -219,7 +225,7 @@
                                                             <a href="{{route('site.property.details', 2)}}">{{$propertyAdd->property->property_name}}</a>
                                                         </h4>
                                                         <span
-                                                                class="price"><strong>Tokens Available: {{$propertyAdd->no_of_shares}}</strong></span>
+                                                            class="price"><strong>Tokens Available: {{$propertyAdd->no_of_shares}}</strong></span>
                                                         <ul class="meta-inner">
                                                             <li><img src="assets/img/icon/location2.png" alt="Location">
                                                                 {{$propertyAdd->property->property_address}}
@@ -231,16 +237,17 @@
                                                     </div>
                                                     {{--                                                    {{dd($propertyAdd)}}--}}
                                                     <div class="product-meta-bottom">
-                                                        <span
-                                                                class="price">Token Price: {{$propertyAdd->share_amount}}</span>
-                                                        <span>
-                                                             @if(Auth::user())
+                                                        <span class="price">Token Price: {{$propertyAdd->share_amount}}</span>
+                                                        <span class="text-center mt-4">
+                                                             @if(Auth::user() && Auth::user()->is_verified == 1)
                                                                 <button class="btn btn-base w-md-auto w-50"
                                                                         wire:click.prevent="openSellingAddTransactionPopup({{$propertyAdd->id}})"
                                                                         data-toggle="modal"
                                                                         data-target="#send_funds_popup">
                                                                     Buy
                                                                 </button>
+                                                            @elseif(Auth::user()->is_verified == 0)
+                                                                <p><a href="{{route('profile.show')}}">verify your profile</a></p>
                                                             @else
                                                                 <p class="btn btn-primary"><a href="{{route('login')}}">Login to Buy</a></p>
                                                             @endif
