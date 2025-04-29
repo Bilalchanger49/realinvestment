@@ -33,6 +33,7 @@ class AllPropertiesComponent extends Component
     public $sharePrice;
     public $profitAmount;
     public $priceWithCharges;
+    public $min_bid_price;
 
     public $activeTab = 'properties';
 
@@ -55,6 +56,7 @@ class AllPropertiesComponent extends Component
     {
         $auction = Auctions::where('id', $id)
             ->with('property')->first();
+        $this->min_bid_price = Bid::where('auctions_id', $auction->id)->max('share_amount') +1;
         $this->selectedAuction = $auction;
         $this->totalshares = (int) $auction->no_of_shares;
         $this->property_name = $auction->property->property_name;
@@ -76,7 +78,7 @@ class AllPropertiesComponent extends Component
 
         // Validate data
         $validatedData = $this->validate([
-            'bidPrize' => 'required|numeric|min:1',
+            'bidPrize' => "required|numeric|min:$this->min_bid_price",
             'sharesToBuy' => 'required|numeric|min:1',
             'totalPrice' => 'required|numeric|min:1',
             'confirmAction' => 'accepted',
@@ -120,7 +122,9 @@ class AllPropertiesComponent extends Component
 
             if ($user) {
                 $user->notify(new BidConfirmedNotification($property->property_name, $bid->share_amount, $user->name));
-                $auctionCreator->notify(new AuctionResponseNotification($property->property_name, $bid->share_amount, $user->name, $this->selectedAuction->user_id));
+                $auctionCreator->notify(
+                    new AuctionResponseNotification($property->property_name, $bid->share_amount,
+                        $user->name, $this->selectedAuction->user_id));
                 session()->flash('success', 'Bid created successfully!');
             } else {
                 session()->flash('error', 'User not found for notification.');

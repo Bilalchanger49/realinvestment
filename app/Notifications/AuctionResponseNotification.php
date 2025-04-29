@@ -45,7 +45,7 @@ class AuctionResponseNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'name' => $this->investorname,
+            'name' => $this->username,
             'message' => "Your have received a bid of {$this->bidAmount} on {$this->propertyName} by {$this->username}",
             'time' => now()->timestamp,
             'url' => route('site.investor.page', [$activeTab = 'active-auctions'])

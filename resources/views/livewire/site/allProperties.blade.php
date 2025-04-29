@@ -371,7 +371,13 @@
                     <!-- Popup Form Start -->
                     <form wire:submit.prevent="createBid" id="popupForm">
                         <div class="form-row">
+                            <div class="form-group">
+                                <label for="min_bid">Min Bid price</label>
+                                <label>{{$min_bid_price}}</label>
+                            </div>
+                        </div>
 
+                        <div class="form-row">
                             <div class="form-group">
                                 <label for="bidPrize">Bid for single Share</label>
                                 <input type="number" id="bidPrize" placeholder="Enter shares Prize"

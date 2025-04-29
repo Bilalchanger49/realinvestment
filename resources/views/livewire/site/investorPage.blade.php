@@ -253,9 +253,9 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-base custom-small-btn"
-                                                style="line-height: 0px;"><i
-                                                class="fas fa-edit"></i></button>
+{{--                                        <button type="button" class="btn btn-base custom-small-btn"--}}
+{{--                                                style="line-height: 0px;"><i--}}
+{{--                                                class="fas fa-edit"></i></button>--}}
                                         <button
                                             type="button"
                                             class="btn btn-danger custom-small-btn"
@@ -316,12 +316,6 @@
                                     @endif
                                     <td>
                                         @if($bid->status == 'accepted')
-                                            {{--                                        <button--}}
-                                            {{--                                            wire:click.prevent="buyAuction({{$bid->auctions_id}})"--}}
-                                            {{--                                            class="btn btn-base custom-small-btn"--}}
-                                            {{--                                            style="line-height: 0px;">--}}
-                                            {{--                                            Buy--}}
-                                            {{--                                        </button>--}}
                                             <button
                                                 wire:click.prevent="openAuctionTransactionPopup({{$bid->auctions_id}})"
                                                 class="btn btn-base custom-small-btn"
@@ -337,7 +331,19 @@
                                         @endif
                                     </td>
                                     <td>
+                                        <button
+                                            type="button"
+                                            class="btn btn-danger custom-small-btn"
+                                            style="line-height: 0px;"
+                                            data-toggle="modal"
+                                            data-target="#delete_bid_popup"
+                                            wire:click.prevent="confirmBidDelete({{ $bid->id }}, '{{ $bid->auctions_id }}')">
+                                            <i class="far fa-trash-alt"></i>
+                                        </button>
                                         <button type="button" class="btn btn-base custom-small-btn"
+                                                data-toggle="modal"
+                                                data-target="#edit_bid_popup"
+                                                wire:click.prevent="OpenEditBidPopup({{ $bid->id }})"
                                                 style="line-height: 0px;"><i class="fas fa-edit"></i></button>
                                     </td>
                                 </tr>
@@ -586,6 +592,113 @@
         </div>
     </div>
 
+
+    {{--    delete bid popup--}}
+    <div wire:ignore.self class="modal fade" id="delete_bid_popup" tabindex="-1" role="dialog"
+         aria-labelledby="delete_bid_popup" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Bid</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this bid for <strong>{{ $property_name }}</strong>?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" wire:click="deleteBid">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{--    edit bid popup--}}
+    <div wire:ignore.self class="modal fade" id="edit_bid_popup" tabindex="-1" role="dialog"
+         aria-labelledby="edit_bid_popup_label" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center position-relative">
+                    <h5 class="modal-title position-absolute">Edit Bid</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5>{{$property_name}}</h5>
+                    </div>
+                    <!-- Popup Form Start -->
+                    <form wire:submit.prevent="updateBid" id="popupForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="min_bid">Min Bid price</label>
+                                <label>{{$min_bid_price}}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bidPrize">Bid for single Share</label>
+                                <input type="number" id="bidPrize" placeholder="Enter shares Prize"
+                                       wire:model="bidPrize"
+                                       wire:input="calculateEditBidTotal">
+                                <div>
+                                    @error('bidPrize')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="totalshares">Total share to sell</label>
+                                <label>{{$totalshares}}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sharesToBuy">Number of Shares</label>
+                            <select id="sharesToBuy" name="sharesToBuy" wire:model="sharesToBuy"
+                                    wire:click="calculateEditBidTotal">
+                                @for ($share = 0; $share <= $totalshares; $share++)
+                                    <option value="{{ $share }}">{{ $share }}</option>
+                                @endfor
+                            </select>
+
+                            <div>@error('sharesToBuy') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="totalPrice">Total Price</label>
+                            <input type="number" id="totalPrice" placeholder="Total price" wire:model="totalPrice"
+                                   value="{{ $totalPrice }}">
+                            <div>@error('totalPrice') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="d-flex flex-row">
+                                <input type="checkbox" id="confirmAction" wire:model="confirmAction">
+                                <label for="confirmAction">I confirm that I want to Edit bid on these shares</label>
+                            </div>
+                            <div>@error('confirmAction') <span class="text-danger">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="submit-btn btn">Update Bid</button>
+                    </form>
+                    <!-- Popup Form End -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{--    print transactions popup--}}
     <div id="transaction-popup">
         <div class="popup-content">
@@ -600,6 +713,8 @@
             <button id="printBill" class="print-btn">Print</button>
         </div>
     </div>
+
+
 
     <div wire:ignore.self class="modal fade" id="bidsModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">

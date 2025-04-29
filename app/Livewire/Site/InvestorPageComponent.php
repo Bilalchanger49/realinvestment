@@ -11,6 +11,7 @@ use App\Models\Selling;
 use App\Models\Transactions;
 use App\Models\User;
 use App\Notifications\AuctionConfirmedNotification;
+use App\Notifications\BidConfirmedNotification;
 use App\Notifications\BidResponseNotification;
 use App\Notifications\NewAdvertisementNotification;
 use App\Services\ProfitCalculationService;
@@ -24,6 +25,7 @@ use Livewire\Component;
 class InvestorPageComponent extends Component
 {
     public $bids = [];
+    public $bid;
     public $confirmAction;
     public $confirmActionForAdd;
     public $price_per_share = 0;
@@ -42,6 +44,13 @@ class InvestorPageComponent extends Component
     public $investmentId;
 
     public $auction_id;
+    public $bid_id;
+    public $min_bid_price;
+    public $selectedAuction;
+    public $totalshares;
+    public $bidPrize;
+    public $sharesToBuy;
+    public $totalPrice;
 
 
     public $share_amount_placed;
@@ -86,6 +95,17 @@ class InvestorPageComponent extends Component
         } else {
 
             $this->total_price = $this->shares_to_sell * $this->price_per_share;
+        }
+    }
+
+    public function calculateEditBidTotal()
+    {
+        if ($this->bidPrize < 1 || $this->sharesToBuy < 1) {
+            $this->totalPrice = 0;
+        }elseif ($this->sharesToBuy > $this->totalshares) {
+            $this->totalPrice = 0;
+        } else {
+            $this->totalPrice = $this->sharesToBuy * $this->bidPrize;
         }
     }
 
@@ -157,10 +177,33 @@ class InvestorPageComponent extends Component
         return redirect()->route('site.investor.page',[$activeTab = 'active-auctions']);
     }
 
+    public function deleteBid()
+    {
+        // Find and delete the $bid
+        $bid = Bid::where('id', $this->bid_id)->first();
+        if ($bid) {
+            $bid->delete();
+            // Flash success message
+            session()->flash('success', 'Bid deleted successfully.');
+        } else {
+            session()->flash('error', 'Bid not found.');
+        }
+
+        return redirect()->route('site.investor.page',[$activeTab = 'active-bids']);
+    }
+
     public function confirmDelete($id, $propertyName)
     {
         $this->auction_id = $id;
         $this->property_name = $propertyName;
+    }
+
+    public function confirmBidDelete($id, $auction_id)
+    {
+        $this->bid_id = $id;
+        $auction = Auctions::where('id', $auction_id)->first();
+        $property = Property::where('id', $auction->property_id)->first();
+        $this->property_name = $property->property_name;
     }
 
     public function openBidPopup($auctionId)
@@ -171,14 +214,6 @@ class InvestorPageComponent extends Component
             ->get();
     }
 
-//    public function openAuctionTransactionPopup($auctionId, $total_shares, $total_price, $share_amount)
-//    {
-//        dd('openAuctionTransactionPopup');
-//        $this->auction_id = $auctionId;
-//        $this->total_price = $total_price;
-//        $this->total_shares = $total_shares;
-//        $this->share_amount = $share_amount;
-//    }
     public function openAuctionTransactionPopup($auctionId)
     {
         $bid = Bid::findOrFail($auctionId);
@@ -239,111 +274,6 @@ class InvestorPageComponent extends Component
         }
     }
 
-//    public function buyAuction($auctionId)
-//    {
-//        // Fetch the auction details
-//        $auction = Auctions::where('id', $auctionId)->first();
-//
-//        if (!$auction || $auction->status != 'active') {
-//            session()->flash('error', 'This auction is not active or does not exist.');
-//            return;
-//        }
-//
-//        // Fetch the accepted bid for this auction
-//        $bid = Bid::where('auctions_id', $auctionId)
-//            ->where('status', 'accepted')
-//            ->first();
-//
-//        if (!$bid) {
-//            session()->flash('error', 'No accepted bid found for this auction.');
-//            return;
-//        }
-//
-//        // Fetch the buyer (current user)
-//        $buyer = auth()->user();
-//        if (!$buyer) {
-//            return redirect('/login');
-//        }
-//
-//        // Fetch the seller's property investment
-//        $sellerInvestment = Property_investment::where('id', $auction->property_investment_id)->first();
-//        if (!$sellerInvestment || $sellerInvestment->shares_owned < $bid->total_shares) {
-//            session()->flash('error', 'Seller does not have enough shares to complete this transaction.');
-//            return;
-//        }
-//
-//        // Deduct shares from the seller
-//        $sellerInvestment->shares_owned -= $bid->total_shares;
-//        $sellerInvestment->save();
-//
-//        // Update the buyer's property investment or create a new one
-//        $buyerInvestment = Property_investment::where('user_id', $buyer->id)
-//            ->where('property_id', $auction->property_id)
-//            ->first();
-//
-//        if ($buyerInvestment) {
-//            $buyerInvestment->shares_owned += $bid->total_shares;
-//            $buyerInvestment->share_price += $bid->share_amount;
-//            $buyerInvestment->total_investment += $bid->total_price;
-//            $buyerInvestment->save();
-//        } else {
-//            Property_investment::create([
-//                'user_id' => $buyer->id,
-//                'property_id' => $auction->property_id,
-//                'shares_owned' => $bid->total_shares,
-//                'remaining_shares' => $auction->no_of_shares - $bid->total_shares,
-//                'share_price' => $bid->share_amount,
-//                'payment_id' => 0, // Update if integrated with a payment system
-//                'activity' => 'buy',
-//                'status' => 'holding',
-//                'total_investment' => $bid->total_price,
-//            ]);
-//        }
-//
-//        // Update the number of shares in the auction
-//        $auction->no_of_shares -= $bid->total_shares;
-//
-//        // Mark the auction as completed if all shares are sold
-//        if ($auction->no_of_shares <= 0) {
-//            $auction->status = 'completed';
-//        }
-//
-//        $auction->save();
-//
-//        // Mark the bid as completed
-//        $bid->status = 'completed';
-//        $bid->save();
-//
-//        // Log the transaction
-//        Transactions::create([
-//            'user_id' => $buyer->id,
-//            'property_id' => $auction->property_id,
-//            'shares_owned' => $bid->total_shares,
-//            'total_investment' => $bid->total_price,
-//            'remaining_shares' => $sellerInvestment->shares_owned,
-//            'share_price' => $bid->share_amount,
-//            'payment_id' => 0,
-//            'activity' => 'buy',
-//            'status' => 'active',
-//        ]);
-//
-//        Transactions::create([
-//            'user_id' => $auction->user_id,
-//            'property_id' => $auction->property_id,
-//            'shares_owned' => $bid->total_shares,
-//            'total_investment' => $bid->total_price,
-//            'remaining_shares' => $sellerInvestment->shares_owned,
-//            'share_price' => $bid->share_amount,
-//            'payment_id' => 0,
-//            'activity' => 'sold',
-//            'status' => 'active',
-//        ]);
-//
-//        // Flash success message
-//        session()->flash('success', 'Shares successfully transferred.');
-//        return redirect()->route('site.investor.page');
-//    }
-
     public function createSellingAdd()
     {
 
@@ -385,6 +315,79 @@ class InvestorPageComponent extends Component
 
 //        session()->flash('success', 'Advertisement successfully created.');
         return redirect()->route('site.investor.page',[$activeTab = 'advertisements']);
+    }
+
+    public function OpenEditBidPopup(int $id)
+    {
+        $this->bid = Bid::where('id', $id)->first();
+        $auction = Auctions::where('id', $this->bid->auctions_id)
+            ->with('property')->first();
+        $this->min_bid_price = Bid::where('auctions_id', $auction->id)->max('share_amount') + 1;
+        $this->selectedAuction = $auction;
+        $this->totalshares = (int) $auction->no_of_shares;
+        $this->property_name = $auction->property->property_name;
+        $this->bidPrize = $this->bid->share_amount;
+        $this->sharesToBuy = $this->bid->total_shares;
+        $this->totalPrice = $this->bid->total_price;
+    }
+
+    public function updateBid()
+    {
+        // Validate updated data
+        $validatedData = $this->validate([
+            'bidPrize' => "required|numeric|min:$this->min_bid_price",
+            'sharesToBuy' => 'required|numeric|min:1',
+            'totalPrice' => 'required|numeric|min:1',
+            'confirmAction' => 'accepted',
+        ]);
+
+
+        // Retrieve the bid to update (you should already have it set, e.g., $this->editingBid)
+        $bid = Bid::where('id', $this->bid->id)
+            ->where('user_id', auth()->id())
+            ->where('status', 'active')
+            ->with('auctions')
+            ->first();
+
+        if (!$bid) {
+            session()->flash('error', 'Bid not found or cannot be updated.');
+            return redirect()->route('site.property.all');
+        }
+
+        // Check if the auction still belongs to the same auction object
+        if ($bid->auctions->user_id === auth()->id()) {
+            session()->flash('error', 'You cannot edit a bid on your own auction.');
+            return redirect()->route('site.property.all');
+        }
+
+        try {
+            // Update the bid
+            $bid->update([
+                'share_amount' => $validatedData['bidPrize'],
+                'total_shares' => $validatedData['sharesToBuy'],
+                'total_price' => $validatedData['totalPrice'],
+                'updated_at' => now(),
+            ]);
+
+            $user = User::find($bid->user_id);
+//            $auctionCreator = User::find($bid->auction->user_id);
+//            $property = Property::find($bid->auction->property_id);
+
+            if ($user) {
+//                $user->notify(new BidConfirmedNotification($property->property_name, $bid->share_amount, $user->name));
+//                $auctionCreator->notify(
+//                    new AuctionResponseNotification($property->property_name, $bid->share_amount,
+//                        $user->name, $bid->auction->user_id));
+                session()->flash('success', 'Bid updated successfully!');
+            } else {
+                session()->flash('error', 'User not found for notification.');
+            }
+
+        } catch (\Exception $e) {
+            session()->flash('error', 'Failed to update bid: ' . $e->getMessage());
+        }
+
+        return redirect()->route('site.investor.page', [$activeTab = 'active-bids']);
     }
 
     public function render()
