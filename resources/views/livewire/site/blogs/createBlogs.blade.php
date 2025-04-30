@@ -31,17 +31,6 @@
                     @error('title') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
-                <div class="form-group">
-                    <label for="category_id">Category</label>
-                    <select wire:model.defer="category_id" class="form-control">
-                        <option value="">Select a category...</option>
-                        @foreach($categories as $cat)
-                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                        @endforeach
-                    </select>
-                    @error('category_id') <span class="text-danger">{{ $message }}</span> @enderror
-                </div>
-
                 <div class="col-12 mb-4">
                     <label for="thumbnail" class="form-label fw-semibold">Thumbnail</label>
                     <input type="file" class="form-control nic-input" wire:model="thumbnail" accept="image/*">

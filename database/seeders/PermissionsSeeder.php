@@ -28,9 +28,6 @@ class PermissionsSeeder extends Seeder
             'profile.verification.view',
             'profile.verification.accept',
             'profile.verification.reject',
-
-            // Blogs category
-            'category.view', 'category.create', 'category.delete',
         ];
 
         foreach ($permissions as $permission) {

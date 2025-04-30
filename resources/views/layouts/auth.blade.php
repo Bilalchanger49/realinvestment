@@ -96,32 +96,6 @@
                             </ul>
                         </li>
                     @endcan
-                    @can('category.view')
-                        <li class="has-sub">
-                            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                               data-target="#blogs-menu" aria-expanded="false" aria-controls="playlist-menu">
-                                <i class="mdi mdi-folder-outline"></i>
-                                <span class="nav-text">Blogs Category</span>
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="collapse" id="blogs-menu" data-parent="#sidebar-menu">
-                                <div class="sub-menu">
-                                    <li>
-                                        <a class="sidenav-item-link" href="{{route('admin.category')}}">
-                                            <span class="nav-text">index</span>
-                                        </a>
-                                    </li>
-                                    @can('category.create')
-                                        <li>
-                                            <a class="sidenav-item-link" href="{{route('admin.category.create')}}">
-                                                <span class="nav-text">create</span>
-                                            </a>
-                                        </li>
-                                    @endcan
-                                </div>
-                            </ul>
-                        </li>
-                    @endcan
                     @can('property.return.distribution')
                         <li>
                             <a class="sidenav-item-link" href="{{route('admin.distribute.returns')}}">

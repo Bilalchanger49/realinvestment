@@ -3,7 +3,6 @@
 namespace App\Livewire\Site\Blogs;
 
 
-use App\Models\BlogsCategory;
 use App\Models\BlogsPosts;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -14,7 +13,7 @@ class EditBlogsComponent extends Component
     use WithFileUploads;
 
     public $blog;
-    public $title, $content, $category_id;
+    public $title, $content;
     public $newThumbnail;
 
     public function mount($id)
@@ -23,17 +22,14 @@ class EditBlogsComponent extends Component
 
         $this->title = $this->blog->title;
         $this->content = $this->blog->content;
-        $this->category_id = $this->blog->category_id;
     }
 
     public function update()
     {
-//        dd($this->category_id);
         $thumbnailPath = $this->blog->thumbnail;
         $validator = $this->validate([
             'title' => 'required|string|max:255',
             'content' => 'nullable|string',
-            'category_id' => 'required|integer|exists:blogs_categories,id',
             'newThumbnail' => 'nullable|image|max:2048',
         ]);
 
@@ -46,7 +42,6 @@ class EditBlogsComponent extends Component
         $this->blog->update([
             'title' => $this->title,
             'content' => $this->content,
-            'category_id' => $this->category_id,
             'thumbnail' => $thumbnailPath,
         ]);
 
@@ -57,8 +52,7 @@ class EditBlogsComponent extends Component
 
     public function render()
     {
-        $categories = BlogsCategory::all();
-        return view('livewire.site.blogs.editBlogs', compact('categories'))->extends('layouts.site');
+        return view('livewire.site.blogs.editBlogs')->extends('layouts.site');
     }
 
 }

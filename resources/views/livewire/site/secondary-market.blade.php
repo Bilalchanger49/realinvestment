@@ -20,19 +20,6 @@
         <div class="container">
             <!-- Property Search Bar -->
             <div class="row">
-                <form wire:submit.prevent="save"  class="shadow p-4 rounded bg-light">
-                    @csrf
-                    <div class="form-group">
-                        <label for="category_id">Category</label>
-                        <select wire:model="state" class="form-control">
-                            <option value="">Select a category</option>
-                            @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <button type="submit">submit</button>
-                </form>
 
             </div>
         </div>

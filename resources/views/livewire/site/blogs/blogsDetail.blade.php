@@ -24,7 +24,6 @@
                         <div class="single-blog-inner bg-none">
                             <div class="details p-0 border-bottom mb-4 pb-3">
 
-                                <div class="cat"><a href="#">{{ $blog->category->name }}</a></div>
                                 <h3>{{ $blog->title }}</h3>
                                 <ul class="meta-inner">
                                     <li><img src="{{asset('assets/img/icon/1.png')}}" alt="img"> {{ $blog->user->name }}</li>
