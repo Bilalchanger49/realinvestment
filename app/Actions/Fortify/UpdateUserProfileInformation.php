@@ -17,7 +17,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      * @param array<string, mixed> $input
      */
 
-    public function update(User $user, array $input): void
+    public function update(User $user, array $input)
     {
         $validator = Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
@@ -30,7 +30,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'stripe_account_id' => ['nullable'],
         ])->validateWithBag('updateProfileInformation');
 
-//        dd($validator);
         $base64Image = preg_replace('/^data:image\/\w+;base64,/', '', $validator['signature']);
         $imageData = base64_decode($base64Image);
 
@@ -40,7 +39,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Storage::disk('public')->put($fileWithPath, $imageData);
         $imageUrl = asset('storage/' . $fileWithPath);
 
-        // Ensure signature is stored
+
         if (isset($input['signature'])) {
             $user->signature = $fileWithPath; // Store signature
         }
@@ -48,7 +47,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
         }
-//        dd($input['nic_front']);
+
         if (isset($input['nic_front']) && $input['nic_front'] instanceof \Illuminate\Http\UploadedFile) {
             $this->deleteOldFile($user->nic_front);
             $user->nic_front = $input['nic_front']->store('nic_photos/front/', 'public');
@@ -78,6 +77,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'signature' => $user->signature,
             ])->save();
         }
+
+        return redirect()->route('profile.show');
     }
 
     /**
@@ -119,11 +120,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'verification_status' => 'pending',
             ]);
         } else {
-            // Handle case where user is not found
+
             return false;
         }
-//        Notification::route('mail', 'admin@example.com')->notify(new User(auth()->user()));
 
-        return false; // User is not verified until admin manually approves
+
+        return false;
     }
 }

@@ -5,7 +5,6 @@ namespace App\Livewire\Site;
 
 use App\Models\Auctions;
 use App\Models\Bid;
-use App\Models\BlogsCategory;
 use App\Models\Property;
 use App\Models\User;
 use App\Notifications\BidConfirmedNotification;
@@ -24,7 +23,7 @@ class SecondaryMarketComponent extends Component
 
     public function render()
     {
-        $categories = BlogsCategory::all();
-        return view('livewire.site.secondary-market', compact('categories'))->extends('layouts.site');
+
+        return view('livewire.site.secondary-market')->extends('layouts.site');
     }
 }

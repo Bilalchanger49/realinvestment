@@ -10,9 +10,9 @@ class BlogsPosts extends Model
     use HasFactory;
     protected $fillable = ['user_id','thumbnail', 'title', 'category_id', 'content'];
 
-    public function category()
+    public function views()
     {
-        return $this->belongsTo(BlogsCategory::class);
+        return $this->hasMany(BlogViews::class);
     }
 
     public function user()

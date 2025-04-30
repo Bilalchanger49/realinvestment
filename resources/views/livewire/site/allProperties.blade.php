@@ -276,54 +276,7 @@
 
                 <div class="col-lg-4">
                     <aside class="sidebar-area">
-                        <div class="widget widget-category">
-                            <h5 class="widget-title">Category</h5>
-                            <ul>
-                                <li><a href="#">Residential Properties <span>26</span></a></li>
-                                <li><a href="#">Commercial Properties <span>20</span></a></li>
-                                <li><a href="#">Vacation Homes <span>31</span></a></li>
-                            </ul>
-                        </div>
-                        <div class="widget widget-place">
-                            <h5 class="widget-title">Place</h5>
-                            <ul>
-                                <li>Karachi <span>26</span></li>
-                                <li>Lahore <span>20</span></li>
-                                <li>Islamabad <span>21</span></li>
-                                <li>Gwadar <span>31</span></li>
-                            </ul>
-                        </div>
-                        <div class="widget widget-news">
-                            <h5 class="widget-title">Popular Feeds</h5>
-                            <div class="single-news-wrap media">
-                                <div class="thumb">
-                                    <img src="assets/img/blog/5.png" alt="img">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h6><a href="blog-details.html">Latest Trends in Real Estate Investment</a></h6>
-                                    <p class="date"><i class="far fa-calendar-alt"></i>25 JAN 2024</p>
-                                </div>
-                            </div>
-                            <div class="single-news-wrap media">
-                                <div class="thumb">
-                                    <img src="assets/img/blog/6.png" alt="img">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h6><a href="blog-details.html">Understanding the Benefits of Fractional
-                                            Ownership</a></h6>
-                                    <p class="date"><i class="far fa-calendar-alt"></i>25 Nov 2025</p>
-                                </div>
-                            </div>
-                            <div class="single-news-wrap media">
-                                <div class="thumb">
-                                    <img src="assets/img/blog/7.png" alt="img">
-                                </div>
-                                <div class="media-body align-self-center">
-                                    <h6><a href="blog-details.html">Top 5 Real Estate Hotspots for 2025</a></h6>
-                                    <p class="date"><i class="far fa-calendar-alt"></i>25 Aug 2024</p>
-                                </div>
-                            </div>
-                        </div>
+                        @livewire('site.blogs.latest-blogs-component')
                     </aside>
                 </div>
             </div>
