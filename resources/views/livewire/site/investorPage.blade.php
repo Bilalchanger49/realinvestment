@@ -25,8 +25,8 @@
             <div class="row justify-content-center">
 
                 <div class="col-lg-12 col-md-6 col-sm-12 mb-4">
-                    <div class="card investor-profile-card">
-                        <div class="card-img">
+                    <div class="card investor-profile-card flex-wrap">
+                        <div class="card-img mb-3 mb-md-0 mx-md-0 mx-auto">
 
                             @if(Auth::User()->profile_photo_path)
                                 <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
@@ -40,13 +40,13 @@
 
 
                         </div>
-                        <div class="card-body investor-profile-card-body">
-                            <div class="text-section">
+                        <div class="card-body investor-profile-card-body d-flex flex-column flex-md-row justify-content-between w-100">
+                            <div class="text-section  mb-md-0">
                                 <h5 class="card-title"><strong>{{$user->name}}</strong></h5>
                                 <h6 class="card-title"><strong>{{$user->email}}</strong></h6>
                                 <div>
                                     <div class="card-text">
-                                        <div class="card-text d-flex">
+                                        <div class="card-text d-flex justify-content-center">
                                             <p class="me-3">
                                                 <i class="fa fa-solid fa-coins" style="color: #5ba600;"></i>
                                                 <strong>{{$totalProperties}}</strong> properties
@@ -78,7 +78,7 @@
                                 </div>
 
                             </div>
-                            <div class="cta-section">
+                            <div class="cta-section d-flex flex-column align-items-md-end align-items-center">
                                 <div>
                                     <p>Investment<strong> PK {{$overallInvestment}}</strong></p>
                                     @if($returndistribution)
@@ -89,7 +89,7 @@
                                     <button class="btn btn-base "> View Profile</button>
                                 </a> --}}
                                 <button
-                                    class="btn btn-base"
+                                    class="btn btn-base "
                                     data-toggle="modal" data-target="#withdraw_popup">
                                     Withdraw
                                 </button>
@@ -104,7 +104,7 @@
                                     </a>
                                 @else
                                     <a href="{{ route('stripe.link') }}">
-                                        <button class="btn btn-base">Link Account</button>
+                                        <button class="btn btn-base ">Link Account</button>
                                     </a>
                                 @endif
 
@@ -116,6 +116,7 @@
         </div>
     </div>
     <div class="container mt-4">
+        <div class="nav-tabs-wrapper">
         <ul class="nav nav-tabs" id="investorTabs">
             <li class="nav-item " style="cursor: pointer;">
                 <a class="nav-link {{$activeTab === 'active-investments' ? 'active' : '' }} "
@@ -138,11 +139,13 @@
                    wire:click="setActiveTab('transactions')">Transactions</a>
             </li>
         </ul>
+    </div>
 
         <div class="tab-content mt-3">
             @if($activeTab === 'active-investments')
                 <div>
                     <h3>Active Investments</h3>
+                    <div class="table-responsive custom-scroll-container">
                     <table class="table custom-table">
                         <thead>
                         <tr>
@@ -201,9 +204,11 @@
                         </tbody>
                     </table>
                 </div>
+                </div>
             @elseif($activeTab === 'active-auctions')
                 <div>
                     <h3>Active Auctions</h3>
+                    <div class="table-responsive custom-scroll-container">
                     <table class="table custom-table">
                         <thead>
                         <tr>
@@ -271,12 +276,14 @@
                         @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
             @elseif($activeTab === 'advertisements')
                 @livewire('site.view-selling-component')
             @elseif($activeTab === 'active-bids')
                 <div>
                     <h3>Bids</h3>
+                    <div class="table-responsive custom-scroll-container">
                     <table class="table custom-table">
                         <thead>
                         <tr>
@@ -351,10 +358,12 @@
                         @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
             @elseif($activeTab === 'transactions')
                 <div>
                     <h3>Transactions</h3>
+                    <div class="table-responsive custom-scroll-container">
                     <table class="table custom-table">
                         <thead>
                         <tr>
@@ -405,6 +414,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
             @endif
         </div>

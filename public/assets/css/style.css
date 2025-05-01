@@ -5303,21 +5303,15 @@ section.bg-light {
 
 /* cards ########## */
 .investor-profile-card {
-  width: 100%;
-  /* Full width for larger display */
-  /*max-width: 70em; */
-  min-height: 12em;
-  flex-direction: row;
   display: flex;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /* Add shadow effect */
-  border-radius: 0.7em;
-  /* Rounded corners for the card */
-  background-color: white;
-  overflow: hidden;
+  flex-direction: row;
+  align-items: flex-start;
   padding: 1em;
   border: 2px solid #5ba600;
-
+  border-radius: 0.7em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  overflow: hidden;
 }
 
 .investor-profile-card .card-img {
@@ -5338,9 +5332,10 @@ section.bg-light {
 
 .investor-profile-card-body {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  flex: 1;
   width: 100%;
-  padding: 1em;
 }
 
 .investor-card {
@@ -5398,6 +5393,7 @@ section.bg-light {
   color: #333;
 }
 
+
 .cta-section {
   max-width: 40%;
   display: flex;
@@ -5406,14 +5402,73 @@ section.bg-light {
   justify-content: space-between;
 }
 
-.cta-section .btn {
-  /*padding: 0.3em 0.5em;*/
+/* .cta-section .btn {
+  
   background-color: #5ba600;
   border-color: #5ba600;
   color: white;
   text-transform: uppercase;
-}
+} */
 
+.investor-profile-card,
+.investor-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;  /* align items to top */
+  padding: 1em;
+  flex-wrap: nowrap;
+}
+.cta-section .btn {
+  width: 90%;       /* Responsive width */
+  max-width: 300px; /* Optional: prevents it from becoming too wide */
+  display: block;   /* Ensures it takes up full width and stacks if needed */
+  margin: 3px auto; /* Center align */
+}
+@media (max-width: 768px) {
+
+  
+  .investor-profile-card,
+  .investor-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .investor-profile-card-body,
+  .investor-card-body {
+    flex-direction: column;
+    align-items: center;
+    padding: 1em 0;
+  }
+
+  .card-img {
+    margin-right: 0;
+    margin-bottom: 1em;
+  }
+
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+
+  .text-section,
+  .cta-section {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    /* margin-bottom: 1em; */
+  }
+
+  .cta-section {
+    align-items: center;
+  }
+
+  /* .cta-section .btn {
+    width: 90%;
+  } */
+}
 
 /* table ################### */
 .status-unpaid {
@@ -6263,7 +6318,23 @@ input:focus, select:focus {
     background-color: #5ba600;
     color: #fff;
 }
+.nav-tabs-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1rem;
+}
 
+.nav-tabs {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .nav-tabs .nav-link {
+      font-size: 14px;
+      padding: 0.5rem 0.75rem;
+  }
+}
 .custom-table th {
     white-space: nowrap;
     text-align: center;
