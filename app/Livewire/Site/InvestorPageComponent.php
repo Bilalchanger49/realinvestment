@@ -213,11 +213,12 @@ class InvestorPageComponent extends Component
             ->get();
     }
 
-    public function openAuctionTransactionPopup($auctionId)
+    public function openAuctionTransactionPopup($id)
     {
-        $bid = Bid::findOrFail($auctionId);
 
-        $this->auction_id = $auctionId;
+        $bid = Bid::where('id', $id)->first();
+//        dd($bid);
+        $this->auction_id = $bid->auctions_id;
         $this->total_price = $bid->total_price;
         $this->total_shares = $bid->total_shares;
         $this->share_amount = $bid->share_amount;
@@ -408,6 +409,7 @@ class InvestorPageComponent extends Component
         ')
             ->where('user_id', $user->id)
             ->groupBy('property_id')
+            ->havingRaw('SUM(shares_owned) > 0')
             ->with('property')
             ->get();
 
@@ -434,7 +436,6 @@ class InvestorPageComponent extends Component
             ->get();
 
         $returndistribution = ReturnDistributions::where('user_id', $user->id)->sum('amount');;
-//        dd($returndistribution);
         return view('livewire.site.investorPage', compact('returndistribution', 'userbids', 'auctions', 'transctions', 'propertyInvestments', 'user', 'overallShares', 'overallInvestment', 'totalProperties'))->extends('layouts.site');
     }
 

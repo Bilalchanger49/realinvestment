@@ -324,7 +324,7 @@
                                     <td>
                                         @if($bid->status == 'accepted')
                                             <button
-                                                wire:click.prevent="openAuctionTransactionPopup({{$bid->auctions_id}})"
+                                                wire:click.prevent="openAuctionTransactionPopup({{$bid->id}})"
                                                 class="btn btn-base custom-small-btn"
                                                 data-toggle="modal" data-target="#send_funds_popup"
                                                 style="line-height: 0px;">
@@ -791,6 +791,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body"
                      wire:key="totalPrice-{{ $total_price }}-numShares-{{ $total_shares }}-{{ now() }}">
                     @livewire('site.stripe.payment-component',
@@ -811,7 +812,7 @@
 
     @if( $returndistribution)
         <div wire:ignore.self class="modal fade payout-container" id="withdraw_popup" tabindex="-1" role="dialog"
-             aria-labelledby="send_funds_popup_label" aria-hidden="true">
+             aria-labelledby="withdraw_popup_label" aria-hidden="true">
             <div class="modal-dialog modal-lg mb-0" role="document">
                 <div class="modal-content border-0">
                     <div class="modal-body">

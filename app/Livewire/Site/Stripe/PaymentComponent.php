@@ -73,7 +73,7 @@ class PaymentComponent extends Component
 
 
             $buyPropertyService = new BuyPropertyService();
-            $buyPropertyService->buyProperty($this->numShares, $this->propertyId, $this->priceWithCharges, $this->sharePrice, $token);
+            $buyPropertyService->buyProperty($this->numShares, $this->propertyId, $this->totalPrice, $this->sharePrice, $token);
             session()->flash('success', 'Payment successful!');
             return redirect()->route('site.investor.page',[$activeTab = 'active-investments']);
         } catch (\Exception $e) {
@@ -85,13 +85,13 @@ class PaymentComponent extends Component
     public function processAuctionPayment($token)
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
-//dd($this->totalPrice *100);
+
         try {
-            // Use the token to create a charge
+
             $charge = Charge::create([
                 'amount' => $this->priceWithCharges * 100, // Convert to cents
                 'currency' => 'pkr',
-                'source' => $token, // The token received from the frontend
+                'source' => $token,
                 'description' => "Purchase of {$this->numShares} shares for property ID {$this->auctionId}",
                 'receipt_email' => Auth::user()->email,
             ]);
@@ -109,7 +109,8 @@ class PaymentComponent extends Component
 
     public function processSellingAddPayment($token)
     {
-//
+
+//        dd($this->priceWithCharges * 100);
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         try {

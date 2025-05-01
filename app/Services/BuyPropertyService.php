@@ -9,8 +9,10 @@ use App\Models\Property_investment;
 use App\Models\Selling;
 use App\Models\Transactions;
 use App\Models\User;
+use App\Notifications\DividendDistributedNotification;
 use App\Notifications\InvestmentConfirmedNotification;
 use App\Notifications\InvestmentSoldNotification;
+use Illuminate\Support\Facades\DB;
 
 class BuyPropertyService
 {
@@ -106,6 +108,7 @@ class BuyPropertyService
         // Fetch the accepted bid for this auction
         $bid = Bid::where('auctions_id', $auctionId)
             ->where('status', 'accepted')
+            ->with('auctions')
             ->first();
 
         if (!$bid) {
@@ -128,6 +131,7 @@ class BuyPropertyService
 
         // Deduct shares from the seller
         $sellerInvestment->shares_owned -= $bid->total_shares;
+        $sellerInvestment->total_investment -= $bid->total_amount;
         $sellerInvestment->save();
 
         // Update the buyer's property investment or create a new one
@@ -147,7 +151,7 @@ class BuyPropertyService
                 'shares_owned' => $bid->total_shares,
                 'remaining_shares' => $auction->no_of_shares - $bid->total_shares,
                 'share_price' => $bid->share_amount,
-                'payment_id' => $paymentId, // Update if integrated with a payment system
+                'payment_id' => $paymentId,
                 'activity' => 'buy',
                 'status' => 'holding',
                 'total_investment' => $bid->total_price,
@@ -168,151 +172,207 @@ class BuyPropertyService
         $bid->status = 'completed';
         $bid->save();
 
-        // Log the transaction
-        Transactions::create([
-            'user_id' => $buyer->id,
-            'property_id' => $auction->property_id,
-            'shares_owned' => $bid->total_shares,
-            'total_investment' => $bid->total_price,
-            'remaining_shares' => $sellerInvestment->shares_owned,
-            'share_price' => $bid->share_amount,
-            'payment_id' => $paymentId,
-            'activity' => 'buy',
-            'status' => 'active',
-        ]);
 
-        Transactions::create([
-            'user_id' => $auction->user_id,
-            'property_id' => $auction->property_id,
-            'shares_owned' => $bid->total_shares,
-            'total_investment' => $bid->total_price,
-            'remaining_shares' => $sellerInvestment->shares_owned,
-            'share_price' => $bid->share_amount,
-            'payment_id' => $paymentId,
-            'activity' => 'sold',
-            'status' => 'active',
-        ]);
-        $investmentAmount = $bid->total_price;
-        $property = Property::find($auction->property_id);
-        $seller = User::find($auction->user_id);
-        $investor = User::find($buyer->id);
-
-        $user = auth()->user();
-        if ($user) {
-            $seller->notify(new InvestmentSoldNotification($investmentAmount, $property, $seller->name, $investor->name));
-            $user->notify(new InvestmentConfirmedNotification($investmentAmount, $property, $investor->name));
-            session()->flash('success', 'shares has been bought successfully');
-        } else {
-            session()->flash('error', 'User not found for notification.');
-        }
-
-        // Flash success message
-        session()->flash('success', 'Shares successfully transferred.');
-        return redirect()->route('site.investor.page',[$activeTab = 'active-auctions']);
-    }
-
-    public function buyPropertyByAdd($id, $token)
-    {
-        $buyer = auth()->user();
-        if (!$buyer) {
-            return redirect('/login');
-        }
-
-
-        $propertyAdd = Selling::where('id', $id)
-            ->with('property')->first();
-
-        if ($propertyAdd->user_id === $buyer->id) {
-            session()->flash('error', 'You cannot place a bid on your own auction.');
-            return redirect()->route('site.secondary.market'); // Redirect back to the form
-        }
-
-
-        if (!$propertyAdd || $propertyAdd->status != 'active') {
-            session()->flash('error', 'This auction is not active or does not exist.');
-            return redirect()->route('site.secondary.market');
-        }
-
-
-        $sellerInvestment = Property_investment::where('id', $propertyAdd->property_investment_id)->first();
-        if (!$sellerInvestment || $sellerInvestment->shares_owned < $propertyAdd->no_of_shares) {
-            session()->flash('error', 'Seller does not have enough shares to complete this transaction.');
-            return redirect()->route('site.secondary.market');
-        }
-
-
-        // Deduct shares from the seller
-        $sellerInvestment->shares_owned -= $propertyAdd->no_of_shares;
-        $sellerInvestment->save();
-
-        $buyerInvestment = Property_investment::where('user_id', $buyer->id)
-            ->where('property_id', $propertyAdd->property_id)
-            ->where('status', 'active')
+        $existingReturn = DB::table('return_distributions')
+            ->where('property_id', $bid->property_id)
+            ->where('user_id', $sellerInvestment->user_id)
+            ->where('property_investment_id', $sellerInvestment->id)
             ->first();
 
-        if ($buyerInvestment) {
-            $buyerInvestment->shares_owned += $propertyAdd->no_of_shares;
-            $buyerInvestment->share_price += $propertyAdd->share_amount;
-            $buyerInvestment->total_investment += $propertyAdd->total_amount;
-            $buyerInvestment->save();
+
+        if ($existingReturn) {
+            DB::table('return_distributions')
+                ->where('id', $existingReturn->id)
+                ->update([
+                    'amount' => $existingReturn->amount + $bid->total_price,
+                    'updated_at' => now(),
+                ]);
         } else {
 
-            Property_investment::create([
-                'user_id' => $buyer->id,
-                'property_id' => $propertyAdd->property_id,
-                'shares_owned' => $propertyAdd->no_of_shares,
-                'remaining_shares' => $propertyAdd->property->property_remaining_shares,
-                'share_price' => $propertyAdd->share_amount,
-                'payment_id' => $token, // Update if integrated with a payment system
-                'activity' => 'buy',
-                'status' => 'holding',
-                'total_investment' => $propertyAdd->total_amount,
+            DB::table('return_distributions')->insert([
+                'property_id' => $bid->auctions->property_id,
+                'user_id' => $sellerInvestment->user_id,
+                'property_investment_id' => $sellerInvestment->id,
+                'amount' => $bid->total_price,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]);
         }
 
-        $propertyAdd->status = 'completed';
-        $propertyAdd->save();
+            // Log the transaction
+            Transactions::create([
+                'user_id' => $buyer->id,
+                'property_id' => $auction->property_id,
+                'shares_owned' => $bid->total_shares,
+                'total_investment' => $bid->total_price,
+                'remaining_shares' => $sellerInvestment->shares_owned,
+                'share_price' => $bid->share_amount,
+                'payment_id' => $paymentId,
+                'activity' => 'buy',
+                'status' => 'active',
+            ]);
 
-        Transactions::create([
-            'user_id' => $buyer->id,
-            'property_id' => $propertyAdd->property_id,
-            'shares_owned' => $propertyAdd->no_of_shares,
-            'total_investment' => $propertyAdd->total_amount,
-            'remaining_shares' => $propertyAdd->property->property_remaining_shares,
-            'share_price' => $propertyAdd->share_amount,
-            'payment_id' => $token,
-            'activity' => 'buy',
-            'status' => 'active',
-        ]);
+            Transactions::create([
+                'user_id' => $auction->user_id,
+                'property_id' => $auction->property_id,
+                'shares_owned' => $bid->total_shares,
+                'total_investment' => $bid->total_price,
+                'remaining_shares' => $sellerInvestment->shares_owned,
+                'share_price' => $bid->share_amount,
+                'payment_id' => $paymentId,
+                'activity' => 'sold',
+                'status' => 'active',
+            ]);
+            $investmentAmount = $bid->total_price;
+            $property = Property::find($auction->property_id);
+            $seller = User::find($auction->user_id);
+            $investor = User::find($buyer->id);
 
-        Transactions::create([
-            'user_id' => $propertyAdd->user_id,
-            'property_id' => $propertyAdd->property_id,
-            'shares_owned' => $propertyAdd->no_of_shares,
-            'total_investment' => $propertyAdd->total_amount,
-            'remaining_shares' => $propertyAdd->property->property_remaining_shares,
-            'share_price' => $propertyAdd->share_amount,
-            'payment_id' => $token,
-            'activity' => 'sold',
-            'status' => 'active',
-        ]);
+            $user = auth()->user();
+            if ($user) {
+                $seller->notify(new DividendDistributedNotification($bid->total_amount, $property->name, $seller->name));
+                $seller->notify(new InvestmentSoldNotification($investmentAmount, $property, $seller->name, $investor->name));
+                $user->notify(new InvestmentConfirmedNotification($investmentAmount, $property, $investor->name));
+                session()->flash('success', 'shares has been bought successfully');
+            } else {
+                session()->flash('error', 'User not found for notification.');
+            }
 
-        $investmentAmount = $propertyAdd->total_amount;
-        $property = Property::find($propertyAdd->property_id);
-        $seller = User::find($propertyAdd->user_id);
-        $investor = User::find($buyer->id);
-
-        $user = auth()->user();
-        if ($user) {
-            $seller->notify(new InvestmentSoldNotification($investmentAmount, $property, $seller->name, $investor->name));
-            $user->notify(new InvestmentConfirmedNotification($investmentAmount, $property, $investor->name));
-            session()->flash('success', 'shares has been bought successfully');
-        } else {
-            session()->flash('error', 'User not found for notification.');
+            // Flash success message
+            session()->flash('success', 'Shares successfully transferred.');
+            return redirect()->route('site.investor.page', [$activeTab = 'active-auctions']);
         }
 
+        public
+        function buyPropertyByAdd($id, $token)
+        {
+            $buyer = auth()->user();
+            if (!$buyer) {
+                return redirect('/login');
+            }
 
-        session()->flash('success', 'shares transferred successfully.');
-        return redirect()->route('site.investor.page',[$activeTab = 'advertisements']);
+
+            $propertyAdd = Selling::where('id', $id)
+                ->with('property')->first();
+
+            if ($propertyAdd->user_id === $buyer->id) {
+                session()->flash('error', 'You cannot buy on your own advertisement.');
+                return redirect()->route('site.secondary.market');
+            }
+
+
+            if (!$propertyAdd || $propertyAdd->status != 'active') {
+                session()->flash('error', 'This advertisement is not active or does not exist.');
+                return redirect()->route('site.secondary.market');
+            }
+
+
+            $sellerInvestment = Property_investment::where('id', $propertyAdd->property_investment_id)->first();
+            if (!$sellerInvestment || $sellerInvestment->shares_owned < $propertyAdd->no_of_shares) {
+                session()->flash('error', 'Seller does not have enough shares to complete this transaction.');
+                return redirect()->route('site.secondary.market');
+            }
+
+
+            $sellerInvestment->shares_owned -= $propertyAdd->no_of_shares;
+            $sellerInvestment->total_investment -= $propertyAdd->total_amount;
+            $sellerInvestment->save();
+
+            $buyerInvestment = Property_investment::where('user_id', $buyer->id)
+                ->where('property_id', $propertyAdd->property_id)
+                ->where('status', 'active')
+                ->first();
+
+            if ($buyerInvestment) {
+                $buyerInvestment->shares_owned += $propertyAdd->no_of_shares;
+                $buyerInvestment->share_price += $propertyAdd->share_amount;
+                $buyerInvestment->total_investment += $propertyAdd->total_amount;
+                $buyerInvestment->save();
+            } else {
+
+                Property_investment::create([
+                    'user_id' => $buyer->id,
+                    'property_id' => $propertyAdd->property_id,
+                    'shares_owned' => $propertyAdd->no_of_shares,
+                    'remaining_shares' => $propertyAdd->property->property_remaining_shares,
+                    'share_price' => $propertyAdd->share_amount,
+                    'payment_id' => $token, // Update if integrated with a payment system
+                    'activity' => 'buy',
+                    'status' => 'holding',
+                    'total_investment' => $propertyAdd->total_amount,
+                ]);
+            }
+
+            $propertyAdd->status = 'completed';
+            $propertyAdd->save();
+
+//        $existingReturn = DB::table('return_distributions')
+//            ->where('property_id', $propertyAdd->property_id)
+//            ->where('user_id', $sellerInvestment->user_id)
+//            ->where('property_investment_id',  $sellerInvestment->id)
+//            ->first();
+//
+//
+//        if ($existingReturn) {
+//            DB::table('return_distributions')
+//                ->where('id', $existingReturn->id)
+//                ->update([
+//                    'amount' => $existingReturn->amount + $propertyAdd->total_amount,
+//                    'updated_at' => now(),
+//                ]);
+//        } else {
+
+            DB::table('return_distributions')->insert([
+                'property_id' => $propertyAdd->property_id,
+                'user_id' => $sellerInvestment->user_id,
+                'property_investment_id' => $sellerInvestment->id,
+                'amount' => $propertyAdd->total_amount,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+//        }
+
+            Transactions::create([
+                'user_id' => $buyer->id,
+                'property_id' => $propertyAdd->property_id,
+                'shares_owned' => $propertyAdd->no_of_shares,
+                'total_investment' => $propertyAdd->total_amount,
+                'remaining_shares' => $propertyAdd->property->property_remaining_shares,
+                'share_price' => $propertyAdd->share_amount,
+                'payment_id' => $token,
+                'activity' => 'buy',
+                'status' => 'active',
+            ]);
+
+            Transactions::create([
+                'user_id' => $propertyAdd->user_id,
+                'property_id' => $propertyAdd->property_id,
+                'shares_owned' => $propertyAdd->no_of_shares,
+                'total_investment' => $propertyAdd->total_amount,
+                'remaining_shares' => $propertyAdd->property->property_remaining_shares,
+                'share_price' => $propertyAdd->share_amount,
+                'payment_id' => $token,
+                'activity' => 'sold',
+                'status' => 'active',
+            ]);
+
+            $investmentAmount = $propertyAdd->total_amount;
+            $property = Property::find($propertyAdd->property_id);
+            $seller = User::find($propertyAdd->user_id);
+            $investor = User::find($buyer->id);
+
+            $user = auth()->user();
+            if ($user) {
+                $seller->notify(new DividendDistributedNotification($propertyAdd->total_amount, $property->name, $seller->name));
+                $seller->notify(new InvestmentSoldNotification($investmentAmount, $property, $seller->name, $investor->name));
+                $user->notify(new InvestmentConfirmedNotification($investmentAmount, $property, $investor->name));
+                session()->flash('success', 'shares has been bought successfully');
+            } else {
+                session()->flash('error', 'User not found for notification.');
+            }
+
+
+            session()->flash('success', 'shares transferred successfully.');
+            return redirect()->route('site.investor.page', [$activeTab = 'advertisements']);
+        }
     }
-}

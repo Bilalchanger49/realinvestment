@@ -4,6 +4,7 @@ namespace App\Livewire\Site;
 
 use App\Models\Property_investment;
 use App\Models\Selling;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ViewSellingComponent extends Component
@@ -115,7 +116,7 @@ class ViewSellingComponent extends Component
 
     public function render()
     {
-        $propertyAdds = Selling::where('status', 'active')->with('property')->get();
+        $propertyAdds = Selling::where('user_id', Auth::user()->id)->where('status', 'active')->with('property')->get();
 
         return view('livewire.site.viewSelling', compact('propertyAdds'))->extends('layouts.site');
     }
