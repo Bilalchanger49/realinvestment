@@ -6328,6 +6328,19 @@ input:focus, select:focus {
   flex-wrap: nowrap;
   white-space: nowrap;
 }
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+@media (min-width: 576px) {
+  .button-container {
+      flex-direction: row; /* Stacks buttons horizontally on larger screens */
+      justify-content: center;
+  }
+  .button-container .btn {
+      width: 200px; /* Optional: restrict button width on larger screens */
+  }}
 
 @media (max-width: 576px) {
   .nav-tabs .nav-link {

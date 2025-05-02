@@ -1,6 +1,7 @@
 <div class="tab-content mt-3">
     <div>
         <h3>Selling Properties</h3>
+        <div class="table-responsive custom-scroll-container">
         <table class="table custom-table">
             <thead>
             <tr>
@@ -49,6 +50,7 @@
             @endforeach
             </tbody>
         </table>
+        </div>
     </div>
 
 

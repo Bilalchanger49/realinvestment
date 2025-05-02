@@ -223,7 +223,7 @@
                         </li>
                         <!-- Simple Buttons for Smaller Screens -->
                         <li class="mobile-user-menu d-lg-none text-center "style="display: flex; flex-direction: column; align-items: center; ">
-                            <a href="{{ Auth::user()->name }}" class="mobile-btn-profile">Profile</a>
+                            <a href="{{route('profile.show')}}" class="mobile-btn-profile">Profile</a>
                             <a href="{{ route('site.investor.page', [$activeTab = 'active-investments']) }}" class="mobile-btn-details">Details</a>
                             <a href="{{ route('logout') }}" class="mobile-btn-logout"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
