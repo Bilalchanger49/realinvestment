@@ -136,7 +136,12 @@
             <div class="container nav-container">
                 
                 <div class="responsive-mobile-menu">
-                    <button class="menu toggle-btn d-block d-lg-none" data-target="#dkt_main_menu" aria-expanded="false"
+                    @auth
+                    <div style="margin-left: -1em; margin-top: -0.2em">
+                        @livewire('site.notification.notification-component')
+                    </div>
+                    @endauth
+                    <button class="menu toggle-btn d-block d-lg-none me-3" data-target="#dkt_main_menu" aria-expanded="false"
                         aria-label="Toggle navigation">
                         <span class="icon-left"></span>
                         <span class="icon-right"></span>
@@ -255,11 +260,12 @@
                         @endif
 
                     </ul>
+                </div>
 
                     <!-- notifications  -->
-                    @auth
+                    {{-- @auth
                     @livewire('site.notification.notification-component')
-                    @endauth
+                    @endauth --}}
         </nav>
     </div>
 

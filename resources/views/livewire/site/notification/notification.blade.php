@@ -15,12 +15,12 @@
     <header>
         <div class="nav nav-underline" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="all-tabs" data-bs-toggle="tab" href="#all" role="tab">
-                All ({{ auth()->user()->notifications->count() }})
+                All ({{ auth()->user()->unreadNotifications->count() }})
             </a>
 
-            <a class="nav-item nav-link" id="message-tab" data-bs-toggle="tab" href="#message" role="tab">
+            {{-- <a class="nav-item nav-link" id="message-tab" data-bs-toggle="tab" href="#message" role="tab">
                 New ({{ auth()->user()->unreadNotifications->count() }})
-            </a>
+            </a> --}}
         </div>
     </header>
 
@@ -50,7 +50,7 @@
         </div>
 
         <!-- Unread Notifications -->
-        <div class="tab-pane fade" id="message" role="tabpanel">
+        {{-- <div class="tab-pane fade" id="message" role="tabpanel">
             <div class="notification-scroll">
                 @foreach(auth()->user()->unreadNotifications as $notification)
                     <a href="#" wire:click.prevent="markAsRead('{{ $notification->id }}')" class="notification-link">
@@ -69,7 +69,7 @@
                     </a>
                 @endforeach
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 
