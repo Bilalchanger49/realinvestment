@@ -32,20 +32,10 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="col-md-3 mt-2 mt-md-0 align-self-center">
-                                <div class="single-select-inner">
-                                    <select>
-                                        <option value="1">Low to High</option>
-                                        <option value="2">High to Low</option>
-                                        <option value="3">Newest Listings</option>
-                                    </select>
-                                </div>
-                            </div> --}}
-
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-12 col-md-12 col-lg-8 mb-4">
                     <div class="big-card-container">
                         <!-- Header with Links and Property Count -->
                         <div class="property-header d-flex justify-content-between align-items-center">
@@ -274,7 +264,7 @@
                 </div>
 
 
-                <div class="col-lg-4">
+                <div class="col-12 col-md-12 col-lg-4">
                     <aside class="sidebar-area">
                         @livewire('site.blogs.latest-blogs-component')
                     </aside>

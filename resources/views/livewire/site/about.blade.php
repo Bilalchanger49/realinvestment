@@ -32,9 +32,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 about_image">
-                <img src="assets/img/project/6.png" alt="" class="img-fluid">
-            </div>
+            <div class="col-md-6 about_image d-none d-sm-block">
+              <img src="assets/img/project/6.png" alt="" class="img-fluid">
+          </div>
         </div>
     </section>
 
