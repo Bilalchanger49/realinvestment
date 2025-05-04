@@ -6,7 +6,7 @@
                 <div class="section-title text-center">
                     <h2 class="page-title">About Us</h2>
                     <ul class="page-list">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li>About Us</li>
                     </ul>
                 </div>

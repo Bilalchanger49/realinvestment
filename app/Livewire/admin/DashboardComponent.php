@@ -14,9 +14,9 @@ use Livewire\Component;
 class DashboardComponent extends Component
 {
     public $activeBids, $propertiesSold, $activeAuctions, $auctionRevenue;
-    public $biddingLineChartData;
-    public $propertyTypeChartData;
-    public $monthlyChartData;
+    public $transactionLineChart;
+    public $timeFilter = 'monthly'; // default: monthly
+
 
     public function mount()
     {
@@ -26,51 +26,53 @@ class DashboardComponent extends Component
         $this->activeAuctions = Auctions::where('status', 'active')->count();
         $this->auctionRevenue = ReturnDistributions::where('user_id', 1)->sum('amount');
 
-        $this->monthlyChartData = [
-            'labels' => ["Jan", "Feb", "Mar"],
-            'bids' => [45, 60, 55],
-            'sold' => [30, 45, 50],
-            'profit' => [15, 25, 20],
+        $this->loadChartData();
+    }
+
+    public function loadChartData()
+    {
+        $this->transactionLineChart = [
+            'labels' => [],
+            'totalTransactions' => [],
+            'buy' => [],
+            'sold' => [],
         ];
 
-        $this->propertyTypeChartData = [
-            'labels' => ['Residential', 'Commercial', 'Land'],
-            'data' => [45, 35, 20],
-        ];
+        if ($this->timeFilter === 'daily') {
+            $days = range(1, 31);
+            foreach ($days as $day) {
+                $label = str_pad($day, 2, '0', STR_PAD_LEFT);
+                $this->transactionLineChart['labels'][] = $label;
 
-        $this->biddingLineChartData = [
-            'labels' => ["04 Jan", "05 Jan", "06 Jan"],
-            'totalBids' => [6, 10, 8],
-            'winningBids' => [10, 6, 12],
-        ];
+                $this->transactionLineChart['totalTransactions'][] = Transactions::whereDay('created_at', $day)->count();
+                $this->transactionLineChart['buy'][] = Transactions::where('activity', 'buy')->whereDay('updated_at', $day)->count();
+                $this->transactionLineChart['sold'][] = Transactions::where('activity', 'sold')->whereDay('updated_at', $day)->count();
+            }
+        } elseif ($this->timeFilter === 'yearly') {
+            $years = Transactions::selectRaw('YEAR(created_at) as year')->distinct()->pluck('year');
+            foreach ($years as $year) {
+                $this->transactionLineChart['labels'][] = $year;
+                $this->transactionLineChart['totalTransactions'][] = Transactions::whereYear('created_at', $year)->count();
+                $this->transactionLineChart['buy'][] = Transactions::where('activity', 'buy')->whereYear('updated_at', $year)->count();
+                $this->transactionLineChart['sold'][] = Transactions::where('activity', 'sold')->whereYear('updated_at', $year)->count();
+            }
+        } else {
+            $months = range(1, 12);
+            foreach ($months as $month) {
+                $label = Carbon::create()->month($month)->format('M');
+                $this->transactionLineChart['labels'][] = $label;
 
+                $this->transactionLineChart['totalTransactions'][] = Transactions::whereMonth('created_at', $month)->count();
+                $this->transactionLineChart['buy'][] = Transactions::where('activity', 'buy')->whereMonth('updated_at', $month)->count();
+                $this->transactionLineChart['sold'][] = Transactions::where('activity', 'sold')->whereMonth('updated_at', $month)->count();
+            }
+        }
 
-
-//        $this->monthlyChartData = [
-//            'labels' => [],
-//            'bids' => [],
-//            'sold' => [],
-//            'profit' => [],
-//        ];
-//
-//        $months = range(1, 12); // Jan to Dec
-//        foreach ($months as $month) {
-//            $label = Carbon::create()->month($month)->format('M');
-//            $this->monthlyChartData['labels'][] = $label;
-//
-//            // Total Bids in this month
-//            $bids = Bid::whereMonth('created_at', $month)->count();
-//            $this->monthlyChartData['bids'][] = $bids;
-//
-//            // Sold Properties in this month
-//            $sold = Transactions::where('activity', 'buy')->whereMonth('updated_at', $month)->count();
-//            $this->monthlyChartData['sold'][] = $sold;
-//
-//            // Profit for sold properties (example: 10% of price)
-//            $profit = ReturnDistributions::where('user_id', 1)->whereMonth('updated_at', $month)->sum(DB::raw('amount * 0.1'));
-//            $this->monthlyChartData['profit'][] = round($profit, 2);
-//        }
-
+    }
+    public function updatedTimeFilter()
+    {
+        $this->loadChartData(); // reload chart with new filter
+        $this->dispatch('chartDataUpdated', $this->transactionLineChart);
     }
 
     public function render()
