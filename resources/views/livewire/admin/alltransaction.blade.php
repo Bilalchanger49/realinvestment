@@ -49,6 +49,7 @@
         <div class="card card-default">
             <div class="container mt-4">
                 <div wire:loading.remove>
+                    <div class="responsive-table-wrapper">
                     <table class="table">
                         <thead>
                         <tr>
@@ -97,6 +98,7 @@
                         @endforelse
                         </tbody>
                     </table>
+                    </div>
 
                     <!-- Pagination -->
                     <div class="my-3 flex justify-center">

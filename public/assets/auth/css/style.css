@@ -17674,5 +17674,15 @@ html[dir=rtl] .sidebar li > a .caret:before {
   transform: scale(1.1);
 }
 
-/* charts######## */
-/* dashboard.css or inside a <style> tag in Blade */
+/*  dashbord all section tables scroll bar  */
+@media (max-width: 768px) {
+  .responsive-table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+  }
+
+  .responsive-table-wrapper table {
+      min-width: 1000px; /* Prevent squeezing */
+  }
+}
+

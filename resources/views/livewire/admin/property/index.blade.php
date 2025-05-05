@@ -3,6 +3,7 @@
         <h1 class="mb-3">Property</h1>
         <div class="card card-default">
             <div class="container mt-4">
+                <div class="responsive-table-wrapper">
                 <table class="table">
                     <thead>
                     <tr>
@@ -61,6 +62,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                </div>
                 <!-- Confirmation Modal -->
                 @if ($deleteId)
                     <div class="modal fade show d-block" style="background-color: rgba(0, 0, 0, 0.5);"
