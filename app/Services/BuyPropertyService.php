@@ -37,6 +37,7 @@ class BuyPropertyService
             ->where('property_id', $propertyId)
             ->where('status', 'holding')
             ->first();
+
         $investment = $existingInvestment;
         if ($existingInvestment) {
             $existingInvestment->update([
@@ -84,6 +85,13 @@ class BuyPropertyService
         $property->update([
             'property_remaining_shares' => $remainingShares,
         ]);
+
+        $profitCalculationService = new ProfitCalculationService();
+        $profitAmount = $profitCalculationService->calculateProfit($totalInvestment);
+
+        $adminProfitService = new AdminProfitService();
+        $adminProfitService->sendAdminProfit($propertyId, $investment->id, $profitAmount);
+
         $user = auth()->user();
         if ($user) {
             $user->notify(new InvestmentConfirmedNotification($investment, $property, $user->name));
@@ -203,6 +211,12 @@ class BuyPropertyService
             ]);
         }
 
+        $profitCalculationService = new ProfitCalculationService();
+        $profitAmount = $profitCalculationService->calculateProfit($bid->total_price);
+
+        $adminProfitService = new AdminProfitService();
+        $adminProfitService->sendAdminProfit($bid->auctions->property_id, $sellerInvestment->id, $profitAmount);
+
         // Log the transaction
         Transactions::create([
             'user_id' => $buyer->id,
@@ -309,22 +323,6 @@ class BuyPropertyService
         $propertyAdd->status = 'completed';
         $propertyAdd->save();
 
-//        $existingReturn = DB::table('return_distributions')
-//            ->where('property_id', $propertyAdd->property_id)
-//            ->where('user_id', $sellerInvestment->user_id)
-//            ->where('property_investment_id',  $sellerInvestment->id)
-//            ->first();
-//
-//
-//        if ($existingReturn) {
-//            DB::table('return_distributions')
-//                ->where('id', $existingReturn->id)
-//                ->update([
-//                    'amount' => $existingReturn->amount + $propertyAdd->total_amount,
-//                    'updated_at' => now(),
-//                ]);
-//        } else {
-
         DB::table('return_distributions')->insert([
             'property_id' => $propertyAdd->property_id,
             'user_id' => $sellerInvestment->user_id,
@@ -333,7 +331,12 @@ class BuyPropertyService
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-//        }
+
+        $profitCalculationService = new ProfitCalculationService();
+        $profitAmount = $profitCalculationService->calculateProfit($propertyAdd->total_amount);
+
+        $adminProfitService = new AdminProfitService();
+        $adminProfitService->sendAdminProfit($propertyAdd->property_id, $sellerInvestment->id, $profitAmount);
 
         Transactions::create([
             'user_id' => $buyer->id,

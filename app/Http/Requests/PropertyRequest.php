@@ -17,7 +17,7 @@ class PropertyRequest extends FormRequest
     public function rulesLivewire()
     {
         return [
-            'property_name' => 'required|string|max:255',
+            'property_name' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z\s]+$/'],
             'property_description'=> 'required|string|max:255',
             'property_reg_no' => 'required|integer',
             'property_address' => 'required|string',

@@ -15,7 +15,7 @@ class DashboardComponent extends Component
 {
     public $activeBids, $propertiesSold, $activeAuctions, $auctionRevenue;
     public $transactionLineChart;
-    public $timeFilter = 'monthly'; // default: monthly
+    public $timeFilter = 'daily'; // default: monthly
 
 
     public function mount()
@@ -26,11 +26,6 @@ class DashboardComponent extends Component
         $this->activeAuctions = Auctions::where('status', 'active')->count();
         $this->auctionRevenue = ReturnDistributions::where('user_id', 1)->sum('amount');
 
-        $this->loadChartData();
-    }
-
-    public function loadChartData()
-    {
         $this->transactionLineChart = [
             'labels' => [],
             'totalTransactions' => [],
@@ -38,10 +33,18 @@ class DashboardComponent extends Component
             'sold' => [],
         ];
 
+        $this->loadChartData();
+
+    }
+
+    public function loadChartData()
+    {
+
         if ($this->timeFilter === 'daily') {
             $days = range(1, 31);
             foreach ($days as $day) {
                 $label = str_pad($day, 2, '0', STR_PAD_LEFT);
+
                 $this->transactionLineChart['labels'][] = $label;
 
                 $this->transactionLineChart['totalTransactions'][] = Transactions::whereDay('created_at', $day)->count();
@@ -72,7 +75,8 @@ class DashboardComponent extends Component
     public function updatedTimeFilter()
     {
         $this->loadChartData(); // reload chart with new filter
-        $this->dispatch('chartDataUpdated', $this->transactionLineChart);
+
+//        $this->dispatch('chartDataUpdated', $this->transactionLineChart);
     }
 
     public function render()

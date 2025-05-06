@@ -24,7 +24,10 @@
         </div>
         <div class="form-group">
             <label for="cardholder-name">Cardholder Name</label>
-            <input type="text" id="cardholder-name" class="form-control" placeholder="John Doe" required>
+            <input type="text" id="cardholder-name" class="form-control" placeholder="John Doe" wire:model="cardHolderName">
+            @error('cardHolderName')
+            <p class="text-danger">{{$message}}</p>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -40,6 +43,7 @@
 
     <script src="https://js.stripe.com/v3/"></script>
     <script type="text/javascript">
+
 
         document.addEventListener('livewire:init', function () {
 

@@ -15,7 +15,7 @@ class PaymentComponent extends Component
     public $paymentType;
     public $propertyId;
     public $sellingAddId;
-
+    public $cardHolderName;
     public $auctionId;
     public $totalPrice;
     public $profitAmount;
@@ -45,6 +45,7 @@ class PaymentComponent extends Component
     ];
     public function mount($id, $totalPrice, $profitAmount, $priceWithCharges, $numShares, $sharePrice, $paymentType)
     {
+
         $this->paymentType = $paymentType;
         $this->propertyId = $id;
         $this->auctionId = $id;
@@ -60,6 +61,10 @@ class PaymentComponent extends Component
     public function processPropertyPayment($token)
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $this->validate([
+            'cardHolderName' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z\s]+$/'],
+        ]);
 
         try {
             // Use the token to create a charge
@@ -86,6 +91,9 @@ class PaymentComponent extends Component
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
+        $this->validate([
+            'cardHolderName' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z\s]+$/'],
+        ]);
         try {
 
             $charge = Charge::create([
@@ -109,9 +117,11 @@ class PaymentComponent extends Component
 
     public function processSellingAddPayment($token)
     {
-
-//        dd($this->priceWithCharges * 100);
         Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $this->validate([
+            'cardHolderName' => ['required', 'string', 'max:255', 'regex:/^[A-Za-z\s]+$/'],
+        ]);
 
         try {
             $charge = Charge::create([

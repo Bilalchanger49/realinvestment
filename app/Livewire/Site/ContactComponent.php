@@ -28,12 +28,6 @@ class ContactComponent extends Component
             'email' => 'required|email',
             'message' => 'required|string|max:1000',
         ]);
-//        dd([
-//            'user_id' => $user->id,
-//            'name' => $this->name,
-//            'email' => $this->email,
-//            'message' => $this->message,
-//        ]);
 
         ContactMessage::create([
             'user_id' => $user->id,
