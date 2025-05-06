@@ -6,6 +6,7 @@
         <div class="card card-default">
             <div>
                 <div>
+                    <div class="responsive-table-wrapper">
                     <table class=" profile-verification-table table-bordered text-center align-middle">
                         <thead class="table-light">
                         <tr>
@@ -60,6 +61,7 @@
                         @endforeach
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
         </div>
