@@ -16,7 +16,7 @@
                         <!-- Button Area (Upload & Reset) -->
                         <div class="ms-4">
                             <!-- Upload New Photo Button -->
-                            <label class="btn btn-base m-0">
+                            <label class="btn btn-base mb-1">
                                 Upload new photo
                                 <input type="file" class="account-settings-fileinput" wire:model.live="photo"
                                        x-ref="photo"
@@ -32,7 +32,7 @@
 
                             <!-- Reset Button (if photo exists) -->
                             @if ($this->user->profile_photo_path)
-                                <button type="button" class="btn btn-secondary" wire:click="deleteProfilePhoto">
+                                <button type="button" class="btn btn-secondary m-0" wire:click="deleteProfilePhoto">
                                     Reset
                                 </button>
                             @endif
@@ -128,10 +128,10 @@
                                 </div>
                             @endif
 
-                            <div  class="row">
-                                <div   class="col-6" x-data="signaturePad()" class="p-4">
+                            <div  class="row signature_section">
+                                <div class="col-6" x-data="signaturePad()" class="p-4">
                                     <div>
-                                        <canvas wire:ignore.self x-ref="signature_canvas" style="width: 300px; height: 200px"  class="border rounded shadow mt-4"></canvas>
+                                        <canvas wire:ignore.self x-ref="signature_canvas" class="signature_section_canvas"   class="border rounded shadow mt-4"></canvas>
                                     </div>
 
                                     <!-- Hidden input for Livewire binding -->

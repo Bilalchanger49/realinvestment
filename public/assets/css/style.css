@@ -4906,8 +4906,11 @@ section.bg-light {
   border-bottom: 1px solid #ececec;
 }
 
+.widget-news .single-news-wrap .thumb{
+  width: 7vw;
+}
 .widget-news .single-news-wrap .thumb img {
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 .widget-news .single-news-wrap .media-body {
@@ -6281,8 +6284,10 @@ input:focus, select:focus {
 .container.light-style.flex-grow-1.container-p-y {
   padding: 100px;
 }
-
-
+.signature_section_canvas{
+  width: 300px; 
+  height: 200px
+}
 
 
 /* investor details page tables */
