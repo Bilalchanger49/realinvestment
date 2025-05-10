@@ -30,9 +30,9 @@
 
                             @if(Auth::User()->profile_photo_path)
                             <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
-                                style="border-radius: 100%" class="card-img-top" alt="...">
+                                 class="card-img-top" alt="...">
                             @else
-                            <img src="assets/img/agent/default user.jpeg" style="border-radius: 100%"
+                            <img src="assets/img/agent/default user.jpeg" 
                                 class="card-img-top" alt="...">
                             @endif
 

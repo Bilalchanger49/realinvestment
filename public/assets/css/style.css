@@ -5316,13 +5316,12 @@ section.bg-light {
   background-color: white;
   overflow: hidden;
 }
-
 .investor-profile-card .card-img {
   width: 150px;
-  height: 100px;
-
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
 }
-
 .investor-profile-card .card-img img {
   width: 100%;
   object-fit: cover;
