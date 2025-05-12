@@ -34,12 +34,6 @@
                             @else
                             <img src="assets/img/agent/default user.jpeg" 
                                 class="card-img-top" alt="...">
-                                <img src="{{asset('storage/'. Auth::User()->profile_photo_path)}}"
-                                     style="border-radius: 100%" class="card-img-top" alt="...">
-                            @else
-                            <img src="assets/img/agent/default user.jpeg" style="border-radius: 100%"
-                                     class="card-img-top" alt="...">
-
                             @endif
 
 

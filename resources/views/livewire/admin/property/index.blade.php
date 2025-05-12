@@ -38,10 +38,14 @@
                                 /** @var string $images */
                                 $image = $images->firstWhere('property_id', $property->id);
                             @endphp
-                            @if($image)
-                                <td><img src="{{ asset('storage/' . $image->image_path) }}" alt="Property Image"
-                                         width="100"></td>
-                            @endif
+                            <td>
+                                @if($image)
+                                    <img src="{{ asset('storage/' . $image->image_path) }}" alt="Property Image" width="100">
+                                @else
+                                    {{-- Keep the cell empty to preserve structure --}}
+                                    <span class="text-muted">No image</span> {{-- optional placeholder --}}
+                                @endif
+                            </td>
                             <td>
                                 <div class="d-flex justify-content-center">
                                     @can('property.edit')

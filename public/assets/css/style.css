@@ -5325,8 +5325,9 @@ section.bg-light {
 .investor-profile-card .card-img img {
   width: 100%;
   object-fit: cover;
+  height: 25vh;
   /* Ensures the image maintains its aspect ratio */
-  border-radius: 8px;
+  border-radius: 50%;
   /* Rounded corners for the image */
   /* margin-right: 1em; */
 
