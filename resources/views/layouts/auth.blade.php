@@ -210,23 +210,21 @@
                                 <span class="d-none d-lg-inline-block">{{ Auth::User()->name }}</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li>
+                                {{-- <li>
                                     <a class="dropdown-link-item" href=" {{ Auth::user()->name }}">
                                         <i class="mdi mdi-account-outline"></i>
                                         <span class="nav-text">My Profile</span>
                                     </a>
-                                </li>
+                                </li> --}}
 
-                                <li class="dropdown-footer">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                <li >
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                                     {{--                                    <a class="dropdown-link-item" href="{{ route('logout') }}"> <i class="mdi mdi-logout"></i> Log Out </a>--}}
                                 </li>
                             </ul>
