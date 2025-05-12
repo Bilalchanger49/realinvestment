@@ -13,7 +13,8 @@ class NotificationComponent extends Component
 
         if ($notification) {
             $notification->markAsRead();
-            $this->dispatch('notificationRead'); // Emit an event to update UI
+
+            return $this->redirect($notification->data['url']);
         }
     }
     public function render()

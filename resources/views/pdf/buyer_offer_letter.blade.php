@@ -45,7 +45,11 @@
         <p>Date:{{$date}}</p>
 
         <h4>Authorized by: Real Investment</h4>
-        <p>Signature: _____________________</p>
+        <div class="d-flex flex-column">
+            <img  style="height: 70px; width: 200px; margin-bottom: 0px"  src="{{ asset('storage/signatures/real investment signature.png') }}"
+                  alt="User Signature">
+            <span>_________________________</span>
+        </div>
 
     </section>
     <button id="downloadPDF" class="btn btn-secondary">Download Offer Letter</button>

@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
@@ -26,23 +27,29 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
             'nic_front' => ['nullable'],
             'nic_back' => ['nullable'],
-            'signature' => ['nullable'],
+//            'signature' => ['nullable'],
+            'signature' => ['required'],
             'stripe_account_id' => ['nullable'],
         ])->validateWithBag('updateProfileInformation');
 
         $base64Image = preg_replace('/^data:image\/\w+;base64,/', '', $validator['signature']);
         $imageData = base64_decode($base64Image);
 
-        $filename = 'signature_' . time() . '.png';
-        $fileWithPath = 'signatures/' . $filename; // Store in 'public/images/signatures/'
+        if (strlen($imageData) < 2000) {
+//            throw ValidationException::withMessages(['signature' => 'Signature cannot be blank.']);
+        }else{
+            $filename = 'signature_' . time() . '.png';
+            $fileWithPath = 'signatures/' . $filename; // Store in 'public/images/signatures/'
 
-        Storage::disk('public')->put($fileWithPath, $imageData);
-        $imageUrl = asset('storage/' . $fileWithPath);
+            Storage::disk('public')->put($fileWithPath, $imageData);
+            $imageUrl = asset('storage/' . $fileWithPath);
 
 
-        if (isset($input['signature'])) {
-            $user->signature = $fileWithPath; // Store signature
+            if (isset($input['signature'])) {
+                $user->signature = $fileWithPath; // Store signature
+            }
         }
+
 
         if (isset($input['photo'])) {
             $user->updateProfilePhoto($input['photo']);
