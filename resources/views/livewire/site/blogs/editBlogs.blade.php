@@ -33,12 +33,16 @@
 
                 <div class="mb-3 ">
                     <label for="thumbnail" class="form-label fw-semibold">Thumbnail</label>
-                    <input type="file" class="form-control nic-input" wire:model="thumbnail" accept="image/*">
+                    <input type="file" class="form-control nic-input" wire:model="newThumbnail" accept="image/*">
 
                     @if ($blog->thumbnail)
                     <img src="{{ asset('storage/' . $blog->thumbnail) }}" alt="Preview" class="img-thumbnail mt-2"
                         style="max-height: 150px;">
                     @endif
+
+                    @error('newThumbnail')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
                 <div wire:ignore class="col-12 mb-4">
                     <label for="content" class="form-label fw-semibold">Content</label>

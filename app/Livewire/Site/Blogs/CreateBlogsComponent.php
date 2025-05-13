@@ -21,8 +21,8 @@ class CreateBlogsComponent extends Component
 
         $validator = $this->validate([
             'title' => 'required|string|max:255',
-            'content' => 'nullable',
-
+            'content' => 'required',
+            'thumbnail' => 'required'
         ]);
 
         $thumbnailPath = null;

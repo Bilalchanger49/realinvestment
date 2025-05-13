@@ -39,6 +39,10 @@
                         <img src="{{ $thumbnail->temporaryUrl() }}" alt="Preview" class="img-thumbnail mt-2"
                              style="max-height: 150px;">
                     @endif
+
+                    @error('thumbnail')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 <div wire:ignore class="col-12 mb-4">

@@ -21,15 +21,14 @@ class BlogsComponent extends Component
             (select count(*) from blog_views where blog_views.blogs_post_id = blogs_posts.id and created_at >= ?) as views_last_30_days,
             (select count(*) from blog_views where blog_views.blogs_post_id = blogs_posts.id) as total_views
         ', [now()->subDays(30)])
-            ->having('views_last_30_days', '>', 0)
             ->orderByDesc('views_last_30_days');
-        
+
 
         if (!empty($this->search)) {
             $queryblogs->where('title', 'like', '%' . $this->search . '%');
         }
 
-        $blogs = $queryblogs->latest()->paginate(1);
+        $blogs = $queryblogs->latest()->paginate(5);
 
 
         return view('livewire.site.blogs.blogs', [
