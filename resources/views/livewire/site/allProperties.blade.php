@@ -167,7 +167,7 @@
                                                                         data-toggle="modal" data-target="#add_bid_popup">
                                                                         Place Bid
                                                                     </button>
-                                                                @elseif(Auth::user()->is_verified == 0)
+                                                                @elseif(Auth::user() && Auth::user()->is_verified == 0)
                                                                     <p><a href="{{route('profile.show')}}">verify your profile</a></p>
                                                                 @else
                                                                     <p><a href="{{route('login')}}">login</a></p>
@@ -236,7 +236,7 @@
                                                                         data-target="#send_funds_popup">
                                                                     Buy
                                                                 </button>
-                                                            @elseif(Auth::user()->is_verified == 0)
+                                                            @elseif(Auth::user() && Auth::user()->is_verified == 0)
                                                                 <p><a href="{{route('profile.show')}}">verify your profile</a></p>
                                                             @else
                                                                 <p class="btn btn-primary"><a href="{{route('login')}}">Login to Buy</a></p>

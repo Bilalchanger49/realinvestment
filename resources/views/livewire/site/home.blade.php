@@ -218,7 +218,7 @@
                                                 data-toggle="modal" data-target="#send_funds_popup"><i
                                                 class="fas fa-arrow-right"></i>
                                         </button>
-                                    @elseif(Auth::user()->is_verified == 0)
+                                    @elseif(Auth::user() && Auth::user()->is_verified == 0)
                                         <p><a href="{{route('profile.show')}}">verify your profile</a></p>
                                     @else
                                         <p class="m-0 text-center"><a href="{{route('login')}}">Login to Buy</a></p>

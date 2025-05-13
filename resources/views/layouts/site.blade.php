@@ -90,7 +90,7 @@
             color: white;
         }
 
-        
+
     </style>
     @livewireStyles
 </head>
@@ -134,7 +134,7 @@
 
         <nav class="navbar navbar-expand-lg">
             <div class="container nav-container">
-                
+
                 <div class="responsive-mobile-menu">
                     @auth
                     <div style="margin-left: -1em; margin-top: -0.2em">
@@ -175,7 +175,7 @@
                     </ul>
                 </div>
 
-                
+
                 <div class="nav-right-part nav-right-part-desktop collapse navbar-collapse" id="dkt_main_menu">
                     <ul class="navbar-nav menu-open text-center">
                         <!-- Dropdown for Larger Screens -->
@@ -327,13 +327,7 @@
                         <div class="widget widget_subscribe mb-4">
                             <h4 class="widget-title">Newsletter</h4>
                             <div class="details">
-                                <p>Stay updated with the latest investment opportunities and property listings.
-                                    Subscribe to
-                                    our newsletter today!</p>
-                                <div class="footer-subscribe-inner">
-                                    <input type="text" placeholder="Enter your email">
-                                    <a class="btn btn-base" href="#">Subscribe</a>
-                                </div>
+                                <p>Stay updated with the latest investment opportunities and property listings.</p>
                             </div>
                         </div>
 
