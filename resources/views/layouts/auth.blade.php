@@ -63,7 +63,7 @@
             <div class="sidebar-left" data-simplebar style="height: 100%;">
                 <!-- sidebar menu -->
                 <ul class="nav sidebar-inner" id="sidebar-menu">
-                    <li class="{{ request()->is('dashboard') ? 'active': '' }}">
+                    <li class="{{ request()->routeIs('dashboard') ? 'active': '' }}">
                         <a class="sidenav-item-link" href="{{ route('dashboard') }}">
                             <i class="mdi mdi-briefcase-account-outline"></i>
                             <span class="nav-text">Dashboard</span>
@@ -71,7 +71,7 @@
                     </li>
                     <li class="section-title"> Apps</li>
                     @can('property.view')
-                        <li class="has-sub">
+                        <li class="has-sub {{ request()->routeIs('admin.property.*') ? 'active': '' }}">
                             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
                                data-target="#property-menu" aria-expanded="false" aria-controls="playlist-menu">
                                 <i class="mdi mdi-folder-outline"></i>
@@ -97,7 +97,7 @@
                         </li>
                     @endcan
                     @can('property.return.distribution')
-                        <li>
+                        <li class="{{ request()->routeIs('admin.distribute.returns') ? 'active': '' }}">
                             <a class="sidenav-item-link" href="{{route('admin.distribute.returns')}}">
                                 <i class="mdi mdi-account-group"></i>
                                 <span class="nav-text">Distribution</span>
@@ -105,7 +105,7 @@
                         </li>
                     @endcan
                     @can('profile.verification.view')
-                        <li>
+                        <li class="{{ request()->routeIs('admin.profile.verification') ? 'active': '' }}">
                             <a class="sidenav-item-link" href="{{route('admin.profile.verification')}}">
                                 <i class="mdi mdi-account-group"></i>
                                 <span class="nav-text">Profile Verification</span>
@@ -113,7 +113,7 @@
                         </li>
                     @endcan
                     @can('investments.view')
-                        <li>
+                        <li class="{{ request()->routeIs('admin.all.investments') ? 'active': '' }}" >
                             <a class="sidenav-item-link" href="{{route('admin.all.investments')}}">
                                 <i class="mdi mdi-bank-transfer-in"></i>
                                 <span class="nav-text">Investments</span>
@@ -121,7 +121,7 @@
                         </li>
                     @endcan
                     @can('auctions.view')
-                        <li>
+                        <li class="{{ request()->routeIs('admin.all.auctions') ? 'active': '' }}" >
                             <a class="sidenav-item-link" href="{{route('admin.all.auctions')}}">
                                 <i class="mdi mdi-coins"></i>
                                 <span class="nav-text">Auctions</span>
@@ -129,7 +129,7 @@
                         </li>
                     @endcan
                     @can('advertisements.view')
-                        <li>
+                        <li class="{{ request()->routeIs('admin.all.advertisements') ? 'active': '' }}" >
                             <a class="sidenav-item-link" href="{{route('admin.all.advertisements')}}">
                                 <i class="mdi mdi-square-inc"></i>
                                 <span class="nav-text">Advertisements</span>
@@ -137,7 +137,7 @@
                         </li>
                     @endcan
                     @can('bids.view')
-                        <li>
+                        <li class="{{ request()->routeIs('admin.all.bids') ? 'active': '' }}" >
                             <a class="sidenav-item-link" href="{{route('admin.all.bids')}}">
                                 <i class="mdi mdi-coins"></i>
                                 <span class="nav-text">Bids</span>
@@ -145,23 +145,21 @@
                         </li>
                     @endcan
                     @can('transactions.view')
-                        <li>
+                        <li class="{{ request()->routeIs('admin.all.transactions') ? 'active': '' }}" >
                             <a class="sidenav-item-link" href="{{route('admin.all.transactions')}}">
                                 <i class="mdi mdi-bank-transfer"></i>
                                 <span class="nav-text">Transactions</span>
                             </a>
                         </li>
                     @endcan
-{{--                    @can('transactions.view')--}}
-                        <li>
+                    <li class="{{ request()->routeIs('admin.messages') ? 'active': '' }}" >
                             <a class="sidenav-item-link" href="{{route('admin.messages')}}">
                                 <i class="mdi mdi-bank-transfer"></i>
                                 <span class="nav-text">Messages</span>
                             </a>
                         </li>
-{{--                    @endcan--}}
                     @can('user.view')
-                        <li class="has-sub">
+                        <li class="has-sub {{ request()->routeIs('open.users') ? 'active': '' }}">
                             <a class="sidenav-item-link" href="{{route('open.users')}}">
                                 <i class="mdi mdi-account"></i>
                                 <span class="nav-text">Users</span>
@@ -169,7 +167,7 @@
                         </li>
                     @endcan
                     @can('permission.view')
-                        <li class="has-sub">
+                        <li class="has-sub {{ request()->routeIs('open.permission') ? 'active': '' }}">
                             <a class="sidenav-item-link" href="{{route('open.permission')}}">
                                 <i class="mdi mdi-folder-lock-open"></i>
                                 <span class="nav-text">Permissions</span>
@@ -177,7 +175,7 @@
                         </li>
                     @endcan
                     @can('role.view')
-                        <li class="has-sub">
+                        <li class="has-sub {{ request()->routeIs('open.roles') ? 'active': '' }}">
                             <a class="sidenav-item-link" href="{{route('open.roles')}}">
                                 <i class="mdi mdi-folder-outline"></i>
                                 <span class="nav-text">Roles</span>

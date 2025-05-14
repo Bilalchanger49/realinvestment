@@ -56,7 +56,13 @@
                                     </li>
                                 </ul>
                             </div>
-                            <span class="property-count">Total Properties: <strong>4</strong></span>
+                            @if($activeTab == 'properties')
+                            <span class="property-count">Total Properties: <strong>{{$total_properties}}</strong></span>
+                            @elseif($activeTab == 'auctions')
+                            <span class="property-count">Total Auctions: <strong>{{$total_auctions}}</strong></span>
+                            @elseif($activeTab == 'advertisements')
+                            <span class="property-count">Total Advertisements: <strong>{{$total_advertisements}}</strong></span>
+                            @endif
                         </div>
 
                         <div class="tab-content mt-3">
@@ -225,7 +231,6 @@
                                                         <br>
                                                         <p>Expected Annual Return: 8%</p>
                                                     </div>
-                                                    {{--                                                    {{dd($propertyAdd)}}--}}
                                                     <div class="product-meta-bottom">
                                                         <span class="price">Token Price: {{$propertyAdd->share_amount}}</span>
                                                         <span class="text-center mt-4">

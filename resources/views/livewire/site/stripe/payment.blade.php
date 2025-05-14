@@ -32,12 +32,11 @@
 
         <div class="form-group">
             <label for="card-element">Credit or Debit Card</label>
-            <div id="card-element" class="StripeElement">
+            <div wire:ignore.self id="card-element" class="StripeElement">
                 <!-- Stripe Card element will be injected here -->
             </div>
         </div>
         <button type="submit" id="submit-button" class="btn btn-primary btn-lg px-5">Pay Now</button>
-{{--        <button type="submit" id="submit-button">Pay</button>--}}
     </form>
 
 
@@ -80,7 +79,6 @@
                                 } else {
                                     console.error('Unknown payment type:', paymentType)
                                 }
-                                // Livewire.dispatch('processPayment', { token: result.token.id })
                             }
                         });
 

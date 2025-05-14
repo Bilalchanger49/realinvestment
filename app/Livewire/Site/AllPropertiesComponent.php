@@ -35,6 +35,9 @@ class AllPropertiesComponent extends Component
     public $priceWithCharges;
     public $min_bid_price;
 
+    public $total_properties;
+    public $total_auctions;
+    public $total_advertisements;
     public $activeTab = 'properties';
 
     public function setActiveTab($tab){
@@ -86,26 +89,25 @@ class AllPropertiesComponent extends Component
             'confirmAction' => 'accepted',
         ]);
 
-        // Check if the current user is the creator of the auction
+
         if ($this->selectedAuction->user_id === auth()->id()) {
             session()->flash('error', 'You cannot place a bid on your own auction.');
-            return redirect()->route('site.property.all'); // Redirect back to the form
+            return redirect()->route('site.property.all');
         }
 
-        // Check if the user has already placed an active bid on the same investment
         $existingBid = Bid::where('user_id', auth()->id())
             ->where('auctions_id', $this->selectedAuction->id)
-            ->where('status', 'active') // Assuming 'status' column tracks bid status
+            ->where('status', 'active')
             ->first();
 
 
         if ($existingBid) {
             session()->flash('error', 'You already have an active bid on this investment.');
-            return redirect()->route('site.property.all'); // Redirect back to the form
+            return redirect()->route('site.property.all');
         }
 
         try {
-            // Create a bid and refresh to get model instance
+
             $bid = Bid::create([
                 'user_id' => auth()->id(),
                 'auctions_id' => $this->selectedAuction->id,
@@ -114,9 +116,8 @@ class AllPropertiesComponent extends Component
                 'total_price' => $validatedData['totalPrice'],
                 'end_date' => now()->addDays(7),
                 'status' => 'active',
-            ])->fresh(); // Ensures we get the model instance
+            ])->fresh();
 
-            // Ensure user exists
             $user = User::find($bid->user_id);
             $auctionCreator = User::find($this->selectedAuction->user_id);
             $property = Property::find($this->selectedAuction->property_id);
@@ -133,10 +134,8 @@ class AllPropertiesComponent extends Component
             }
         } catch (\Exception $e) {
             session()->flash('error', 'Failed to create bid: ' . $e->getMessage());
-//            \Log::error('Bid creation failed', ['error' => $e]);
         }
 
-        // Redirect to the desired page
         return redirect()->route('site.investor.page',[$activeTab = 'active-bids']);
     }
 
@@ -145,6 +144,11 @@ class AllPropertiesComponent extends Component
         $images = PropertyImage::all();
         $queryProperties = Property::query();
         $queryAuctions = Auctions::where('status', 'active')->with('property', 'user');
+        $queryAdvertisement = Selling::where('status', 'active')->with('property')->with('user');
+
+        $this->total_properties = $queryProperties->count();
+        $this->total_auctions = $queryAuctions->count();
+        $this->total_advertisements = $queryAdvertisement->count();
 
         if (!empty($this->search)) {
                 $queryProperties->where('property_name', 'like', '%' . $this->search . '%');
@@ -154,17 +158,15 @@ class AllPropertiesComponent extends Component
                 });
         }
 
-        $queryAdvertisement = Selling::where('status', 'active')->with('property')->with('user');
-
         if (!empty($this->search)) {
             $queryAdvertisement->whereHas('property', function ($query) {
                 $query->where('property_name', 'like', '%' . $this->search . '%');
             });
         }
 
-        $properties = $queryProperties->latest()->paginate(1);
-        $auctions = $queryAuctions->latest()->paginate(1);
-        $advertisements = $queryAdvertisement->latest()->paginate(1);
+        $properties = $queryProperties->latest()->paginate(4);
+        $auctions = $queryAuctions->latest()->paginate(4);
+        $advertisements = $queryAdvertisement->latest()->paginate(4);
 
         return view('livewire.site.allProperties', [
             'propertyAdds' => $advertisements,

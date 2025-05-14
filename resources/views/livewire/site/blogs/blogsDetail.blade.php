@@ -27,7 +27,8 @@
                                 <h3>{{ $blog->title }}</h3>
                                 <ul class="meta-inner">
                                     <li><img src="{{asset('assets/img/icon/1.png')}}" alt="img"> {{ $blog->user->name }}</li>
-                                    <li><img src="{{asset('assets/img/icon/2.png')}}" alt="img"> {{ $blog->created_at->diffForHumans() }}</li>
+{{--                                    <li><img src="{{asset('assets/img/icon/2.png')}}" alt="img"> {{ $blog->created_at->diffForHumans() }}</li>--}}
+                                    <li><img src="{{asset('assets/img/icon/2.png')}}" alt="img"> {{ $totalViews }}</li>
                                 </ul>
                             </div>
                             <div class="blog-thumbnail">
