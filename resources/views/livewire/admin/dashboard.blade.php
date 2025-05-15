@@ -10,7 +10,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Bids</h5>
                     <h3>{{ number_format($activeBids) }}</h3>
-                    <p class="text-success">+12% ↑</p>
                 </div>
             </div>
         </div>
@@ -19,7 +18,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Properties Sold</h5>
                     <h3>{{ number_format($propertiesSold) }}</h3>
-                    <p class="text-success">+8% ↑</p>
                 </div>
             </div>
         </div>
@@ -28,7 +26,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Active Auctions</h5>
                     <h3>{{ number_format($activeAuctions) }}</h3>
-                    <p class="text-danger">-5% ↓</p>
                 </div>
             </div>
         </div>
@@ -37,7 +34,6 @@
                 <div class="card-body">
                     <h5 class="card-title">Revenue</h5>
                     <h3>PK {{ number_format($auctionRevenue) }}</h3>
-                    <p class="text-success">+30% ↑</p>
                 </div>
             </div>
         </div>
@@ -47,15 +43,15 @@
     <div class="card card-default">
         <div class="card-header">
             <h2>Transactions</h2>
-            <div>
-                <select wire:model.live="timeFilter">
-                    <option value="daily">Daily</option>
-                    <option value="monthly">Monthly</option>
-                    <option value="yearly">Yearly</option>
-                </select>
+{{--            <div>--}}
+{{--                <select wire:model.live="timeFilter">--}}
+{{--                    <option value="daily">Daily</option>--}}
+{{--                    <option value="monthly">Monthly</option>--}}
+{{--                    <option value="yearly">Yearly</option>--}}
+{{--                </select>--}}
 
-                <span>{{$timeFilter}}</span>
-            </div>
+{{--                <span>{{$timeFilter}}</span>--}}
+{{--            </div>--}}
 
         </div>
         <div class="card-body">

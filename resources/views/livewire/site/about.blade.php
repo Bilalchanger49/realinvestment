@@ -69,7 +69,7 @@
                 <div class="col-lg-4 col-sm-6">
                   <div class="agent-card style-2 text-center">
                     <div class="agent-thumb">
-                      <img src="assets/img/agent/9.png" alt="Ayesha Khan">
+                      <img src="assets/img/agent/14.png" alt="Furqan">
                     </div>
                     <div class="agent-details">
                       <h4>Furqan</h4>

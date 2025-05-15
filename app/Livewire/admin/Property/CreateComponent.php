@@ -49,16 +49,10 @@ class CreateComponent extends Component
 
         $validate = $this->validate($this->rules, $this->messages);
 
-        // Set the number of shares to a fixed value
         $noOfShares = 150;
         $rentPerYear = $this->property_rent * 12;
         $pricePerShare = $this->property_price / $noOfShares;
         $returnPercent = ($rentPerYear / $this->property_price) * 100;
-
-//        if ($this->property_image) {
-//            $file = $this->property_image;
-//            $path = $file->store('create-property', 'public');
-//        }
 
         $property =  Property::create([
             'user_id' => auth()->user()->id,
