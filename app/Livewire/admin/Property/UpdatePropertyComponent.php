@@ -4,6 +4,7 @@ namespace App\Livewire\admin\Property;
 
 use App\Models\Property;
 use App\Models\PropertyImage;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use App\Http\Requests\PropertyRequest;
 use Livewire\WithFileUploads;
@@ -26,6 +27,7 @@ class UpdatePropertyComponent extends Component
     public $property_total_shares;
     public $property_remaining_shares;
     public $property_images = [];
+    public $existingImages = [];
     public $rules;
     public $messages;
 
@@ -49,6 +51,9 @@ class UpdatePropertyComponent extends Component
         $this->property_total_shares = $this->property->property_total_shares;
         $this->property_remaining_shares = $this->property->property_remaining_shares;
         $this->rules['property_images.*'] = 'image|max:2048';
+
+        $this->existingImages = PropertyImage::where('property_id', $this->property->id)->get();
+
     }
 
 
@@ -66,6 +71,15 @@ class UpdatePropertyComponent extends Component
         $this->property_images = array_values($this->property_images);
     }
 
+    public function deleteExistingImage($imageId)
+    {
+        $image = PropertyImage::where('id', $imageId)->first();
+        if ($image) {
+            Storage::disk('public')->delete($image->image_path);
+            $image->delete();
+            $this->existingImages = PropertyImage::where('property_id', $this->property->id)->get();
+        }
+    }
     public function updateProperty()
     {
         $validate = $this->validate($this->rules, $this->messages);
@@ -75,14 +89,7 @@ class UpdatePropertyComponent extends Component
 
         $noOfShares = round($noOfShares);
 
-// Calculate the price of each share
         $pricePerShare = $this->property_price / $noOfShares;
-
-        // Handle image upload if a new one is provided
-//        if ($this->property_image) {
-//            $file = $this->property_image;
-//            $path = $file->store('create-property', 'public');
-//        }
 
         $this->property->update([
             'user_id' => auth()->user()->id,

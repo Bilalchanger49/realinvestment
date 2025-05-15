@@ -47,7 +47,7 @@ class AllTransactionComponent extends Component
             $query->where('status', $this->status);
         }
 
-        $transactions = $query->latest()->paginate(1);
+        $transactions = $query->latest()->paginate(4);
 //dd($transactions);
 
         return view('livewire.admin.alltransaction', compact('transactions'))->extends('layouts.auth');

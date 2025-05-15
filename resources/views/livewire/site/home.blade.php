@@ -88,10 +88,12 @@
                                 </ul>
                                 <p>{{$property->property_description}}</p>
                             </div>
-                            <div class="product-meta-bottom">
-                                <span class="price">PKR {{$property->property_price}}</span>
-                                <span>2 months ago</span>
+                            <div class="product-meta-bottom d-flex justify-content-between align-items-center">
+                                <span class="price">PKR {{ $property->property_price }}</span>
+                                <span>{{$property->created_at->diffForHumans()}}</span>
+                                <span class="roi">ROI {{ $property->property_roi }}%</span>
                             </div>
+
                         </div>
                     </div>
                 @endforeach

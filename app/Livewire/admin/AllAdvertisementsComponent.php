@@ -48,7 +48,7 @@ class AllAdvertisementsComponent extends Component
             $query->where('status', $this->status);
         }
 
-        $advertisements = $query->latest()->paginate(1);
+        $advertisements = $query->latest()->paginate(4);
 
 //dd($advertisements);
         return view('livewire.admin.alladvertisements', compact('advertisements'))->extends('layouts.auth');

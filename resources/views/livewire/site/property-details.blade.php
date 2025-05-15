@@ -25,21 +25,16 @@
                                 <div class="row">
                                     <div class="col-lg-7">
                                         <h3>{{$property->property_name}}</h3>
-                                        <p><img src="{{asset('assets/img/icon/location2.png')}}" alt="img"> {{$property->property_address}},
-                                            Right
-                                            Side real estate </p>
+                                        <p><img src="{{asset('assets/img/icon/location2.png')}}" alt="img"> {{$property->property_address}}</p>
                                         <ul>
-                                            <li>3 Bedroom</li>
-                                            <li>Bathroom</li>
-                                            <li>1026 sqft</li>
+                                            <li>{{$property->property_rooms}} Rooms</li>
+                                            <li>{{$property->property_kitchens}} Kitchens</li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-5 text-lg-right">
                                         <h4>PK {{$property->property_price}}</h4>
                                         <ul>
-                                            <li><img src="{{asset('assets/img/icon/1.png')}}" alt="img">Marce 9 , 2020</li>
-                                            <li><img src="{{asset('assets/img/icon/2.png')}}" alt="img">4263</li>
-                                            <li><img src="{{asset('assets/img/icon/3.png')}}" alt="img">68</li>
+                                            <li><img src="{{asset('assets/img/icon/1.png')}}" alt="img">{{$property->created_at->diffForHumans()}}</li>
                                         </ul>
                                     </div>
                                 </div>

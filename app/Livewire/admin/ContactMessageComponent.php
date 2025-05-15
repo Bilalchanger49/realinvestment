@@ -39,7 +39,7 @@ class ContactMessageComponent extends Component
             $query->where('status', $this->filterStatus);
         }
 
-        $messages = $query->latest()->paginate(1);
+        $messages = $query->latest()->paginate(4);
 
 //        $messages = ContactMessage::latest()->get();
 

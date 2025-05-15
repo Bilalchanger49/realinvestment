@@ -47,7 +47,7 @@ class AllAuctionsComponent extends Component
             $query->where('status', $this->status);
         }
 
-        $auctions = $query->latest()->paginate(1);
+        $auctions = $query->latest()->paginate(4);
 //dd($auctions);
 
         return view('livewire.admin.allauctions', compact('auctions'))->extends('layouts.auth');

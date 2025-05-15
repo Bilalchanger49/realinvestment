@@ -106,9 +106,10 @@
                                                         </ul>
                                                         <p>{{$property->property_description}}</p>
                                                     </div>
-                                                    <div class="product-meta-bottom">
-                                                        <span class="price">PK {{$property->property_price}}</span>
-                                                        <span>1 year ago</span>
+                                                    <div class="product-meta-bottom d-flex justify-content-between align-items-center">
+                                                        <span class="price">PKR {{ $property->property_price }}</span>
+                                                        <span>{{$property->created_at->diffForHumans()}}</span>
+                                                        <span class="roi">ROI {{ $property->property_roi }}%</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -160,7 +161,7 @@
                                                             </ul>
                                                             <p>{{$auction->property->property_description}}</p>
                                                             <br>
-                                                            <p>Expected Annual Return: 8%</p>
+                                                            <p>Expected Annual Return: {{ $auction->property->property_roi }}%</p>
                                                         </div>
                                                         <div class="product-meta-bottom">
                                                         <span
@@ -229,7 +230,7 @@
                                                         </ul>
                                                         <p>{{$propertyAdd->property->property_description}}</p>
                                                         <br>
-                                                        <p>Expected Annual Return: 8%</p>
+                                                        <p>Expected Annual Return: {{ $propertyAdd->property->property_roi }}%</p>
                                                     </div>
                                                     <div class="product-meta-bottom">
                                                         <span class="price">Token Price: {{$propertyAdd->share_amount}}</span>

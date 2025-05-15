@@ -38,7 +38,7 @@ class PayoutComponent extends Component
         if ($this->amount < $this->profitAmount){
         $transfer = Transfer::create([
             'amount' => $amountInCents,
-            'currency' => 'usd',
+            'currency' => 'pkr',
             'destination' => $stripeAccountId,
         ]);
             // Deduct the amount from return distributions table

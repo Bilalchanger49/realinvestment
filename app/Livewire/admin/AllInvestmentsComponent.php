@@ -50,7 +50,7 @@ class AllInvestmentsComponent extends Component
             $query->where('status', $this->status);
         }
 
-        $investments = $query->latest()->paginate(1);
+        $investments = $query->latest()->paginate(4);
 
 //dd($investments);
         return view('livewire.admin.allinvestments', compact('investments'))->extends('layouts.auth');
